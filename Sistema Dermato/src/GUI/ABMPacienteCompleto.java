@@ -140,17 +140,6 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
     private void initComponents() {
 
         btngrpSangre = new javax.swing.ButtonGroup();
-        tabbedPaneAntecedentes = new javax.swing.JTabbedPane();
-        pnlGenerales = new javax.swing.JPanel();
-        pnlPersonales = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtaPersonales = new javax.swing.JTextArea();
-        pnlQuirurgicos = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        txtaQuirurgicos = new javax.swing.JTextArea();
-        pnlToxicos = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        txtaToxicos = new javax.swing.JTextArea();
         pnlDatosPersonales = new javax.swing.JPanel();
         lblstaticNombres = new javax.swing.JLabel();
         lblstaticApellidos = new javax.swing.JLabel();
@@ -175,12 +164,28 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         lblstaticCity = new javax.swing.JLabel();
         txtfCity = new javax.swing.JTextField();
         pnlButtons = new javax.swing.JPanel();
-        btnVolver = new javax.swing.JButton();
-        btnGuardar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
         pnlOtherData = new javax.swing.JPanel();
         lblstaticFirstConsultDate = new javax.swing.JLabel();
         ftxtfFechaNacimiento1 = new javax.swing.JFormattedTextField();
+        pnlGenerales = new javax.swing.JPanel();
+        pnlPersonales = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtaPersonales = new javax.swing.JTextArea();
+        pnlQuirurgicos = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        txtaQuirurgicos = new javax.swing.JTextArea();
+        pnlToxicos = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        txtaToxicos = new javax.swing.JTextArea();
+        pnlFamiliares = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        txtaFamiliares = new javax.swing.JTextArea();
+        pnlMedicamentosos = new javax.swing.JPanel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        txtaMedicamentosos = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Nuevo Paciente");
@@ -191,119 +196,6 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
-
-        tabbedPaneAntecedentes.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Antecedentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
-        tabbedPaneAntecedentes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tabbedPaneAntecedentes.setOpaque(true);
-        tabbedPaneAntecedentes.setPreferredSize(new java.awt.Dimension(500, 300));
-
-        pnlGenerales.setNextFocusableComponent(txtaPersonales);
-
-        pnlPersonales.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 102))); // NOI18N
-
-        txtaPersonales.setColumns(20);
-        txtaPersonales.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtaPersonales.setLineWrap(true);
-        txtaPersonales.setRows(5);
-        txtaPersonales.setTabSize(0);
-        txtaPersonales.setWrapStyleWord(true);
-        txtaPersonales.setNextFocusableComponent(txtaQuirurgicos);
-        txtaPersonales.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtaPersonalesKeyPressed(evt);
-            }
-        });
-        jScrollPane3.setViewportView(txtaPersonales);
-
-        javax.swing.GroupLayout pnlPersonalesLayout = new javax.swing.GroupLayout(pnlPersonales);
-        pnlPersonales.setLayout(pnlPersonalesLayout);
-        pnlPersonalesLayout.setHorizontalGroup(
-            pnlPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
-        );
-        pnlPersonalesLayout.setVerticalGroup(
-            pnlPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-        );
-
-        pnlQuirurgicos.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Quirúrgicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 102))); // NOI18N
-
-        txtaQuirurgicos.setColumns(20);
-        txtaQuirurgicos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtaQuirurgicos.setLineWrap(true);
-        txtaQuirurgicos.setRows(5);
-        txtaQuirurgicos.setTabSize(0);
-        txtaQuirurgicos.setWrapStyleWord(true);
-        txtaQuirurgicos.setNextFocusableComponent(txtaToxicos);
-        txtaQuirurgicos.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtaQuirurgicosKeyPressed(evt);
-            }
-        });
-        jScrollPane6.setViewportView(txtaQuirurgicos);
-
-        javax.swing.GroupLayout pnlQuirurgicosLayout = new javax.swing.GroupLayout(pnlQuirurgicos);
-        pnlQuirurgicos.setLayout(pnlQuirurgicosLayout);
-        pnlQuirurgicosLayout.setHorizontalGroup(
-            pnlQuirurgicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
-        );
-        pnlQuirurgicosLayout.setVerticalGroup(
-            pnlQuirurgicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-        );
-
-        pnlToxicos.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Tóxicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 102))); // NOI18N
-
-        txtaToxicos.setColumns(20);
-        txtaToxicos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtaToxicos.setLineWrap(true);
-        txtaToxicos.setRows(5);
-        txtaToxicos.setTabSize(0);
-        txtaToxicos.setWrapStyleWord(true);
-        txtaToxicos.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtaToxicosKeyPressed(evt);
-            }
-        });
-        jScrollPane7.setViewportView(txtaToxicos);
-
-        javax.swing.GroupLayout pnlToxicosLayout = new javax.swing.GroupLayout(pnlToxicos);
-        pnlToxicos.setLayout(pnlToxicosLayout);
-        pnlToxicosLayout.setHorizontalGroup(
-            pnlToxicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
-        );
-        pnlToxicosLayout.setVerticalGroup(
-            pnlToxicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout pnlGeneralesLayout = new javax.swing.GroupLayout(pnlGenerales);
-        pnlGenerales.setLayout(pnlGeneralesLayout);
-        pnlGeneralesLayout.setHorizontalGroup(
-            pnlGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGeneralesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pnlPersonales, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlQuirurgicos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlToxicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        pnlGeneralesLayout.setVerticalGroup(
-            pnlGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlGeneralesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlPersonales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlQuirurgicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlToxicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        tabbedPaneAntecedentes.addTab("Generales", pnlGenerales);
 
         pnlDatosPersonales.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Datos Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
@@ -513,7 +405,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
                         .addComponent(lblstaticFechaNacimiento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ftxtfFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 85, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
                         .addComponent(lblstaticAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -559,26 +451,26 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
                 .addComponent(pnlObraSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        btnVolver.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnVolver.setForeground(new java.awt.Color(0, 51, 102));
-        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/home_enabled.png"))); // NOI18N
-        btnVolver.setText("Volver");
-        btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        btnVolver.setContentAreaFilled(false);
-        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnVolver.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnVolver.setOpaque(true);
-        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnVolverMouseEntered(evt);
-            }
+        btnModificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(0, 51, 102));
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edit_enabled.png"))); // NOI18N
+        btnModificar.setText("Modificar");
+        btnModificar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        btnModificar.setContentAreaFilled(false);
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnModificar.setEnabled(false);
+        btnModificar.setOpaque(true);
+        btnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnVolverMouseExited(evt);
+                btnModificarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModificarMouseEntered(evt);
             }
         });
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
 
@@ -591,11 +483,11 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.setOpaque(true);
         btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnGuardarMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnGuardarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnGuardarMouseEntered(evt);
             }
         });
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -604,26 +496,26 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
             }
         });
 
-        btnModificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnModificar.setForeground(new java.awt.Color(0, 51, 102));
-        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edit_enabled.png"))); // NOI18N
-        btnModificar.setText("Modificar");
-        btnModificar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        btnModificar.setContentAreaFilled(false);
-        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnModificar.setEnabled(false);
-        btnModificar.setOpaque(true);
-        btnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnModificarMouseEntered(evt);
-            }
+        btnVolver.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(0, 51, 102));
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/home_enabled.png"))); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        btnVolver.setContentAreaFilled(false);
+        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVolver.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnVolver.setOpaque(true);
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnModificarMouseExited(evt);
+                btnVolverMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVolverMouseEntered(evt);
             }
         });
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
 
@@ -631,19 +523,22 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         pnlButtons.setLayout(pnlButtonsLayout);
         pnlButtonsLayout.setHorizontalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlButtonsLayout.createSequentialGroup()
+            .addGroup(pnlButtonsLayout.createSequentialGroup()
+                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlButtonsLayout.setVerticalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlButtonsLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pnlOtherData.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Otros Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
@@ -667,13 +562,178 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
                 .addComponent(lblstaticFirstConsultDate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ftxtfFechaNacimiento1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(243, Short.MAX_VALUE))
         );
         pnlOtherDataLayout.setVerticalGroup(
             pnlOtherDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOtherDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(ftxtfFechaNacimiento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(lblstaticFirstConsultDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnlGenerales.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Antecedentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlGenerales.setNextFocusableComponent(txtaPersonales);
+
+        pnlPersonales.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+
+        txtaPersonales.setColumns(20);
+        txtaPersonales.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaPersonales.setLineWrap(true);
+        txtaPersonales.setRows(5);
+        txtaPersonales.setTabSize(0);
+        txtaPersonales.setWrapStyleWord(true);
+        txtaPersonales.setNextFocusableComponent(txtaQuirurgicos);
+        txtaPersonales.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtaPersonalesKeyPressed(evt);
+            }
+        });
+        jScrollPane3.setViewportView(txtaPersonales);
+
+        javax.swing.GroupLayout pnlPersonalesLayout = new javax.swing.GroupLayout(pnlPersonales);
+        pnlPersonales.setLayout(pnlPersonalesLayout);
+        pnlPersonalesLayout.setHorizontalGroup(
+            pnlPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
+        );
+        pnlPersonalesLayout.setVerticalGroup(
+            pnlPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+        );
+
+        pnlQuirurgicos.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Quirúrgicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+
+        txtaQuirurgicos.setColumns(20);
+        txtaQuirurgicos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaQuirurgicos.setLineWrap(true);
+        txtaQuirurgicos.setRows(5);
+        txtaQuirurgicos.setTabSize(0);
+        txtaQuirurgicos.setWrapStyleWord(true);
+        txtaQuirurgicos.setNextFocusableComponent(txtaToxicos);
+        txtaQuirurgicos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtaQuirurgicosKeyPressed(evt);
+            }
+        });
+        jScrollPane6.setViewportView(txtaQuirurgicos);
+
+        javax.swing.GroupLayout pnlQuirurgicosLayout = new javax.swing.GroupLayout(pnlQuirurgicos);
+        pnlQuirurgicos.setLayout(pnlQuirurgicosLayout);
+        pnlQuirurgicosLayout.setHorizontalGroup(
+            pnlQuirurgicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane6)
+        );
+        pnlQuirurgicosLayout.setVerticalGroup(
+            pnlQuirurgicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+        );
+
+        pnlToxicos.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Tóxicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+
+        txtaToxicos.setColumns(20);
+        txtaToxicos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaToxicos.setLineWrap(true);
+        txtaToxicos.setRows(5);
+        txtaToxicos.setTabSize(0);
+        txtaToxicos.setWrapStyleWord(true);
+        txtaToxicos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtaToxicosKeyPressed(evt);
+            }
+        });
+        jScrollPane7.setViewportView(txtaToxicos);
+
+        javax.swing.GroupLayout pnlToxicosLayout = new javax.swing.GroupLayout(pnlToxicos);
+        pnlToxicos.setLayout(pnlToxicosLayout);
+        pnlToxicosLayout.setHorizontalGroup(
+            pnlToxicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane7)
+        );
+        pnlToxicosLayout.setVerticalGroup(
+            pnlToxicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+        );
+
+        pnlFamiliares.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Familiares", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 102))); // NOI18N
+
+        txtaFamiliares.setColumns(20);
+        txtaFamiliares.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaFamiliares.setLineWrap(true);
+        txtaFamiliares.setRows(5);
+        txtaFamiliares.setTabSize(0);
+        txtaFamiliares.setWrapStyleWord(true);
+        txtaFamiliares.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtaFamiliaresKeyPressed(evt);
+            }
+        });
+        jScrollPane8.setViewportView(txtaFamiliares);
+
+        javax.swing.GroupLayout pnlFamiliaresLayout = new javax.swing.GroupLayout(pnlFamiliares);
+        pnlFamiliares.setLayout(pnlFamiliaresLayout);
+        pnlFamiliaresLayout.setHorizontalGroup(
+            pnlFamiliaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane8)
+        );
+        pnlFamiliaresLayout.setVerticalGroup(
+            pnlFamiliaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+        );
+
+        pnlMedicamentosos.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Medicamentosos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 102))); // NOI18N
+
+        txtaMedicamentosos.setColumns(20);
+        txtaMedicamentosos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaMedicamentosos.setLineWrap(true);
+        txtaMedicamentosos.setRows(5);
+        txtaMedicamentosos.setTabSize(0);
+        txtaMedicamentosos.setWrapStyleWord(true);
+        txtaMedicamentosos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtaMedicamentososKeyPressed(evt);
+            }
+        });
+        jScrollPane9.setViewportView(txtaMedicamentosos);
+
+        javax.swing.GroupLayout pnlMedicamentososLayout = new javax.swing.GroupLayout(pnlMedicamentosos);
+        pnlMedicamentosos.setLayout(pnlMedicamentososLayout);
+        pnlMedicamentososLayout.setHorizontalGroup(
+            pnlMedicamentososLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane9)
+        );
+        pnlMedicamentososLayout.setVerticalGroup(
+            pnlMedicamentososLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout pnlGeneralesLayout = new javax.swing.GroupLayout(pnlGenerales);
+        pnlGenerales.setLayout(pnlGeneralesLayout);
+        pnlGeneralesLayout.setHorizontalGroup(
+            pnlGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlGeneralesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlPersonales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlQuirurgicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlToxicos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlFamiliares, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlMedicamentosos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        pnlGeneralesLayout.setVerticalGroup(
+            pnlGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlGeneralesLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(pnlPersonales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlQuirurgicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlToxicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlMedicamentosos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlFamiliares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -683,25 +743,24 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlDatosPersonales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlOtherData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlOtherData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabbedPaneAntecedentes, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(pnlGenerales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlGenerales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnlDatosPersonales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlOtherData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tabbedPaneAntecedentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(pnlOtherData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -975,6 +1034,14 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
         this.controlarFoco(evt);
     }//GEN-LAST:event_txtaQuirurgicosKeyPressed
 
+    private void txtaFamiliaresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaFamiliaresKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtaFamiliaresKeyPressed
+
+    private void txtaMedicamentososKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaMedicamentososKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtaMedicamentososKeyPressed
+
     
     private void setearLabels(JButton jbtn, boolean entrada){
         if(jbtn.isEnabled())
@@ -998,10 +1065,10 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     private javax.swing.JFormattedTextField ftxtfFechaNacimiento;
     private javax.swing.JFormattedTextField ftxtfFechaNacimiento1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JLabel lblstaticAddress;
     private javax.swing.JLabel lblstaticApellidos;
     private javax.swing.JLabel lblstaticCity;
@@ -1013,18 +1080,17 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     private javax.swing.JLabel lblstaticTelefono;
     private javax.swing.JPanel pnlButtons;
     private javax.swing.JPanel pnlDatosPersonales;
+    private javax.swing.JPanel pnlFamiliares;
     private javax.swing.JPanel pnlGenerales;
+    private javax.swing.JPanel pnlMedicamentosos;
     private javax.swing.JPanel pnlObraSocial;
     private javax.swing.JPanel pnlOtherData;
     private javax.swing.JPanel pnlPersonales;
-    private javax.swing.JPanel pnlPersonales1;
-    private javax.swing.JPanel pnlPersonales2;
     private javax.swing.JPanel pnlQuirurgicos;
     private javax.swing.JPanel pnlToxicos;
-    private javax.swing.JTabbedPane tabbedPaneAntecedentes;
+    private javax.swing.JTextArea txtaFamiliares;
+    private javax.swing.JTextArea txtaMedicamentosos;
     private javax.swing.JTextArea txtaPersonales;
-    private javax.swing.JTextArea txtaPersonales1;
-    private javax.swing.JTextArea txtaPersonales2;
     private javax.swing.JTextArea txtaQuirurgicos;
     private javax.swing.JTextArea txtaToxicos;
     private javax.swing.JTextField txtfAddress;
