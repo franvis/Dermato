@@ -40,12 +40,15 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="pnlDatosPersonales" max="32767" attributes="0"/>
-                  <Component id="pnlOtherData" alignment="0" max="32767" attributes="0"/>
-                  <Component id="pnlButtons" alignment="0" max="32767" attributes="0"/>
+                  <Component id="pnlButtons" max="32767" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="pnlOtherData" alignment="0" max="32767" attributes="0"/>
+                      <Component id="pnlDatosPersonales" alignment="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="pnlGenerales" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,8 +56,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="pnlGenerales" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="pnlGenerales" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="pnlDatosPersonales" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -63,7 +66,7 @@
                       <Component id="pnlButtons" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -211,6 +214,9 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtfApellidos"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtfNombresKeyTyped"/>
@@ -220,6 +226,9 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtfTelefono"/>
             </Property>
           </Properties>
           <Events>
@@ -231,6 +240,9 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtfDni"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtfTelefonoKeyTyped"/>
@@ -240,6 +252,9 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtfAddress"/>
             </Property>
           </Properties>
           <Events>
@@ -261,6 +276,9 @@
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="cmbObraSocial"/>
             </Property>
           </Properties>
         </Component>
@@ -394,7 +412,7 @@
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="pnlPersonales"/>
+                  <ComponentRef name="ftxtfFechaPrimeraConsulta"/>
                 </Property>
               </Properties>
               <Events>
@@ -457,6 +475,9 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtfCity"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtfAddressKeyTyped"/>
@@ -474,6 +495,9 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="ftxtfFechaNacimiento"/>
             </Property>
           </Properties>
           <Events>
@@ -493,7 +517,7 @@
                   <Component id="btnModificar" min="-2" pref="123" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnGuardar" min="-2" pref="123" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="17" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -562,6 +586,9 @@
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Default Cursor"/>
             </Property>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="btnVolver"/>
+            </Property>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -592,6 +619,9 @@
               <Color id="Default Cursor"/>
             </Property>
             <Property name="horizontalTextPosition" type="int" value="4"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtfNombres"/>
+            </Property>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -624,15 +654,15 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblstaticFirstConsultDate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="ftxtfFechaNacimiento1" min="-2" pref="106" max="-2" attributes="0"/>
-                  <EmptySpace pref="243" max="32767" attributes="0"/>
+                  <Component id="ftxtfFechaPrimeraConsulta" min="-2" pref="106" max="-2" attributes="0"/>
+                  <EmptySpace pref="113" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                  <Component id="ftxtfFechaNacimiento1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ftxtfFechaPrimeraConsulta" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblstaticFirstConsultDate" alignment="3" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -647,13 +677,16 @@
             <Property name="text" type="java.lang.String" value="Fecha de Primera Consulta:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="ftxtfFechaNacimiento1">
+        <Component class="javax.swing.JFormattedTextField" name="ftxtfFechaPrimeraConsulta">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="##/##/####" subtype="-1" type="5"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtaPersonales"/>
             </Property>
           </Properties>
         </Component>
@@ -703,7 +736,7 @@
                   <Component id="pnlMedicamentosos" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="pnlFamiliares" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="47" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -729,7 +762,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane3" alignment="0" pref="609" max="32767" attributes="0"/>
+                  <Component id="jScrollPane3" alignment="0" pref="482" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -874,6 +907,9 @@
                     <Property name="rows" type="int" value="5"/>
                     <Property name="tabSize" type="int" value="0"/>
                     <Property name="wrapStyleWord" type="boolean" value="true"/>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="txtaMedicamentosos"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtaToxicosKeyPressed"/>
@@ -930,6 +966,9 @@
                     <Property name="rows" type="int" value="5"/>
                     <Property name="tabSize" type="int" value="0"/>
                     <Property name="wrapStyleWord" type="boolean" value="true"/>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="btnGuardar"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtaFamiliaresKeyPressed"/>
@@ -986,6 +1025,9 @@
                     <Property name="rows" type="int" value="5"/>
                     <Property name="tabSize" type="int" value="0"/>
                     <Property name="wrapStyleWord" type="boolean" value="true"/>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="txtaFamiliares"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtaMedicamentososKeyPressed"/>

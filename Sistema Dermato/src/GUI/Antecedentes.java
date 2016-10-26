@@ -22,14 +22,14 @@ import javax.swing.KeyStroke;
  *
  * @author Fran
  */
-public class AntecGenerales extends javax.swing.JDialog {
+public class Antecedentes extends javax.swing.JDialog {
     private AntecedentesGenerales agen;
     private DAOAntecedentesGenerales daoAntecGen;
     private Paciente paciente;
     /**
      * Creates new form AntecGenerales
      */
-    public AntecGenerales(java.awt.Frame parent, boolean modal,Paciente p) {
+    public Antecedentes(java.awt.Frame parent, boolean modal,Paciente p) {
         super(parent, modal);
         initComponents();
         this.btnModificar.grabFocus();
@@ -70,11 +70,17 @@ public class AntecGenerales extends javax.swing.JDialog {
         pnlPersonales = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtaPersonales = new javax.swing.JTextArea();
+        pnlMedicamentosos = new javax.swing.JPanel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        txtaMedicamentosos = new javax.swing.JTextArea();
+        pnlFamiliares = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        txtaFamiliares = new javax.swing.JTextArea();
         pnlBotones = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        btnVolver = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Antecedentes Generales");
@@ -89,8 +95,8 @@ public class AntecGenerales extends javax.swing.JDialog {
 
         pnlQuirurgicos.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Quirúrgicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
-        txtaQuirurgicos.setColumns(20);
         txtaQuirurgicos.setEditable(false);
+        txtaQuirurgicos.setColumns(20);
         txtaQuirurgicos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtaQuirurgicos.setLineWrap(true);
         txtaQuirurgicos.setRows(5);
@@ -107,23 +113,17 @@ public class AntecGenerales extends javax.swing.JDialog {
         pnlQuirurgicos.setLayout(pnlQuirurgicosLayout);
         pnlQuirurgicosLayout.setHorizontalGroup(
             pnlQuirurgicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlQuirurgicosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane6)
         );
         pnlQuirurgicosLayout.setVerticalGroup(
             pnlQuirurgicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlQuirurgicosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
         );
 
         pnlToxicos.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Tóxicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
-        txtaToxicos.setColumns(20);
         txtaToxicos.setEditable(false);
+        txtaToxicos.setColumns(20);
         txtaToxicos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtaToxicos.setLineWrap(true);
         txtaToxicos.setRows(5);
@@ -140,23 +140,17 @@ public class AntecGenerales extends javax.swing.JDialog {
         pnlToxicos.setLayout(pnlToxicosLayout);
         pnlToxicosLayout.setHorizontalGroup(
             pnlToxicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlToxicosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane7)
         );
         pnlToxicosLayout.setVerticalGroup(
             pnlToxicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlToxicosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
         );
 
         pnlPersonales.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
-        txtaPersonales.setColumns(20);
         txtaPersonales.setEditable(false);
+        txtaPersonales.setColumns(20);
         txtaPersonales.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtaPersonales.setLineWrap(true);
         txtaPersonales.setRows(5);
@@ -173,17 +167,63 @@ public class AntecGenerales extends javax.swing.JDialog {
         pnlPersonales.setLayout(pnlPersonalesLayout);
         pnlPersonalesLayout.setHorizontalGroup(
             pnlPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPersonalesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane3)
         );
         pnlPersonalesLayout.setVerticalGroup(
             pnlPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPersonalesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3)
-                .addContainerGap())
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+        );
+
+        pnlMedicamentosos.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Medicamentosos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 102))); // NOI18N
+
+        txtaMedicamentosos.setColumns(20);
+        txtaMedicamentosos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaMedicamentosos.setLineWrap(true);
+        txtaMedicamentosos.setRows(5);
+        txtaMedicamentosos.setTabSize(0);
+        txtaMedicamentosos.setWrapStyleWord(true);
+        txtaMedicamentosos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtaMedicamentososKeyPressed(evt);
+            }
+        });
+        jScrollPane9.setViewportView(txtaMedicamentosos);
+
+        javax.swing.GroupLayout pnlMedicamentososLayout = new javax.swing.GroupLayout(pnlMedicamentosos);
+        pnlMedicamentosos.setLayout(pnlMedicamentososLayout);
+        pnlMedicamentososLayout.setHorizontalGroup(
+            pnlMedicamentososLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane9)
+        );
+        pnlMedicamentososLayout.setVerticalGroup(
+            pnlMedicamentososLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+        );
+
+        pnlFamiliares.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Familiares", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 102))); // NOI18N
+
+        txtaFamiliares.setColumns(20);
+        txtaFamiliares.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaFamiliares.setLineWrap(true);
+        txtaFamiliares.setRows(5);
+        txtaFamiliares.setTabSize(0);
+        txtaFamiliares.setWrapStyleWord(true);
+        txtaFamiliares.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtaFamiliaresKeyPressed(evt);
+            }
+        });
+        jScrollPane8.setViewportView(txtaFamiliares);
+
+        javax.swing.GroupLayout pnlFamiliaresLayout = new javax.swing.GroupLayout(pnlFamiliares);
+        pnlFamiliares.setLayout(pnlFamiliaresLayout);
+        pnlFamiliaresLayout.setHorizontalGroup(
+            pnlFamiliaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane8)
+        );
+        pnlFamiliaresLayout.setVerticalGroup(
+            pnlFamiliaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pnlGeneralesLayout = new javax.swing.GroupLayout(pnlGenerales);
@@ -195,18 +235,25 @@ public class AntecGenerales extends javax.swing.JDialog {
                 .addGroup(pnlGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlToxicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlQuirurgicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlPersonales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlPersonales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlFamiliares, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlMedicamentosos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlGeneralesLayout.setVerticalGroup(
             pnlGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGeneralesLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(pnlPersonales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlQuirurgicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnlToxicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(126, 126, 126))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlMedicamentosos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlFamiliares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         pnlBotones.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -217,7 +264,7 @@ public class AntecGenerales extends javax.swing.JDialog {
         btnGuardar.setText("Guardar");
         btnGuardar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.setEnabled(false);
         btnGuardar.setNextFocusableComponent(btnCancelar);
         btnGuardar.setOpaque(true);
@@ -241,7 +288,7 @@ public class AntecGenerales extends javax.swing.JDialog {
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnCancelar.setContentAreaFilled(false);
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCancelar.setEnabled(false);
         btnCancelar.setNextFocusableComponent(btnVolver);
         btnCancelar.setOpaque(true);
@@ -259,13 +306,36 @@ public class AntecGenerales extends javax.swing.JDialog {
             }
         });
 
+        btnModificar.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(0, 51, 102));
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edit_enabled.png"))); // NOI18N
+        btnModificar.setText("Modificar");
+        btnModificar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        btnModificar.setContentAreaFilled(false);
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnModificar.setNextFocusableComponent(txtaPersonales);
+        btnModificar.setOpaque(true);
+        btnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModificarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnModificarMouseExited(evt);
+            }
+        });
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+
         btnVolver.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(0, 51, 102));
         btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/home_enabled.png"))); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnVolver.setContentAreaFilled(false);
-        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnVolver.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnVolver.setNextFocusableComponent(btnModificar);
         btnVolver.setOpaque(true);
@@ -283,41 +353,20 @@ public class AntecGenerales extends javax.swing.JDialog {
             }
         });
 
-        btnModificar.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnModificar.setForeground(new java.awt.Color(0, 51, 102));
-        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edit_enabled.png"))); // NOI18N
-        btnModificar.setText("Modificar");
-        btnModificar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        btnModificar.setContentAreaFilled(false);
-        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnModificar.setNextFocusableComponent(txtaPersonales);
-        btnModificar.setOpaque(true);
-        btnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnModificarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnModificarMouseExited(evt);
-            }
-        });
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnlBotonesLayout = new javax.swing.GroupLayout(pnlBotones);
         pnlBotones.setLayout(pnlBotonesLayout);
         pnlBotonesLayout.setHorizontalGroup(
             pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBotonesLayout.createSequentialGroup()
-                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnlBotonesLayout.setVerticalGroup(
             pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,19 +381,19 @@ public class AntecGenerales extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlGenerales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(pnlGenerales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlGenerales, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlGenerales, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(11, 11, 11))
+                .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -433,6 +482,14 @@ private void txtaToxicosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:eve
         this.salir();
     }//GEN-LAST:event_formWindowClosing
 
+    private void txtaMedicamentososKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaMedicamentososKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtaMedicamentososKeyPressed
+
+    private void txtaFamiliaresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaFamiliaresKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtaFamiliaresKeyPressed
+
     private void setearLabels(JButton jbtn, boolean entrada){
         if(jbtn.isEnabled())
             if (entrada) {
@@ -451,11 +508,17 @@ private void txtaToxicosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:eve
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JPanel pnlBotones;
+    private javax.swing.JPanel pnlFamiliares;
     private javax.swing.JPanel pnlGenerales;
+    private javax.swing.JPanel pnlMedicamentosos;
     private javax.swing.JPanel pnlPersonales;
     private javax.swing.JPanel pnlQuirurgicos;
     private javax.swing.JPanel pnlToxicos;
+    private javax.swing.JTextArea txtaFamiliares;
+    private javax.swing.JTextArea txtaMedicamentosos;
     private javax.swing.JTextArea txtaPersonales;
     private javax.swing.JTextArea txtaQuirurgicos;
     private javax.swing.JTextArea txtaToxicos;

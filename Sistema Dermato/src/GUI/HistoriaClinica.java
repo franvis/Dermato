@@ -32,7 +32,7 @@ public class HistoriaClinica extends javax.swing.JFrame {
     private DAOAntecedentesGenerales daoAntecGen;
     private DefaultTableModel dtmConsultas;
     private AntecFamiliares antecedentesFamiliares;
-    private AntecGenerales antecedentesGenerales;
+    private Antecedentes antecedentesGenerales;
     private AntecGinecologicos antecedentesGinecologicos;
     private Paciente paciente;
     private boolean AntecFamModificado;
@@ -91,12 +91,7 @@ public class HistoriaClinica extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlNuevaConsulta = new javax.swing.JPanel();
-        btnNuevaCompleta = new javax.swing.JButton();
-        btnNuevaGinecologica = new javax.swing.JButton();
-        btnNuevaObstetrica = new javax.swing.JButton();
         pnlBotones = new javax.swing.JPanel();
-        btnVolver = new javax.swing.JButton();
         pnlConsultas = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblConsultas = new javax.swing.JTable();
@@ -110,20 +105,21 @@ public class HistoriaClinica extends javax.swing.JFrame {
         lblFechaNacimiento = new javax.swing.JLabel();
         lblNumeroAfiliado = new javax.swing.JLabel();
         lblObraSocial = new javax.swing.JLabel();
-        pnlAntecedentes = new javax.swing.JPanel();
-        btnGenerales = new javax.swing.JButton();
-        btnGinecologicos = new javax.swing.JButton();
-        btnFamiliares = new javax.swing.JButton();
         lblstaticSangre = new javax.swing.JLabel();
-        lblSangre = new javax.swing.JLabel();
         btnModificarPaciente = new javax.swing.JButton();
         lblTelefono = new javax.swing.JLabel();
         lblstaticTelefono = new javax.swing.JLabel();
         pnlApellidoNombre = new javax.swing.JPanel();
         lblNombrePaciente = new javax.swing.JLabel();
         lblstaticNombre = new javax.swing.JLabel();
-        lblstaticEdad = new javax.swing.JLabel();
-        lblEdad = new javax.swing.JLabel();
+        lblstaticLocalidad = new javax.swing.JLabel();
+        lblLocalidad = new javax.swing.JLabel();
+        btnAntecedentes = new javax.swing.JButton();
+        lblFechaPrimeraConsulta = new javax.swing.JLabel();
+        lblDomicilio = new javax.swing.JLabel();
+        lblstaticDomicilio = new javax.swing.JLabel();
+        btnNuevaConsulta = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Historia Clínica");
@@ -135,108 +131,15 @@ public class HistoriaClinica extends javax.swing.JFrame {
             }
         });
 
-        pnlNuevaConsulta.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Nueva Consulta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
-        pnlNuevaConsulta.setOpaque(false);
-
-        btnNuevaCompleta.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnNuevaCompleta.setForeground(new java.awt.Color(0, 51, 102));
-        btnNuevaCompleta.setText("Completa");
-        btnNuevaCompleta.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        btnNuevaCompleta.setContentAreaFilled(false);
-        btnNuevaCompleta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNuevaCompleta.setNextFocusableComponent(btnNuevaGinecologica);
-        btnNuevaCompleta.setOpaque(true);
-        btnNuevaCompleta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevaCompletaActionPerformed(evt);
-            }
-        });
-
-        btnNuevaGinecologica.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnNuevaGinecologica.setForeground(new java.awt.Color(0, 51, 102));
-        btnNuevaGinecologica.setText("Ginecológica");
-        btnNuevaGinecologica.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        btnNuevaGinecologica.setContentAreaFilled(false);
-        btnNuevaGinecologica.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNuevaGinecologica.setNextFocusableComponent(btnNuevaObstetrica);
-        btnNuevaGinecologica.setOpaque(true);
-        btnNuevaGinecologica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevaGinecologicaActionPerformed(evt);
-            }
-        });
-
-        btnNuevaObstetrica.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnNuevaObstetrica.setForeground(new java.awt.Color(0, 51, 102));
-        btnNuevaObstetrica.setText("Obstétrica");
-        btnNuevaObstetrica.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        btnNuevaObstetrica.setContentAreaFilled(false);
-        btnNuevaObstetrica.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNuevaObstetrica.setNextFocusableComponent(btnVolver);
-        btnNuevaObstetrica.setOpaque(true);
-        btnNuevaObstetrica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevaObstetricaActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlNuevaConsultaLayout = new javax.swing.GroupLayout(pnlNuevaConsulta);
-        pnlNuevaConsulta.setLayout(pnlNuevaConsultaLayout);
-        pnlNuevaConsultaLayout.setHorizontalGroup(
-            pnlNuevaConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNuevaConsultaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnNuevaCompleta, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnNuevaGinecologica, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnNuevaObstetrica, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnlNuevaConsultaLayout.setVerticalGroup(
-            pnlNuevaConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNuevaConsultaLayout.createSequentialGroup()
-                .addGroup(pnlNuevaConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevaGinecologica, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(btnNuevaObstetrica, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(btnNuevaCompleta, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        btnVolver.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnVolver.setForeground(new java.awt.Color(0, 51, 102));
-        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/home_enabled.png"))); // NOI18N
-        btnVolver.setText("Volver");
-        btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        btnVolver.setContentAreaFilled(false);
-        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnVolver.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnVolver.setOpaque(true);
-        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnVolverMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnVolverMouseExited(evt);
-            }
-        });
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnlBotonesLayout = new javax.swing.GroupLayout(pnlBotones);
         pnlBotones.setLayout(pnlBotonesLayout);
         pnlBotonesLayout.setHorizontalGroup(
             pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotonesLayout.createSequentialGroup()
-                .addContainerGap(110, Short.MAX_VALUE)
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(0, 204, Short.MAX_VALUE)
         );
         pnlBotonesLayout.setVerticalGroup(
             pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnVolver, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+            .addGap(0, 67, Short.MAX_VALUE)
         );
 
         pnlConsultas.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Consultas Anteriores", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
@@ -289,9 +192,9 @@ public class HistoriaClinica extends javax.swing.JFrame {
         btnVerConsulta.setText("Ver");
         btnVerConsulta.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnVerConsulta.setContentAreaFilled(false);
-        btnVerConsulta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVerConsulta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnVerConsulta.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnVerConsulta.setNextFocusableComponent(btnNuevaCompleta);
+        btnVerConsulta.setNextFocusableComponent(btnNuevaConsulta);
         btnVerConsulta.setOpaque(true);
         btnVerConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -314,7 +217,7 @@ public class HistoriaClinica extends javax.swing.JFrame {
             .addGroup(pnlConsultasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlConsultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addComponent(btnVerConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -322,7 +225,7 @@ public class HistoriaClinica extends javax.swing.JFrame {
             pnlConsultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsultasLayout.createSequentialGroup()
                 .addGap(13, 13, 13)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnVerConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -355,82 +258,8 @@ public class HistoriaClinica extends javax.swing.JFrame {
         lblObraSocial.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblObraSocial.setText("OSPAC");
 
-        pnlAntecedentes.setBackground(new java.awt.Color(228, 228, 241));
-        pnlAntecedentes.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Antecedentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
-        pnlAntecedentes.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        pnlAntecedentes.setMaximumSize(new java.awt.Dimension(500, 32767));
-        pnlAntecedentes.setOpaque(false);
-
-        btnGenerales.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnGenerales.setForeground(new java.awt.Color(0, 51, 102));
-        btnGenerales.setText("Generales");
-        btnGenerales.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        btnGenerales.setContentAreaFilled(false);
-        btnGenerales.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnGenerales.setNextFocusableComponent(btnGinecologicos);
-        btnGenerales.setOpaque(true);
-        btnGenerales.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGeneralesActionPerformed(evt);
-            }
-        });
-
-        btnGinecologicos.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnGinecologicos.setForeground(new java.awt.Color(0, 51, 102));
-        btnGinecologicos.setText("Ginecológicos");
-        btnGinecologicos.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        btnGinecologicos.setContentAreaFilled(false);
-        btnGinecologicos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnGinecologicos.setNextFocusableComponent(btnFamiliares);
-        btnGinecologicos.setOpaque(true);
-        btnGinecologicos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGinecologicosActionPerformed(evt);
-            }
-        });
-
-        btnFamiliares.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnFamiliares.setForeground(new java.awt.Color(0, 51, 102));
-        btnFamiliares.setText("Familiares");
-        btnFamiliares.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        btnFamiliares.setContentAreaFilled(false);
-        btnFamiliares.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnFamiliares.setNextFocusableComponent(btnVerConsulta);
-        btnFamiliares.setOpaque(true);
-        btnFamiliares.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFamiliaresActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlAntecedentesLayout = new javax.swing.GroupLayout(pnlAntecedentes);
-        pnlAntecedentes.setLayout(pnlAntecedentesLayout);
-        pnlAntecedentesLayout.setHorizontalGroup(
-            pnlAntecedentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAntecedentesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnGenerales, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(btnGinecologicos, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(btnFamiliares, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnlAntecedentesLayout.setVerticalGroup(
-            pnlAntecedentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAntecedentesLayout.createSequentialGroup()
-                .addGroup(pnlAntecedentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGenerales, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(btnGinecologicos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(btnFamiliares, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
         lblstaticSangre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblstaticSangre.setText("Sangre:");
-
-        lblSangre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblSangre.setText("0 -");
+        lblstaticSangre.setText("Fecha Primera Consulta:");
 
         btnModificarPaciente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnModificarPaciente.setForeground(new java.awt.Color(0, 51, 102));
@@ -438,7 +267,7 @@ public class HistoriaClinica extends javax.swing.JFrame {
         btnModificarPaciente.setText("Modificar");
         btnModificarPaciente.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnModificarPaciente.setContentAreaFilled(false);
-        btnModificarPaciente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificarPaciente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnModificarPaciente.setOpaque(true);
         btnModificarPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -480,21 +309,43 @@ public class HistoriaClinica extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblstaticNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNombrePaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+                .addComponent(lblNombrePaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlApellidoNombreLayout.setVerticalGroup(
             pnlApellidoNombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlApellidoNombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(lblNombrePaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                .addComponent(lblNombrePaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblstaticNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
         );
 
-        lblstaticEdad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblstaticEdad.setText("Edad:");
+        lblstaticLocalidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblstaticLocalidad.setText("Localidad:");
 
-        lblEdad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblEdad.setText("0");
+        lblLocalidad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblLocalidad.setText("0");
+
+        btnAntecedentes.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnAntecedentes.setForeground(new java.awt.Color(0, 51, 102));
+        btnAntecedentes.setText("Antecendentes");
+        btnAntecedentes.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        btnAntecedentes.setContentAreaFilled(false);
+        btnAntecedentes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAntecedentes.setOpaque(true);
+        btnAntecedentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAntecedentesActionPerformed(evt);
+            }
+        });
+
+        lblFechaPrimeraConsulta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblFechaPrimeraConsulta.setText("21/03/1991");
+
+        lblDomicilio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblDomicilio.setText("0");
+
+        lblstaticDomicilio.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblstaticDomicilio.setText("Domicilio:");
 
         javax.swing.GroupLayout pnlDatosPersonalesLayout = new javax.swing.GroupLayout(pnlDatosPersonales);
         pnlDatosPersonales.setLayout(pnlDatosPersonalesLayout);
@@ -505,36 +356,42 @@ public class HistoriaClinica extends javax.swing.JFrame {
                 .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
                         .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblstaticEdad)
+                            .addComponent(lblstaticLocalidad)
                             .addComponent(lblstaticFechaNacimiento)
                             .addComponent(lblstaticDni)
-                            .addComponent(btnModificarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnModificarPaciente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEdad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                            .addComponent(lblDni, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                            .addComponent(lblFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
+                                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                                    .addComponent(lblLocalidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblstaticSangre)
-                                    .addComponent(lblstaticTelefono))
-                                .addGap(18, 18, 18)
-                                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
-                                        .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                                        .addGap(33, 33, 33)
-                                        .addComponent(lblstaticObraSocial))
-                                    .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
-                                        .addComponent(lblSangre, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                                        .addGap(119, 119, 119)
-                                        .addComponent(lblstaticNumAfiliado)))
+                                    .addComponent(lblstaticTelefono)
+                                    .addComponent(lblstaticDomicilio))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNumeroAfiliado, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                                    .addComponent(lblObraSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)))
-                            .addComponent(pnlAntecedentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
+                                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lblFechaPrimeraConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblstaticNumAfiliado)
+                                            .addComponent(lblstaticObraSocial))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblNumeroAfiliado, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                                            .addComponent(lblObraSocial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
+                                        .addComponent(lblDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnAntecedentes, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(pnlApellidoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -546,16 +403,17 @@ public class HistoriaClinica extends javax.swing.JFrame {
                 .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosPersonalesLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(lblstaticFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblstaticFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                            .addComponent(lblFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosPersonalesLayout.createSequentialGroup()
                         .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblObraSocial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblstaticObraSocial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblstaticTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(lblstaticTelefono)
+                                .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(1, 1, 1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -563,52 +421,103 @@ public class HistoriaClinica extends javax.swing.JFrame {
                         .addComponent(lblstaticDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblstaticSangre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblSangre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(lblstaticNumAfiliado, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(lblNumeroAfiliado))
-                .addGap(18, 18, 18)
-                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblFechaPrimeraConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblNumeroAfiliado)
+                        .addComponent(lblstaticNumAfiliado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
                         .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblstaticEdad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblEdad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnModificarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                        .addGap(11, 11, 11))
-                    .addComponent(pnlAntecedentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblstaticLocalidad, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                            .addComponent(lblLocalidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(17, 17, 17))
+                    .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
+                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblstaticDomicilio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblDomicilio))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnModificarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAntecedentes, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
+                .addGap(9, 9, 9))
         );
+
+        btnNuevaConsulta.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnNuevaConsulta.setForeground(new java.awt.Color(0, 51, 102));
+        btnNuevaConsulta.setText("Nueva Consulta");
+        btnNuevaConsulta.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        btnNuevaConsulta.setContentAreaFilled(false);
+        btnNuevaConsulta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNuevaConsulta.setOpaque(true);
+        btnNuevaConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevaConsultaActionPerformed(evt);
+            }
+        });
+
+        btnVolver.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(0, 51, 102));
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/home_enabled.png"))); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        btnVolver.setContentAreaFilled(false);
+        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVolver.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnVolver.setOpaque(true);
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVolverMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVolverMouseExited(evt);
+            }
+        });
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(pnlNuevaConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(127, 127, 127)
-                .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlDatosPersonales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnNuevaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(385, 385, 385)
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlConsultas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addComponent(pnlConsultas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnlDatosPersonales, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlDatosPersonales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlConsultas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pnlNuevaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addComponent(pnlDatosPersonales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(473, 473, 473)
+                        .addComponent(btnNuevaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNuevaCompletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCompletaActionPerformed
+    private void btnNuevaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaConsultaActionPerformed
         for (JFrame aux : ventanasAbiertas){
             if (aux instanceof ABMConsultaCompleta && ((ABMConsultaCompleta)aux).getTipoConsulta() == 2 && ((ABMConsultaCompleta)aux).getIdConsulta() == -1){
                 aux.setVisible(true);
@@ -619,64 +528,17 @@ public class HistoriaClinica extends javax.swing.JFrame {
         ventanasAbiertas.add(consultaCompleta);
         consultaCompleta.setVisible(true);
         consultaCompleta.requestFocus();
-    }//GEN-LAST:event_btnNuevaCompletaActionPerformed
+    }//GEN-LAST:event_btnNuevaConsultaActionPerformed
 
-    private void btnNuevaGinecologicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaGinecologicaActionPerformed
-        for (JFrame aux : ventanasAbiertas){
-            if (aux instanceof ABMConsultaCompleta && ((ABMConsultaCompleta)aux).getTipoConsulta() == 1 && ((ABMConsultaCompleta)aux).getIdConsulta() == -1){
-                aux.setVisible(true);
-                return;
-            }
-        }
-        ABMConsultaCompleta consultaGinecologica = new ABMConsultaCompleta(this, true, 1,paciente.getDni(), paciente);
-        ventanasAbiertas.add(consultaGinecologica);
-        consultaGinecologica.setVisible(true);
-        consultaGinecologica.requestFocus();
-    }//GEN-LAST:event_btnNuevaGinecologicaActionPerformed
-
-    private void btnNuevaObstetricaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaObstetricaActionPerformed
-        for (JFrame aux : ventanasAbiertas){
-            if (aux instanceof ABMConsultaCompleta && ((ABMConsultaCompleta)aux).getTipoConsulta() == 0 && ((ABMConsultaCompleta)aux).getIdConsulta() == -1){
-                aux.setVisible(true);
-                return;
-            }
-        }
-        ABMConsultaCompleta consultaObstetrica = new ABMConsultaCompleta(this, true, 0,paciente.getDni(), paciente);
-        ventanasAbiertas.add(consultaObstetrica);
-        consultaObstetrica.setVisible(true);
-        consultaObstetrica.requestFocus();
-    }//GEN-LAST:event_btnNuevaObstetricaActionPerformed
-
-    private void btnGeneralesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneralesActionPerformed
+    private void btnAntecedentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAntecedentesActionPerformed
        if(!AntecGenModificado)
        {
             paciente.setAntecGen(daoAntecGen.getAntecedenteGeneral(paciente.getDni()));
             AntecGenModificado = true;
        }
-       antecedentesGenerales = new AntecGenerales(this,true,paciente);
+       antecedentesGenerales = new Antecedentes(this,true,paciente);
        antecedentesGenerales.setVisible(true);
-    }//GEN-LAST:event_btnGeneralesActionPerformed
-
-    private void btnGinecologicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGinecologicosActionPerformed
-        if(!AntecGinecModificado)
-        {
-            paciente.setAntecGinec(daoAntecGinec.getAntecedenteGinecologico(paciente.getDni()));
-            AntecGinecModificado = true;
-        }
-        antecedentesGinecologicos = new AntecGinecologicos(this,true,paciente);
-        antecedentesGinecologicos.setVisible(true);
-    }//GEN-LAST:event_btnGinecologicosActionPerformed
-
-    private void btnFamiliaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFamiliaresActionPerformed
-       if(!AntecFamModificado)
-       {
-        paciente.setAntecFam(daoAntecFam.getAntecedenteFamiliar(paciente.getDni()));
-        AntecFamModificado = true;
-       }
-        antecedentesFamiliares = new AntecFamiliares(this,true,paciente);
-        antecedentesFamiliares.setVisible(true);
-        
-    }//GEN-LAST:event_btnFamiliaresActionPerformed
+    }//GEN-LAST:event_btnAntecedentesActionPerformed
 
     private void btnVolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseEntered
         this.setearLabels(btnVolver, true);
@@ -777,38 +639,34 @@ public class HistoriaClinica extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFamiliares;
-    private javax.swing.JButton btnGenerales;
-    private javax.swing.JButton btnGinecologicos;
+    private javax.swing.JButton btnAntecedentes;
     private javax.swing.JButton btnModificarPaciente;
-    private javax.swing.JButton btnNuevaCompleta;
-    private javax.swing.JButton btnNuevaGinecologica;
-    private javax.swing.JButton btnNuevaObstetrica;
+    private javax.swing.JButton btnNuevaConsulta;
     private javax.swing.JButton btnVerConsulta;
     private javax.swing.JButton btnVolver;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDni;
-    private javax.swing.JLabel lblEdad;
+    private javax.swing.JLabel lblDomicilio;
     private javax.swing.JLabel lblFechaNacimiento;
+    private javax.swing.JLabel lblFechaPrimeraConsulta;
+    private javax.swing.JLabel lblLocalidad;
     private javax.swing.JLabel lblNombrePaciente;
     private javax.swing.JLabel lblNumeroAfiliado;
     private javax.swing.JLabel lblObraSocial;
-    private javax.swing.JLabel lblSangre;
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblstaticDni;
-    private javax.swing.JLabel lblstaticEdad;
+    private javax.swing.JLabel lblstaticDomicilio;
     private javax.swing.JLabel lblstaticFechaNacimiento;
+    private javax.swing.JLabel lblstaticLocalidad;
     private javax.swing.JLabel lblstaticNombre;
     private javax.swing.JLabel lblstaticNumAfiliado;
     private javax.swing.JLabel lblstaticObraSocial;
     private javax.swing.JLabel lblstaticSangre;
     private javax.swing.JLabel lblstaticTelefono;
-    private javax.swing.JPanel pnlAntecedentes;
     private javax.swing.JPanel pnlApellidoNombre;
     private javax.swing.JPanel pnlBotones;
     private javax.swing.JPanel pnlConsultas;
     private javax.swing.JPanel pnlDatosPersonales;
-    private javax.swing.JPanel pnlNuevaConsulta;
     private javax.swing.JTable tblConsultas;
     // End of variables declaration//GEN-END:variables
     public Paciente getPaciente() {
@@ -827,7 +685,7 @@ public class HistoriaClinica extends javax.swing.JFrame {
         this.lblNombrePaciente.setText(p.getApellido()+", "+p.getNombre());
         
         this.lblFechaNacimiento.setText(p.getFechaNacimiento());
-        lblEdad.setText(calcularEdad(p.getFechaNacimiento())+"");
+        lblLocalidad.setText(calcularEdad(p.getFechaNacimiento())+"");
         
         this.lblNumeroAfiliado.setText(p.getNumeroAfiliado());
         this.lblObraSocial.setText(p.getObraSocial().getNombre());

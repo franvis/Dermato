@@ -70,7 +70,7 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         }
         if(tipoConsulta == 2)
         {
-            this.tpaneExamenes.setSelectedComponent(this.pnlGinecologico);
+            this.tpaneExamenes.setSelectedComponent(this.pnlFisico);
             this.txtaDiagnostico.setNextFocusableComponent(this.txtaMamas);
             this.txtaPapYColpo.setNextFocusableComponent(this.txtfTalla);
         }
@@ -143,7 +143,7 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         }
         if(tipoConsulta == 2)
         {
-            this.tpaneExamenes.setSelectedComponent(this.pnlGinecologico);
+            this.tpaneExamenes.setSelectedComponent(this.pnlFisico);
             this.txtaDiagnostico.setNextFocusableComponent(this.txtaMamas);
             this.txtaPapYColpo.setNextFocusableComponent(this.txtfTalla);
         }
@@ -189,44 +189,9 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
 
         btngrpMAF = new javax.swing.ButtonGroup();
         tpaneExamenes = new javax.swing.JTabbedPane();
-        pnlGinecologico = new javax.swing.JPanel();
-        lblstaticMamas = new javax.swing.JLabel();
-        lblstaticGenito = new javax.swing.JLabel();
-        lblstaticBethesda = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtaMamas = new javax.swing.JTextArea();
-        cmbBethesda = new javax.swing.JComboBox();
-        lblstaticPap = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtaPapYColpo = new javax.swing.JTextArea();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        txtaGenitoUrinario = new javax.swing.JTextArea();
-        pnlObstetrico = new javax.swing.JPanel();
-        rbtnMafNo = new javax.swing.JRadioButton();
-        rbtnMafSi = new javax.swing.JRadioButton();
-        lblstaticAU = new javax.swing.JLabel();
-        lblstaticTalla = new javax.swing.JLabel();
-        lblstaticPeso = new javax.swing.JLabel();
-        lblstaticLCF = new javax.swing.JLabel();
-        lblstaticMAF = new javax.swing.JLabel();
-        txtfLCF = new javax.swing.JTextField();
-        txtfPeso = new javax.swing.JTextField();
-        txtfTalla = new javax.swing.JTextField();
-        lblstaticPA = new javax.swing.JLabel();
-        txtfPresionArterialmm = new javax.swing.JTextField();
-        txtfAlturaUterina = new javax.swing.JTextField();
-        lblstaticUnidadPA = new javax.swing.JLabel();
-        lblstaticUnidadAU = new javax.swing.JLabel();
-        lblstaticUnidadTalla = new javax.swing.JLabel();
-        lblstaticUnidadPeso = new javax.swing.JLabel();
-        lblstaticUnidadLCF = new javax.swing.JLabel();
-        lblstaticIMC = new javax.swing.JLabel();
-        lblIMC = new javax.swing.JLabel();
-        lblstaticBarra = new javax.swing.JLabel();
-        txtfPresionArterialHg = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtaObstetObservaciones = new javax.swing.JTextArea();
+        pnlFisico = new javax.swing.JPanel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        txtaExamenFisico = new javax.swing.JTextArea();
         pnlMotivo = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         txtaMotivo = new javax.swing.JTextArea();
@@ -239,17 +204,17 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         pnlEstudiosComplementarios = new javax.swing.JPanel();
         jScrollPane10 = new javax.swing.JScrollPane();
         txtaEstudiosComple = new javax.swing.JTextArea();
-        pnlObservaciones = new javax.swing.JPanel();
+        pnlLaboratorio = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        txtaObservaciones = new javax.swing.JTextArea();
+        txtaLaboratorio = new javax.swing.JTextArea();
         pnlObservaciones1 = new javax.swing.JPanel();
         jScrollPane11 = new javax.swing.JScrollPane();
         txtaDiagnostico = new javax.swing.JTextArea();
         pnlBotones1 = new javax.swing.JPanel();
-        btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        btnVolver = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
         pnlDatosPersonales = new javax.swing.JPanel();
         lblstaticDni = new javax.swing.JLabel();
         lblstaticNumAfiliado = new javax.swing.JLabel();
@@ -259,15 +224,20 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         lblFechaNacimiento = new javax.swing.JLabel();
         lblNumeroAfiliado = new javax.swing.JLabel();
         lblObraSocial = new javax.swing.JLabel();
-        lblstaticSangre = new javax.swing.JLabel();
-        lblSangre = new javax.swing.JLabel();
-        lblTelefono = new javax.swing.JLabel();
-        lblstaticTelefono = new javax.swing.JLabel();
+        lblstaticFechaPrimeraConsulta = new javax.swing.JLabel();
+        lblFechaPrimeraConsulta = new javax.swing.JLabel();
+        lblLocalidad = new javax.swing.JLabel();
+        lblstaticLocalidad = new javax.swing.JLabel();
         pnlApellidoNombre = new javax.swing.JPanel();
         lblNombrePaciente = new javax.swing.JLabel();
         lblstaticNombre = new javax.swing.JLabel();
         lblstaticEdad = new javax.swing.JLabel();
         lblEdad = new javax.swing.JLabel();
+        lblLocalidad1 = new javax.swing.JLabel();
+        lblstaticLocalidad1 = new javax.swing.JLabel();
+        pnlBiopsia = new javax.swing.JPanel();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        txtaBiopsia = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Consulta Completa");
@@ -281,387 +251,32 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         tpaneExamenes.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Exámenes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
         tpaneExamenes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        lblstaticMamas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticMamas.setText("Mamas:");
-
-        lblstaticGenito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticGenito.setText("Genitourinario:");
-
-        lblstaticBethesda.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticBethesda.setText("Bethesda:");
-
-        txtaMamas.setColumns(20);
-        txtaMamas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtaMamas.setLineWrap(true);
-        txtaMamas.setRows(1);
-        txtaMamas.setTabSize(0);
-        txtaMamas.setWrapStyleWord(true);
-        txtaMamas.setNextFocusableComponent(txtaGenitoUrinario);
-        txtaMamas.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtaExamenFisico.setColumns(20);
+        txtaExamenFisico.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaExamenFisico.setLineWrap(true);
+        txtaExamenFisico.setRows(2);
+        txtaExamenFisico.setTabSize(0);
+        txtaExamenFisico.setWrapStyleWord(true);
+        txtaExamenFisico.setNextFocusableComponent(txtaEstudiosComple);
+        txtaExamenFisico.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtaMamasKeyPressed(evt);
+                txtaExamenFisicoKeyPressed(evt);
             }
         });
-        jScrollPane2.setViewportView(txtaMamas);
+        jScrollPane12.setViewportView(txtaExamenFisico);
 
-        cmbBethesda.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cmbBethesda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "I", "II", "III", "IV", "V" }));
-        cmbBethesda.setNextFocusableComponent(txtaPapYColpo);
-        cmbBethesda.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                cmbBethesdaKeyTyped(evt);
-            }
-        });
-
-        lblstaticPap.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticPap.setText("Papanicolau y Colposcopia:");
-
-        txtaPapYColpo.setColumns(20);
-        txtaPapYColpo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtaPapYColpo.setLineWrap(true);
-        txtaPapYColpo.setRows(1);
-        txtaPapYColpo.setTabSize(0);
-        txtaPapYColpo.setWrapStyleWord(true);
-        txtaPapYColpo.setNextFocusableComponent(txtfTalla);
-        txtaPapYColpo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtaPapYColpoKeyPressed(evt);
-            }
-        });
-        jScrollPane3.setViewportView(txtaPapYColpo);
-
-        txtaGenitoUrinario.setColumns(20);
-        txtaGenitoUrinario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtaGenitoUrinario.setLineWrap(true);
-        txtaGenitoUrinario.setRows(1);
-        txtaGenitoUrinario.setTabSize(0);
-        txtaGenitoUrinario.setWrapStyleWord(true);
-        txtaGenitoUrinario.setNextFocusableComponent(cmbBethesda);
-        txtaGenitoUrinario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtaGenitoUrinarioKeyPressed(evt);
-            }
-        });
-        jScrollPane4.setViewportView(txtaGenitoUrinario);
-
-        javax.swing.GroupLayout pnlGinecologicoLayout = new javax.swing.GroupLayout(pnlGinecologico);
-        pnlGinecologico.setLayout(pnlGinecologicoLayout);
-        pnlGinecologicoLayout.setHorizontalGroup(
-            pnlGinecologicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlGinecologicoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlGinecologicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane4)
-                    .addGroup(pnlGinecologicoLayout.createSequentialGroup()
-                        .addGroup(pnlGinecologicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlGinecologicoLayout.createSequentialGroup()
-                                .addComponent(lblstaticMamas, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                                .addGap(119, 119, 119))
-                            .addGroup(pnlGinecologicoLayout.createSequentialGroup()
-                                .addComponent(lblstaticGenito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(77, 77, 77))
-                            .addGroup(pnlGinecologicoLayout.createSequentialGroup()
-                                .addComponent(lblstaticBethesda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmbBethesda, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(61, 61, 61))
-                            .addComponent(lblstaticPap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(281, 281, 281)))
-                .addContainerGap())
+        javax.swing.GroupLayout pnlFisicoLayout = new javax.swing.GroupLayout(pnlFisico);
+        pnlFisico.setLayout(pnlFisicoLayout);
+        pnlFisicoLayout.setHorizontalGroup(
+            pnlFisicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
         );
-        pnlGinecologicoLayout.setVerticalGroup(
-            pnlGinecologicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlGinecologicoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblstaticMamas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblstaticGenito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(jScrollPane4)
-                .addGap(9, 9, 9)
-                .addGroup(pnlGinecologicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblstaticBethesda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbBethesda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblstaticPap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3)
-                .addContainerGap())
+        pnlFisicoLayout.setVerticalGroup(
+            pnlFisicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
         );
 
-        tpaneExamenes.addTab("Ginecológico", pnlGinecologico);
-
-        btngrpMAF.add(rbtnMafNo);
-        rbtnMafNo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        rbtnMafNo.setText("NO");
-        rbtnMafNo.setContentAreaFilled(false);
-        rbtnMafNo.setNextFocusableComponent(txtaObstetObservaciones);
-        rbtnMafNo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                rbtnMafNoKeyTyped(evt);
-            }
-        });
-
-        btngrpMAF.add(rbtnMafSi);
-        rbtnMafSi.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        rbtnMafSi.setText("SÍ");
-        rbtnMafSi.setContentAreaFilled(false);
-        rbtnMafSi.setNextFocusableComponent(rbtnMafNo);
-        rbtnMafSi.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                rbtnMafSiKeyTyped(evt);
-            }
-        });
-
-        lblstaticAU.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticAU.setText("Altura Uterina:");
-
-        lblstaticTalla.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticTalla.setText("Talla:");
-
-        lblstaticPeso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticPeso.setText("Peso:");
-
-        lblstaticLCF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticLCF.setText("LCF:");
-
-        lblstaticMAF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticMAF.setText("MAF:");
-
-        txtfLCF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtfLCF.setNextFocusableComponent(rbtnMafSi);
-        txtfLCF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtfLCFKeyTyped(evt);
-            }
-        });
-
-        txtfPeso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtfPeso.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtfPeso.setNextFocusableComponent(txtfAlturaUterina);
-        txtfPeso.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtfPesoKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtfPesoKeyTyped(evt);
-            }
-        });
-
-        txtfTalla.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtfTalla.setNextFocusableComponent(txtfPeso);
-        txtfTalla.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtfTallaKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtfTallaKeyTyped(evt);
-            }
-        });
-
-        lblstaticPA.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticPA.setText("Presión Arterial:");
-
-        txtfPresionArterialmm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtfPresionArterialmm.setNextFocusableComponent(txtfPresionArterialHg);
-        txtfPresionArterialmm.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtfPresionArterialmmKeyTyped(evt);
-            }
-        });
-
-        txtfAlturaUterina.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtfAlturaUterina.setNextFocusableComponent(txtfPresionArterialmm);
-        txtfAlturaUterina.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtfAlturaUterinaKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtfAlturaUterinaKeyTyped(evt);
-            }
-        });
-
-        lblstaticUnidadPA.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticUnidadPA.setText("mm/hg");
-
-        lblstaticUnidadAU.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticUnidadAU.setText("cm");
-
-        lblstaticUnidadTalla.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticUnidadTalla.setText("m");
-
-        lblstaticUnidadPeso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticUnidadPeso.setText("Kg");
-
-        lblstaticUnidadLCF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticUnidadLCF.setText("lpm");
-
-        lblstaticIMC.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticIMC.setText("IMC:");
-
-        lblIMC.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblIMC.setText("Aca va el imc");
-
-        lblstaticBarra.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticBarra.setText("/");
-
-        txtfPresionArterialHg.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtfPresionArterialHg.setNextFocusableComponent(txtfLCF);
-        txtfPresionArterialHg.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtfPresionArterialHgKeyTyped(evt);
-            }
-        });
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Observaciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 102))); // NOI18N
-
-        txtaObstetObservaciones.setColumns(20);
-        txtaObstetObservaciones.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtaObstetObservaciones.setLineWrap(true);
-        txtaObstetObservaciones.setRows(3);
-        txtaObstetObservaciones.setTabSize(0);
-        txtaObstetObservaciones.setWrapStyleWord(true);
-        txtaObstetObservaciones.setNextFocusableComponent(btnGuardar);
-        txtaObstetObservaciones.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtaObstetObservacionesKeyPressed(evt);
-            }
-        });
-        jScrollPane1.setViewportView(txtaObstetObservaciones);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout pnlObstetricoLayout = new javax.swing.GroupLayout(pnlObstetrico);
-        pnlObstetrico.setLayout(pnlObstetricoLayout);
-        pnlObstetricoLayout.setHorizontalGroup(
-            pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlObstetricoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlObstetricoLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(pnlObstetricoLayout.createSequentialGroup()
-                        .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblstaticPeso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblstaticTalla, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblstaticIMC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlObstetricoLayout.createSequentialGroup()
-                                .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtfPeso)
-                                    .addComponent(txtfTalla))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblstaticUnidadTalla)
-                                    .addComponent(lblstaticUnidadPeso))
-                                .addGap(32, 32, 32))
-                            .addGroup(pnlObstetricoLayout.createSequentialGroup()
-                                .addComponent(lblIMC, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
-                        .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlObstetricoLayout.createSequentialGroup()
-                                .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlObstetricoLayout.createSequentialGroup()
-                                        .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblstaticMAF)
-                                            .addComponent(lblstaticLCF))
-                                        .addGap(82, 82, 82))
-                                    .addGroup(pnlObstetricoLayout.createSequentialGroup()
-                                        .addComponent(lblstaticAU)
-                                        .addGap(24, 24, 24)))
-                                .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtfLCF)
-                                    .addGroup(pnlObstetricoLayout.createSequentialGroup()
-                                        .addComponent(rbtnMafSi, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rbtnMafNo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(txtfAlturaUterina))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblstaticUnidadAU)
-                                    .addComponent(lblstaticUnidadLCF))
-                                .addGap(48, 48, 48))
-                            .addGroup(pnlObstetricoLayout.createSequentialGroup()
-                                .addComponent(lblstaticPA)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtfPresionArterialmm, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblstaticBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtfPresionArterialHg, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblstaticUnidadPA)
-                                .addGap(0, 0, Short.MAX_VALUE))))))
-        );
-        pnlObstetricoLayout.setVerticalGroup(
-            pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlObstetricoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtfTalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtfAlturaUterina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlObstetricoLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblstaticTalla)
-                            .addComponent(lblstaticAU)
-                            .addComponent(lblstaticUnidadAU)
-                            .addComponent(lblstaticUnidadTalla))))
-                .addGap(9, 9, 9)
-                .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblstaticPeso)
-                        .addComponent(txtfPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblstaticUnidadPeso)
-                        .addComponent(lblstaticPA))
-                    .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblstaticBarra)
-                        .addComponent(txtfPresionArterialmm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtfPresionArterialHg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblstaticUnidadPA)))
-                .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlObstetricoLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtfLCF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlObstetricoLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblstaticLCF)
-                                    .addComponent(lblstaticUnidadLCF)
-                                    .addComponent(lblstaticIMC))))
-                        .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlObstetricoLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(lblstaticMAF))
-                            .addGroup(pnlObstetricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(rbtnMafSi)
-                                .addComponent(rbtnMafNo))))
-                    .addGroup(pnlObstetricoLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(lblIMC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        tpaneExamenes.addTab("Obstétrico", pnlObstetrico);
+        tpaneExamenes.addTab("Físico", pnlFisico);
 
         pnlMotivo.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Motivo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
         pnlMotivo.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
@@ -684,11 +299,11 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         pnlMotivo.setLayout(pnlMotivoLayout);
         pnlMotivoLayout.setHorizontalGroup(
             pnlMotivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+            .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
         );
         pnlMotivoLayout.setVerticalGroup(
             pnlMotivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+            .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
         );
 
         pnlFecha.setBackground(new java.awt.Color(228, 228, 241));
@@ -711,7 +326,7 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
                 .addComponent(lblstaticFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
         pnlFechaLayout.setVerticalGroup(
             pnlFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -740,11 +355,11 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         pnlTratamiento.setLayout(pnlTratamientoLayout);
         pnlTratamientoLayout.setHorizontalGroup(
             pnlTratamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
         );
         pnlTratamientoLayout.setVerticalGroup(
             pnlTratamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
         );
 
         pnlEstudiosComplementarios.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Estudios Complementarios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
@@ -756,7 +371,7 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         txtaEstudiosComple.setRows(2);
         txtaEstudiosComple.setTabSize(0);
         txtaEstudiosComple.setWrapStyleWord(true);
-        txtaEstudiosComple.setNextFocusableComponent(txtaObservaciones);
+        txtaEstudiosComple.setNextFocusableComponent(txtaLaboratorio);
         txtaEstudiosComple.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtaEstudiosCompleKeyPressed(evt);
@@ -768,39 +383,39 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         pnlEstudiosComplementarios.setLayout(pnlEstudiosComplementariosLayout);
         pnlEstudiosComplementariosLayout.setHorizontalGroup(
             pnlEstudiosComplementariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
         );
         pnlEstudiosComplementariosLayout.setVerticalGroup(
             pnlEstudiosComplementariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
         );
 
-        pnlObservaciones.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Observaciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
-        pnlObservaciones.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        pnlLaboratorio.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Laboratorio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlLaboratorio.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
 
-        txtaObservaciones.setColumns(20);
-        txtaObservaciones.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtaObservaciones.setLineWrap(true);
-        txtaObservaciones.setRows(2);
-        txtaObservaciones.setTabSize(0);
-        txtaObservaciones.setWrapStyleWord(true);
-        txtaObservaciones.setNextFocusableComponent(txtaDiagnostico);
-        txtaObservaciones.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtaLaboratorio.setColumns(20);
+        txtaLaboratorio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaLaboratorio.setLineWrap(true);
+        txtaLaboratorio.setRows(2);
+        txtaLaboratorio.setTabSize(0);
+        txtaLaboratorio.setWrapStyleWord(true);
+        txtaLaboratorio.setNextFocusableComponent(txtaDiagnostico);
+        txtaLaboratorio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtaObservacionesKeyPressed(evt);
+                txtaLaboratorioKeyPressed(evt);
             }
         });
-        jScrollPane8.setViewportView(txtaObservaciones);
+        jScrollPane8.setViewportView(txtaLaboratorio);
 
-        javax.swing.GroupLayout pnlObservacionesLayout = new javax.swing.GroupLayout(pnlObservaciones);
-        pnlObservaciones.setLayout(pnlObservacionesLayout);
-        pnlObservacionesLayout.setHorizontalGroup(
-            pnlObservacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlLaboratorioLayout = new javax.swing.GroupLayout(pnlLaboratorio);
+        pnlLaboratorio.setLayout(pnlLaboratorioLayout);
+        pnlLaboratorioLayout.setHorizontalGroup(
+            pnlLaboratorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
         );
-        pnlObservacionesLayout.setVerticalGroup(
-            pnlObservacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+        pnlLaboratorioLayout.setVerticalGroup(
+            pnlLaboratorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pnlObservaciones1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Diagnóstico", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
@@ -812,7 +427,6 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         txtaDiagnostico.setRows(2);
         txtaDiagnostico.setTabSize(0);
         txtaDiagnostico.setWrapStyleWord(true);
-        txtaDiagnostico.setNextFocusableComponent(txtaMamas);
         txtaDiagnostico.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtaDiagnosticoKeyPressed(evt);
@@ -824,37 +438,14 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         pnlObservaciones1.setLayout(pnlObservaciones1Layout);
         pnlObservaciones1Layout.setHorizontalGroup(
             pnlObservaciones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+            .addComponent(jScrollPane11)
         );
         pnlObservaciones1Layout.setVerticalGroup(
             pnlObservaciones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+            .addComponent(jScrollPane11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
         );
 
         pnlBotones1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-        btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnGuardar.setForeground(new java.awt.Color(0, 51, 102));
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save_enabled.png"))); // NOI18N
-        btnGuardar.setText("Guardar");
-        btnGuardar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnGuardar.setNextFocusableComponent(btnCancelar);
-        btnGuardar.setOpaque(true);
-        btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnGuardarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnGuardarMouseExited(evt);
-            }
-        });
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(0, 51, 102));
@@ -862,16 +453,16 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnCancelar.setContentAreaFilled(false);
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCancelar.setEnabled(false);
         btnCancelar.setNextFocusableComponent(btnVolver);
         btnCancelar.setOpaque(true);
         btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnCancelarMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnCancelarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseEntered(evt);
             }
         });
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -880,27 +471,26 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
             }
         });
 
-        btnVolver.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnVolver.setForeground(new java.awt.Color(0, 51, 102));
-        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/home_enabled.png"))); // NOI18N
-        btnVolver.setText("Volver");
-        btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        btnVolver.setContentAreaFilled(false);
-        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnVolver.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnVolver.setNextFocusableComponent(btnModificar);
-        btnVolver.setOpaque(true);
-        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnVolverMouseEntered(evt);
-            }
+        btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(0, 51, 102));
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save_enabled.png"))); // NOI18N
+        btnGuardar.setText("Guardar");
+        btnGuardar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        btnGuardar.setContentAreaFilled(false);
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnGuardar.setNextFocusableComponent(btnCancelar);
+        btnGuardar.setOpaque(true);
+        btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnVolverMouseExited(evt);
+                btnGuardarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnGuardarMouseEntered(evt);
             }
         });
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
@@ -910,16 +500,16 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         btnModificar.setText("Modificar");
         btnModificar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnModificar.setContentAreaFilled(false);
-        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnModificar.setEnabled(false);
         btnModificar.setNextFocusableComponent(txtaMotivo);
         btnModificar.setOpaque(true);
         btnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnModificarMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnModificarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModificarMouseEntered(evt);
             }
         });
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -928,26 +518,50 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
             }
         });
 
+        btnVolver.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(0, 51, 102));
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/home_enabled.png"))); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        btnVolver.setContentAreaFilled(false);
+        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVolver.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnVolver.setNextFocusableComponent(btnModificar);
+        btnVolver.setOpaque(true);
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVolverMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVolverMouseEntered(evt);
+            }
+        });
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlBotones1Layout = new javax.swing.GroupLayout(pnlBotones1);
         pnlBotones1.setLayout(pnlBotones1Layout);
         pnlBotones1Layout.setHorizontalGroup(
             pnlBotones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBotones1Layout.createSequentialGroup()
-                .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(29, 29, 29)
-                .addComponent(btnVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlBotones1Layout.setVerticalGroup(
             pnlBotones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBotones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pnlDatosPersonales.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Datos del Paciente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
@@ -977,17 +591,17 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         lblObraSocial.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblObraSocial.setText("OSPAC");
 
-        lblstaticSangre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblstaticSangre.setText("Sangre:");
+        lblstaticFechaPrimeraConsulta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblstaticFechaPrimeraConsulta.setText("Fecha de Primera Consulta:");
 
-        lblSangre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblSangre.setText("0 -");
+        lblFechaPrimeraConsulta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblFechaPrimeraConsulta.setText("0 -");
 
-        lblTelefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblTelefono.setText("423654");
+        lblLocalidad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblLocalidad.setText("423654");
 
-        lblstaticTelefono.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblstaticTelefono.setText("Teléfono:");
+        lblstaticLocalidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblstaticLocalidad.setText("Localidad:");
 
         pnlApellidoNombre.setBackground(new java.awt.Color(228, 228, 241));
         pnlApellidoNombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(153, 153, 153), new java.awt.Color(255, 255, 255), null));
@@ -1006,11 +620,11 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         pnlApellidoNombreLayout.setHorizontalGroup(
             pnlApellidoNombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlApellidoNombreLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblstaticNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNombrePaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(lblNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
         pnlApellidoNombreLayout.setVerticalGroup(
             pnlApellidoNombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1025,6 +639,12 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         lblEdad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblEdad.setText("0");
 
+        lblLocalidad1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblLocalidad1.setText("423654");
+
+        lblstaticLocalidad1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblstaticLocalidad1.setText("Domicilio:");
+
         javax.swing.GroupLayout pnlDatosPersonalesLayout = new javax.swing.GroupLayout(pnlDatosPersonales);
         pnlDatosPersonales.setLayout(pnlDatosPersonalesLayout);
         pnlDatosPersonalesLayout.setHorizontalGroup(
@@ -1032,46 +652,47 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
             .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlApellidoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
+                        .addComponent(pnlApellidoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
                         .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
-                                .addComponent(lblstaticEdad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                .addComponent(lblstaticFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(4, 4, 4))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosPersonalesLayout.createSequentialGroup()
-                                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblstaticDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblstaticFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(10, 10, 10))
-                            .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
-                                .addComponent(lblstaticTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblstaticLocalidad, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblstaticEdad, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblstaticDni, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
-                                .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(239, 239, 239))
-                            .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
-                                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblEdad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
-                                        .addComponent(lblstaticSangre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(40, 40, 40)
-                                        .addComponent(lblSangre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(56, 56, 56))
-                                    .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
-                                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblstaticObraSocial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblstaticNumAfiliado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblObraSocial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblNumeroAfiliado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                .addGap(22, 22, 22)))))
-                .addContainerGap())
+                                .addGap(31, 31, 31))
+                            .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(lblLocalidad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblFechaNacimiento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)))
+                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblstaticFechaPrimeraConsulta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlDatosPersonalesLayout.createSequentialGroup()
+                                .addGap(103, 103, 103)
+                                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblstaticObraSocial)
+                                    .addComponent(lblstaticNumAfiliado)))
+                            .addComponent(lblstaticLocalidad1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
+                                .addComponent(lblFechaPrimeraConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(112, 112, 112))
+                            .addComponent(lblObraSocial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblNumeroAfiliado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblLocalidad1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(168, 168, 168))))
         );
         pnlDatosPersonalesLayout.setVerticalGroup(
             pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1080,34 +701,68 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
-                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblstaticFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(3, 3, 3)
-                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblstaticDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(5, 5, 5)
-                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblstaticEdad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblEdad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
+                                .addComponent(lblstaticFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(3, 3, 3)
+                                .addComponent(lblstaticDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(5, 5, 5)
+                                .addComponent(lblstaticEdad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
+                                .addComponent(lblFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(3, 3, 3)
+                                .addComponent(lblDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(5, 5, 5)
+                                .addComponent(lblEdad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblstaticTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(lblLocalidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblstaticLocalidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
                         .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblSangre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblstaticSangre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(5, 5, 5)
+                            .addComponent(lblstaticFechaPrimeraConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblFechaPrimeraConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(3, 3, 3)
                         .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblstaticObraSocial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblObraSocial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(5, 5, 5)
                         .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblstaticNumAfiliado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblNumeroAfiliado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(lblNumeroAfiliado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblLocalidad1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblstaticLocalidad1))))
                 .addContainerGap())
+        );
+
+        pnlBiopsia.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Biopsia", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlBiopsia.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+
+        txtaBiopsia.setColumns(20);
+        txtaBiopsia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaBiopsia.setLineWrap(true);
+        txtaBiopsia.setRows(2);
+        txtaBiopsia.setTabSize(0);
+        txtaBiopsia.setWrapStyleWord(true);
+        txtaBiopsia.setNextFocusableComponent(txtaDiagnostico);
+        txtaBiopsia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtaBiopsiaKeyPressed(evt);
+            }
+        });
+        jScrollPane13.setViewportView(txtaBiopsia);
+
+        javax.swing.GroupLayout pnlBiopsiaLayout = new javax.swing.GroupLayout(pnlBiopsia);
+        pnlBiopsia.setLayout(pnlBiopsiaLayout);
+        pnlBiopsiaLayout.setHorizontalGroup(
+            pnlBiopsiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane13)
+        );
+        pnlBiopsiaLayout.setVerticalGroup(
+            pnlBiopsiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1115,114 +770,57 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pnlEstudiosComplementarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(pnlObservaciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(pnlObservaciones1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(pnlFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(6, 6, 6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pnlMotivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnlTratamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(pnlMotivo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pnlFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pnlTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnlEstudiosComplementarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(pnlLaboratorio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlObservaciones1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnlDatosPersonales, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tpaneExamenes)
                     .addComponent(pnlBotones1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlDatosPersonales, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tpaneExamenes))
-                .addContainerGap())
+                    .addComponent(pnlBiopsia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnlFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)
-                        .addComponent(pnlMotivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlTratamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlEstudiosComplementarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlObservaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlObservaciones1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(5, 5, 5))
+                        .addComponent(pnlEstudiosComplementarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnlDatosPersonales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tpaneExamenes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnlBotones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(tpaneExamenes)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pnlBiopsia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79)
+                        .addComponent(pnlBotones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pnlLaboratorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlObservaciones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtfAlturaUterinaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfAlturaUterinaKeyTyped
-        if(evt.getKeyChar() == KeyEvent.VK_TAB)
-        {   
-            evt.consume();
-            this.txtfPresionArterialmm.nextFocus();
-        }  
-        if(MensajesValidaciones.negarCaracteresFloat(evt, this))
-            return;
-        if(this.txtfAlturaUterina.getText().contains(".") == true  && evt.getKeyChar() == KeyEvent.VK_PERIOD)
-        {   
-            evt.consume();
-            return;
-        }
-    }//GEN-LAST:event_txtfAlturaUterinaKeyTyped
-
-    private void txtfPresionArterialmmKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfPresionArterialmmKeyTyped
-        if(evt.getKeyChar() == KeyEvent.VK_TAB)
-        {   
-            evt.consume();
-            this.txtfPresionArterialmm.nextFocus();
-        }  
-        MensajesValidaciones.negarLetras(evt, this);
-    }//GEN-LAST:event_txtfPresionArterialmmKeyTyped
-
-    private void txtfLCFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfLCFKeyTyped
-        if(evt.getKeyChar() == KeyEvent.VK_TAB)
-        {   
-            evt.consume();
-            this.txtfPresionArterialmm.nextFocus();
-        }  
-        MensajesValidaciones.negarLetras(evt, this);
-    }//GEN-LAST:event_txtfLCFKeyTyped
-
-    private void rbtnMafSiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rbtnMafSiKeyTyped
-        if(evt.getKeyChar() == KeyEvent.VK_TAB)
-        {   
-            this.rbtnMafSi.nextFocus();
-        }  
-    }//GEN-LAST:event_rbtnMafSiKeyTyped
-
-    private void rbtnMafNoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rbtnMafNoKeyTyped
-        if(evt.getKeyChar() == KeyEvent.VK_TAB)
-        {   
-            this.rbtnMafNo.nextFocus();
-        }  
-    }//GEN-LAST:event_rbtnMafNoKeyTyped
-
-    private void cmbBethesdaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbBethesdaKeyTyped
-        if(evt.getKeyChar() == KeyEvent.VK_TAB)
-        {   
-            this.cmbBethesda.nextFocus();
-        } 
-    }//GEN-LAST:event_cmbBethesdaKeyTyped
 
     private void btnGuardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseEntered
         this.setearLabels(btnGuardar, true);
@@ -1315,158 +913,6 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         this.procedencia = true;
     }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void txtfTallaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfTallaKeyReleased
-        if(evt.getKeyChar() == KeyEvent.VK_TAB)
-        {   
-            evt.consume();
-            this.txtfTalla.nextFocus();
-        }
-        if(MensajesValidaciones.negarCaracteresFloat(evt, this))
-            return;
-        
-        float talla,peso;
-        String textoTalla=this.txtfTalla.getText();
-        int i = this.txtfTalla.getText().length();
-        
-        if(textoTalla.contains(".") == true && evt.getKeyChar() == KeyEvent.VK_PERIOD)
-        {   
-            evt.consume();
-            return;
-        }
-        
-        if(i == 0 && evt.getKeyChar() == KeyEvent.VK_0)
-        {
-            lblIMC.setText("");
-            evt.consume();
-            return;
-        }
-        
-        String textoPeso = this.txtfPeso.getText();
-        if(evt.getKeyChar() == KeyEvent.VK_BACK_SPACE || evt.getKeyChar() == KeyEvent.VK_DELETE || evt.getKeyChar() == KeyEvent.VK_PERIOD ){
-            if(i > 1)
-                textoTalla = this.txtfTalla.getText().substring(0, i);
-            else if(i == 1)
-                textoTalla = this.txtfTalla.getText();
-            else if(i == 0){
-                this.lblIMC.setText("");   
-                return;
-            }
-        }
-        
-        talla = Float.parseFloat(textoTalla);
-        if(talla == 0)
-        {
-            lblIMC.setText("");
-            evt.consume();
-            return;
-        }
-        if(!textoPeso.isEmpty())
-        {
-            peso = Float.parseFloat(textoPeso);
-            float resultadoIMC = peso/(talla*talla);
-            lblIMC.setText(resultadoIMC+"");
-        }        
-    }//GEN-LAST:event_txtfTallaKeyReleased
-
-    private void txtfPesoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfPesoKeyReleased
-        if(evt.getKeyChar() == KeyEvent.VK_TAB)
-        {   
-            this.txtfPeso.nextFocus();
-        }  
-        if(MensajesValidaciones.negarCaracteresFloat(evt, this))
-            return;
-        
-        float talla,peso;
-        String textoTalla = this.txtfTalla.getText();
-        String textoPeso = this.txtfPeso.getText();
-        int i = this.txtfPeso.getText().length();
-        
-        if(textoPeso.contains(".") == true  && evt.getKeyChar() == KeyEvent.VK_PERIOD)
-        {   
-            evt.consume();
-            return;
-        }
-        
-        if(i == 0 && evt.getKeyChar() == KeyEvent.VK_0)
-        {
-            lblIMC.setText("");
-            evt.consume();
-            return;
-        }
-        
-        if(evt.getKeyChar() == KeyEvent.VK_BACK_SPACE || evt.getKeyChar() == KeyEvent.VK_DELETE){
-            if(i > 1)
-                textoPeso = this.txtfPeso.getText().substring(0, i);
-            else if(i == 1)
-                textoPeso = this.txtfPeso.getText();
-            else if(i == 0){
-                this.lblIMC.setText("");   
-                return;
-            }
-        }
-        
-        peso = Float.parseFloat(textoPeso);
-        if(peso == 0)
-        {
-            lblIMC.setText("");
-            evt.consume();
-            return;
-        }
-        
-        if(!textoTalla.isEmpty())
-        {
-            talla = Float.parseFloat(textoTalla);
-            float resultadoIMC = peso/(talla*talla);
-            lblIMC.setText(resultadoIMC+"");
-        }
-        else
-        {
-            lblIMC.setText("");
-        }
-    }//GEN-LAST:event_txtfPesoKeyReleased
-
-    private void txtfTallaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfTallaKeyTyped
-        if(MensajesValidaciones.negarCaracteresFloat(evt, this))
-            return;
-        if(this.txtfTalla.getText().contains(".") == true  && evt.getKeyChar() == KeyEvent.VK_PERIOD)
-        {   
-            evt.consume();
-            return;
-        }
-    }//GEN-LAST:event_txtfTallaKeyTyped
-
-    private void txtfPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfPesoKeyTyped
-        if(MensajesValidaciones.negarCaracteresFloat(evt, this))
-            return;
-        if(this.txtfPeso.getText().contains(".") == true  && evt.getKeyChar() == KeyEvent.VK_PERIOD)
-        {   
-            evt.consume();
-            return;
-        }
-    }//GEN-LAST:event_txtfPesoKeyTyped
-
-    private void txtfPresionArterialHgKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfPresionArterialHgKeyTyped
-        if(evt.getKeyChar() == KeyEvent.VK_TAB)
-        {   
-            this.txtfLCF.nextFocus();
-        }  
-        MensajesValidaciones.negarLetras(evt, this);
-    }//GEN-LAST:event_txtfPresionArterialHgKeyTyped
-
-private void txtfAlturaUterinaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfAlturaUterinaKeyReleased
-        if(evt.getKeyChar() == KeyEvent.VK_TAB)
-        {   
-            this.txtfPresionArterialmm.nextFocus();
-        }  
-        if(MensajesValidaciones.negarCaracteresFloat(evt, this))
-            return;
-        if(this.txtfAlturaUterina.getText().contains(".") == true  && evt.getKeyChar() == KeyEvent.VK_PERIOD)
-        {   
-            evt.consume();
-            return;
-        }
-}//GEN-LAST:event_txtfAlturaUterinaKeyReleased
-
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         this.salir();
     }//GEN-LAST:event_formWindowClosing
@@ -1483,9 +929,9 @@ private void txtfAlturaUterinaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FI
         this.controlarFoco(evt);
     }//GEN-LAST:event_txtaEstudiosCompleKeyPressed
 
-    private void txtaObservacionesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaObservacionesKeyPressed
+    private void txtaLaboratorioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaLaboratorioKeyPressed
         this.controlarFoco(evt);
-    }//GEN-LAST:event_txtaObservacionesKeyPressed
+    }//GEN-LAST:event_txtaLaboratorioKeyPressed
 
     private void txtaDiagnosticoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaDiagnosticoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_TAB && !evt.isShiftDown()) {
@@ -1501,23 +947,13 @@ private void txtfAlturaUterinaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FI
         }
     }//GEN-LAST:event_txtaDiagnosticoKeyPressed
 
-    private void txtaMamasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaMamasKeyPressed
-        this.controlarFoco(evt);
-    }//GEN-LAST:event_txtaMamasKeyPressed
+    private void txtaExamenFisicoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaExamenFisicoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtaExamenFisicoKeyPressed
 
-    private void txtaGenitoUrinarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaGenitoUrinarioKeyPressed
-        this.controlarFoco(evt);
-    }//GEN-LAST:event_txtaGenitoUrinarioKeyPressed
-
-    private void txtaPapYColpoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaPapYColpoKeyPressed
-        this.controlarFoco(evt);
-        if(evt.getKeyCode() == KeyEvent.VK_TAB && !evt.isShiftDown() && tipoConsulta == 2)
-            this.tpaneExamenes.setSelectedComponent(this.pnlObstetrico);
-    }//GEN-LAST:event_txtaPapYColpoKeyPressed
-
-    private void txtaObstetObservacionesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaObstetObservacionesKeyPressed
-        this.controlarFoco(evt);
-    }//GEN-LAST:event_txtaObstetObservacionesKeyPressed
+    private void txtaBiopsiaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaBiopsiaKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtaBiopsiaKeyPressed
 
     private void setearLabels(JButton jbtn, boolean entrada){
         if(jbtn.isEnabled())
@@ -1535,14 +971,10 @@ private void txtfAlturaUterinaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FI
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnVolver;
     private javax.swing.ButtonGroup btngrpMAF;
-    private javax.swing.JComboBox cmbBethesda;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
@@ -1550,67 +982,41 @@ private void txtfAlturaUterinaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FI
     private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblFechaNacimiento;
-    private javax.swing.JLabel lblIMC;
+    private javax.swing.JLabel lblFechaPrimeraConsulta;
+    private javax.swing.JLabel lblLocalidad;
+    private javax.swing.JLabel lblLocalidad1;
     private javax.swing.JLabel lblNombrePaciente;
     private javax.swing.JLabel lblNumeroAfiliado;
     private javax.swing.JLabel lblObraSocial;
-    private javax.swing.JLabel lblSangre;
-    private javax.swing.JLabel lblTelefono;
-    private javax.swing.JLabel lblstaticAU;
-    private javax.swing.JLabel lblstaticBarra;
-    private javax.swing.JLabel lblstaticBethesda;
     private javax.swing.JLabel lblstaticDni;
     private javax.swing.JLabel lblstaticEdad;
     private javax.swing.JLabel lblstaticFecha;
     private javax.swing.JLabel lblstaticFechaNacimiento;
-    private javax.swing.JLabel lblstaticGenito;
-    private javax.swing.JLabel lblstaticIMC;
-    private javax.swing.JLabel lblstaticLCF;
-    private javax.swing.JLabel lblstaticMAF;
-    private javax.swing.JLabel lblstaticMamas;
+    private javax.swing.JLabel lblstaticFechaPrimeraConsulta;
+    private javax.swing.JLabel lblstaticLocalidad;
+    private javax.swing.JLabel lblstaticLocalidad1;
     private javax.swing.JLabel lblstaticNombre;
     private javax.swing.JLabel lblstaticNumAfiliado;
     private javax.swing.JLabel lblstaticObraSocial;
-    private javax.swing.JLabel lblstaticPA;
-    private javax.swing.JLabel lblstaticPap;
-    private javax.swing.JLabel lblstaticPeso;
-    private javax.swing.JLabel lblstaticSangre;
-    private javax.swing.JLabel lblstaticTalla;
-    private javax.swing.JLabel lblstaticTelefono;
-    private javax.swing.JLabel lblstaticUnidadAU;
-    private javax.swing.JLabel lblstaticUnidadLCF;
-    private javax.swing.JLabel lblstaticUnidadPA;
-    private javax.swing.JLabel lblstaticUnidadPeso;
-    private javax.swing.JLabel lblstaticUnidadTalla;
     private javax.swing.JPanel pnlApellidoNombre;
+    private javax.swing.JPanel pnlBiopsia;
     private javax.swing.JPanel pnlBotones1;
     private javax.swing.JPanel pnlDatosPersonales;
     private javax.swing.JPanel pnlEstudiosComplementarios;
     private javax.swing.JPanel pnlFecha;
-    private javax.swing.JPanel pnlGinecologico;
+    private javax.swing.JPanel pnlFisico;
+    private javax.swing.JPanel pnlLaboratorio;
     private javax.swing.JPanel pnlMotivo;
-    private javax.swing.JPanel pnlObservaciones;
     private javax.swing.JPanel pnlObservaciones1;
-    private javax.swing.JPanel pnlObstetrico;
     private javax.swing.JPanel pnlTratamiento;
-    private javax.swing.JRadioButton rbtnMafNo;
-    private javax.swing.JRadioButton rbtnMafSi;
     private javax.swing.JTabbedPane tpaneExamenes;
+    private javax.swing.JTextArea txtaBiopsia;
     private javax.swing.JTextArea txtaDiagnostico;
     private javax.swing.JTextArea txtaEstudiosComple;
-    private javax.swing.JTextArea txtaGenitoUrinario;
-    private javax.swing.JTextArea txtaMamas;
+    private javax.swing.JTextArea txtaExamenFisico;
+    private javax.swing.JTextArea txtaLaboratorio;
     private javax.swing.JTextArea txtaMotivo;
-    private javax.swing.JTextArea txtaObservaciones;
-    private javax.swing.JTextArea txtaObstetObservaciones;
-    private javax.swing.JTextArea txtaPapYColpo;
     private javax.swing.JTextArea txtaTratamiento;
-    private javax.swing.JTextField txtfAlturaUterina;
-    private javax.swing.JTextField txtfLCF;
-    private javax.swing.JTextField txtfPeso;
-    private javax.swing.JTextField txtfPresionArterialHg;
-    private javax.swing.JTextField txtfPresionArterialmm;
-    private javax.swing.JTextField txtfTalla;
     // End of variables declaration//GEN-END:variables
     
     /**
@@ -1622,7 +1028,7 @@ private void txtfAlturaUterinaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FI
         this.txtaMotivo.setText(c.getMotivo());
         this.txtaTratamiento.setText(c.getTratamiento());
         this.txtaEstudiosComple.setText(c.getEstudiosComplementarios());
-        this.txtaObservaciones.setText(c.getObservaciones());
+        this.txtaLaboratorio.setText(c.getObservaciones());
         this.txtaDiagnostico.setText(c.getDiagnostico());
         if(tipoConsulta == 2 || tipoConsulta == 1)
         {
@@ -1718,7 +1124,7 @@ private void txtfAlturaUterinaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FI
         cons.setEstudiosComplementarios(this.txtaEstudiosComple.getText());
         cons.setFecha(this.lblFecha.getText());
         cons.setMotivo(this.txtaMotivo.getText());
-        cons.setObservaciones(this.txtaObservaciones.getText());
+        cons.setObservaciones(this.txtaLaboratorio.getText());
         switch(tipoConsulta)
         {
             case 0 : cons.setTipoConsulta("Obstetrica");  
@@ -1774,7 +1180,7 @@ private void txtfAlturaUterinaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FI
         this.txtaMotivo.setEnabled(accion);
         this.txtaTratamiento.setEnabled(accion);
         this.txtaEstudiosComple.setEnabled(accion);
-        this.txtaObservaciones.setEnabled(accion);
+        this.txtaLaboratorio.setEnabled(accion);
         this.txtaDiagnostico.setEnabled(accion);
         this.btnCancelar.setEnabled(accion);
         this.btnModificar.setEnabled(!accion);
@@ -1827,13 +1233,13 @@ private void txtfAlturaUterinaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FI
         
         this.lblNumeroAfiliado.setText(p.getNumeroAfiliado());
         this.lblObraSocial.setText(p.getObraSocial().getNombre());
-        this.lblTelefono.setText(p.getTelefono());
+        this.lblLocalidad.setText(p.getTelefono());
         this.lblDni.setText(p.getDni()+"");
         
         if(p.getFactor())
-            this.lblSangre.setText(p.getGrupoSanguineo()+" +");   
+            this.lblFechaPrimeraConsulta.setText(p.getGrupoSanguineo()+" +");   
         else
-            this.lblSangre.setText(p.getGrupoSanguineo()+" -");
+            this.lblFechaPrimeraConsulta.setText(p.getGrupoSanguineo()+" -");
     }
     
     private int calcularEdad(String fechaNacimiento) {
