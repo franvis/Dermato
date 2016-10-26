@@ -16,6 +16,7 @@ import javax.swing.*;
 import javax.swing.text.BadLocationException;
 
 public class ABMPacienteCompleto extends javax.swing.JFrame {
+
     private Frame padre;
     private Principal padreP;
     private HistoriaClinica hc;
@@ -31,11 +32,11 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
     private int idObraSocialOriginal;
     private String nroAfiliadoOriginal;
     private String tiroidesAux = "", oncologógicosAux = "";
-    
+
     /**
      * Creates new form DatosPaciente
      */
-    public ABMPacienteCompleto(java.awt.Frame parent, boolean modal,int procedencia) {     //procedencia: 0 principal nuevo, 
+    public ABMPacienteCompleto(java.awt.Frame parent, boolean modal, int procedencia) {     //procedencia: 0 principal nuevo, 
         initComponents();
         ComboBoxEditor editor = cmbObraSocial.getEditor();
         JTextField etf = (JTextField) editor.getEditorComponent();
@@ -49,15 +50,12 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         obras = new LinkedList<>();
         this.procedencia = procedencia;
         llenarObrasSociales();
-        if(procedencia == 0 || procedencia == 1)
-        {
-        padreP = (Principal) parent;
-        padre = padreP;
-        }
-        else if(procedencia == 2)
-        {
-        hc = (HistoriaClinica) parent;
-        padre = hc;
+        if (procedencia == 0 || procedencia == 1) {
+            padreP = (Principal) parent;
+            padre = padreP;
+        } else if (procedencia == 2) {
+            hc = (HistoriaClinica) parent;
+            padre = hc;
         }
         setIconImage(getIconImage());
         ClasesBase.GestorEstilos.pintar(this);
@@ -66,19 +64,19 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         //eventos de la página
         KeyStroke strokeEsc = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
         this.getRootPane().registerKeyboardAction(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    salir();
-                }
-            }, strokeEsc, JComponent.WHEN_IN_FOCUSED_WINDOW);
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                salir();
+            }
+        }, strokeEsc, JComponent.WHEN_IN_FOCUSED_WINDOW);
         pnlOtherData.setBorder(javax.swing.BorderFactory.createTitledBorder(
                 new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true),
                 "Otros Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
                 javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13),
-                new java.awt.Color(0, 51, 102))); 
+                new java.awt.Color(0, 51, 102)));
     }
-    
-    public ABMPacienteCompleto(java.awt.Frame parent, boolean modal,int procedencia, Paciente p) {
+
+    public ABMPacienteCompleto(java.awt.Frame parent, boolean modal, int procedencia, Paciente p) {
         initComponents();
         ComboBoxEditor editor = cmbObraSocial.getEditor();
         JTextField etf = (JTextField) editor.getEditorComponent();
@@ -90,26 +88,23 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         obras = new LinkedList<>();
         this.procedencia = procedencia;
         llenarObrasSociales();
-        if(procedencia == 1)
-             { 
-             llenarCajas(p);
-             this.p = p;
-             dniOriginal = Long.parseLong(this.txtfDni.getText());
-             padreP = (Principal) parent;
-             padre = padreP;
-             }
-
-        else if(procedencia == 2)
-        {
-        this.btnModificar.setVisible(false);
-        hc = (HistoriaClinica) parent;
-        llenarCajas(p);
-        this.p = p;
-        dniOriginal = Long.parseLong(this.txtfDni.getText());
-        if (p.getObraSocial() != null)
-            nroAfiliadoOriginal = p.getNumeroAfiliado();
+        if (procedencia == 1) {
+            llenarCajas(p);
+            this.p = p;
+            dniOriginal = Long.parseLong(this.txtfDni.getText());
+            padreP = (Principal) parent;
+            padre = padreP;
+        } else if (procedencia == 2) {
+            this.btnModificar.setVisible(false);
+            hc = (HistoriaClinica) parent;
+            llenarCajas(p);
+            this.p = p;
+            dniOriginal = Long.parseLong(this.txtfDni.getText());
+            if (p.getObraSocial() != null) {
+                nroAfiliadoOriginal = p.getNumeroAfiliado();
+            }
         }
-        
+
         this.setLocationRelativeTo(parent);
         setIconImage(getIconImage());
         ClasesBase.GestorEstilos.pintar(this);
@@ -118,16 +113,16 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         //eventos de la página
         KeyStroke strokeEsc = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
         this.getRootPane().registerKeyboardAction(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    salir();
-                }
-            }, strokeEsc, JComponent.WHEN_IN_FOCUSED_WINDOW);
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                salir();
+            }
+        }, strokeEsc, JComponent.WHEN_IN_FOCUSED_WINDOW);
         pnlOtherData.setBorder(javax.swing.BorderFactory.createTitledBorder(
                 new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true),
                 "Otros Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
                 javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13),
-                new java.awt.Color(0, 51, 102))); 
+                new java.awt.Color(0, 51, 102)));
     }
 
     /**
@@ -169,7 +164,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         pnlOtherData = new javax.swing.JPanel();
         lblstaticFirstConsultDate = new javax.swing.JLabel();
-        ftxtfFechaNacimiento1 = new javax.swing.JFormattedTextField();
+        ftxtfFechaPrimeraConsulta = new javax.swing.JFormattedTextField();
         pnlGenerales = new javax.swing.JPanel();
         pnlPersonales = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -212,6 +207,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         lblstaticFechaNacimiento.setText("Fecha de Nacimiento:");
 
         txtfNombres.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfNombres.setNextFocusableComponent(txtfApellidos);
         txtfNombres.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtfNombresKeyTyped(evt);
@@ -219,6 +215,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         });
 
         txtfApellidos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfApellidos.setNextFocusableComponent(txtfTelefono);
         txtfApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtfApellidosKeyTyped(evt);
@@ -226,6 +223,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         });
 
         txtfTelefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfTelefono.setNextFocusableComponent(txtfDni);
         txtfTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtfTelefonoKeyTyped(evt);
@@ -233,6 +231,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         });
 
         txtfDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfDni.setNextFocusableComponent(txtfAddress);
         txtfDni.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtfDniKeyTyped(evt);
@@ -248,6 +247,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         ftxtfFechaNacimiento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ftxtfFechaNacimiento.setNextFocusableComponent(cmbObraSocial);
 
         pnlObraSocial.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Obra Social", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
         pnlObraSocial.setOpaque(false);
@@ -279,7 +279,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         txtfNumeroAfiliado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtfNumeroAfiliado.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtfNumeroAfiliado.setEnabled(false);
-        txtfNumeroAfiliado.setNextFocusableComponent(pnlPersonales);
+        txtfNumeroAfiliado.setNextFocusableComponent(ftxtfFechaPrimeraConsulta);
         txtfNumeroAfiliado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtfNumeroAfiliadoKeyTyped(evt);
@@ -365,6 +365,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         lblstaticAddress.setText("Domicilio:");
 
         txtfAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfAddress.setNextFocusableComponent(txtfCity);
         txtfAddress.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtfAddressKeyTyped(evt);
@@ -375,6 +376,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         lblstaticCity.setText("Localidad:");
 
         txtfCity.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfCity.setNextFocusableComponent(ftxtfFechaNacimiento);
         txtfCity.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtfCityKeyTyped(evt);
@@ -481,6 +483,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         btnGuardar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnGuardar.setContentAreaFilled(false);
         btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnGuardar.setNextFocusableComponent(btnVolver);
         btnGuardar.setOpaque(true);
         btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -504,6 +507,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         btnVolver.setContentAreaFilled(false);
         btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnVolver.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnVolver.setNextFocusableComponent(txtfNombres);
         btnVolver.setOpaque(true);
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -547,11 +551,12 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         lblstaticFirstConsultDate.setText("Fecha de Primera Consulta:");
 
         try {
-            ftxtfFechaNacimiento1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            ftxtfFechaPrimeraConsulta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ftxtfFechaNacimiento1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ftxtfFechaPrimeraConsulta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ftxtfFechaPrimeraConsulta.setNextFocusableComponent(txtaPersonales);
 
         javax.swing.GroupLayout pnlOtherDataLayout = new javax.swing.GroupLayout(pnlOtherData);
         pnlOtherData.setLayout(pnlOtherDataLayout);
@@ -561,13 +566,13 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblstaticFirstConsultDate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ftxtfFechaNacimiento1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ftxtfFechaPrimeraConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(243, Short.MAX_VALUE))
         );
         pnlOtherDataLayout.setVerticalGroup(
             pnlOtherDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOtherDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(ftxtfFechaNacimiento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ftxtfFechaPrimeraConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(lblstaticFirstConsultDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -636,6 +641,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         txtaToxicos.setRows(5);
         txtaToxicos.setTabSize(0);
         txtaToxicos.setWrapStyleWord(true);
+        txtaToxicos.setNextFocusableComponent(txtaMedicamentosos);
         txtaToxicos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtaToxicosKeyPressed(evt);
@@ -662,6 +668,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         txtaFamiliares.setRows(5);
         txtaFamiliares.setTabSize(0);
         txtaFamiliares.setWrapStyleWord(true);
+        txtaFamiliares.setNextFocusableComponent(btnGuardar);
         txtaFamiliares.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtaFamiliaresKeyPressed(evt);
@@ -688,6 +695,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         txtaMedicamentosos.setRows(5);
         txtaMedicamentosos.setTabSize(0);
         txtaMedicamentosos.setWrapStyleWord(true);
+        txtaMedicamentosos.setNextFocusableComponent(txtaFamiliares);
         txtaMedicamentosos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtaMedicamentososKeyPressed(evt);
@@ -733,7 +741,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
                 .addComponent(pnlMedicamentosos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlFamiliares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -753,15 +761,15 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlGenerales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnlGenerales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnlDatosPersonales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlOtherData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(pnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlOtherData.getAccessibleContext().setAccessibleName("Otros datos");
@@ -770,22 +778,22 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtfTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfTelefonoKeyTyped
-        MensajesValidaciones.negarLetras(evt,this);
-        MensajesValidaciones.limitarLargo(this.txtfTelefono, evt, 45,this);
+        MensajesValidaciones.negarLetras(evt, this);
+        MensajesValidaciones.limitarLargo(this.txtfTelefono, evt, 45, this);
     }//GEN-LAST:event_txtfTelefonoKeyTyped
 
     private void txtfDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfDniKeyTyped
-        MensajesValidaciones.negarLetras(evt,this);
+        MensajesValidaciones.negarLetras(evt, this);
     }//GEN-LAST:event_txtfDniKeyTyped
 
     private void txtfNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfNombresKeyTyped
-        MensajesValidaciones.negarNumeros(evt,this);
-        MensajesValidaciones.limitarLargo(this.txtfNombres,evt,45,this);
+        MensajesValidaciones.negarNumeros(evt, this);
+        MensajesValidaciones.limitarLargo(this.txtfNombres, evt, 45, this);
     }//GEN-LAST:event_txtfNombresKeyTyped
 
     private void txtfApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfApellidosKeyTyped
-        MensajesValidaciones.negarNumeros(evt,this);
-        MensajesValidaciones.limitarLargo(this.txtfApellidos,evt,45,this);
+        MensajesValidaciones.negarNumeros(evt, this);
+        MensajesValidaciones.limitarLargo(this.txtfApellidos, evt, 45, this);
     }//GEN-LAST:event_txtfApellidosKeyTyped
 
     private void btnNuevaObraSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaObraSocialActionPerformed
@@ -813,7 +821,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         } else {
             MensajesValidaciones.mostrarError(this, "Registro Fallido.");
         }
-        
+
         this.txtfNuevaObraSocial.setEnabled(false);
         this.btnGuardarOS.setEnabled(false);
         this.btnNuevaObraSocial.setEnabled(true);
@@ -836,13 +844,10 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarOSActionPerformed
 
 private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbObraSocialItemStateChanged
-    if(cmbObraSocial.getSelectedIndex() == 0)
-    {
+    if (cmbObraSocial.getSelectedIndex() == 0) {
         txtfNumeroAfiliado.setText("");
         txtfNumeroAfiliado.setEnabled(false);
-    }
-    else
-    {
+    } else {
         txtfNumeroAfiliado.setEnabled(true);
     }
 }//GEN-LAST:event_cmbObraSocialItemStateChanged
@@ -856,125 +861,112 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     }//GEN-LAST:event_btnGuardarMouseExited
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-    af = new AntecedentesFamiliares();  
-    agen = new AntecedentesGenerales();
-    aginec = new AntecedentesGinecologicos();
-    String error = comprobarDatosObligatorios();
-    if(!error.isEmpty())
-    {
-        MensajesValidaciones.mostrarError(this,"Debe completar los siguientes datos obligatorios: \n"+error);
-        return;
-    }   
-    long dniPaciente = Long.parseLong(this.txtfDni.getText());
-    
-    ObraSocial osAux = new ObraSocial();
-    for (int i = 0; i < obras.size(); i++) {
-        if(obras.get(i).getNombre().compareTo(cmbObraSocial.getSelectedItem().toString()) == 0)
-            osAux = obras.get(i);
-    }
-    
-    Paciente match = daoPaciente.verificarNroAfiliado(osAux.getId(), txtfNumeroAfiliado.getText());
-    
-    if(procedencia == 0) //Principal, nuevo
-    {
-        
-        if(daoPaciente.verificarPaciente(dniPaciente)){
-            MensajesValidaciones.mostrarError(this, "El paciente ya se encuentra registrado. Corrija el DNI o búsquelo en la ventana principal.");
-            this.txtfDni.setText("");
-            this.txtfDni.grabFocus();
+        af = new AntecedentesFamiliares();
+        agen = new AntecedentesGenerales();
+        aginec = new AntecedentesGinecologicos();
+        String error = comprobarDatosObligatorios();
+        if (!error.isEmpty()) {
+            MensajesValidaciones.mostrarError(this, "Debe completar los siguientes datos obligatorios: \n" + error);
             return;
         }
-                    
-        if(cmbObraSocial.getSelectedIndex() != 0 && match != null){
-            MensajesValidaciones.mostrarError(this, "El paciente '"+match.getApellido().toUpperCase()+", "+match.getNombre()+"', DNI N°"+match.getDni()
-                    + " ya se encuentra registrado con misma obra social y N° de afiliado.");
-            this.txtfNumeroAfiliado.setText("");
-            this.txtfNumeroAfiliado.grabFocus();
-            return;
+        long dniPaciente = Long.parseLong(this.txtfDni.getText());
+
+        ObraSocial osAux = new ObraSocial();
+        for (int i = 0; i < obras.size(); i++) {
+            if (obras.get(i).getNombre().compareTo(cmbObraSocial.getSelectedItem().toString()) == 0) {
+                osAux = obras.get(i);
+            }
         }
-        
-        generarAntecedentes();
-    
-        if(!generarPaciente())
-            return;
-    
-        if(daoPaciente.registrarPaciente(p))
+
+        Paciente match = daoPaciente.verificarNroAfiliado(osAux.getId(), txtfNumeroAfiliado.getText());
+
+        if (procedencia == 0) //Principal, nuevo
         {
-            MensajesValidaciones.mostrarInformacion(this,"Registro Exitoso.");
-            hc = new HistoriaClinica(padre, p, 1);
-            hc.llenarCampos(p,1);
-            padreP.actualizarListaPacientes(null);
-            this.dispose();
-            hc.setVisible(true);
-        }
-        else{
-            MensajesValidaciones.mostrarError(this,"Registro Fallido.");
-        }
-    }
-    else if(procedencia == 1 || procedencia == 2)//Historia clinica(2), Principal-Modificar(1) 
-    {
-        if(dniPaciente != dniOriginal && daoPaciente.verificarPaciente(dniPaciente)){
-            MensajesValidaciones.mostrarError(this,"El dni ingresado para la modificación ya se encuentra en la base de datos a nombre de otro paciente.\n"
-                                             + " Corrija el DNI.");
-            this.txtfDni.setText("");
-            return;
-        }
-        
-        if(cmbObraSocial.getSelectedIndex() != 0 
-                && (idObraSocialOriginal != osAux.getId() || !nroAfiliadoOriginal.equals(txtfNumeroAfiliado.getText())) 
-                && match != null
-                && match.getDni() != dniOriginal){
-            MensajesValidaciones.mostrarError(this, "El paciente '"+match.getApellido().toUpperCase()+", "+match.getNombre()+"', DNI N°"+match.getDni()
-                    + " ya se encuentra registrado con misma obra social y N° de afiliado.");
-            this.txtfNumeroAfiliado.setText("");
-            this.txtfNumeroAfiliado.grabFocus();
-            return;
-        }
-                        
-        generarAntecedentes();
-    
-    
-        if(error.isEmpty())
-        {
-            if(!generarPaciente())
+
+            if (daoPaciente.verificarPaciente(dniPaciente)) {
+                MensajesValidaciones.mostrarError(this, "El paciente ya se encuentra registrado. Corrija el DNI o búsquelo en la ventana principal.");
+                this.txtfDni.setText("");
+                this.txtfDni.grabFocus();
                 return;
-        }
-    
-        else
+            }
+
+            if (cmbObraSocial.getSelectedIndex() != 0 && match != null) {
+                MensajesValidaciones.mostrarError(this, "El paciente '" + match.getApellido().toUpperCase() + ", " + match.getNombre() + "', DNI N°" + match.getDni()
+                        + " ya se encuentra registrado con misma obra social y N° de afiliado.");
+                this.txtfNumeroAfiliado.setText("");
+                this.txtfNumeroAfiliado.grabFocus();
+                return;
+            }
+
+            generarAntecedentes();
+
+            if (!generarPaciente()) {
+                return;
+            }
+
+            if (daoPaciente.registrarPaciente(p)) {
+                MensajesValidaciones.mostrarInformacion(this, "Registro Exitoso.");
+                hc = new HistoriaClinica(padre, p, 1);
+                hc.llenarCampos(p, 1);
+                padreP.actualizarListaPacientes(null);
+                this.dispose();
+                hc.setVisible(true);
+            } else {
+                MensajesValidaciones.mostrarError(this, "Registro Fallido.");
+            }
+        } else if (procedencia == 1 || procedencia == 2)//Historia clinica(2), Principal-Modificar(1) 
         {
-            MensajesValidaciones.mostrarError(this,"Debe completar los siguientes campos obligatorios: \n"+error);
-            return;
-        }   
-    
-        if(daoPaciente.actualizarPaciente(p,dniOriginal))
-        {
-            MensajesValidaciones.mostrarInformacion(this,"Actualización Exitosa.");
-            
-                if(this.procedencia == 2)
-                {
+            if (dniPaciente != dniOriginal && daoPaciente.verificarPaciente(dniPaciente)) {
+                MensajesValidaciones.mostrarError(this, "El dni ingresado para la modificación ya se encuentra en la base de datos a nombre de otro paciente.\n"
+                        + " Corrija el DNI.");
+                this.txtfDni.setText("");
+                return;
+            }
+
+            if (cmbObraSocial.getSelectedIndex() != 0
+                    && (idObraSocialOriginal != osAux.getId() || !nroAfiliadoOriginal.equals(txtfNumeroAfiliado.getText()))
+                    && match != null
+                    && match.getDni() != dniOriginal) {
+                MensajesValidaciones.mostrarError(this, "El paciente '" + match.getApellido().toUpperCase() + ", " + match.getNombre() + "', DNI N°" + match.getDni()
+                        + " ya se encuentra registrado con misma obra social y N° de afiliado.");
+                this.txtfNumeroAfiliado.setText("");
+                this.txtfNumeroAfiliado.grabFocus();
+                return;
+            }
+
+            generarAntecedentes();
+
+            if (error.isEmpty()) {
+                if (!generarPaciente()) {
+                    return;
+                }
+            } else {
+                MensajesValidaciones.mostrarError(this, "Debe completar los siguientes campos obligatorios: \n" + error);
+                return;
+            }
+
+            if (daoPaciente.actualizarPaciente(p, dniOriginal)) {
+                MensajesValidaciones.mostrarInformacion(this, "Actualización Exitosa.");
+
+                if (this.procedencia == 2) {
                     hc.setPaciente(p);
-                    hc.llenarCampos(p,1);
+                    hc.llenarCampos(p, 1);
                     this.dispose();
                     hc.setVisible(true);
-                }
-                
-                else
-                {
+                } else {
                     LinkedList<Paciente> pacienteList = new LinkedList<Paciente>();
                     pacienteList.add(daoPaciente.getPacienteBasico(p.getDni()));
                     padreP.actualizarListaPacientes(pacienteList);
                 }
+            } else {
+                MensajesValidaciones.mostrarError(this, "Actualización Fallida.");
+            }
         }
-        else{
-            MensajesValidaciones.mostrarError(this,"Actualización Fallida.");
+        if (procedencia == 1) {
+            cambiarEstadoCajas(false);
+            this.btnModificar.setEnabled(true);
+            this.btnGuardar.setEnabled(false);
         }
-    }
-    if(procedencia == 1)
-    {
-    cambiarEstadoCajas(false);
-    this.btnModificar.setEnabled(true);
-    this.btnGuardar.setEnabled(false);
-    }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnVolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseEntered
@@ -1020,14 +1012,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     }//GEN-LAST:event_txtaPersonalesKeyPressed
 
     private void txtaToxicosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaToxicosKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_TAB && !evt.isShiftDown()) {
-            evt.consume();
-            this.tabbedPaneAntecedentes.setSelectedComponent(this.pnlGinecologicos);
-        } else if (evt.getKeyCode() == KeyEvent.VK_TAB
-            && evt.isShiftDown()) {
-            evt.consume();
-            KeyboardFocusManager.getCurrentKeyboardFocusManager().focusPreviousComponent();
-        }
+        this.controlarFoco(evt);
     }//GEN-LAST:event_txtaToxicosKeyPressed
 
     private void txtaQuirurgicosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaQuirurgicosKeyPressed
@@ -1042,17 +1027,16 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
         // TODO add your handling code here:
     }//GEN-LAST:event_txtaMedicamentososKeyPressed
 
-    
-    private void setearLabels(JButton jbtn, boolean entrada){
-        if(jbtn.isEnabled())
+    private void setearLabels(JButton jbtn, boolean entrada) {
+        if (jbtn.isEnabled()) {
             if (entrada) {
                 jbtn.setFont(new java.awt.Font("Tahoma", 1, 15));
-            }
-            else {
+            } else {
                 jbtn.setFont(new java.awt.Font("Tahoma", 1, 14));
             }
+        }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarOS;
     private javax.swing.JButton btnGuardar;
@@ -1063,7 +1047,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     private javax.swing.ButtonGroup btngrpSangre;
     private javax.swing.JComboBox cmbObraSocial;
     private javax.swing.JFormattedTextField ftxtfFechaNacimiento;
-    private javax.swing.JFormattedTextField ftxtfFechaNacimiento1;
+    private javax.swing.JFormattedTextField ftxtfFechaPrimeraConsulta;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
@@ -1102,28 +1086,27 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     private javax.swing.JTextField txtfNumeroAfiliado;
     private javax.swing.JTextField txtfTelefono;
     // End of variables declaration//GEN-END:variables
- 
+
     /**
      * Se genera el objeto paciente que se desea guardar en la base de datos!
      */
     private boolean generarPaciente() {
         String error;
         p = new Paciente();
-        
+
         p.setNombre(this.txtfNombres.getText());
         p.setApellido(this.txtfApellidos.getText());
         p.setTelefono(this.txtfTelefono.getText());
         p.setDni(Long.parseLong(this.txtfDni.getText()));
-        
+
         try {
-            String dia = this.ftxtfFechaNacimiento.getText(0,2);
-            String mes = this.ftxtfFechaNacimiento.getText(3,2);
-            String año = this.ftxtfFechaNacimiento.getText(6,4);
-            
-            error = MensajesValidaciones.corroborarFecha(dia,mes,año);
-           
-            if(!error.isEmpty())
-            {
+            String dia = this.ftxtfFechaNacimiento.getText(0, 2);
+            String mes = this.ftxtfFechaNacimiento.getText(3, 2);
+            String año = this.ftxtfFechaNacimiento.getText(6, 4);
+
+            error = MensajesValidaciones.corroborarFecha(dia, mes, año);
+
+            if (!error.isEmpty()) {
                 MensajesValidaciones.mostrarError(this, "Los siguientes valores de la fecha no son válidos o están fuera de rango: \n" + error);
                 return false;
             }
@@ -1131,26 +1114,11 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
             Logger.getLogger(ABMPacienteCompleto.class.getName()).log(Level.SEVERE, null, ex);
         }
         p.setFechaNacimiento(this.ftxtfFechaNacimiento.getText());
-        
-        p.setGrupoSanguineo((String)this.cmbGrupoS.getSelectedItem());
-        
-        
-        if(!this.rbtnFactorNeg.isSelected() && !this.rbtnFactorPos.isSelected())
-        {
-            MensajesValidaciones.mostrarError(this,"No se ha seleccionado ningún factor.");
-            return false;
-        }
-        else
-        {
-            if(btngrpSangre.isSelected(this.rbtnFactorPos.getModel()))
-                p.setFactor(true);
-            else
-                p.setFactor(false);
-        }
-        
+
         for (int i = 0; i < obras.size(); i++) {
-            if(obras.get(i).getNombre().compareTo((String)cmbObraSocial.getSelectedItem()) == 0)
-               p.setObraSocial(obras.get(i));
+            if (obras.get(i).getNombre().compareTo((String) cmbObraSocial.getSelectedItem()) == 0) {
+                p.setObraSocial(obras.get(i));
+            }
         }
         p.setNumeroAfiliado(this.txtfNumeroAfiliado.getText());
         p.setAntecGen(agen);
@@ -1165,103 +1133,51 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     private void generarAntecedentes() {
         //Antecedentes generales
         agen = new AntecedentesGenerales();
-        
-            agen.setAntecedentesPersonales(this.txtaPersonales.getText());
-            agen.setAntecedentesQuirurgicos(this.txtaQuirurgicos.getText());
-            agen.setAntecedentesToxicos(this.txtaToxicos.getText());
-      
-       //Antecedentes Ginecologicos
-       aginec = new AntecedentesGinecologicos();
-            
-            if(!this.txtfAbortos.getText().isEmpty())
-                aginec.setAbortos(Integer.parseInt(this.txtfAbortos.getText()));
-            
-            aginec.setAnticonceptivos(this.txtfAnticonceptivos.getText());
-            
-            if(!this.txtfCesareas.getText().isEmpty())
-                aginec.setCesareas(Integer.parseInt(this.txtfCesareas.getText()));
-            
-            aginec.setDismenorrea(this.chkDismenorrea.isSelected());
-            aginec.setDispareunia(this.chkDispareunia.isSelected());
-            
-            if(!this.txtfDuracionMenstrual.getText().isEmpty())
-                aginec.setDuracionMenstrual(Integer.parseInt(this.txtfDuracionMenstrual.getText()));
-            
-            if(!this.txtfGestaciones.getText().isEmpty())
-                aginec.setGestaciones(Integer.parseInt(this.txtfGestaciones.getText()));
-            
-            if(!this.txtfMenarca.getText().isEmpty())
-                aginec.setMenarca(Integer.parseInt(this.txtfMenarca.getText()));
-            
-            if(!this.txtfMenopausia.getText().isEmpty())
-                aginec.setMenopausia(Integer.parseInt(this.txtfMenopausia.getText()));
-            
-            if(!this.txtfMuertos.getText().isEmpty())
-                aginec.setMuertos(Integer.parseInt(this.txtfMuertos.getText()));
-            
-            aginec.setObservaciones(this.txtaGinecObserv.getText());
-            
-            if(!this.txtfPartos.getText().isEmpty())
-                aginec.setPartos(Integer.parseInt(this.txtfPartos.getText()));
-             
-            if(!this.txtfPeriodoMenstrual.getText().isEmpty())
-                aginec.setPeriodoMenstrual(Integer.parseInt(this.txtfPeriodoMenstrual.getText()));
-            
-            aginec.setSdpm(this.chkSdpm.isSelected());
-            aginec.setTelarca(this.txtfTelarca.getText());
-            
-            if(!this.txtfVivos.getText().isEmpty())
-                aginec.setVivos(Integer.parseInt(this.txtfVivos.getText()));
-       //Antecedentes Familiares     
-       af = new AntecedentesFamiliares();
-       
-            af.setDbt(this.chkDiabetes.isSelected());
-            af.setDescripcionOncologicos(this.txtaOncologicos.getText());
-            af.setDescripcionTiroides(this.txtfTiroides.getText());
-            af.setHta(this.chkHipertension.isSelected());
-            af.setObservaciones(this.txtaFamObservaciones.getText());
-            af.setOncologicos(this.chkOncologicos.isSelected());
-            af.setTiroides(this.chkTiroides.isSelected());
+
+        agen.setAntecedentesPersonales(this.txtaPersonales.getText());
+        agen.setAntecedentesQuirurgicos(this.txtaQuirurgicos.getText());
+        agen.setAntecedentesToxicos(this.txtaToxicos.getText());
+
+        //Antecedentes Ginecologicos
+        aginec = new AntecedentesGinecologicos();
+        //Antecedentes Familiares     
+        af = new AntecedentesFamiliares();
     }
-    
+
     /**
-     *comprueba que las cajas obligatorias esten completas
-     * Obligatorias: nombres,apellidos,telefono,dni,fechaNacimiento,numeroAfiliado
+     * comprueba que las cajas obligatorias esten completas Obligatorias:
+     * nombres,apellidos,telefono,dni,fechaNacimiento,numeroAfiliado
      */
     private String comprobarDatosObligatorios() {
-        String incompletas="";
-        
-        if(this.txtfNombres.getText().isEmpty())
-            incompletas+="Nombres \n";
-        
-        if(this.txtfApellidos.getText().isEmpty())
-            incompletas+="Apellidos \n";
-        
-        if(this.txtfTelefono.getText().isEmpty())
-            incompletas+="Teléfono \n";
-        
-        if(this.txtfDni.getText().isEmpty())
-            incompletas+="Nro. de Documento \n";
-        
-        if(this.ftxtfFechaNacimiento.getText().compareTo("  /  /    ") == 0)
-            incompletas+="Fecha de Nacimiento \n";
-        
-        if(this.txtfNumeroAfiliado.getText().isEmpty() && this.txtfNumeroAfiliado.isEnabled())
-            incompletas+="Nro. de Afiliado \n";
-        
-        if(this.rbtnFactorNeg.isSelected() == false && this.rbtnFactorPos.isSelected() == false)
-            incompletas +="Factor \n";
-        
-        if(this.chkTiroides.isSelected() && this.txtfTiroides.getText().isEmpty())
-            incompletas+="Descripción de Tiroides \n";
-        
-        if(this.chkOncologicos.isSelected() && this.txtaOncologicos.getText().isEmpty())
-            incompletas+="Descripción de Oncológicos \n";
-        
+        String incompletas = "";
+
+        if (this.txtfNombres.getText().isEmpty()) {
+            incompletas += "Nombres \n";
+        }
+
+        if (this.txtfApellidos.getText().isEmpty()) {
+            incompletas += "Apellidos \n";
+        }
+
+        if (this.txtfTelefono.getText().isEmpty()) {
+            incompletas += "Teléfono \n";
+        }
+
+        if (this.txtfDni.getText().isEmpty()) {
+            incompletas += "Nro. de Documento \n";
+        }
+
+        if (this.ftxtfFechaNacimiento.getText().compareTo("  /  /    ") == 0) {
+            incompletas += "Fecha de Nacimiento \n";
+        }
+
+        if (this.txtfNumeroAfiliado.getText().isEmpty() && this.txtfNumeroAfiliado.isEnabled()) {
+            incompletas += "Nro. de Afiliado \n";
+        }
+
         return incompletas;
     }
-    
-        
+
     /**
      * Metodo generico utilizado para llenar todos los datos.
      */
@@ -1269,55 +1185,15 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
         this.txtfNombres.setText(p.getNombre());
         this.txtfApellidos.setText(p.getApellido());
         this.txtfTelefono.setText(p.getTelefono());
-        this.txtfDni.setText(p.getDni()+"");
+        this.txtfDni.setText(p.getDni() + "");
         this.ftxtfFechaNacimiento.setText(p.getFechaNacimiento());
         this.cmbObraSocial.setSelectedItem(p.getObraSocial().getNombre());
         this.txtfNumeroAfiliado.setText(p.getNumeroAfiliado());
-        
-        if(p.getFactor())
-            this.btngrpSangre.setSelected(this.rbtnFactorPos.getModel(), true);
-        else
-            this.btngrpSangre.setSelected(this.rbtnFactorNeg.getModel(), true);
-        
         this.txtaPersonales.setText(p.getAntecGen().getAntecedentesPersonales());
         this.txtaToxicos.setText(p.getAntecGen().getAntecedentesToxicos());
         this.txtaQuirurgicos.setText(p.getAntecGen().getAntecedentesQuirurgicos());
-        this.txtaFamObservaciones.setText(p.getAntecFam().getObservaciones());
-        this.txtaGinecObserv.setText(p.getAntecGinec().getObservaciones());
-        this.txtfAbortos.setText(p.getAntecGinec().getAbortos()+"");
-        this.txtfAnticonceptivos.setText(p.getAntecGinec().getAnticonceptivos());
-        this.txtaOncologicos.setText(p.getAntecFam().getDescripcionOncologicos());
-        this.txtfCesareas.setText(p.getAntecGinec().getCesareas()+"");
-        this.txtfDuracionMenstrual.setText(p.getAntecGinec().getDuracionMenstrual()+"");
-        this.txtfPeriodoMenstrual.setText(p.getAntecGinec().getPeriodoMenstrual()+"");
-        this.txtfGestaciones.setText(p.getAntecGinec().getGestaciones()+"");
-        if (p.getAntecGinec().getMenarca() == 0)
-            this.txtfMenarca.setText("");
-        else
-            this.txtfMenarca.setText(p.getAntecGinec().getMenarca()+"");
-        if (p.getAntecGinec().getMenopausia() == 0)
-            this.txtfMenopausia.setText("");
-        else
-            this.txtfMenopausia.setText(p.getAntecGinec().getMenopausia()+"");
-        this.txtfMuertos.setText(p.getAntecGinec().getMuertos()+"");
-        this.txtfPartos.setText(p.getAntecGinec().getPartos()+""); 
-        this.txtfTelarca.setText(p.getAntecGinec().getTelarca());
-        this.txtfTiroides.setText(p.getAntecFam().getDescripcionTiroides());
-        this.txtfVivos.setText(p.getAntecGinec().getVivos()+"");
-        this.cmbGrupoS.setSelectedItem(p.getGrupoSanguineo());
-        this.chkDiabetes.setSelected(p.getAntecFam().isDbt());
-        this.chkDismenorrea.setSelected(p.getAntecGinec().isDismenorrea());
-        this.chkDispareunia.setSelected(p.getAntecGinec().isDispareunia());
-        this.chkHipertension.setSelected(p.getAntecFam().isHta());
-        this.chkOncologicos.setSelected(p.getAntecFam().isOncologicos());
-        this.chkSdpm.setSelected(p.getAntecGinec().isSdpm());
-        this.chkTiroides.setSelected(p.getAntecFam().isTiroides());
-        if (!p.getAntecFam().isTiroides()) 
-            this.txtfTiroides.setEnabled(false);
-        if (!p.getAntecFam().isOncologicos())
-            this.txtaOncologicos.setEnabled(false);
     }
-    
+
     /**
      * Metodo utilizado para llenar las obras sociales
      */
@@ -1326,8 +1202,9 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
         cmbObraSocial.removeAllItems();
         obras.add(new ObraSocial(0, "Sin Obra Social"));
         obras.addAll(daoObraSocial.getAllObrasSociales());
-        for(int i = 0; i<obras.size(); i++)
+        for (int i = 0; i < obras.size(); i++) {
             cmbObraSocial.addItem(obras.get(i).getNombre());
+        }
         cmbObraSocial.setSelectedIndex(0);
     }
 
@@ -1335,51 +1212,22 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
      * Metodo utilizado para limpiar las cajas
      */
     private void limpiar() {
-        
         this.txtfNombres.setText("");
         this.txtfApellidos.setText("");
         this.txtfTelefono.setText("");
         this.txtfDni.setText("");
         this.ftxtfFechaNacimiento.setText("");
-        this.cmbGrupoS.setSelectedIndex(0);
-        this.rbtnFactorNeg.setSelected(false);
-        this.rbtnFactorPos.setSelected(false);
         this.cmbObraSocial.setSelectedIndex(0);
         this.txtfNumeroAfiliado.setText("");
         this.txtaPersonales.setText("");
         this.txtaToxicos.setText("");
         this.txtaQuirurgicos.setText("");
-        this.txtaFamObservaciones.setText("");
-        this.txtaGinecObserv.setText("");
-        this.txtfAbortos.setText("");
-        this.txtfAnticonceptivos.setText("");
-        this.txtaOncologicos.setText("");
-        this.txtfCesareas.setText("");
-        this.txtfDuracionMenstrual.setText("");
-        this.txtfPeriodoMenstrual.setText("");
-        this.txtfGestaciones.setText("");
-        this.txtfMenarca.setText("");
-        this.txtfMenopausia.setText("");
-        this.txtfPartos.setText("");
-        this.txtfTelarca.setText("");
-        this.txtfTiroides.setText("");
-        this.txtfVivos.setText("");
-        this.txtfMuertos.setText("");
-        this.rbtnFactorNeg.setSelected(false);
-        this.rbtnFactorPos.setSelected(false);
-        this.chkDiabetes.setSelected(false);
-        this.chkDismenorrea.setSelected(false);
-        this.chkDispareunia.setSelected(false);
-        this.chkHipertension.setSelected(false);
-        this.chkOncologicos.setSelected(false);
-        this.chkSdpm.setSelected(false);
-        this.chkTiroides.setSelected(false);
-        this.txtfTiroides.setEditable(false);
-        this.txtaOncologicos.setEditable(false);
     }
-    
+
     /**
-     * Metodo utilizado para cambiar el estado de las cajas (Habilitadas, Deshabilitadas)
+     * Metodo utilizado para cambiar el estado de las cajas y los
+     * focos(Habilitadas, Deshabilitadas)
+     *
      * @param b true (Habilitadas), false ()Deshabilitadas
      */
     private void cambiarEstadoCajas(boolean b) {
@@ -1392,102 +1240,51 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
         this.txtaPersonales.setEditable(b);
         this.txtaToxicos.setEditable(b);
         this.txtaQuirurgicos.setEditable(b);
-        this.txtaFamObservaciones.setEditable(b);
-        this.txtaGinecObserv.setEditable(b);
-        this.txtfAbortos.setEditable(b);
-        this.txtfAnticonceptivos.setEditable(b);
-        this.txtaOncologicos.setEditable(b);
-        this.txtfCesareas.setEditable(b);
-        this.txtfDuracionMenstrual.setEditable(b);
-        this.txtfPeriodoMenstrual.setEditable(b);
-        this.txtfGestaciones.setEditable(b);
-        this.txtfMenarca.setEditable(b);
-        this.txtfMenopausia.setEditable(b);
-        this.txtfPartos.setEditable(b);
-        this.txtfTelarca.setEditable(b);
-        this.txtfTiroides.setEditable(b);
-        this.txtfVivos.setEditable(b);
-        this.txtfMuertos.setEditable(b);
-        this.txtfTiroides.setEditable(b);
-        this.txtaOncologicos.setEditable(b);
-        
-        this.cmbGrupoS.setEditable(!b);
         this.cmbObraSocial.setEditable(!b);
-        
         this.cmbObraSocial.setEnabled(b);
-        this.cmbGrupoS.setEnabled(b);
-        
-        this.rbtnFactorNeg.setEnabled(b);
-        this.rbtnFactorPos.setEnabled(b);
-        
+
         this.txtfNombres.setFocusable(b);
         this.txtfApellidos.setFocusable(b);
         this.txtfTelefono.setFocusable(b);
         this.txtfDni.setFocusable(b);
         this.ftxtfFechaNacimiento.setFocusable(b);
-        this.rbtnFactorNeg.setFocusable(b);
-        this.rbtnFactorPos.setFocusable(b);
         this.txtfNumeroAfiliado.setFocusable(b);
         this.txtaPersonales.setFocusable(b);
         this.txtaToxicos.setFocusable(b);
         this.txtaQuirurgicos.setFocusable(b);
-        this.txtaFamObservaciones.setFocusable(b);
-        this.txtaGinecObserv.setFocusable(b);
-        this.txtfAbortos.setFocusable(b);
-        this.txtfAnticonceptivos.setFocusable(b);
-        this.txtaOncologicos.setFocusable(b);
-        this.txtfCesareas.setFocusable(b);
-        this.txtfDuracionMenstrual.setFocusable(b);
-        this.txtfPeriodoMenstrual.setFocusable(b);
-        this.txtfGestaciones.setFocusable(b);
-        this.txtfMenarca.setFocusable(b);
-        this.txtfMenopausia.setFocusable(b);
-        this.txtfPartos.setFocusable(b);
-        this.txtfTelarca.setFocusable(b);
-        this.txtfTiroides.setFocusable(b);
-        this.txtfVivos.setFocusable(b);
-        this.txtfMuertos.setFocusable(b);
-        this.chkDiabetes.setFocusable(b);
-        this.chkDismenorrea.setFocusable(b);
-        this.chkDispareunia.setFocusable(b);
-        this.chkHipertension.setFocusable(b);
-        this.chkOncologicos.setFocusable(b);
-        this.chkSdpm.setFocusable(b);
-        this.chkTiroides.setFocusable(b);
-        this.txtfTiroides.setFocusable(b);
-        this.txtaOncologicos.setFocusable(b);
-        
         this.btnNuevaObraSocial.setEnabled(b);
     }
-    
+
     public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/sistema.png"));
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.
+                getSystemResource("Imagenes/sistema.png"));
         return retValue;
     }
-    
+
     /**
      * Método controlador del cierre de la ventana y validaciones oportunas
      */
     private void salir() {
-        if(!btnGuardar.isEnabled()){
+        if (!btnGuardar.isEnabled()) {
             this.dispose();
-            if (this.getParent() != null)
+            if (this.getParent() != null) {
                 this.getParent().setVisible(true);
-            if (hc != null)
+            }
+            if (hc != null) {
                 hc.cerrarHijo(this);
-            else 
+            } else {
                 padreP.cerrarHijo(this);
-        }
-        else
-        {
+            }
+        } else {
             MensajesValidaciones.validarSalidaVentana(this);
         }
     }
-    
+
     /**
-     * Maneja el paso del foco con las taclas TAB y Shift TAB.
-     * Éste método cobra importancia para los componentes JTextArea.
-     * @param evt 
+     * Maneja el paso del foco con las taclas TAB y Shift TAB. Éste método cobra
+     * importancia para los componentes JTextArea.
+     *
+     * @param evt
      */
     private void controlarFoco(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_TAB && !evt.isShiftDown()) {
@@ -1502,11 +1299,13 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
 
     /**
      * Devuelve el número de dni del paciente en cuestión
+     *
      * @return el dni del paciente, -1 si es un nuevo paciente aún no guardado
      */
     public long getDniPaciente() {
-        if (p != null)
+        if (p != null) {
             return p.getDni();
+        }
         return -1;
     }
 }
