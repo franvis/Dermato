@@ -3,10 +3,8 @@
  */
 package GUI;
 
-import ClasesBase.modelo.Consulta;
-import ClasesBase.modelo.ExamenObstetrico;
-import ClasesBase.modelo.Paciente;
-import ClasesBase.modelo.ExamenGinecologico;
+import ClasesBase.modelo.Visit;
+import ClasesBase.modelo.Patient;
 import ClasesBase.*;
 import DAO.DAOConsulta;
 import java.awt.*;
@@ -20,71 +18,33 @@ import javax.swing.KeyStroke;
 
 public class ABMConsultaCompleta extends javax.swing.JFrame {
     private HistoriaClinica HC;
-    private ExamenGinecologico eGinec;
-    private ExamenObstetrico eObste;
     private DAOConsulta daoConsulta;
-    private Consulta cons;
+    private Visit cons;
     private Calendar c;
     private String dia;
     private String mes;
     private String año;
-    private int tipoConsulta,idConsulta;//tipoConsulta = 0 Obstetrica , 1 Ginecologica y 2 Completa
-    public static int OBSTETRICA = 0;
-    public static int GINECOLOGICA = 1;
-    public static int COMPLETA = 2;
+    private int idConsulta;//tipoConsulta = 0 Obstetrica , 1 Ginecologica y 2 Completa
     private long dni;
     private boolean procedencia;//true si proviene de "ver" una consulta, false si es nueva consulta.
     
     /**
      * Creates new form ABMConsultaCompleta
      */
-    public ABMConsultaCompleta(java.awt.Frame parent, boolean modal,int tipoConsulta,long dni, Paciente paciente) {
+    public ABMConsultaCompleta(java.awt.Frame parent, boolean modal, long dni, 
+            Patient paciente) {
         initComponents();
-        this.txtfAlturaUterina.setDisabledTextColor(GestorEstilos.getColorTexto());
-        this.txtfAlturaUterina.setBackground(GestorEstilos.getColorTerciario());
-        this.txtfAlturaUterina.setSelectionColor(GestorEstilos.getColorSecundario(GestorEstilos.colorActual));
-        this.txtfPresionArterialmm.setBackground(GestorEstilos.getColorTerciario());
-        this.txtfPresionArterialmm.setDisabledTextColor(GestorEstilos.getColorTexto());
-        this.txtfPresionArterialmm.setSelectionColor(GestorEstilos.getColorSecundario(GestorEstilos.colorActual));
-        this.txtfPresionArterialHg.setBackground(GestorEstilos.getColorTerciario());
-        this.txtfPresionArterialHg.setDisabledTextColor(GestorEstilos.getColorTexto());
-        this.txtfPresionArterialHg.setSelectionColor(GestorEstilos.getColorSecundario(GestorEstilos.colorActual));
         this.txtaMotivo.grabFocus();
-        eGinec = new ExamenGinecologico();
-        eObste = new ExamenObstetrico();
         daoConsulta = new DAOConsulta();
-        this.lblIMC.setText("");
         this.procedencia = false;
         HC = (HistoriaClinica)parent;
         this.dni = dni;
-        this.tipoConsulta = tipoConsulta;
         this.llenarCampos(paciente);
         c = Calendar.getInstance();
         dia = c.get(Calendar.DAY_OF_MONTH) +"";
         mes = c.get(Calendar.MONTH)+1+"";
         año = c.get(Calendar.YEAR)+"";
         this.lblFecha.setText(dia+"/"+mes+"/"+año);
-        if(tipoConsulta != 2)
-        {
-            tpaneExamenes.remove(tipoConsulta);
-        }
-        if(tipoConsulta == 2)
-        {
-            this.tpaneExamenes.setSelectedComponent(this.pnlFisico);
-            this.txtaDiagnostico.setNextFocusableComponent(this.txtaMamas);
-            this.txtaPapYColpo.setNextFocusableComponent(this.txtfTalla);
-        }
-        else if(tipoConsulta == 1)
-        {   
-            this.setTitle("Consulta Ginecológica");
-            this.txtaPapYColpo.setNextFocusableComponent(this.btnGuardar);
-        }
-        else if(tipoConsulta == 0)
-        {
-            this.setTitle("Consulta Obstétrica");
-            this.tpaneExamenes.setSelectedComponent(this.pnlObstetrico);
-            this.txtaDiagnostico.setNextFocusableComponent(this.txtfTalla);
-        }
         setIconImage(getIconImage());
         GestorEstilos.pintar(this);
         pnlFecha.setBackground(GestorEstilos.getColorSecundario(GestorEstilos.colorActual));
@@ -106,7 +66,7 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
     /**
      * Creates new form ABMConsultaCompleta
      */
-    public ABMConsultaCompleta(java.awt.Frame parent, boolean modal,int tipoConsulta,long dni, Paciente paciente, Consulta con) {
+    public ABMConsultaCompleta(java.awt.Frame parent, boolean modal,int tipoConsulta,long dni, Patient paciente, Visit con) {
         initComponents();
         this.txtfAlturaUterina.setDisabledTextColor(GestorEstilos.getColorTexto());
         this.txtfAlturaUterina.setBackground(GestorEstilos.getColorTerciario());
@@ -1023,7 +983,7 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
      * Metodo utilizado para llenar los datos de una consulta
      * @param c Consulta
      */
-    private void llenarCajas(Consulta c) {
+    private void llenarCajas(Visit c) {
         this.lblFecha.setText(c.getFecha());
         this.txtaMotivo.setText(c.getMotivo());
         this.txtaTratamiento.setText(c.getTratamiento());
@@ -1118,10 +1078,10 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
      * Metodo utilizado para generar una consulta
      */
     private void generarConsultaMedica() {
-        cons = new Consulta();
+        cons = new Visit();
         cons.setId(idConsulta);
         cons.setDiagnostico(this.txtaDiagnostico.getText());
-        cons.setEstudiosComplementarios(this.txtaEstudiosComple.getText());
+        cons.setComplementaryStudies(this.txtaEstudiosComple.getText());
         cons.setFecha(this.lblFecha.getText());
         cons.setMotivo(this.txtaMotivo.getText());
         cons.setObservaciones(this.txtaLaboratorio.getText());
@@ -1225,7 +1185,7 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
      * Metodo utilizado para llenar los campos de la historia clinica de un paciente
      * @param p Paciente
      */
-    private void llenarCampos(Paciente p) {
+    private void llenarCampos(Patient p) {
         this.lblNombrePaciente.setText(p.getApellido()+", "+p.getNombre());
 
         this.lblFechaNacimiento.setText(p.getFechaNacimiento());

@@ -20,11 +20,11 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
     private Principal padreP;
     private HistoriaClinica hc;
     private DAOPaciente daoPaciente;
-    private Paciente p;
+    private Patient p;
     private DAOObraSocial daoObraSocial;
-    private LinkedList<ObraSocial> obras;
+    private LinkedList<PrepaidHealthInsurance> obras;
     private AntecedentesFamiliares af;
-    private AntecedentesGenerales agen;
+    private Antecedentes agen;
     private AntecedentesGinecologicos aginec;
     private int procedencia;
     private long dniOriginal;
@@ -78,7 +78,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
                 new java.awt.Color(0, 51, 102))); 
     }
     
-    public ABMPacienteCompleto(java.awt.Frame parent, boolean modal,int procedencia, Paciente p) {
+    public ABMPacienteCompleto(java.awt.Frame parent, boolean modal,int procedencia, Patient p) {
         initComponents();
         ComboBoxEditor editor = cmbObraSocial.getEditor();
         JTextField etf = (JTextField) editor.getEditorComponent();
@@ -822,7 +822,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
             return;
         }
         String nuevaObra = this.txtfNuevaObraSocial.getText();
-        if (daoObraSocial.registrarObraSocial(new ObraSocial(0, nuevaObra))) {
+        if (daoObraSocial.registrarObraSocial(new PrepaidHealthInsurance(0, nuevaObra))) {
             MensajesValidaciones.mostrarInformacion(this, "Registro Exitoso.");
             llenarObrasSociales();
         } else {
@@ -872,7 +872,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
     af = new AntecedentesFamiliares();  
-    agen = new AntecedentesGenerales();
+    agen = new Antecedentes();
     aginec = new AntecedentesGinecologicos();
     String error = comprobarDatosObligatorios();
     if(!error.isEmpty())
@@ -882,13 +882,13 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     }   
     long dniPaciente = Long.parseLong(this.txtfDni.getText());
     
-    ObraSocial osAux = new ObraSocial();
+    PrepaidHealthInsurance osAux = new PrepaidHealthInsurance();
     for (int i = 0; i < obras.size(); i++) {
         if(obras.get(i).getNombre().compareTo(cmbObraSocial.getSelectedItem().toString()) == 0)
             osAux = obras.get(i);
     }
     
-    Paciente match = daoPaciente.verificarNroAfiliado(osAux.getId(), txtfNumeroAfiliado.getText());
+    Patient match = daoPaciente.verificarNroAfiliado(osAux.getId(), txtfNumeroAfiliado.getText());
     
     if(procedencia == 0) //Principal, nuevo
     {
@@ -975,7 +975,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
                 
                 else
                 {
-                    LinkedList<Paciente> pacienteList = new LinkedList<Paciente>();
+                    LinkedList<Patient> pacienteList = new LinkedList<Patient>();
                     pacienteList.add(daoPaciente.getPacienteBasico(p.getDni()));
                     padreP.actualizarListaPacientes(pacienteList);
                 }
@@ -1116,7 +1116,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
      */
     private boolean generarPaciente() {
         String error;
-        p = new Paciente();
+        p = new Patient();
         
         p.setNombre(this.txtfNombres.getText());
         p.setApellido(this.txtfApellidos.getText());
@@ -1156,7 +1156,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
      */
     private void generarAntecedentes() {
         //Antecedentes generales
-        agen = new AntecedentesGenerales();
+        agen = new Antecedentes();
         
             agen.setAntecedentesPersonales(this.txtaPersonales.getText());
             agen.setAntecedentesQuirurgicos(this.txtaQuirurgicos.getText());
@@ -1198,7 +1198,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     /**
      * Metodo generico utilizado para llenar todos los datos.
      */
-    private void llenarCajas(Paciente p) {
+    private void llenarCajas(Patient p) {
         this.txtfNombres.setText(p.getNombre());
         this.txtfApellidos.setText(p.getApellido());
         this.txtfTelefono.setText(p.getTelefono());
@@ -1218,7 +1218,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     private void llenarObrasSociales() {
         obras = new LinkedList<>();
         cmbObraSocial.removeAllItems();
-        obras.add(new ObraSocial(0, "Sin Obra Social"));
+        obras.add(new PrepaidHealthInsurance(0, "Sin Obra Social"));
         obras.addAll(daoObraSocial.getAllObrasSociales());
         for(int i = 0; i<obras.size(); i++)
             cmbObraSocial.addItem(obras.get(i).getNombre());

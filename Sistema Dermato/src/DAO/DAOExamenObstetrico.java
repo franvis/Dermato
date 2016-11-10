@@ -48,7 +48,7 @@ public class DAOExamenObstetrico {
             pst.setLong(9,idConsulta);
             return (pst.executeUpdate() > 0) ? true : false;
         } catch (SQLException ex) {
-            Logger.getLogger(DAOAntecedentesGenerales.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOAntecedentes.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         finally {
@@ -156,7 +156,7 @@ public class DAOExamenObstetrico {
             pst.setLong(9,idConsulta);
             return (pst.executeUpdate() > 0) ? true : false;
         } catch (SQLException ex) {
-            Logger.getLogger(DAOAntecedentesGenerales.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOAntecedentes.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         finally {

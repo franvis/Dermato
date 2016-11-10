@@ -1,7 +1,7 @@
 package GUI;
 
 import ClasesBase.*;
-import ClasesBase.modelo.Paciente;
+import ClasesBase.modelo.Patient;
 import DAO.DAOPaciente;
 import de.javasoft.plaf.synthetica.SyntheticaLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaMauveMetallicLookAndFeel;
@@ -17,9 +17,9 @@ public class Principal extends javax.swing.JFrame {
 
     private DefaultTableModel dtmPacientes;
     private DAOPaciente daoPaciente;
-    private LinkedList<Paciente> listaPacientes;
+    private LinkedList<Patient> listaPacientes;
     private LinkedList<JFrame> ventanasAbiertas;
-    private Paciente p;
+    private Patient p;
     private ABMObrasSociales abmObrasSociales;
 
     /**
@@ -666,7 +666,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnModificarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPacienteActionPerformed
         if (!listaPacientes.isEmpty()) {
-            p = new Paciente();
+            p = new Patient();
             dtmPacientes = (DefaultTableModel) this.tblPacientes.getModel();
             p = listaPacientes.get(tblPacientes.getSelectedRow());
             for (JFrame aux : ventanasAbiertas){
@@ -694,7 +694,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnVerHCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerHCActionPerformed
         if (!listaPacientes.isEmpty()) {
-            p = new Paciente();
+            p = new Patient();
             p = listaPacientes.get(tblPacientes.getSelectedRow());
             for (JFrame aux : ventanasAbiertas){
                 if (aux instanceof HistoriaClinica && ((HistoriaClinica)aux).getDniPaciente() == p.getDni()){
@@ -819,11 +819,11 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
      *
      * @param listaPacientes lista de pacientes para completar la tabla
      */
-    private void llenarTabla(LinkedList<Paciente> listaPacientes) {
+    private void llenarTabla(LinkedList<Patient> listaPacientes) {
         Object[] o;
         dtmPacientes = (DefaultTableModel) this.tblPacientes.getModel();
         borrarFilas(dtmPacientes);
-        LinkedList<Paciente> lista = listaPacientes;
+        LinkedList<Patient> lista = listaPacientes;
         if (lista.size() == 0) {
             cambiarTamañoTabla(dtmPacientes, 10);
         } else {
@@ -897,7 +897,7 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
      * Metodo utilizado para setear desde otras ventana la lista de pacientes a
      * mostrarse en la tabla
      */
-    public void actualizarListaPacientes(LinkedList<Paciente> listaPacientes) {
+    public void actualizarListaPacientes(LinkedList<Patient> listaPacientes) {
         if (listaPacientes == null) {
             this.listaPacientes = new LinkedList<>();
             borrarFilas(dtmPacientes);

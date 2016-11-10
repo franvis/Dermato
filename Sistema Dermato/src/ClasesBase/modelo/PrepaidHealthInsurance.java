@@ -7,16 +7,16 @@ package ClasesBase.modelo;
  *
  * @author Fran
  */
-public class ObraSocial {
+public class PrepaidHealthInsurance {
     private int id;
-    private String nombre;
+    private String name;
 
-    public ObraSocial(int id, String nombre) {
+    public PrepaidHealthInsurance(int id, String name) {
         this.id = id;
-        this.nombre = nombre;
+        this.name = name;
     }
 
-    public ObraSocial() {
+    public PrepaidHealthInsurance() {
     }
 
     public int getId() {
@@ -27,12 +27,12 @@ public class ObraSocial {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
     
     @Override
@@ -44,8 +44,8 @@ public class ObraSocial {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        ObraSocial otraObraSocial = (ObraSocial) obj;
-        if (this.id != otraObraSocial.id) {
+        PrepaidHealthInsurance otherPrepaidHealthInsurance = (PrepaidHealthInsurance) obj;
+        if (this.id != otherPrepaidHealthInsurance.id) {
             return false;
         }
         return true;

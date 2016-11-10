@@ -4,10 +4,10 @@
  */
 package GUI;
 
-import ClasesBase.modelo.Consulta;
+import ClasesBase.modelo.Visit;
 import ClasesBase.GestorEstilos;
 import ClasesBase.MultiLineCellRenderer;
-import ClasesBase.modelo.Paciente;
+import ClasesBase.modelo.Patient;
 import DAO.*;
 import java.awt.Component;
 import java.awt.Font;
@@ -25,16 +25,14 @@ public class HistoriaClinica extends javax.swing.JFrame {
     private Principal antecesor;
     private DAOPaciente daoPaciente;
     private DAOConsulta daoConsulta;
-    private LinkedList<Consulta> consultasDeTabla;
+    private LinkedList<Visit> consultasDeTabla;
     private LinkedList<JFrame> ventanasAbiertas;
     private DAOAntecedentesFamiliares daoAntecFam;
     private DAOAntecedentesGinecologicos daoAntecGinec;
-    private DAOAntecedentesGenerales daoAntecGen;
+    private DAOAntecedentes daoAntecGen;
     private DefaultTableModel dtmConsultas;
-    private AntecFamiliares antecedentesFamiliares;
     private Antecedentes antecedentesGenerales;
-    private AntecGinecologicos antecedentesGinecologicos;
-    private Paciente paciente;
+    private Patient paciente;
     private boolean AntecFamModificado;
     private boolean AntecGenModificado;
     private boolean AntecGinecModificado;
@@ -42,7 +40,7 @@ public class HistoriaClinica extends javax.swing.JFrame {
     /**
      * Creates new form HistoriaClinica
      */
-    public HistoriaClinica(Component parent, Paciente p, int procedencia) {
+    public HistoriaClinica(Component parent, Patient p, int procedencia) {
         initComponents();
         AntecFamModificado = false;
         AntecGenModificado = false;
@@ -50,7 +48,7 @@ public class HistoriaClinica extends javax.swing.JFrame {
         daoPaciente = new DAOPaciente();
         daoConsulta = new DAOConsulta();
         daoAntecFam = new DAOAntecedentesFamiliares();
-        daoAntecGen = new DAOAntecedentesGenerales();
+        daoAntecGen = new DAOAntecedentes();
         daoAntecGinec = new DAOAntecedentesGinecologicos();
         ventanasAbiertas = new LinkedList<>();
         this.paciente = p;
@@ -91,7 +89,6 @@ public class HistoriaClinica extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlBotones = new javax.swing.JPanel();
         pnlConsultas = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblConsultas = new javax.swing.JTable();
@@ -130,17 +127,6 @@ public class HistoriaClinica extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
-
-        javax.swing.GroupLayout pnlBotonesLayout = new javax.swing.GroupLayout(pnlBotones);
-        pnlBotones.setLayout(pnlBotonesLayout);
-        pnlBotonesLayout.setHorizontalGroup(
-            pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 204, Short.MAX_VALUE)
-        );
-        pnlBotonesLayout.setVerticalGroup(
-            pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 67, Short.MAX_VALUE)
-        );
 
         pnlConsultas.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Consultas Anteriores", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
@@ -439,7 +425,7 @@ public class HistoriaClinica extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAntecedentes, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
+                    .addComponent(btnAntecedentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(9, 9, 9))
         );
 
@@ -490,8 +476,6 @@ public class HistoriaClinica extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnNuevaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(385, 385, 385)
                         .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(pnlConsultas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -505,13 +489,12 @@ public class HistoriaClinica extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(473, 473, 473)
-                        .addComponent(btnNuevaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, 0))
+                        .addComponent(btnNuevaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0))))
         );
 
         pack();
@@ -609,7 +592,7 @@ public class HistoriaClinica extends javax.swing.JFrame {
                     }
                 }
             }
-            Consulta c = daoConsulta.getConsultaCompleta(this.consultasDeTabla.get(id).getId(),paciente.getDni());
+            Visit c = daoConsulta.getConsultaCompleta(this.consultasDeTabla.get(id).getId(),paciente.getDni());
             if(c.getTipoConsulta().compareTo("Completa") == 0)
                 j = 2;
             else if (c.getTipoConsulta().compareTo("Ginecologica") == 0)
@@ -664,16 +647,15 @@ public class HistoriaClinica extends javax.swing.JFrame {
     private javax.swing.JLabel lblstaticSangre;
     private javax.swing.JLabel lblstaticTelefono;
     private javax.swing.JPanel pnlApellidoNombre;
-    private javax.swing.JPanel pnlBotones;
     private javax.swing.JPanel pnlConsultas;
     private javax.swing.JPanel pnlDatosPersonales;
     private javax.swing.JTable tblConsultas;
     // End of variables declaration//GEN-END:variables
-    public Paciente getPaciente() {
+    public Patient getPaciente() {
         return paciente;
     }
 
-    public void setPaciente(Paciente paciente) {
+    public void setPaciente(Patient paciente) {
         this.paciente = paciente;
     }
     
@@ -681,7 +663,7 @@ public class HistoriaClinica extends javax.swing.JFrame {
      * Metodo utilizado para llenar los campos de la historia clinica de un paciente
      * @param p Paciente
      */
-    public void llenarCampos(Paciente p,int procedencia) {
+    public void llenarCampos(Patient p,int procedencia) {
         this.lblNombrePaciente.setText(p.getApellido()+", "+p.getNombre());
         
         this.lblFechaNacimiento.setText(p.getFechaNacimiento());

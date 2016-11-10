@@ -3,8 +3,8 @@
  */
 package DAO;
 
-import ClasesBase.modelo.ObraSocial;
-import ClasesBase.modelo.Paciente;
+import ClasesBase.modelo.PrepaidHealthInsurance;
+import ClasesBase.modelo.Patient;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -19,12 +19,12 @@ public class DAOPaciente {
     private DAOConexion conexion;
     private DAOObraSocial daoObraSocial;
     private DAOAntecedentesFamiliares daoAntecFam;
-    private DAOAntecedentesGenerales daoAntecGen;
+    private DAOAntecedentes daoAntecGen;
     private DAOAntecedentesGinecologicos daoAntecGinec;
-    private LinkedList<Paciente> pacientes;
+    private LinkedList<Patient> pacientes;
     private ResultSet rs;
     private Connection conn;
-    private Paciente p;
+    private Patient p;
     private String consulta;
     private PreparedStatement pst;
     
@@ -32,7 +32,7 @@ public class DAOPaciente {
         conexion = new DAOConexion();
         daoObraSocial = new DAOObraSocial();
         daoAntecFam = new DAOAntecedentesFamiliares();
-        daoAntecGen = new DAOAntecedentesGenerales();
+        daoAntecGen = new DAOAntecedentes();
         daoAntecGinec = new DAOAntecedentesGinecologicos();
     }
     
@@ -41,7 +41,7 @@ public class DAOPaciente {
      * @param p Paciente a registrar
      * @return true si se registra correctamente, false si no se registra
      */ 
-    public boolean registrarPaciente(Paciente p)
+    public boolean registrarPaciente(Patient p)
     {
         try {
             conn = conexion.conectarBD();
@@ -85,10 +85,10 @@ public class DAOPaciente {
      * @param p Paciente que posee los antecedentes a registrar
      * @return true si se registran correctamente, false si no se registran
      */
-    private boolean registrarAntecedentes(Paciente p) 
+    private boolean registrarAntecedentes(Patient p) 
     { 
         return (daoAntecFam.registrarAntecedentesFamiliares(p.getAntecFam(),p.getDni()) && 
-                daoAntecGen.registrarAntecedentesGenerales(p.getAntecGen(),p.getDni()) &&
+                daoAntecGen.registerAntecedents(p.getAntecGen(),p.getDni()) &&
                 daoAntecGinec.registrarAntecedentesGinecologicos(p.getAntecGinec(),p.getDni()));
     }
     
@@ -99,7 +99,7 @@ public class DAOPaciente {
      * @param dni dni a partir del cual filtrar
      * @return Lista que contiene todos los pacientes segun filtros
      */
-    public LinkedList<Paciente> getAllPacientes(String nombre,String apellido, String dni)
+    public LinkedList<Patient> getAllPacientes(String nombre,String apellido, String dni)
     {
         pacientes = new LinkedList<>();
         
@@ -160,7 +160,7 @@ public class DAOPaciente {
             rs = pst.getResultSet();
             while(rs.next())
             {
-                p = new Paciente();
+                p = new Patient();
                 p.setDni(rs.getLong("dni"));
                 if (p.getDni() == 0)
                    break;
@@ -226,7 +226,7 @@ public class DAOPaciente {
      * @param dni
      * @return Paciente con datos básicos para ventana principal: dni, nombre, apellido, fechaNacimiento, fechaUltimaConsulta
      */
-    public Paciente getPacienteBasico(long dni)
+    public Patient getPacienteBasico(long dni)
     {
         p = null;
         consulta = "SELECT dni, nombre, apellido, fechaNacimiento, MAX(fecha) AS fechaUltimaConsulta FROM sistemaCarla.paciente LEFT JOIN sistemaCarla.consulta ON dni=dniPaciente WHERE dni = ?";
@@ -238,7 +238,7 @@ public class DAOPaciente {
             rs = pst.getResultSet();
             while(rs.next())
             {
-                p = new Paciente();
+                p = new Patient();
                 p.setDni(dni);
                 p.setNombre(rs.getString("nombre"));
                 p.setApellido(rs.getString("apellido"));
@@ -273,7 +273,7 @@ public class DAOPaciente {
      * @param dni
      * @return Paciente completo requerido
      */
-    public Paciente getPacienteCompleto(long dni)
+    public Patient getPacienteCompleto(long dni)
     {
         p = null;
         consulta = "SELECT * FROM paciente WHERE dni = ?";
@@ -285,7 +285,7 @@ public class DAOPaciente {
             rs = pst.getResultSet(); 
             while(rs.next())
             {
-                p = new Paciente();
+                p = new Patient();
                 p.setDni(dni);
                 p.setNombre(rs.getString("nombre"));
                 p.setApellido(rs.getString("apellido"));
@@ -301,7 +301,7 @@ public class DAOPaciente {
                 if(rs.getObject("obraSocial") != null && rs.getInt("obraSocial") != 0 )
                     p.setObraSocial(daoObraSocial.getObraSocial(rs.getInt("obraSocial")));
                 else
-                    p.setObraSocial(new ObraSocial(0, "Sin Obra Social"));
+                    p.setObraSocial(new PrepaidHealthInsurance(0, "Sin Obra Social"));
                 p.setTelefono(rs.getString("telefono"));
             }
             pst.close();
@@ -325,7 +325,7 @@ public class DAOPaciente {
      * @param dni dni del paciente buscado
      * @return Paciente buscado
      */
-    public Paciente getPaciente(long dni)
+    public Patient getPaciente(long dni)
     {
         p = null;
         consulta = "SELECT * FROM paciente WHERE dni = ?";
@@ -337,7 +337,7 @@ public class DAOPaciente {
             rs = pst.getResultSet();
             while(rs.next())
             {
-                p = new Paciente();
+                p = new Patient();
                 p.setDni(dni);
                 p.setNombre(rs.getString("nombre"));
                 p.setApellido(rs.getString("apellido"));
@@ -353,7 +353,7 @@ public class DAOPaciente {
                 if(rs.getObject("obraSocial") != null && rs.getInt("obraSocial") != 0 )
                     p.setObraSocial(daoObraSocial.getObraSocial(rs.getInt("obraSocial")));
                 else
-                    p.setObraSocial(new ObraSocial(0, "Sin Obra Social"));
+                    p.setObraSocial(new PrepaidHealthInsurance(0, "Sin Obra Social"));
                 p.setTelefono(rs.getString("telefono"));
             }
             pst.close();
@@ -373,7 +373,7 @@ public class DAOPaciente {
      * @param p Paciente a actualizar
      * @return true si se actualiza correctamente, false si no se actualiza
      */
-    public boolean actualizarPaciente(Paciente p,long dniAnterior) {
+    public boolean actualizarPaciente(Patient p,long dniAnterior) {
         boolean rtdo = false;
         try{
         String cons = "";
@@ -434,7 +434,7 @@ public class DAOPaciente {
      * @param p Paciente que contiene los antecedentes a actualizar
      * @return true si se actualizan correctamente, false si no se actualizan
      */
-    private boolean actualizarAntecedentes(Paciente p) {
+    private boolean actualizarAntecedentes(Patient p) {
        long dni = p.getDni();
        return (daoAntecFam.actualizarAntecedente(p.getAntecFam(),dni) &&
                daoAntecGen.actualizarAntecedente(p.getAntecGen(),dni) &&
@@ -469,8 +469,8 @@ public class DAOPaciente {
      * @param numeroAfiliado número de afiliado a verificar
      * @return el paciente que concuerda con dicha obra social y n° de afiliado, null si no hubo coincidencias
      */
-    public Paciente verificarNroAfiliado(int idObraSocial, String numeroAfiliado) {
-        Paciente match = null;
+    public Patient verificarNroAfiliado(int idObraSocial, String numeroAfiliado) {
+        Patient match = null;
         try {
             conn = conexion.conectarBD();
             consulta = "SELECT dni, nombre, apellido FROM sistemaCarla.paciente WHERE obraSocial = ? AND numeroAfiliado = ?";
@@ -481,7 +481,7 @@ public class DAOPaciente {
             rs = pst.getResultSet();
             while(rs.next())
             {
-                match = new Paciente();
+                match = new Patient();
                 match.setDni(rs.getLong("dni"));
                 match.setNombre(rs.getString("nombre"));
                 match.setApellido(rs.getString("apellido"));

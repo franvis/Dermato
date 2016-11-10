@@ -3,7 +3,7 @@ Clase DAO dedicada a la consulta;
 */
 package DAO;
 
-import ClasesBase.modelo.Consulta;
+import ClasesBase.modelo.Visit;
 import ClasesBase.modelo.ExamenGinecologico;
 import ClasesBase.modelo.ExamenObstetrico;
 import java.sql.*;
@@ -22,7 +22,7 @@ public class DAOConsulta {
     private ResultSet rs;
     private Connection conn;
     private PreparedStatement pst;
-    private Consulta c;
+    private Visit c;
     
     public DAOConsulta()
     {
@@ -38,7 +38,7 @@ public class DAOConsulta {
      * @param tipoConsulta tipo de consulta de la consulta : 0(Obstetrica), 1(Ginecologica) o 2(Completa)
      * @return true si se registra correctamente, false si no se registra
      */
-    public boolean RegistrarConsulta(Consulta c,long dni,int tipoConsulta)
+    public boolean RegistrarConsulta(Visit c,long dni,int tipoConsulta)
     {
         boolean rtdo = false;
         try{
@@ -151,8 +151,8 @@ public class DAOConsulta {
      * @param dni dni del paciente del cual queremos obtener todas las consultas
      * @return Lista de consultas del paciente
      */
-    public LinkedList<Consulta> getAllConsultasTabla(long dni) {
-        LinkedList<Consulta> consultas = new LinkedList<>();
+    public LinkedList<Visit> getAllConsultasTabla(long dni) {
+        LinkedList<Visit> consultas = new LinkedList<>();
         
         String consulta = "SELECT idConsulta,fecha,motivo,diagnostico,tipoConsulta FROM sistemaCarla.Consulta WHERE dniPaciente = ? ORDER BY fecha DESC, idConsulta DESC";
         
@@ -164,7 +164,7 @@ public class DAOConsulta {
             rs = pst.getResultSet();
             while(rs.next())
             {
-                c = new Consulta();
+                c = new Visit();
                 String fecha = rs.getString("fecha");
                 String año = fecha.substring(0, 4);
                 String mes = fecha.substring(5, 7);
@@ -193,7 +193,7 @@ public class DAOConsulta {
      * @param dni dni del paciente del cual queremos obtener la consulta
      * @return Consulta completa
      */
-    public Consulta getConsultaCompleta(int id, long dni) {
+    public Visit getConsultaCompleta(int id, long dni) {
         
         String consulta = "SELECT * FROM sistemaCarla.Consulta WHERE dniPaciente = ? AND idConsulta = ?";
         
@@ -206,14 +206,14 @@ public class DAOConsulta {
             rs = pst.getResultSet();
             while(rs.next())
             {
-                c = new Consulta();
+                c = new Visit();
                 String fecha = rs.getString("fecha");
                 String año = fecha.substring(0, 4);
                 String mes = fecha.substring(5, 7);
                 String dia = fecha.substring(8, 10);
                 c.setId(rs.getInt("idConsulta"));
                 c.setDiagnostico(rs.getString("diagnostico"));
-                c.setEstudiosComplementarios(rs.getString("estudiosComplementarios"));
+                c.setComplementaryStudies(rs.getString("estudiosComplementarios"));
                 c.setObservaciones(rs.getString("observaciones"));
                 c.setTratamiento(rs.getString("tratamiento"));
                 c.setFecha(dia+"/"+mes+"/"+año);
@@ -240,7 +240,7 @@ public class DAOConsulta {
      * @param consulta consulta modificada para actualizar
      * @return true si se actualiza correctamente, false si no se actualiza
      */
-    public boolean actualizarConsulta(Consulta consulta) {
+    public boolean actualizarConsulta(Visit consulta) {
         try {
             c = consulta;
             conn = conexion.conectarBD();
@@ -281,7 +281,7 @@ public class DAOConsulta {
      * @param consulta consulta modificada que contiene los examenes a actualizar
      * @return true si se actualizan correctamente, false si no se actualizan
      */
-    private boolean actualizarExamenes(Consulta c) {
+    private boolean actualizarExamenes(Visit c) {
         
         boolean Resultado1 = true,Resultado2 = true;
         switch(c.getTipoConsulta())

@@ -3,7 +3,7 @@
  */
 package DAO;
 
-import ClasesBase.modelo.AntecedentesGenerales;
+import ClasesBase.modelo.Antecedents;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,44 +12,44 @@ import java.util.logging.Logger;
  *
  * @author Fran
  */
-public class DAOAntecedentesGenerales {
+public class DAOAntecedentes {
     
     private DAOConexion conexion;
     private ResultSet rs;
     private Connection conn;
-    private AntecedentesGenerales ag;
+    private Antecedents ag;
     private PreparedStatement pst;
 
-    public DAOAntecedentesGenerales() {
+    public DAOAntecedentes() {
         conexion = new DAOConexion();
     }
     
     
     /**
-     * Metodo utilizado para registrar un antecedente general
-     * @param agen Antecedente General a registrar
-     * @param dni dni del paciente que posee ese antecedente general
-     * @return true si se registra correctamente, false si no se registra
+     * Method used to register the patient antecedents
+     * @param antecedents Antecedents
+     * @param dni patient dni
+     * @return true if registered, false otherwise
      */
-    public boolean registrarAntecedentesGenerales(AntecedentesGenerales agen,long dni) {
+    public boolean registerAntecedents(Antecedents antecedents,long dni) {
         try {
             conn = conexion.conectarBD();
             String cons = "INSERT INTO sistemaCarla.AntecedentesGenerales VALUES (null,?, ?, ?, ?)";
             pst = conn.prepareStatement(cons);
-            pst.setString(1, agen.getAntecedentesPersonales());
-            pst.setString(2, agen.getAntecedentesQuirurgicos());
-            pst.setString(3, agen.getAntecedentesToxicos());
+            pst.setString(1, antecedents.getAntecedentesPersonales());
+            pst.setString(2, antecedents.getAntecedentesQuirurgicos());
+            pst.setString(3, antecedents.getAntecedentesToxicos());
             pst.setLong(4, dni);
             return (pst.executeUpdate() > 0) ? true : false;
         } catch (SQLException ex) {
-            Logger.getLogger(DAOAntecedentesGenerales.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOAntecedentes.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         finally {
             try {
                 pst.close();
             } catch (SQLException ex) {
-                Logger.getLogger(DAOAntecedentesGenerales.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DAOAntecedentes.class.getName()).log(Level.SEVERE, null, ex);
             }
             conexion.desconectarBD(conn);
         }
@@ -60,7 +60,7 @@ public class DAOAntecedentesGenerales {
      * @param dni dni del paciente cuyo antecedente se quiere obtener
      * @return Antecedente General buscado
      */ 
-    public AntecedentesGenerales getAntecedenteGeneral(long dni) {
+    public Antecedents getAntecedenteGeneral(long dni) {
         ag = null;
         String consulta = "SELECT * FROM sistemaCarla.AntecedentesGenerales WHERE dniPaciente = ?";
         try {
@@ -71,7 +71,7 @@ public class DAOAntecedentesGenerales {
             rs = pst.getResultSet();
             while(rs.next())
             {   
-                ag = new AntecedentesGenerales();
+                ag = new Antecedents();
                 ag.setAntecedentesPersonales(rs.getString("antecedentesP"));
                 ag.setAntecedentesQuirurgicos(rs.getString("antecedentesQ"));
                 ag.setAntecedentesToxicos(rs.getString("antecedentesT"));
@@ -93,7 +93,7 @@ public class DAOAntecedentesGenerales {
      * @param dni dni del paciente que posee ese antecedente familiar
      * @return true si se actualiza correctamente, false si no se actualiza
      */
-    public boolean actualizarAntecedente(AntecedentesGenerales agen,long dni) {
+    public boolean actualizarAntecedente(Antecedents agen,long dni) {
         try {
             conn = conexion.conectarBD();
             String cons = "UPDATE sistemaCarla.AntecedentesGenerales SET "
@@ -108,13 +108,13 @@ public class DAOAntecedentesGenerales {
             pst.setLong(4, dni);
             return (pst.executeUpdate() > 0) ? true : false;
         } catch (SQLException ex) {
-            Logger.getLogger(DAOAntecedentesGenerales.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOAntecedentes.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         } finally {
             try {
                 pst.close();
             } catch (SQLException ex) {
-                Logger.getLogger(DAOAntecedentesGenerales.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DAOAntecedentes.class.getName()).log(Level.SEVERE, null, ex);
             }
             conexion.desconectarBD(conn);
         }

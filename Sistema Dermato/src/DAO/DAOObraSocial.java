@@ -3,7 +3,7 @@
  */
 package DAO;
 
-import ClasesBase.modelo.ObraSocial;
+import ClasesBase.modelo.PrepaidHealthInsurance;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -18,10 +18,10 @@ public class DAOObraSocial {
     private DAOConexion conexion;
     private ResultSet rs;
     private Connection conn;
-    private ObraSocial o;
+    private PrepaidHealthInsurance o;
     private String consulta;
     private PreparedStatement pst;
-    private LinkedList<ObraSocial> obras;
+    private LinkedList<PrepaidHealthInsurance> obras;
 
     public DAOObraSocial() {
         conexion = new DAOConexion();
@@ -31,7 +31,7 @@ public class DAOObraSocial {
      * Metodo utilizado para obtener todas las obras sociales
      * @return Lista de todas las obras sociales
      */
-    public LinkedList<ObraSocial> getAllObrasSociales()
+    public LinkedList<PrepaidHealthInsurance> getAllObrasSociales()
     {
         obras = new LinkedList<>();
         conn = conexion.conectarBD();
@@ -42,7 +42,7 @@ public class DAOObraSocial {
             rs = pst.getResultSet();
             while(rs.next())
             {
-                o = new ObraSocial();
+                o = new PrepaidHealthInsurance();
                 o.setId(rs.getInt("idObraSocial"));
                 o.setNombre(rs.getString("nombre"));
                 obras.add(o);
@@ -60,7 +60,7 @@ public class DAOObraSocial {
      * @param o Obra Social a registrar
      * @return true si se registra correctamente, false si no se registra
      */
-    public boolean registrarObraSocial(ObraSocial o) {
+    public boolean registrarObraSocial(PrepaidHealthInsurance o) {
         try {
             conn = conexion.conectarBD();
             String cons = "INSERT INTO sistemaCarla.ObraSocial VALUES (null,?)";
@@ -81,7 +81,7 @@ public class DAOObraSocial {
      * @param ObraSocial Obra Social modificada para actualizar
      * @return true si se actualiza correctamente, false si no se actualiza
      */
-    public boolean actualizarObraSocial(ObraSocial o) {
+    public boolean actualizarObraSocial(PrepaidHealthInsurance o) {
         try {
             conn = conexion.conectarBD();
             String cons = "UPDATE sistemaCarla.ObraSocial SET nombre = ? WHERE idObraSocial = ?";
@@ -103,7 +103,7 @@ public class DAOObraSocial {
      * @param ObraSocial Obra Social a eliminar
      * @return true si se elimina correctamente, false si no se elimina
      */
-    public boolean eliminarObraSocial(ObraSocial o)
+    public boolean eliminarObraSocial(PrepaidHealthInsurance o)
     {
         boolean rtdo = false;
         try {
@@ -141,7 +141,7 @@ public class DAOObraSocial {
     * @param id id de la obra social a obtener
     * @return Obra Social buscada
     */
-    public ObraSocial getObraSocial(int id) {
+    public PrepaidHealthInsurance getObraSocial(int id) {
         consulta = "SELECT * FROM OBRASOCIAL WHERE idObraSocial = ?";
         try {
             conn = conexion.conectarBD();
@@ -151,7 +151,7 @@ public class DAOObraSocial {
             rs = pst.getResultSet();
             while(rs.next())
             {
-                o = new ObraSocial();
+                o = new PrepaidHealthInsurance();
                 o.setId(rs.getInt("idObraSocial"));
                 o.setNombre(rs.getString("nombre"));
             }

@@ -4,10 +4,9 @@
  */
 package GUI;
 
-import ClasesBase.modelo.AntecedentesGenerales;
 import ClasesBase.MensajesValidaciones;
-import ClasesBase.modelo.Paciente;
-import DAO.DAOAntecedentesGenerales;
+import ClasesBase.modelo.Patient;
+import DAO.DAOAntecedentes;
 import java.awt.Image;
 import java.awt.KeyboardFocusManager;
 import java.awt.Toolkit;
@@ -23,18 +22,18 @@ import javax.swing.KeyStroke;
  * @author Fran
  */
 public class Antecedentes extends javax.swing.JDialog {
-    private AntecedentesGenerales agen;
-    private DAOAntecedentesGenerales daoAntecGen;
-    private Paciente paciente;
+    private ClasesBase.modelo.Antecedents agen;
+    private DAOAntecedentes daoAntecGen;
+    private Patient paciente;
     /**
      * Creates new form AntecGenerales
      */
-    public Antecedentes(java.awt.Frame parent, boolean modal,Paciente p) {
+    public Antecedentes(java.awt.Frame parent, boolean modal,Patient p) {
         super(parent, modal);
         initComponents();
         this.btnModificar.grabFocus();
         paciente = p;
-        daoAntecGen = new DAOAntecedentesGenerales();
+        daoAntecGen = new DAOAntecedentes();
         llenarCajas(p);
         CambiarEstadoCajas(false);
         this.setLocationRelativeTo(parent);
@@ -420,7 +419,7 @@ private void txtaToxicosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:eve
     }//GEN-LAST:event_btnGuardarMouseExited
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        agen = new AntecedentesGenerales();
+        agen = new ClasesBase.modelo.Antecedents();
         agen.setAntecedentesPersonales(this.txtaPersonales.getText());
         agen.setAntecedentesQuirurgicos(this.txtaQuirurgicos.getText());
         agen.setAntecedentesToxicos(this.txtaToxicos.getText());
@@ -528,7 +527,7 @@ private void txtaToxicosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:eve
      * Metodo generico utilizado para llenar todos los datos.
      * @param p Paciente que contiene todos los datos para llenar
      */
-    private void llenarCajas(Paciente p) {
+    private void llenarCajas(Patient p) {
         this.txtaPersonales.setText(p.getAntecGen().getAntecedentesPersonales());
         this.txtaToxicos.setText(p.getAntecGen().getAntecedentesToxicos());
         this.txtaQuirurgicos.setText(p.getAntecGen().getAntecedentesQuirurgicos());
