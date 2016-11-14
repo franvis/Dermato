@@ -1,4 +1,4 @@
-package ClasesBase;
+package Utils;
 
 import java.awt.Toolkit;
 import javax.swing.text.AttributeSet;

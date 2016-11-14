@@ -1,7 +1,7 @@
 /*
 Clase Base dedicada a los Antecedentes de un Paciente;
  */
-package ClasesBase.modelo;
+package ClasesBase;
 
 /**
  *

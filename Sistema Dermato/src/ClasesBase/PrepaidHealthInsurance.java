@@ -1,7 +1,7 @@
 /*
  * Clase base dedicada a las obrasSociales
  */
-package ClasesBase.modelo;
+package ClasesBase;
 
 /**
  *

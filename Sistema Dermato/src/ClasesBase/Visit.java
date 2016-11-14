@@ -1,7 +1,7 @@
 /*
 Clase base dedicada a la/s consulta/s;
  */
-package ClasesBase.modelo;
+package ClasesBase;
 
 /**
  *

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ClasesBase;
+package Utils;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -43,13 +43,13 @@ public class MultiLineCellRenderer extends JTextArea implements TableCellRendere
         Color color, aux;
         if (isSelected) {  
             setForeground(new java.awt.Color(0,0,0));  
-            color = GestorEstilos.getColorSecundario(GestorEstilos.colorActual);
+            color = StyleManager.getColorSecundario(StyleManager.colorActual);
             aux = new Color(color.getRed(), color.getGreen(), color.getBlue(), 50);
             setBackground(aux);  
         }  
         else {  
             setForeground(table.getForeground());  
-            color = GestorEstilos.getColorTerciario(GestorEstilos.colorActual);
+            color = StyleManager.getColorTerciario(StyleManager.colorActual);
             aux = new Color(color.getRed(), color.getGreen(), color.getBlue(), 50);
             setBackground(aux);  
         }

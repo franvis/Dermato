@@ -4,9 +4,9 @@
  */
 package GUI;
 
-import ClasesBase.MensajesValidaciones;
-import ClasesBase.modelo.Patient;
-import DAO.DAOAntecedentes;
+import Utils.ValidationsAndMessages;
+import ClasesBase.Patient;
+import DAO.DAOAntecedents;
 import java.awt.Image;
 import java.awt.KeyboardFocusManager;
 import java.awt.Toolkit;
@@ -22,8 +22,8 @@ import javax.swing.KeyStroke;
  * @author Fran
  */
 public class Antecedentes extends javax.swing.JDialog {
-    private ClasesBase.modelo.Antecedents agen;
-    private DAOAntecedentes daoAntecGen;
+    private ClasesBase.Antecedents agen;
+    private DAOAntecedents daoAntecGen;
     private Patient paciente;
     /**
      * Creates new form AntecGenerales
@@ -33,12 +33,12 @@ public class Antecedentes extends javax.swing.JDialog {
         initComponents();
         this.btnModificar.grabFocus();
         paciente = p;
-        daoAntecGen = new DAOAntecedentes();
+        daoAntecGen = new DAOAntecedents();
         llenarCajas(p);
         CambiarEstadoCajas(false);
         this.setLocationRelativeTo(parent);
         setIconImage(getIconImage());
-        ClasesBase.GestorEstilos.pintar(this);
+        Utils.StyleManager.paint(this);
         //eventos de la página
         KeyStroke strokeEsc = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
         this.getRootPane().registerKeyboardAction(new ActionListener() {
@@ -419,20 +419,20 @@ private void txtaToxicosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:eve
     }//GEN-LAST:event_btnGuardarMouseExited
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        agen = new ClasesBase.modelo.Antecedents();
+        agen = new ClasesBase.Antecedents();
         agen.setAntecedentesPersonales(this.txtaPersonales.getText());
         agen.setAntecedentesQuirurgicos(this.txtaQuirurgicos.getText());
         agen.setAntecedentesToxicos(this.txtaToxicos.getText());
         paciente.setAntecGen(agen);
         if(daoAntecGen.actualizarAntecedente(agen,paciente.getDni())){
-            MensajesValidaciones.mostrarInformacion(this, "Actualización Exitosa.");
+            ValidationsAndMessages.mostrarInformacion(this, "Actualización Exitosa.");
             CambiarEstadoCajas(false);
             this.btnGuardar.setEnabled(false);
             this.btnModificar.setEnabled(true);
             paciente.setAntecGen(agen);
         }
         else
-            MensajesValidaciones.mostrarError(this, "Actualización Fallida.");
+            ValidationsAndMessages.mostrarError(this, "Actualización Fallida.");
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
@@ -562,7 +562,7 @@ private void txtaToxicosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:eve
         }
         else
         {
-            MensajesValidaciones.validarSalidaVentana(this);
+            ValidationsAndMessages.validarSalidaVentana(this);
         }
     }
     

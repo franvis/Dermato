@@ -1,7 +1,7 @@
 /*
  Clase Base dedicada a los datos del paciente;
  */
-package ClasesBase.modelo;
+package ClasesBase;
 
 import java.util.LinkedList;
 
@@ -21,8 +21,8 @@ public class Patient {
     private PrepaidHealthInsurance prepaidHealthInsurance;
     private String prepaidHealthInsuranceNumber;
     private String firstVisitDate;
-    private Antecedents antecendent;
-    private String fechaUltimaConsulta;
+    private Antecedents antecendents;
+    private String lastVisitDate;
     private LinkedList<Visit> visits = new LinkedList<>();
 
     public Patient() {
@@ -41,7 +41,7 @@ public class Patient {
         this.birthday = birthday;
         this.prepaidHealthInsurance = prepaidHealthInsurance;
         this.prepaidHealthInsuranceNumber = prepaidHealthInsuranceNumber;
-        this.antecendent = antecendent;
+        this.antecendents = antecendent;
         this.firstVisitDate = firstVisitDate;
     }
 
@@ -58,7 +58,7 @@ public class Patient {
         this.birthday = birthday;
         this.prepaidHealthInsurance = prepaidHealthInsurance;
         this.prepaidHealthInsuranceNumber = prepaidHealthInsuranceNumber;
-        this.antecendent = antecendent;
+        this.antecendents = antecendent;
         this.firstVisitDate = firstVisitDate;
         this.visits = visits;
     }
@@ -77,14 +77,6 @@ public class Patient {
 
     public void setVisits(LinkedList<Visit> Visits) {
         this.visits = Visits;
-    }
-
-    public Antecedents getAntecGen() {
-        return antecendent;
-    }
-
-    public void setAntecGen(Antecedents antecGen) {
-        this.antecendent = antecGen;
     }
 
     public long getDni() {
@@ -135,12 +127,12 @@ public class Patient {
         this.phone = phone;
     }
 
-    public String getFechaUltimaConsulta() {
-        return fechaUltimaConsulta;
+    public String getLastVisitDate() {
+        return lastVisitDate;
     }
 
-    public void setFechaUltimaConsulta(String fechaUltimaConsulta) {
-        this.fechaUltimaConsulta = fechaUltimaConsulta;
+    public void setLastVisitDate(String fechaUltimaConsulta) {
+        this.lastVisitDate = fechaUltimaConsulta;
     }
 
     public String getFirstVisitDate() {
@@ -151,12 +143,12 @@ public class Patient {
         this.firstVisitDate = firstVisitDate;
     }
 
-    public Antecedents getAntecendent() {
-        return antecendent;
+    public Antecedents getAntecendents() {
+        return antecendents;
     }
 
-    public void setAntecendent(Antecedents antecendent) {
-        this.antecendent = antecendent;
+    public void setAntecendents(Antecedents antecendents) {
+        this.antecendents = antecendents;
     }
 
     public String getAddress() {

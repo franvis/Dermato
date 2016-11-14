@@ -1,4 +1,4 @@
-package ClasesBase;
+package Utils;
 
 import java.awt.Component;
 import java.awt.event.KeyEvent;
@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 /**
  * Clase para el manejo de mensajes al usuario y validaciones de campos
  */
-public class MensajesValidaciones {
+public class ValidationsAndMessages {
 
     /**
      * El componente que origina el mensaje
@@ -106,7 +106,7 @@ public class MensajesValidaciones {
      * metodo para validar la salida del sistema
      * @param f Componente del mensaje
      */
-    public static void mostrarAcercaDe(Component f){
+    public static void showAbout(Component f){
         JOptionPane.showMessageDialog(
                 f,
                 "Sistema de Gestión de Pacientes\nVersión 1.5",

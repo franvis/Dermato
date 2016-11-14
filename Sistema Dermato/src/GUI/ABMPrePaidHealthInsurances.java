@@ -9,9 +9,9 @@
  */
 package GUI;
 
-import ClasesBase.MensajesValidaciones;
-import ClasesBase.modelo.PrepaidHealthInsurance;
-import DAO.DAOObraSocial;
+import Utils.ValidationsAndMessages;
+import ClasesBase.PrepaidHealthInsurance;
+import DAO.DAOPrepaidHealthInsurance;
 import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -24,22 +24,22 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 
-public class ABMObrasSociales extends javax.swing.JFrame {
+public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
 
-    private DAOObraSocial daoObraSocial;
+    private DAOPrepaidHealthInsurance daoObraSocial;
     private LinkedList<PrepaidHealthInsurance> obras;
     private DefaultTableModel dtmObras;
     private boolean esModificar;
     
     /** Creates new form ABMObrasSociales */
-    public ABMObrasSociales(Frame parent) {
+    public ABMPrePaidHealthInsurances(Frame parent) {
         initComponents();
-        daoObraSocial = new DAOObraSocial();
-        obras = daoObraSocial.getAllObrasSociales();
+        daoObraSocial = new DAOPrepaidHealthInsurance();
+        obras = daoObraSocial.getAllPrePaidHealthInsurances();
         llenarObrasSociales(obras);
         this.setLocationRelativeTo(parent);
         esModificar = false;
-        ClasesBase.GestorEstilos.pintar(this);
+        Utils.StyleManager.paint(this);
         KeyStroke strokeEsc = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
         this.getRootPane().registerKeyboardAction(new ActionListener() {
                 @Override
@@ -157,7 +157,7 @@ public class ABMObrasSociales extends javax.swing.JFrame {
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnEliminar.setOpaque(true);
         btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -179,7 +179,7 @@ public class ABMObrasSociales extends javax.swing.JFrame {
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnCancelar.setContentAreaFilled(false);
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCancelar.setEnabled(false);
         btnCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnCancelar.setOpaque(true);
@@ -202,7 +202,7 @@ public class ABMObrasSociales extends javax.swing.JFrame {
         btnModificar.setText("Modificar");
         btnModificar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnModificar.setContentAreaFilled(false);
-        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnModificar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnModificar.setOpaque(true);
         btnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -246,7 +246,7 @@ public class ABMObrasSociales extends javax.swing.JFrame {
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save_enabled.png"))); // NOI18N
         btnGuardar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,7 +282,7 @@ public class ABMObrasSociales extends javax.swing.JFrame {
         btnVolver.setText("Volver");
         btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnVolver.setContentAreaFilled(false);
-        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnVolver.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnVolver.setOpaque(true);
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -357,12 +357,12 @@ public class ABMObrasSociales extends javax.swing.JFrame {
         if(!obras.isEmpty()){
             int idObraSeleccionada = obras.get(tblObrasSociales.getSelectedRow()).getId();
             if(daoObraSocial.eliminarObraSocial(new PrepaidHealthInsurance(idObraSeleccionada, ""))){
-                MensajesValidaciones.mostrarInformacion(this, "Borrado Exitoso.");
-                obras = daoObraSocial.getAllObrasSociales();
+                ValidationsAndMessages.mostrarInformacion(this, "Borrado Exitoso.");
+                obras = daoObraSocial.getAllPrePaidHealthInsurances();
                 llenarObrasSociales(obras);
             }
             else
-                MensajesValidaciones.mostrarInformacion(this, "Borrado Fallido.");
+                ValidationsAndMessages.mostrarInformacion(this, "Borrado Fallido.");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -404,18 +404,18 @@ public class ABMObrasSociales extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (this.txtNombreObraSocial.getText().isEmpty()) {
-        MensajesValidaciones.mostrarError(this, "Ingrese un nombre de obra social válido...");
+        ValidationsAndMessages.mostrarError(this, "Ingrese un nombre de obra social válido...");
         return;
         }
         if(!esModificar){
-            if (daoObraSocial.registrarObraSocial(new PrepaidHealthInsurance(0, txtNombreObraSocial.getText()))) {
-                MensajesValidaciones.mostrarInformacion(this, "Registro Exitoso.");
+            if (daoObraSocial.registerPrePaidHealthInsurance(new PrepaidHealthInsurance(0, txtNombreObraSocial.getText()))) {
+                ValidationsAndMessages.mostrarInformacion(this, "Registro Exitoso.");
                 this.txtNombreObraSocial.setText("");
                 this.obras.removeAll(obras);
-                this.obras = daoObraSocial.getAllObrasSociales();
+                this.obras = daoObraSocial.getAllPrePaidHealthInsurances();
                 llenarObrasSociales(obras);
             } else {
-                MensajesValidaciones.mostrarError(this, "Registro Fallido.");
+                ValidationsAndMessages.mostrarError(this, "Registro Fallido.");
             }
         }
         else
@@ -423,13 +423,13 @@ public class ABMObrasSociales extends javax.swing.JFrame {
             int idObraSeleccionada = obras.get(tblObrasSociales.getSelectedRow()).getId();
             if(daoObraSocial.actualizarObraSocial(new PrepaidHealthInsurance(idObraSeleccionada,txtNombreObraSocial.getText())))
             {
-            MensajesValidaciones.mostrarInformacion(this, "Actualización Exitosa.");
+            ValidationsAndMessages.mostrarInformacion(this, "Actualización Exitosa.");
                 this.txtNombreObraSocial.setText("");
                 this.obras.removeAll(obras);
-                this.obras = daoObraSocial.getAllObrasSociales();
+                this.obras = daoObraSocial.getAllPrePaidHealthInsurances();
                 llenarObrasSociales(obras);
             } else {
-                MensajesValidaciones.mostrarError(this, "Actualización Fallida.");
+                ValidationsAndMessages.mostrarError(this, "Actualización Fallida.");
             }
             this.txtNombreObraSocial.setText("");
             esModificar = false;
@@ -509,7 +509,7 @@ public class ABMObrasSociales extends javax.swing.JFrame {
      */
     private void salir() {
         if (esModificar)
-            MensajesValidaciones.validarSalidaVentana(this);
+            ValidationsAndMessages.validarSalidaVentana(this);
         else
             this.dispose();
     }

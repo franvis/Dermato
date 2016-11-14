@@ -1,8 +1,12 @@
 package GUI;
 
-import ClasesBase.*;
-import ClasesBase.modelo.Patient;
-import DAO.DAOPaciente;
+import Utils.MultiLineCellRenderer;
+import Utils.ValidationsAndMessages;
+import Utils.FileManager;
+import Utils.TextFilter;
+import Utils.StyleManager;
+import ClasesBase.Patient;
+import DAO.DAOPatient;
 import de.javasoft.plaf.synthetica.SyntheticaLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaMauveMetallicLookAndFeel;
 import java.awt.*;
@@ -15,40 +19,40 @@ import javax.swing.table.DefaultTableModel;
 
 public class Principal extends javax.swing.JFrame {
 
-    private DefaultTableModel dtmPacientes;
-    private DAOPaciente daoPaciente;
-    private LinkedList<Patient> listaPacientes;
-    private LinkedList<JFrame> ventanasAbiertas;
-    private Patient p;
-    private ABMObrasSociales abmObrasSociales;
+    private DefaultTableModel dtmPatients;
+    private final DAOPatient daoPatient;
+    private LinkedList<Patient> patientsList;
+    private final LinkedList<JFrame> openFrames;
+    private Patient patients;
+    private ABMPrePaidHealthInsurances abmPrePaidHealthInsurances;
 
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
-        setearIniciales();
-        listaPacientes = new LinkedList<>();
-        ventanasAbiertas = new LinkedList<>();
-        daoPaciente = new DAOPaciente();
-        this.setearButtons(btnModificarPaciente, false);
-        this.setearButtons(btnNuevoPaciente, false);
-        this.setearButtons(btnRealizarBackUp, false);
-        this.setearButtons(btnVerHC, false);
-        tblPacientes.getColumn("Apellido").setResizable(false);
-        tblPacientes.getColumn("Nombre").setResizable(false);
-        tblPacientes.getColumn("Fecha de Nacimiento").setResizable(false);
-        tblPacientes.getColumn("Última Consulta").setResizable(false);
-        tblPacientes.setDefaultRenderer(Object.class, new MultiLineCellRenderer());
-        tblPacientes.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 14));
-        tblPacientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        dtmPacientes = (DefaultTableModel) this.tblPacientes.getModel();
-        cambiarTamañoTabla(dtmPacientes, 10);
+        setInitials();
+        patientsList = new LinkedList<>();
+        openFrames = new LinkedList<>();
+        daoPatient = new DAOPatient();
+        this.ButtonsSetup(btnModifyPatient, false);
+        this.ButtonsSetup(btnNewPatient, false);
+        this.ButtonsSetup(btnPerformBackup, false);
+        this.ButtonsSetup(btnSeeCH, false);
+        tblPatients.getColumn("Apellido").setResizable(false);
+        tblPatients.getColumn("Nombre").setResizable(false);
+        tblPatients.getColumn("Fecha de Nacimiento").setResizable(false);
+        tblPatients.getColumn("Última Consulta").setResizable(false);
+        tblPatients.setDefaultRenderer(Object.class, new MultiLineCellRenderer());
+        tblPatients.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 14));
+        tblPatients.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        dtmPatients = (DefaultTableModel) this.tblPatients.getModel();
+        changeTableSize(dtmPatients, 10);
         this.setLocationRelativeTo(getRootPane());
-        GestorEstilos.pintar(this);
+        StyleManager.paint(this);
         this.setExtendedState(this.MAXIMIZED_BOTH);
-        txtfApellido.setDocument(new TextFilter(TextFilter.LETTERS));
-        txtfNombre.setDocument(new TextFilter(TextFilter.LETTERS));
+        txtfLastname.setDocument(new TextFilter(TextFilter.LETTERS));
+        txtfName.setDocument(new TextFilter(TextFilter.LETTERS));
         txtfDni.setDocument(new TextFilter(TextFilter.DIGITS));
         //this.setMaximumSize(this.getToolkit().getScreenSize());
     }
@@ -58,7 +62,6 @@ public class Principal extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         try {
-//            javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             javax.swing.UIManager.setLookAndFeel(new SyntheticaMauveMetallicLookAndFeel());
             JFrame.setDefaultLookAndFeelDecorated(Boolean.FALSE);
             SyntheticaLookAndFeel.setWindowsDecorated(false);
@@ -69,13 +72,9 @@ public class Principal extends javax.swing.JFrame {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        ManejoArchivos.backUpAutomatico();
-        /*
-         * Create and display the form
-         */
-
+        FileManager.AutomaticBackup();
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
-
             @Override
             public void run() {
                 new Principal().setVisible(true);
@@ -95,20 +94,20 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         pnlBuscar = new javax.swing.JPanel();
-        txtfApellido = new javax.swing.JTextField();
+        txtfLastname = new javax.swing.JTextField();
         lblstaticApellido = new javax.swing.JLabel();
         lblstaticDni = new javax.swing.JLabel();
         txtfDni = new javax.swing.JTextField();
-        txtfNombre = new javax.swing.JTextField();
+        txtfName = new javax.swing.JTextField();
         lblstaticNombre = new javax.swing.JLabel();
         pnlBotones = new javax.swing.JPanel();
-        btnNuevoPaciente = new javax.swing.JButton();
-        btnVerHC = new javax.swing.JButton();
-        btnModificarPaciente = new javax.swing.JButton();
-        btnRealizarBackUp = new javax.swing.JButton();
+        btnNewPatient = new javax.swing.JButton();
+        btnSeeCH = new javax.swing.JButton();
+        btnModifyPatient = new javax.swing.JButton();
+        btnPerformBackup = new javax.swing.JButton();
         pnlTablaPacientes = new javax.swing.JPanel();
         scrollPaneTablaPacientes = new javax.swing.JScrollPane();
-        tblPacientes = new javax.swing.JTable();
+        tblPatients = new javax.swing.JTable();
         menuBar = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
         menuNuevoPaciente = new javax.swing.JMenuItem();
@@ -135,11 +134,11 @@ public class Principal extends javax.swing.JFrame {
         pnlBuscar.setToolTipText("");
         pnlBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        txtfApellido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtfApellido.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtfApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtfLastname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfLastname.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtfLastname.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtfApellidoKeyReleased(evt);
+                txtfLastnameKeyReleased(evt);
             }
         });
 
@@ -156,10 +155,10 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        txtfNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtfName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtfNombreKeyReleased(evt);
+                txtfNameKeyReleased(evt);
             }
         });
 
@@ -174,11 +173,11 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblstaticApellido)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtfApellido)
+                .addComponent(txtfLastname)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblstaticNombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtfNombre)
+                .addComponent(txtfName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblstaticDni)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -190,8 +189,8 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(pnlBuscarLayout.createSequentialGroup()
                 .addGroup(pnlBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtfApellido)
-                        .addComponent(txtfNombre)
+                        .addComponent(txtfLastname)
+                        .addComponent(txtfName)
                         .addComponent(txtfDni))
                     .addGroup(pnlBuscarLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -207,107 +206,107 @@ public class Principal extends javax.swing.JFrame {
         pnlBotones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pnlBotones.setOpaque(false);
 
-        btnNuevoPaciente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnNuevoPaciente.setForeground(new java.awt.Color(153, 153, 153));
-        btnNuevoPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add_user_enabled.png"))); // NOI18N
-        btnNuevoPaciente.setText("Nuevo Paciente");
-        btnNuevoPaciente.setBorder(null);
-        btnNuevoPaciente.setContentAreaFilled(false);
-        btnNuevoPaciente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNuevoPaciente.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add_user_not_enabled.png"))); // NOI18N
-        btnNuevoPaciente.setEnabled(false);
-        btnNuevoPaciente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnNuevoPaciente.setOpaque(true);
-        btnNuevoPaciente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnNuevoPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnNewPatient.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnNewPatient.setForeground(new java.awt.Color(153, 153, 153));
+        btnNewPatient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add_user_enabled.png"))); // NOI18N
+        btnNewPatient.setText("Nuevo Paciente");
+        btnNewPatient.setBorder(null);
+        btnNewPatient.setContentAreaFilled(false);
+        btnNewPatient.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNewPatient.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add_user_not_enabled.png"))); // NOI18N
+        btnNewPatient.setEnabled(false);
+        btnNewPatient.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnNewPatient.setOpaque(true);
+        btnNewPatient.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNewPatient.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnNuevoPacienteMouseEntered(evt);
+                btnNewPatientMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnNuevoPacienteMouseExited(evt);
+                btnNewPatientMouseExited(evt);
             }
         });
-        btnNuevoPaciente.addActionListener(new java.awt.event.ActionListener() {
+        btnNewPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoPacienteActionPerformed(evt);
+                btnNewPatientActionPerformed(evt);
             }
         });
 
-        btnVerHC.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnVerHC.setForeground(new java.awt.Color(153, 153, 153));
-        btnVerHC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/HC_enabled.png"))); // NOI18N
-        btnVerHC.setText("Ver Historia Clínica");
-        btnVerHC.setBorder(null);
-        btnVerHC.setContentAreaFilled(false);
-        btnVerHC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnVerHC.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/HC_not_enabled.png"))); // NOI18N
-        btnVerHC.setEnabled(false);
-        btnVerHC.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnVerHC.setOpaque(true);
-        btnVerHC.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnVerHC.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSeeCH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSeeCH.setForeground(new java.awt.Color(153, 153, 153));
+        btnSeeCH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/HC_enabled.png"))); // NOI18N
+        btnSeeCH.setText("Ver Historia Clínica");
+        btnSeeCH.setBorder(null);
+        btnSeeCH.setContentAreaFilled(false);
+        btnSeeCH.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSeeCH.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/HC_not_enabled.png"))); // NOI18N
+        btnSeeCH.setEnabled(false);
+        btnSeeCH.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSeeCH.setOpaque(true);
+        btnSeeCH.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSeeCH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnVerHCMouseEntered(evt);
+                btnSeeCHMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnVerHCMouseExited(evt);
+                btnSeeCHMouseExited(evt);
             }
         });
-        btnVerHC.addActionListener(new java.awt.event.ActionListener() {
+        btnSeeCH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerHCActionPerformed(evt);
+                btnSeeCHActionPerformed(evt);
             }
         });
 
-        btnModificarPaciente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnModificarPaciente.setForeground(new java.awt.Color(153, 153, 153));
-        btnModificarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edit_profile_enabled.png"))); // NOI18N
-        btnModificarPaciente.setText("Modificar Paciente");
-        btnModificarPaciente.setBorder(null);
-        btnModificarPaciente.setContentAreaFilled(false);
-        btnModificarPaciente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnModificarPaciente.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edit_profile_not_enabled.png"))); // NOI18N
-        btnModificarPaciente.setEnabled(false);
-        btnModificarPaciente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnModificarPaciente.setOpaque(true);
-        btnModificarPaciente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnModificarPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnModifyPatient.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModifyPatient.setForeground(new java.awt.Color(153, 153, 153));
+        btnModifyPatient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edit_profile_enabled.png"))); // NOI18N
+        btnModifyPatient.setText("Modificar Paciente");
+        btnModifyPatient.setBorder(null);
+        btnModifyPatient.setContentAreaFilled(false);
+        btnModifyPatient.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnModifyPatient.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edit_profile_not_enabled.png"))); // NOI18N
+        btnModifyPatient.setEnabled(false);
+        btnModifyPatient.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnModifyPatient.setOpaque(true);
+        btnModifyPatient.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnModifyPatient.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnModificarPacienteMouseEntered(evt);
+                btnModifyPatientMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnModificarPacienteMouseExited(evt);
+                btnModifyPatientMouseExited(evt);
             }
         });
-        btnModificarPaciente.addActionListener(new java.awt.event.ActionListener() {
+        btnModifyPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarPacienteActionPerformed(evt);
+                btnModifyPatientActionPerformed(evt);
             }
         });
 
-        btnRealizarBackUp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnRealizarBackUp.setForeground(new java.awt.Color(153, 153, 153));
-        btnRealizarBackUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/backup_enabled.png"))); // NOI18N
-        btnRealizarBackUp.setText("Realizar Back Up");
-        btnRealizarBackUp.setBorder(null);
-        btnRealizarBackUp.setContentAreaFilled(false);
-        btnRealizarBackUp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnRealizarBackUp.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/backup_not_enabled.png"))); // NOI18N
-        btnRealizarBackUp.setEnabled(false);
-        btnRealizarBackUp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnRealizarBackUp.setOpaque(true);
-        btnRealizarBackUp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnRealizarBackUp.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnPerformBackup.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnPerformBackup.setForeground(new java.awt.Color(153, 153, 153));
+        btnPerformBackup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/backup_enabled.png"))); // NOI18N
+        btnPerformBackup.setText("Realizar Back Up");
+        btnPerformBackup.setBorder(null);
+        btnPerformBackup.setContentAreaFilled(false);
+        btnPerformBackup.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPerformBackup.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/backup_not_enabled.png"))); // NOI18N
+        btnPerformBackup.setEnabled(false);
+        btnPerformBackup.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnPerformBackup.setOpaque(true);
+        btnPerformBackup.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnPerformBackup.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnRealizarBackUpMouseEntered(evt);
+                btnPerformBackupMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnRealizarBackUpMouseExited(evt);
+                btnPerformBackupMouseExited(evt);
             }
         });
-        btnRealizarBackUp.addActionListener(new java.awt.event.ActionListener() {
+        btnPerformBackup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRealizarBackUpActionPerformed(evt);
+                btnPerformBackupActionPerformed(evt);
             }
         });
 
@@ -315,29 +314,29 @@ public class Principal extends javax.swing.JFrame {
         pnlBotones.setLayout(pnlBotonesLayout);
         pnlBotonesLayout.setHorizontalGroup(
             pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnNuevoPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnVerHC, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-            .addComponent(btnModificarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnRealizarBackUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnNewPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnSeeCH, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+            .addComponent(btnModifyPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnPerformBackup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlBotonesLayout.setVerticalGroup(
             pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBotonesLayout.createSequentialGroup()
-                .addComponent(btnNuevoPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                .addComponent(btnNewPatient, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnVerHC, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                .addComponent(btnSeeCH, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnModificarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                .addComponent(btnModifyPatient, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRealizarBackUp, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                .addComponent(btnPerformBackup, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
         pnlTablaPacientes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tabla de Pacientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         pnlTablaPacientes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        tblPacientes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tblPacientes.setModel(new javax.swing.table.DefaultTableModel(
+        tblPatients.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tblPatients.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"", "", "", ""},
                 {"", null, null, null},
@@ -367,10 +366,10 @@ public class Principal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblPacientes.setMaximumSize(new java.awt.Dimension(788, 443));
-        tblPacientes.setOpaque(false);
-        tblPacientes.getTableHeader().setReorderingAllowed(false);
-        scrollPaneTablaPacientes.setViewportView(tblPacientes);
+        tblPatients.setMaximumSize(new java.awt.Dimension(788, 443));
+        tblPatients.setOpaque(false);
+        tblPatients.getTableHeader().setReorderingAllowed(false);
+        scrollPaneTablaPacientes.setViewportView(tblPatients);
 
         javax.swing.GroupLayout pnlTablaPacientesLayout = new javax.swing.GroupLayout(pnlTablaPacientes);
         pnlTablaPacientes.setLayout(pnlTablaPacientesLayout);
@@ -503,46 +502,46 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalirActionPerformed
-        this.validarSalida();
+        this.validateExit();
     }//GEN-LAST:event_menuSalirActionPerformed
 
     private void menuNuevoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevoPacienteActionPerformed
-        this.nuevoPaciente();
+        this.newPatient();
     }//GEN-LAST:event_menuNuevoPacienteActionPerformed
 
     private void menuRealizarBackUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRealizarBackUpActionPerformed
-        this.realizarBackUp();
+        this.performBackup();
     }//GEN-LAST:event_menuRealizarBackUpActionPerformed
 
     private void menuAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAcercaDeActionPerformed
-        MensajesValidaciones.mostrarAcercaDe(this);
+        ValidationsAndMessages.showAbout(this);
     }//GEN-LAST:event_menuAcercaDeActionPerformed
 
     private void menuObrasSocialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuObrasSocialesActionPerformed
-        this.abmObrasSociales = new ABMObrasSociales(this);
-        this.abmObrasSociales.setVisible(true);
+        this.abmPrePaidHealthInsurances = new ABMPrePaidHealthInsurances(this);
+        this.abmPrePaidHealthInsurances.setVisible(true);
     }//GEN-LAST:event_menuObrasSocialesActionPerformed
 
-    private void txtfApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfApellidoKeyReleased
+    private void txtfLastnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfLastnameKeyReleased
         int a = evt.getKeyCode();
-        String apellido = "";
-        int i = this.txtfApellido.getText().length();
+        String lastname = "";
+        int i = this.txtfLastname.getText().length();
         if (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE || evt.getKeyChar() == KeyEvent.VK_DELETE) {
             if (i > 1) {
-                apellido = this.txtfApellido.getText().substring(0, i);
+                lastname = this.txtfLastname.getText().substring(0, i);
             }
             if (i == 1) {
-                apellido = this.txtfApellido.getText();
+                lastname = this.txtfLastname.getText();
             } else if (i == 0) {
-                apellido = "";
+                lastname = "";
             }
         } else {
-            apellido = this.txtfApellido.getText();
+            lastname = this.txtfLastname.getText();
         }
 
-        if ((a == 40) && !apellido.isEmpty()) {
-            txtfApellido.setNextFocusableComponent(scrollPaneTablaPacientes);
-            txtfApellido.transferFocus();
+        if ((a == 40) && !lastname.isEmpty()) {
+            txtfLastname.setNextFocusableComponent(scrollPaneTablaPacientes);
+            txtfLastname.transferFocus();
             try {
                 Robot r = new Robot();
                 System.out.println(evt.getKeyCode());
@@ -554,34 +553,34 @@ public class Principal extends javax.swing.JFrame {
             return;
         }
 
-        listaPacientes = new LinkedList<>();
-        String nombre = this.txtfNombre.getText();
+        patientsList = new LinkedList<>();
+        String name = this.txtfName.getText();
         String dni = this.txtfDni.getText();
 
-        listaPacientes = daoPaciente.getAllPacientes(nombre, apellido, dni);
+        patientsList = daoPatient.getAllPatients(name, lastname, dni);
 
-        llenarTabla(listaPacientes);
-    }//GEN-LAST:event_txtfApellidoKeyReleased
+        fillTable(patientsList);
+    }//GEN-LAST:event_txtfLastnameKeyReleased
 
-    private void txtfNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfNombreKeyReleased
+    private void txtfNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfNameKeyReleased
         int a = evt.getKeyCode();
-        String nombre = "";
-        int i = this.txtfNombre.getText().length();
+        String name = "";
+        int i = this.txtfName.getText().length();
         if (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE || evt.getKeyChar() == KeyEvent.VK_DELETE) {
             if (i > 1) {
-                nombre = this.txtfNombre.getText().substring(0, i);
+                name = this.txtfName.getText().substring(0, i);
             } else if (i == 1) {
-                nombre = this.txtfNombre.getText();
+                name = this.txtfName.getText();
             } else if (i == 0) {
-                nombre = "";
+                name = "";
             }
         } else {
-            nombre = this.txtfNombre.getText();
+            name = this.txtfName.getText();
         }
 
-        if ((a == 40) && !nombre.isEmpty()) {
-            txtfNombre.setNextFocusableComponent(scrollPaneTablaPacientes);
-            txtfNombre.transferFocus();
+        if ((a == 40) && !name.isEmpty()) {
+            txtfName.setNextFocusableComponent(scrollPaneTablaPacientes);
+            txtfName.transferFocus();
             try {
                 Robot r = new Robot();
                 System.out.println(evt.getKeyCode());
@@ -593,15 +592,15 @@ public class Principal extends javax.swing.JFrame {
             return;
         }
 
-        String apellido = this.txtfApellido.getText();
+        String lastname = this.txtfLastname.getText();
         String dni = this.txtfDni.getText();
 
-        listaPacientes = new LinkedList<>();
+        patientsList = new LinkedList<>();
 
-        listaPacientes = daoPaciente.getAllPacientes(nombre, apellido, dni);
+        patientsList = daoPatient.getAllPatients(name, lastname, dni);
 
-        llenarTabla(listaPacientes);
-    }//GEN-LAST:event_txtfNombreKeyReleased
+        fillTable(patientsList);
+    }//GEN-LAST:event_txtfNameKeyReleased
 
     private void txtfDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfDniKeyReleased
         int a = evt.getKeyCode();
@@ -633,111 +632,111 @@ public class Principal extends javax.swing.JFrame {
             return;
         }
 
-        String nombre = this.txtfNombre.getText();
-        String apellido = this.txtfApellido.getText();
+        String name = this.txtfName.getText();
+        String lastname = this.txtfLastname.getText();
 
-        listaPacientes = new LinkedList<>();
+        patientsList = new LinkedList<>();
 
-        listaPacientes = daoPaciente.getAllPacientes(nombre, apellido, dni);
+        patientsList = daoPatient.getAllPatients(name, lastname, dni);
 
-        llenarTabla(listaPacientes);
+        fillTable(patientsList);
 
     }//GEN-LAST:event_txtfDniKeyReleased
 
-    private void btnRealizarBackUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarBackUpActionPerformed
-        this.realizarBackUp();
-    }//GEN-LAST:event_btnRealizarBackUpActionPerformed
+    private void btnPerformBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerformBackupActionPerformed
+        this.performBackup();
+    }//GEN-LAST:event_btnPerformBackupActionPerformed
 
-    private void btnRealizarBackUpMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRealizarBackUpMouseEntered
-        this.setearButtons(btnRealizarBackUp, true);
-    }//GEN-LAST:event_btnRealizarBackUpMouseEntered
+    private void btnPerformBackupMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerformBackupMouseEntered
+        this.ButtonsSetup(btnPerformBackup, true);
+    }//GEN-LAST:event_btnPerformBackupMouseEntered
 
-    private void btnRealizarBackUpMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRealizarBackUpMouseExited
-        this.setearButtons(btnRealizarBackUp, false);
-    }//GEN-LAST:event_btnRealizarBackUpMouseExited
+    private void btnPerformBackupMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerformBackupMouseExited
+        this.ButtonsSetup(btnPerformBackup, false);
+    }//GEN-LAST:event_btnPerformBackupMouseExited
 
-    private void btnModificarPacienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarPacienteMouseEntered
-        this.setearButtons(btnModificarPaciente, true);
-    }//GEN-LAST:event_btnModificarPacienteMouseEntered
+    private void btnModifyPatientMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyPatientMouseEntered
+        this.ButtonsSetup(btnModifyPatient, true);
+    }//GEN-LAST:event_btnModifyPatientMouseEntered
 
-    private void btnModificarPacienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarPacienteMouseExited
-        this.setearButtons(btnModificarPaciente, false);
-    }//GEN-LAST:event_btnModificarPacienteMouseExited
+    private void btnModifyPatientMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyPatientMouseExited
+        this.ButtonsSetup(btnModifyPatient, false);
+    }//GEN-LAST:event_btnModifyPatientMouseExited
 
-    private void btnModificarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPacienteActionPerformed
-        if (!listaPacientes.isEmpty()) {
-            p = new Patient();
-            dtmPacientes = (DefaultTableModel) this.tblPacientes.getModel();
-            p = listaPacientes.get(tblPacientes.getSelectedRow());
-            for (JFrame aux : ventanasAbiertas){
-                if (aux instanceof ABMPacienteCompleto && ((ABMPacienteCompleto)aux).getDniPaciente() == p.getDni()){
+    private void btnModifyPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyPatientActionPerformed
+        if (!patientsList.isEmpty()) {
+            patients = new Patient();
+            dtmPatients = (DefaultTableModel) this.tblPatients.getModel();
+            patients = patientsList.get(tblPatients.getSelectedRow());
+            for (JFrame aux : openFrames){
+                if (aux instanceof ABMPatient && ((ABMPatient)aux).getPatientDni() == patients.getDni()){
                     aux.setVisible(true);
                     return;
                 }
             }
-            p = daoPaciente.getPacienteCompleto(p.getDni());
+            patients = daoPatient.getPacienteCompleto(patients.getDni());
 
-            ABMPacienteCompleto pacienteInterfaz = new ABMPacienteCompleto(this, true, 1, p);
+            ABMPatient pacienteInterfaz = new ABMPatient(this, true, 1, patients);
             pacienteInterfaz.setVisible(true);
-            ventanasAbiertas.add(pacienteInterfaz);
-            setearButtons(btnModificarPaciente, false);
+            openFrames.add(pacienteInterfaz);
+            ButtonsSetup(btnModifyPatient, false);
         }
-    }//GEN-LAST:event_btnModificarPacienteActionPerformed
+    }//GEN-LAST:event_btnModifyPatientActionPerformed
 
-    private void btnVerHCMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerHCMouseEntered
-        this.setearButtons(btnVerHC, true);
-    }//GEN-LAST:event_btnVerHCMouseEntered
+    private void btnSeeCHMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeeCHMouseEntered
+        this.ButtonsSetup(btnSeeCH, true);
+    }//GEN-LAST:event_btnSeeCHMouseEntered
 
-    private void btnVerHCMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerHCMouseExited
-        this.setearButtons(btnVerHC, false);
-    }//GEN-LAST:event_btnVerHCMouseExited
+    private void btnSeeCHMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeeCHMouseExited
+        this.ButtonsSetup(btnSeeCH, false);
+    }//GEN-LAST:event_btnSeeCHMouseExited
 
-    private void btnVerHCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerHCActionPerformed
-        if (!listaPacientes.isEmpty()) {
-            p = new Patient();
-            p = listaPacientes.get(tblPacientes.getSelectedRow());
-            for (JFrame aux : ventanasAbiertas){
-                if (aux instanceof HistoriaClinica && ((HistoriaClinica)aux).getDniPaciente() == p.getDni()){
+    private void btnSeeCHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeCHActionPerformed
+        if (!patientsList.isEmpty()) {
+            patients = new Patient();
+            patients = patientsList.get(tblPatients.getSelectedRow());
+            for (JFrame aux : openFrames){
+                if (aux instanceof ClinicalHistory && ((ClinicalHistory)aux).getPatientDni() == patients.getDni()){
                     aux.setVisible(true);
-                    borrarFilas(dtmPacientes);
-                    this.txtfApellido.setText("");
-                    this.txtfNombre.setText("");
+                    deleteRows(dtmPatients);
+                    this.txtfLastname.setText("");
+                    this.txtfName.setText("");
                     this.txtfDni.setText("");
-                    setearButtons(btnVerHC, false);
-                    listaPacientes.removeAll(listaPacientes);
-                    dtmPacientes.setNumRows(15);
+                    ButtonsSetup(btnSeeCH, false);
+                    patientsList.removeAll(patientsList);
+                    dtmPatients.setNumRows(15);
                     return;
                 }
             }
-            p = daoPaciente.getPaciente(p.getDni());
+            patients = daoPatient.getPatient(patients.getDni());
 
-            HistoriaClinica HC = new HistoriaClinica(this, p, 0);
-            HC.setVisible(true);
-            ventanasAbiertas.add(HC);
-            borrarFilas(dtmPacientes);
-            this.txtfApellido.setText("");
-            this.txtfNombre.setText("");
+            ClinicalHistory CH = new ClinicalHistory(this, patients, 0);
+            CH.setVisible(true);
+            openFrames.add(CH);
+            deleteRows(dtmPatients);
+            this.txtfLastname.setText("");
+            this.txtfName.setText("");
             this.txtfDni.setText("");
-            setearButtons(btnVerHC, false);
-            listaPacientes.removeAll(listaPacientes);
-            dtmPacientes.setNumRows(15);
+            ButtonsSetup(btnSeeCH, false);
+            patientsList.removeAll(patientsList);
+            dtmPatients.setNumRows(15);
         }
-    }//GEN-LAST:event_btnVerHCActionPerformed
+    }//GEN-LAST:event_btnSeeCHActionPerformed
 
-    private void btnNuevoPacienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoPacienteMouseEntered
-        this.setearButtons(btnNuevoPaciente, true);
-    }//GEN-LAST:event_btnNuevoPacienteMouseEntered
+    private void btnNewPatientMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewPatientMouseEntered
+        this.ButtonsSetup(btnNewPatient, true);
+    }//GEN-LAST:event_btnNewPatientMouseEntered
 
-    private void btnNuevoPacienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoPacienteMouseExited
-        this.setearButtons(btnNuevoPaciente, false);
-    }//GEN-LAST:event_btnNuevoPacienteMouseExited
+    private void btnNewPatientMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewPatientMouseExited
+        this.ButtonsSetup(btnNewPatient, false);
+    }//GEN-LAST:event_btnNewPatientMouseExited
 
-    private void btnNuevoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPacienteActionPerformed
-        this.nuevoPaciente();
-    }//GEN-LAST:event_btnNuevoPacienteActionPerformed
+    private void btnNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPatientActionPerformed
+        this.newPatient();
+    }//GEN-LAST:event_btnNewPatientActionPerformed
 
 private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCambiarColorActionPerformed
-    new EleccionColor(this, true).setVisible(true);
+    new ChooseColor(this, true).setVisible(true);
 }//GEN-LAST:event_menuCambiarColorActionPerformed
 
     @Override
@@ -747,18 +746,18 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
     }
 
     /**
-     * Setea los botones del menú principal según la ubicación del puntero
+     * Sets the buttons in the principal menu according to the mouse pointer
      *
-     * @param jbtn JButton a setear
-     * @param entrada boolean true si el puntero entra al área del jButton,
-     * false si sale
+     * @param jbtn JButton to set
+     * @param entering boolean true if the mouse pointer is entering the 
+     * jButton area, false otherwise
      */
-    private void setearButtons(JButton jbtn, boolean entrada) {
-        if (!listaPacientes.isEmpty() || (jbtn == btnNuevoPaciente || jbtn == btnRealizarBackUp)) {
-            if (entrada) {
+    private void ButtonsSetup(JButton jbtn, boolean entering) {
+        if (!patientsList.isEmpty() || (jbtn == btnNewPatient || jbtn == btnPerformBackup)) {
+            if (entering) {
                 jbtn.setEnabled(true);
                 jbtn.setFont(new java.awt.Font("Tahoma", 1, 15));
-                jbtn.setForeground(GestorEstilos.getColorTexto(GestorEstilos.colorActual));
+                jbtn.setForeground(StyleManager.getColorTexto(StyleManager.colorActual));
             } else {
                 jbtn.setEnabled(false);
                 jbtn.setFont(new java.awt.Font("Tahoma", 1, 14));
@@ -767,10 +766,10 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnModificarPaciente;
-    private javax.swing.JButton btnNuevoPaciente;
-    private javax.swing.JButton btnRealizarBackUp;
-    private javax.swing.JButton btnVerHC;
+    private javax.swing.JButton btnModifyPatient;
+    private javax.swing.JButton btnNewPatient;
+    private javax.swing.JButton btnPerformBackup;
+    private javax.swing.JButton btnSeeCH;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblstaticApellido;
@@ -791,145 +790,143 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
     private javax.swing.JPanel pnlBuscar;
     private javax.swing.JPanel pnlTablaPacientes;
     private javax.swing.JScrollPane scrollPaneTablaPacientes;
-    private javax.swing.JTable tblPacientes;
-    private javax.swing.JTextField txtfApellido;
+    private javax.swing.JTable tblPatients;
     private javax.swing.JTextField txtfDni;
-    private javax.swing.JTextField txtfNombre;
+    private javax.swing.JTextField txtfLastname;
+    private javax.swing.JTextField txtfName;
     // End of variables declaration//GEN-END:variables
 
     /**
-     * Metodo utilizado para setear ciertos valores inciales de los componentes
+     * Method used to set certain initial values of the components
      */
-    private void setearIniciales() {
+    private void setInitials() {
         this.txtfDni.setEditable(true);
     }
 
     /**
-     * Metodo utilizado para cambiar el tamaño de una tabla
+     * Method used to change the table size
      *
-     * @param dtmPacientes DefaultTableModel a cambiar
-     * @param j tamaño nuevo
+     * @param dtm DefaultTableModel to change
+     * @param size new size
      */
-    private void cambiarTamañoTabla(DefaultTableModel dtm, int j) {
-        dtm.setNumRows(j);
+    private void changeTableSize(DefaultTableModel dtm, int size) {
+        dtm.setNumRows(size);
     }
 
     /**
-     * Metodo utilizado para llenar la tabla de pacientes
+     * Method used to fill the patients table
      *
-     * @param listaPacientes lista de pacientes para completar la tabla
+     * @param patientsList patients list used to fill the table
      */
-    private void llenarTabla(LinkedList<Patient> listaPacientes) {
+    private void fillTable(LinkedList<Patient> patientsList) {
         Object[] o;
-        dtmPacientes = (DefaultTableModel) this.tblPacientes.getModel();
-        borrarFilas(dtmPacientes);
-        LinkedList<Patient> lista = listaPacientes;
+        dtmPatients = (DefaultTableModel) this.tblPatients.getModel();
+        deleteRows(dtmPatients);
+        LinkedList<Patient> lista = patientsList;
         if (lista.size() == 0) {
-            cambiarTamañoTabla(dtmPacientes, 10);
+            changeTableSize(dtmPatients, 10);
         } else {
-            cambiarTamañoTabla(dtmPacientes, 0);
+            changeTableSize(dtmPatients, 0);
         }
 
         for (int i = 0; i < lista.size(); i++) {
             o = new Object[4];
-            o[0] = lista.get(i).getApellido();
-            o[1] = lista.get(i).getNombre();
-            o[2] = lista.get(i).getFechaNacimiento();
-            o[3] = lista.get(i).getFechaUltimaConsulta();
-            dtmPacientes.addRow(o);
+            o[0] = lista.get(i).getLastname();
+            o[1] = lista.get(i).getName();
+            o[2] = lista.get(i).getBirthday();
+            o[3] = lista.get(i).getLastVisitDate();
+            dtmPatients.addRow(o);
         }
-        tblPacientes.changeSelection(0, 0, false, false);
-        if (listaPacientes.isEmpty()) {
-            btnModificarPaciente.setEnabled(false);
-            btnVerHC.setEnabled(false);
+        tblPatients.changeSelection(0, 0, false, false);
+        if (patientsList.isEmpty()) {
+            btnModifyPatient.setEnabled(false);
+            btnSeeCH.setEnabled(false);
         }
     }
 
     /**
-     * Metodo utilizado para borrar las filas de una tabla
+     * Method used to delete all the rows of a certain table
      *
-     * @param dtmPacientes DefaultTableModel a partir del cual borrar
+     * @param dtm DefaultTableModel whose rows will be erased
      */
-    private void borrarFilas(DefaultTableModel dtmPacientes) {
-        int j = dtmPacientes.getRowCount();
-        for (int i = 0; i < dtmPacientes.getRowCount();) {
-            dtmPacientes.removeRow(0);
+    private void deleteRows(DefaultTableModel dtm) {
+        int j = dtm.getRowCount();
+        for (int i = 0; i < dtm.getRowCount();) {
+            dtm.removeRow(0);
         }
     }
 
     /**
-     * Metodo utilizado para registrar un nuevo paciente
+     * Method used to register a new patient
      */
-    private void nuevoPaciente() {
-        for (JFrame aux : ventanasAbiertas){
-            if (aux instanceof ABMPacienteCompleto && ((ABMPacienteCompleto)aux).getDniPaciente() == -1){
+    private void newPatient() {
+        for (JFrame aux : openFrames){
+            if (aux instanceof ABMPatient && ((ABMPatient)aux).getPatientDni() == -1){
                 aux.setVisible(true);
                 return;
             }
         }
-        ABMPacienteCompleto pacienteInterfaz = new ABMPacienteCompleto(this, true, 0);
-        pacienteInterfaz.setVisible(true);
-        setearButtons(btnModificarPaciente, false);
-        ventanasAbiertas.add(pacienteInterfaz);
+        ABMPatient patientFrame = new ABMPatient(this, true, 0);
+        patientFrame.setVisible(true);
+        ButtonsSetup(btnModifyPatient, false);
+        openFrames.add(patientFrame);
     }
 
     /**
-     * Metodo utilizado para realizar un back up manual
+     * Method used to perform a manual backup
      */
-    private void realizarBackUp() {
+    private void performBackup() {
         JFileChooser jfd = new JFileChooser();
         jfd.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         jfd.setDialogTitle("Elija un directorio destino para el archivo de Back Up...");
         int r = jfd.showSaveDialog(this);
         if (r == JFileChooser.APPROVE_OPTION) {
-            ManejoArchivos.backUp(this, jfd.getSelectedFile());
+            FileManager.backUp(this, jfd.getSelectedFile());
         }
     }
 
     /**
-     * Metodo utilizado para validar la salida
+     * Method used to validate exit
      */
-    private void validarSalida() {
-        MensajesValidaciones.validarSalida(this);
+    private void validateExit() {
+        ValidationsAndMessages.validarSalida(this);
     }
 
     /**
-     * Metodo utilizado para setear desde otras ventana la lista de pacientes a
-     * mostrarse en la tabla
+     * Method used to set the patients list to be shown from another frame
      */
-    public void actualizarListaPacientes(LinkedList<Patient> listaPacientes) {
+    public void updatePatientList(LinkedList<Patient> listaPacientes) {
         if (listaPacientes == null) {
-            this.listaPacientes = new LinkedList<>();
-            borrarFilas(dtmPacientes);
-            this.txtfApellido.setText("");
-            this.txtfNombre.setText("");
+            this.patientsList = new LinkedList<>();
+            deleteRows(dtmPatients);
+            this.txtfLastname.setText("");
+            this.txtfName.setText("");
             this.txtfDni.setText("");
-            dtmPacientes.setNumRows(10);
+            dtmPatients.setNumRows(10);
         } else {
-            this.listaPacientes = listaPacientes;
-            llenarTabla(listaPacientes);
+            this.patientsList = listaPacientes;
+            fillTable(listaPacientes);
         }
     }
 
     /**
-     * Método que setea el nuevo color elegido en las interfaces hijas de ésta
-     * ventana
+     * Method used to set the color of this frame childs
      */
-    public void pintarHijos(int color) {
-        for (JFrame window :  ventanasAbiertas){
-                ClasesBase.GestorEstilos.pintar(window, color);
+    public void paintChilds(int color) {
+        for (JFrame window :  openFrames){
+                Utils.StyleManager.paint(window, color);
         }
-        if (abmObrasSociales != null) {
-            ClasesBase.GestorEstilos.pintar(abmObrasSociales, color);
+        if (abmPrePaidHealthInsurances != null) {
+            Utils.StyleManager.paint(abmPrePaidHealthInsurances, color);
         }
     }
     
     /**
-     * Comunica a la ventana que alguno de los JFrames que la tenían cómo owner ha sido cerrado
-     * @param closedWindow ventana que ha sido cerrada
+     * Notifies to other frames that some of the frame that had it as owners has been closed.
+     * @param closedWindow closed frame
      */
-    public void cerrarHijo(JFrame closedWindow){
+    public void closeChild(JFrame closedWindow){
         if (closedWindow != null)
-            ventanasAbiertas.remove(closedWindow);
+            openFrames.remove(closedWindow);
     }
 }

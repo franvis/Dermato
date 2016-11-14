@@ -1,6 +1,6 @@
-package ClasesBase;
+package Utils;
 
-import GUI.EleccionColor;
+import GUI.ChooseColor;
 import java.util.ArrayList;
 
 /**
@@ -11,9 +11,9 @@ public class ThreadFiles extends Thread {
     
     private boolean seguir =  false;
     private static ArrayList<Casilla> colores;
-    private EleccionColor parent;
+    private ChooseColor parent;
 
-    public ThreadFiles(EleccionColor parent) {
+    public ThreadFiles(ChooseColor parent) {
         colores = new ArrayList<>();
         this.parent = parent;
     }
@@ -23,10 +23,10 @@ public class ThreadFiles extends Thread {
         try {
             while(!Thread.interrupted()) {
                 wait();
-                ManejoArchivos.guardarColor(null, colores.get(0).color);
+                FileManager.guardarColor(null, colores.get(0).color);
                 colores.remove(0);
                 sleep(300);
-                ClasesBase.GestorEstilos.pintar(parent);
+                Utils.StyleManager.paint(parent);
             }
         } catch (InterruptedException e) { return; }
     }

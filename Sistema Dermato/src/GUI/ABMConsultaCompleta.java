@@ -3,10 +3,11 @@
  */
 package GUI;
 
-import ClasesBase.modelo.Visit;
-import ClasesBase.modelo.Patient;
-import ClasesBase.*;
-import DAO.DAOConsulta;
+import Utils.ValidationsAndMessages;
+import Utils.StyleManager;
+import ClasesBase.Visit;
+import ClasesBase.Patient;
+import DAO.DAOVisit;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,8 +18,8 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 public class ABMConsultaCompleta extends javax.swing.JFrame {
-    private HistoriaClinica HC;
-    private DAOConsulta daoConsulta;
+    private ClinicalHistory HC;
+    private DAOVisit daoConsulta;
     private Visit cons;
     private Calendar c;
     private String dia;
@@ -35,9 +36,9 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
             Patient paciente) {
         initComponents();
         this.txtaMotivo.grabFocus();
-        daoConsulta = new DAOConsulta();
+        daoConsulta = new DAOVisit();
         this.procedencia = false;
-        HC = (HistoriaClinica)parent;
+        HC = (ClinicalHistory)parent;
         this.dni = dni;
         this.llenarCampos(paciente);
         c = Calendar.getInstance();
@@ -46,9 +47,9 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         año = c.get(Calendar.YEAR)+"";
         this.lblFecha.setText(dia+"/"+mes+"/"+año);
         setIconImage(getIconImage());
-        GestorEstilos.pintar(this);
-        pnlFecha.setBackground(GestorEstilos.getColorSecundario(GestorEstilos.colorActual));
-        pnlApellidoNombre.setBackground(GestorEstilos.getColorSecundario(GestorEstilos.colorActual));
+        StyleManager.paint(this);
+        pnlFecha.setBackground(StyleManager.getColorSecundario(StyleManager.colorActual));
+        pnlApellidoNombre.setBackground(StyleManager.getColorSecundario(StyleManager.colorActual));
         this.setMinimumSize(new Dimension(789, 490));
         this.setMaximumSize(new Dimension(this.getToolkit().getScreenSize().width, this.getToolkit().getScreenSize().height));
         this.setExtendedState(parent.getExtendedState());
@@ -68,20 +69,20 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
      */
     public ABMConsultaCompleta(java.awt.Frame parent, boolean modal,int tipoConsulta,long dni, Patient paciente, Visit con) {
         initComponents();
-        this.txtfAlturaUterina.setDisabledTextColor(GestorEstilos.getColorTexto());
-        this.txtfAlturaUterina.setBackground(GestorEstilos.getColorTerciario());
-        this.txtfAlturaUterina.setSelectionColor(GestorEstilos.getColorSecundario(GestorEstilos.colorActual));
-        this.txtfPresionArterialmm.setBackground(GestorEstilos.getColorTerciario());
-        this.txtfPresionArterialmm.setDisabledTextColor(GestorEstilos.getColorTexto());
-        this.txtfPresionArterialmm.setSelectionColor(GestorEstilos.getColorSecundario(GestorEstilos.colorActual));
-        this.txtfPresionArterialHg.setBackground(GestorEstilos.getColorTerciario());
-        this.txtfPresionArterialHg.setDisabledTextColor(GestorEstilos.getColorTexto());
-        this.txtfPresionArterialHg.setSelectionColor(GestorEstilos.getColorSecundario(GestorEstilos.colorActual));
+        this.txtfAlturaUterina.setDisabledTextColor(StyleManager.getColorTexto());
+        this.txtfAlturaUterina.setBackground(StyleManager.getColorTerciario());
+        this.txtfAlturaUterina.setSelectionColor(StyleManager.getColorSecundario(StyleManager.colorActual));
+        this.txtfPresionArterialmm.setBackground(StyleManager.getColorTerciario());
+        this.txtfPresionArterialmm.setDisabledTextColor(StyleManager.getColorTexto());
+        this.txtfPresionArterialmm.setSelectionColor(StyleManager.getColorSecundario(StyleManager.colorActual));
+        this.txtfPresionArterialHg.setBackground(StyleManager.getColorTerciario());
+        this.txtfPresionArterialHg.setDisabledTextColor(StyleManager.getColorTexto());
+        this.txtfPresionArterialHg.setSelectionColor(StyleManager.getColorSecundario(StyleManager.colorActual));
         this.txtaMotivo.grabFocus();
         eGinec = new ExamenGinecologico();
         eObste = new ExamenObstetrico();
-        daoConsulta = new DAOConsulta();
-        HC = (HistoriaClinica)parent;
+        daoConsulta = new DAOVisit();
+        HC = (ClinicalHistory)parent;
         this.procedencia = true;
         this.dni = dni;
         this.tipoConsulta = tipoConsulta;
@@ -121,9 +122,9 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         this.setLocationRelativeTo(parent);
         this.setearEstadoCajas(!procedencia, tipoConsulta);
         setIconImage(getIconImage());
-        GestorEstilos.pintar(this);
-        pnlFecha.setBackground(GestorEstilos.getColorSecundario(GestorEstilos.colorActual));
-        pnlApellidoNombre.setBackground(GestorEstilos.getColorSecundario(GestorEstilos.colorActual));
+        StyleManager.paint(this);
+        pnlFecha.setBackground(StyleManager.getColorSecundario(StyleManager.colorActual));
+        pnlApellidoNombre.setBackground(StyleManager.getColorSecundario(StyleManager.colorActual));
         this.setMinimumSize(new Dimension(789, 490));
         this.setMaximumSize(new Dimension(this.getToolkit().getScreenSize().width, this.getToolkit().getScreenSize().height));
         this.setExtendedState(parent.getExtendedState());
@@ -794,7 +795,7 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         String error = comprobarObligatorias(tipoConsulta);
         if(!error.isEmpty())
         {
-            MensajesValidaciones.mostrarError(this,"Debe completar los siguientes datos obligatorios: \n"+error);
+            ValidationsAndMessages.mostrarError(this,"Debe completar los siguientes datos obligatorios: \n"+error);
             return;
         }   
     
@@ -805,11 +806,11 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
             if(daoConsulta.RegistrarConsulta(cons, dni,tipoConsulta))
             {
                 this.idConsulta = cons.getId();
-                MensajesValidaciones.mostrarInformacion(this, "Registro Exitoso.");
+                ValidationsAndMessages.mostrarInformacion(this, "Registro Exitoso.");
             }
             else
             {
-                MensajesValidaciones.mostrarError(this, "Registro Fallido.");
+                ValidationsAndMessages.mostrarError(this, "Registro Fallido.");
                 return;
             }
         }
@@ -817,12 +818,12 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         {
             if(daoConsulta.actualizarConsulta(cons))
             {
-                MensajesValidaciones.mostrarInformacion(this, "Actualización Exitosa.");
+                ValidationsAndMessages.mostrarInformacion(this, "Actualización Exitosa.");
                 cambiarBotones(false);
             }
             else
             {
-                MensajesValidaciones.mostrarError(this, "Actualización Fallida.");
+                ValidationsAndMessages.mostrarError(this, "Actualización Fallida.");
                 return;
             }
         }
@@ -1235,7 +1236,7 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         }
         else
         {
-            MensajesValidaciones.validarSalidaVentana(this);
+            ValidationsAndMessages.validarSalidaVentana(this);
         }
     }
 

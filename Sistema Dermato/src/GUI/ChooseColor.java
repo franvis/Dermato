@@ -6,8 +6,8 @@
 //La re concha de tu madre
 package GUI;
 
-import ClasesBase.GestorEstilos;
-import ClasesBase.ManejoArchivos;
+import Utils.StyleManager;
+import Utils.FileManager;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,18 +19,18 @@ import javax.swing.KeyStroke;
  *
  * @author Denise
  */
-public class EleccionColor extends javax.swing.JDialog {
+public class ChooseColor extends javax.swing.JDialog {
 
     public Principal padre;
-    private int color = GestorEstilos.colorActual;
+    private int color = StyleManager.colorActual;
     
     /** Creates new form EleccionColor */
-    public EleccionColor(Principal parent, boolean modal) {
+    public ChooseColor(Principal parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.padre = parent;
         this.setLocationRelativeTo(parent);
-        GestorEstilos.pintar(this);
+        StyleManager.paint(this);
         this.rbtn0.setBackground(new Color(240,240,240));
         //eventos de la página
         KeyStroke strokeEsc = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
@@ -108,7 +108,7 @@ public class EleccionColor extends javax.swing.JDialog {
         btnVistaPrevia.setText("Vista Previa");
         btnVistaPrevia.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnVistaPrevia.setContentAreaFilled(false);
-        btnVistaPrevia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVistaPrevia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnVistaPrevia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVistaPreviaActionPerformed(evt);
@@ -119,7 +119,7 @@ public class EleccionColor extends javax.swing.JDialog {
         btnAplicar.setText("Aplicar");
         btnAplicar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnAplicar.setContentAreaFilled(false);
-        btnAplicar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAplicar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAplicar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAplicarActionPerformed(evt);
@@ -189,7 +189,7 @@ private void btnVistaPreviaActionPerformed(java.awt.event.ActionEvent evt) {//GE
 private void btnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarActionPerformed
     this.actualizarColor();
     this.dispose();
-    ManejoArchivos.guardarColor(null, color);
+    FileManager.guardarColor(null, color);
 }//GEN-LAST:event_btnAplicarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -198,7 +198,7 @@ private void btnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
 
 private void salir (){
-    ClasesBase.GestorEstilos.pintar(this);
+    Utils.StyleManager.paint(this);
     this.dispose();
 }
 
@@ -230,7 +230,7 @@ private void salir (){
             color = 5;
         if(rbtn6.isSelected())
             color = 6;
-        ClasesBase.GestorEstilos.pintar(this, color);
+        Utils.StyleManager.paint(this, color);
     }
 
 }

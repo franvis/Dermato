@@ -1,7 +1,7 @@
-package ClasesBase;
+package Utils;
 
-import GUI.EleccionColor;
-import GUI.HistoriaClinica;
+import GUI.ChooseColor;
+import GUI.ClinicalHistory;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -12,7 +12,7 @@ import javax.swing.border.TitledBorder;
  * Clase para el manejo de los colores de ventana
  * @author Denise
  */
-public class GestorEstilos {
+public class StyleManager {
     
     public static int colorActual = 5;
     
@@ -185,7 +185,7 @@ public class GestorEstilos {
      * Pinta un objeto contenedor según el código de paleta guardado en el archivo auxiliar
      * @param c Container a pintar
      */
-    public static void pintar(Container c) {
+    public static void paint(Container c) {
 //        try {
 //            colorActual = ManejoArchivos.leerColor();
 //        }
@@ -197,7 +197,7 @@ public class GestorEstilos {
      * Pinta un objeto contenedor según el código de paleta pasado por parámetro
      * @param c Container a pintar
      */
-    public static void pintar(Container c, int color) {
+    public static void paint(Container c, int color) {
         if (color < 0 || color > 6)
             return;
         pintarComponentes(c, color);
@@ -210,14 +210,14 @@ public class GestorEstilos {
      * @param colorSecundario Color secundario
      */
     public static void pintarComponentes(Container parent, int color) {
-        if (parent instanceof EleccionColor)
+        if (parent instanceof ChooseColor)
         {
             pintarComponentes(parent.getParent(), color);
-            ((GUI.Principal) parent.getParent()).pintarHijos(color);
+            ((GUI.Principal) parent.getParent()).paintChilds(color);
         }
-        if (parent instanceof HistoriaClinica)
+        if (parent instanceof ClinicalHistory)
         {
-            ((GUI.HistoriaClinica) parent).pintarHijos(color);
+            ((GUI.ClinicalHistory) parent).pintarHijos(color);
         }
         for (Component componente : parent.getComponents())
         {
@@ -242,8 +242,8 @@ public class GestorEstilos {
                 JComboBox aux = (JComboBox) componente;
                 ComboBoxEditor editor = aux.getEditor();
                 JTextField etf = (JTextField)editor.getEditorComponent();
-                etf.setDisabledTextColor(GestorEstilos.getColorTexto(color));
-                etf.setBackground(GestorEstilos.getColorTerciario(color));
+                etf.setDisabledTextColor(StyleManager.getColorTexto(color));
+                etf.setBackground(StyleManager.getColorTerciario(color));
             }
             else 
                 componente.setBackground(getColorPrimario(color));

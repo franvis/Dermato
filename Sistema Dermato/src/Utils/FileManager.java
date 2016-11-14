@@ -1,4 +1,4 @@
-package ClasesBase;
+package Utils;
 
 import java.awt.Component;
 import java.io.*;
@@ -9,7 +9,7 @@ import java.util.GregorianCalendar;
  * Clase para manejas las interacciones con archivos físicos
  * @author Denise
  */
-public class ManejoArchivos {
+public class FileManager {
 
     private static final int BUFFER = 1024;
     //para guardar en memoria
@@ -18,11 +18,11 @@ public class ManejoArchivos {
     private static FileWriter fichero = null;
     private static PrintWriter pw = null;
     //datos de la BD
-    private static String host = VariablesLocales.host;
-    private static String port = VariablesLocales.port;
-    private static String user = VariablesLocales.user;
-    private static String password = VariablesLocales.password;
-    private static String db = VariablesLocales.db;
+    private static String host = Constants.HOST;
+    private static String port = Constants.PORT;
+    private static String user = Constants.USER;
+    private static String password = Constants.PASSWORD;
+    private static String db = Constants.DB;
     private static String dia, mes, año, hora, minuto, segundo;
 
     /**
@@ -38,7 +38,7 @@ public class ManejoArchivos {
             }
 
             Process run = Runtime.getRuntime().exec(
-                    VariablesLocales.rutaProcesoBackUp + " --host=" + host + " --port=" + port
+                    Constants.BACKUP_PRCESS_PATH + " --host=" + host + " --port=" + port
                     + " --user=" + user + " --password=" + password
                     + " --compact --database sistemacarla --add-drop-database --complete-insert --extended-insert --skip-quote-names"
                     + " --skip-comments --skip-triggers " + db);
@@ -68,11 +68,11 @@ public class ManejoArchivos {
             pw = new PrintWriter(fichero);
             pw.println(temp.toString());
 
-            MensajesValidaciones.mostrarInformacion(j, "Back Up exitoso en " + destino.getAbsolutePath());
+            ValidationsAndMessages.mostrarInformacion(j, "Back Up exitoso en " + destino.getAbsolutePath());
             run.destroy();
             return true;
         } catch (IOException e) {
-            MensajesValidaciones.mostrarError(j, "Back Up fallido en " + destino.getAbsolutePath() + ". " + e.getMessage());
+            ValidationsAndMessages.mostrarError(j, "Back Up fallido en " + destino.getAbsolutePath() + ". " + e.getMessage());
             return false;
         } finally {
             try {
@@ -88,10 +88,10 @@ public class ManejoArchivos {
     /**
      * Método de realización de Back Up automático cada 30 días de la Base de Datos
      */
-    public static void backUpAutomatico() {
+    public static void AutomaticBackup() {
         try {
                 Process run = Runtime.getRuntime().exec(
-                        VariablesLocales.rutaProcesoBackUp + " --host=" + host + " --port=" + port
+                        Constants.BACKUP_PRCESS_PATH + " --host=" + host + " --port=" + port
                         + " --user=" + user + " --password=" + password
                         + " --compact --complete-insert --extended-insert --skip-quote-names"
                         + " --skip-comments --skip-triggers " + db);
@@ -107,7 +107,7 @@ public class ManejoArchivos {
                 br.close();
                 in.close();
 
-                File archBackUp = new File(VariablesLocales.rutaCarpetaBackUps + "\\BackUp.sql");
+                File archBackUp = new File(Constants.BACKUPS_FOLDER_PATH + "\\BackUp.sql");
                 archBackUp.delete();
                 archBackUp.createNewFile();
                 
@@ -116,7 +116,7 @@ public class ManejoArchivos {
                 pw.print(temp.toString());
             
         } catch (IOException e) {
-            MensajesValidaciones.mostrarError(null, "Back Up automático fallido en " + VariablesLocales.rutaCarpetaBackUps + ". " + e.getMessage());
+            ValidationsAndMessages.mostrarError(null, "Back Up automático fallido en " + Constants.BACKUPS_FOLDER_PATH + ". " + e.getMessage());
         } finally {
             try {
                 if (null != fichero) {
@@ -137,7 +137,7 @@ public class ManejoArchivos {
             if(esHoyBackUp())
             {
                 Process run = Runtime.getRuntime().exec(
-                        VariablesLocales.rutaProcesoBackUp + " --host=" + host + " --port=" + port
+                        Constants.BACKUP_PRCESS_PATH + " --host=" + host + " --port=" + port
                         + " --user=" + user + " --password=" + password
                         + " --compact --complete-insert --extended-insert --skip-quote-names"
                         + " --skip-comments --skip-triggers " + db);
@@ -161,12 +161,12 @@ public class ManejoArchivos {
                 minuto = c.get(Calendar.MINUTE) + "";
                 segundo = c.get(Calendar.SECOND) + "";
 
-                fichero = new FileWriter(VariablesLocales.rutaCarpetaBackUps + "\\BackUp " + dia + "-" + mes + "-" + año + "-" + hora + "h" + minuto + "m" + segundo + "s.sql");
+                fichero = new FileWriter(Constants.BACKUPS_FOLDER_PATH + "\\BackUp " + dia + "-" + mes + "-" + año + "-" + hora + "h" + minuto + "m" + segundo + "s.sql");
                 pw = new PrintWriter(fichero);
                 pw.print(temp.toString());
             }
         } catch (IOException e) {
-            MensajesValidaciones.mostrarError(null, "Back Up automático fallido en " + VariablesLocales.rutaCarpetaBackUps + ". " + e.getMessage());
+            ValidationsAndMessages.mostrarError(null, "Back Up automático fallido en " + Constants.BACKUPS_FOLDER_PATH + ". " + e.getMessage());
         } finally {
             try {
                 if (null != fichero) {
@@ -195,7 +195,7 @@ public class ManejoArchivos {
             hora = c.get(Calendar.HOUR) + "";
             minuto = c.get(Calendar.MINUTE) + "";
             segundo = c.get(Calendar.SECOND) + "";
-            File archBackUp = new File(VariablesLocales.rutaAuxiliarBackUpAutomatico);
+            File archBackUp = new File(Constants.AUXILIAR_AUTOMATIC_BACKUP_PATH);
             String info = "";
             if (archBackUp.canRead()) {
                 FileReader fr = new FileReader(archBackUp);
@@ -224,12 +224,12 @@ public class ManejoArchivos {
             else
                 eshoy = true;
             archBackUp.delete();
-            fichero = new FileWriter(VariablesLocales.rutaAuxiliarBackUpAutomatico);
+            fichero = new FileWriter(Constants.AUXILIAR_AUTOMATIC_BACKUP_PATH);
             pw = new PrintWriter(fichero);
             pw.println(dia + "/" + mes + "/" + año);
         
         } catch (IOException e) {
-            MensajesValidaciones.mostrarError(null, "Imposible leer archivo de back up en " + VariablesLocales.rutaAuxiliarBackUpAutomatico + ". " + e.getMessage());
+            ValidationsAndMessages.mostrarError(null, "Imposible leer archivo de back up en " + Constants.AUXILIAR_AUTOMATIC_BACKUP_PATH + ". " + e.getMessage());
         } finally {
             try {
                 if (null != fichero) {
@@ -245,18 +245,18 @@ public class ManejoArchivos {
     public static void guardarColor(Component j, int color) {
         try {
             //Creamos la carpeta si no existe
-            File carpeta = new File(VariablesLocales.rutaArchivoColor.substring(0, VariablesLocales.rutaArchivoColor.lastIndexOf("\\")));
+            File carpeta = new File(Constants.COLOR_FILE_PATH.substring(0, Constants.COLOR_FILE_PATH.lastIndexOf("\\")));
             if (!carpeta.exists())
                 carpeta.mkdir();
             //Creamos el archivo de color
-            File archViejo = new File(VariablesLocales.rutaArchivoColor);
+            File archViejo = new File(Constants.COLOR_FILE_PATH);
             archViejo.delete();
             archViejo.createNewFile();
             fichero = new FileWriter(archViejo);
             pw = new PrintWriter(fichero);
             pw.println(color + "");
         } catch (Exception e) {
-            MensajesValidaciones.mostrarError(j, "No se pudo guardar el código de color.");
+            ValidationsAndMessages.mostrarError(j, "No se pudo guardar el código de color.");
         } finally {
             try {
                 if (null != fichero) {
@@ -270,12 +270,12 @@ public class ManejoArchivos {
 
     public static int leerColor() {
         try {
-            File archivoColor = new File(VariablesLocales.rutaArchivoColor);
+            File archivoColor = new File(Constants.COLOR_FILE_PATH);
             if (!archivoColor.canRead()) {
                 guardarColor(null, 0);            
                 return 0;
             }
-            FileReader fr = new FileReader(new File(VariablesLocales.rutaArchivoColor));
+            FileReader fr = new FileReader(new File(Constants.COLOR_FILE_PATH));
             BufferedReader br = new BufferedReader(fr);
             temp = new StringBuffer();
             int count;

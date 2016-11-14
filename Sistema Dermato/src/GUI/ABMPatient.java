@@ -1,10 +1,11 @@
 package GUI;
 
-import ClasesBase.GestorEstilos;
-import ClasesBase.MensajesValidaciones;
-import ClasesBase.modelo.*;
-import DAO.DAOObraSocial;
-import DAO.DAOPaciente;
+import ClasesBase.PrepaidHealthInsurance;
+import ClasesBase.Patient;
+import Utils.StyleManager;
+import Utils.ValidationsAndMessages;
+import DAO.DAOPrepaidHealthInsurance;
+import DAO.DAOPatient;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,13 +16,13 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
 
-public class ABMPacienteCompleto extends javax.swing.JFrame {
+public class ABMPatient extends javax.swing.JFrame {
     private Frame padre;
     private Principal padreP;
-    private HistoriaClinica hc;
-    private DAOPaciente daoPaciente;
+    private ClinicalHistory hc;
+    private DAOPatient daoPaciente;
     private Patient p;
-    private DAOObraSocial daoObraSocial;
+    private DAOPrepaidHealthInsurance daoObraSocial;
     private LinkedList<PrepaidHealthInsurance> obras;
     private AntecedentesFamiliares af;
     private Antecedentes agen;
@@ -35,17 +36,17 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
     /**
      * Creates new form DatosPaciente
      */
-    public ABMPacienteCompleto(java.awt.Frame parent, boolean modal,int procedencia) {     //procedencia: 0 principal nuevo, 
+    public ABMPatient(java.awt.Frame parent, boolean modal,int procedencia) {     //procedencia: 0 principal nuevo, 
         initComponents();
         ComboBoxEditor editor = cmbObraSocial.getEditor();
         JTextField etf = (JTextField) editor.getEditorComponent();
-        etf.setDisabledTextColor(GestorEstilos.getColorTexto());
-        etf.setBackground(GestorEstilos.getColorTerciario());
-        txtfNumeroAfiliado.setDisabledTextColor(GestorEstilos.getColorTexto());
+        etf.setDisabledTextColor(StyleManager.getColorTexto());
+        etf.setBackground(StyleManager.getColorTerciario());
+        txtfNumeroAfiliado.setDisabledTextColor(StyleManager.getColorTexto());
         this.btnModificar.setVisible(false);
         this.btnModificar.setEnabled(false);
-        daoPaciente = new DAOPaciente();
-        daoObraSocial = new DAOObraSocial();
+        daoPaciente = new DAOPatient();
+        daoObraSocial = new DAOPrepaidHealthInsurance();
         obras = new LinkedList<>();
         this.procedencia = procedencia;
         llenarObrasSociales();
@@ -56,11 +57,11 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         }
         else if(procedencia == 2)
         {
-        hc = (HistoriaClinica) parent;
+        hc = (ClinicalHistory) parent;
         padre = hc;
         }
         setIconImage(getIconImage());
-        ClasesBase.GestorEstilos.pintar(this);
+        Utils.StyleManager.paint(this);
         this.setExtendedState(parent.getExtendedState());
         this.setLocationRelativeTo(parent);//Mantener siempre debajo del anterior if
         //eventos de la página
@@ -78,15 +79,15 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
                 new java.awt.Color(0, 51, 102))); 
     }
     
-    public ABMPacienteCompleto(java.awt.Frame parent, boolean modal,int procedencia, Patient p) {
+    public ABMPatient(java.awt.Frame parent, boolean modal,int procedencia, Patient p) {
         initComponents();
         ComboBoxEditor editor = cmbObraSocial.getEditor();
         JTextField etf = (JTextField) editor.getEditorComponent();
-        etf.setDisabledTextColor(GestorEstilos.getColorTexto());
-        etf.setBackground(GestorEstilos.getColorTerciario());
-        txtfNumeroAfiliado.setDisabledTextColor(GestorEstilos.getColorTexto());
-        daoPaciente = new DAOPaciente();
-        daoObraSocial = new DAOObraSocial();
+        etf.setDisabledTextColor(StyleManager.getColorTexto());
+        etf.setBackground(StyleManager.getColorTerciario());
+        txtfNumeroAfiliado.setDisabledTextColor(StyleManager.getColorTexto());
+        daoPaciente = new DAOPatient();
+        daoObraSocial = new DAOPrepaidHealthInsurance();
         obras = new LinkedList<>();
         this.procedencia = procedencia;
         llenarObrasSociales();
@@ -102,7 +103,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         else if(procedencia == 2)
         {
         this.btnModificar.setVisible(false);
-        hc = (HistoriaClinica) parent;
+        hc = (ClinicalHistory) parent;
         llenarCajas(p);
         this.p = p;
         dniOriginal = Long.parseLong(this.txtfDni.getText());
@@ -112,7 +113,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
         
         this.setLocationRelativeTo(parent);
         setIconImage(getIconImage());
-        ClasesBase.GestorEstilos.pintar(this);
+        Utils.StyleManager.paint(this);
         this.setExtendedState(parent.getExtendedState());
         this.setLocationRelativeTo(parent);//Mantener siempre debajo del anterior if
         //eventos de la página
@@ -785,22 +786,22 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtfTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfTelefonoKeyTyped
-        MensajesValidaciones.negarLetras(evt,this);
-        MensajesValidaciones.limitarLargo(this.txtfTelefono, evt, 45,this);
+        ValidationsAndMessages.negarLetras(evt,this);
+        ValidationsAndMessages.limitarLargo(this.txtfTelefono, evt, 45,this);
     }//GEN-LAST:event_txtfTelefonoKeyTyped
 
     private void txtfDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfDniKeyTyped
-        MensajesValidaciones.negarLetras(evt,this);
+        ValidationsAndMessages.negarLetras(evt,this);
     }//GEN-LAST:event_txtfDniKeyTyped
 
     private void txtfNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfNombresKeyTyped
-        MensajesValidaciones.negarNumeros(evt,this);
-        MensajesValidaciones.limitarLargo(this.txtfNombres,evt,45,this);
+        ValidationsAndMessages.negarNumeros(evt,this);
+        ValidationsAndMessages.limitarLargo(this.txtfNombres,evt,45,this);
     }//GEN-LAST:event_txtfNombresKeyTyped
 
     private void txtfApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfApellidosKeyTyped
-        MensajesValidaciones.negarNumeros(evt,this);
-        MensajesValidaciones.limitarLargo(this.txtfApellidos,evt,45,this);
+        ValidationsAndMessages.negarNumeros(evt,this);
+        ValidationsAndMessages.limitarLargo(this.txtfApellidos,evt,45,this);
     }//GEN-LAST:event_txtfApellidosKeyTyped
 
     private void btnNuevaObraSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaObraSocialActionPerformed
@@ -812,21 +813,21 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevaObraSocialActionPerformed
 
     private void txtfNumeroAfiliadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfNumeroAfiliadoKeyTyped
-        MensajesValidaciones.limitarLargo(this.txtfNumeroAfiliado, evt, 45, this);
-        MensajesValidaciones.validarNumeroAfiliado(evt, this);
+        ValidationsAndMessages.limitarLargo(this.txtfNumeroAfiliado, evt, 45, this);
+        ValidationsAndMessages.validarNumeroAfiliado(evt, this);
     }//GEN-LAST:event_txtfNumeroAfiliadoKeyTyped
 
     private void btnGuardarOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarOSActionPerformed
         if (this.txtfNuevaObraSocial.getText().isEmpty()) {
-            MensajesValidaciones.mostrarError(this, "Ingrese un nombre de obra social válido...");
+            ValidationsAndMessages.mostrarError(this, "Ingrese un nombre de obra social válido...");
             return;
         }
         String nuevaObra = this.txtfNuevaObraSocial.getText();
-        if (daoObraSocial.registrarObraSocial(new PrepaidHealthInsurance(0, nuevaObra))) {
-            MensajesValidaciones.mostrarInformacion(this, "Registro Exitoso.");
+        if (daoObraSocial.registerPrePaidHealthInsurance(new PrepaidHealthInsurance(0, nuevaObra))) {
+            ValidationsAndMessages.mostrarInformacion(this, "Registro Exitoso.");
             llenarObrasSociales();
         } else {
-            MensajesValidaciones.mostrarError(this, "Registro Fallido.");
+            ValidationsAndMessages.mostrarError(this, "Registro Fallido.");
         }
         
         this.txtfNuevaObraSocial.setEnabled(false);
@@ -838,7 +839,7 @@ public class ABMPacienteCompleto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarOSActionPerformed
 
     private void txtfNuevaObraSocialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfNuevaObraSocialKeyTyped
-        MensajesValidaciones.limitarLargo(this.txtfNuevaObraSocial, evt, 80, this);
+        ValidationsAndMessages.limitarLargo(this.txtfNuevaObraSocial, evt, 80, this);
     }//GEN-LAST:event_txtfNuevaObraSocialKeyTyped
 
     private void btnCancelarOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarOSActionPerformed
@@ -877,7 +878,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     String error = comprobarDatosObligatorios();
     if(!error.isEmpty())
     {
-        MensajesValidaciones.mostrarError(this,"Debe completar los siguientes datos obligatorios: \n"+error);
+        ValidationsAndMessages.mostrarError(this,"Debe completar los siguientes datos obligatorios: \n"+error);
         return;
     }   
     long dniPaciente = Long.parseLong(this.txtfDni.getText());
@@ -894,14 +895,14 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     {
         
         if(daoPaciente.verificarPaciente(dniPaciente)){
-            MensajesValidaciones.mostrarError(this, "El paciente ya se encuentra registrado. Corrija el DNI o búsquelo en la ventana principal.");
+            ValidationsAndMessages.mostrarError(this, "El paciente ya se encuentra registrado. Corrija el DNI o búsquelo en la ventana principal.");
             this.txtfDni.setText("");
             this.txtfDni.grabFocus();
             return;
         }
                     
         if(cmbObraSocial.getSelectedIndex() != 0 && match != null){
-            MensajesValidaciones.mostrarError(this, "El paciente '"+match.getApellido().toUpperCase()+", "+match.getNombre()+"', DNI N°"+match.getDni()
+            ValidationsAndMessages.mostrarError(this, "El paciente '"+match.getApellido().toUpperCase()+", "+match.getNombre()+"', DNI N°"+match.getDni()
                     + " ya se encuentra registrado con misma obra social y N° de afiliado.");
             this.txtfNumeroAfiliado.setText("");
             this.txtfNumeroAfiliado.grabFocus();
@@ -913,23 +914,23 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
         if(!generarPaciente())
             return;
     
-        if(daoPaciente.registrarPaciente(p))
+        if(daoPaciente.registerPatient(p))
         {
-            MensajesValidaciones.mostrarInformacion(this,"Registro Exitoso.");
-            hc = new HistoriaClinica(padre, p, 1);
+            ValidationsAndMessages.mostrarInformacion(this,"Registro Exitoso.");
+            hc = new ClinicalHistory(padre, p, 1);
             hc.llenarCampos(p,1);
-            padreP.actualizarListaPacientes(null);
+            padreP.updatePatientList(null);
             this.dispose();
             hc.setVisible(true);
         }
         else{
-            MensajesValidaciones.mostrarError(this,"Registro Fallido.");
+            ValidationsAndMessages.mostrarError(this,"Registro Fallido.");
         }
     }
     else if(procedencia == 1 || procedencia == 2)//Historia clinica(2), Principal-Modificar(1) 
     {
         if(dniPaciente != dniOriginal && daoPaciente.verificarPaciente(dniPaciente)){
-            MensajesValidaciones.mostrarError(this,"El dni ingresado para la modificación ya se encuentra en la base de datos a nombre de otro paciente.\n"
+            ValidationsAndMessages.mostrarError(this,"El dni ingresado para la modificación ya se encuentra en la base de datos a nombre de otro paciente.\n"
                                              + " Corrija el DNI.");
             this.txtfDni.setText("");
             return;
@@ -939,7 +940,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
                 && (idObraSocialOriginal != osAux.getId() || !nroAfiliadoOriginal.equals(txtfNumeroAfiliado.getText())) 
                 && match != null
                 && match.getDni() != dniOriginal){
-            MensajesValidaciones.mostrarError(this, "El paciente '"+match.getApellido().toUpperCase()+", "+match.getNombre()+"', DNI N°"+match.getDni()
+            ValidationsAndMessages.mostrarError(this, "El paciente '"+match.getApellido().toUpperCase()+", "+match.getNombre()+"', DNI N°"+match.getDni()
                     + " ya se encuentra registrado con misma obra social y N° de afiliado.");
             this.txtfNumeroAfiliado.setText("");
             this.txtfNumeroAfiliado.grabFocus();
@@ -957,13 +958,13 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     
         else
         {
-            MensajesValidaciones.mostrarError(this,"Debe completar los siguientes campos obligatorios: \n"+error);
+            ValidationsAndMessages.mostrarError(this,"Debe completar los siguientes campos obligatorios: \n"+error);
             return;
         }   
     
         if(daoPaciente.actualizarPaciente(p,dniOriginal))
         {
-            MensajesValidaciones.mostrarInformacion(this,"Actualización Exitosa.");
+            ValidationsAndMessages.mostrarInformacion(this,"Actualización Exitosa.");
             
                 if(this.procedencia == 2)
                 {
@@ -977,11 +978,11 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
                 {
                     LinkedList<Patient> pacienteList = new LinkedList<Patient>();
                     pacienteList.add(daoPaciente.getPacienteBasico(p.getDni()));
-                    padreP.actualizarListaPacientes(pacienteList);
+                    padreP.updatePatientList(pacienteList);
                 }
         }
         else{
-            MensajesValidaciones.mostrarError(this,"Actualización Fallida.");
+            ValidationsAndMessages.mostrarError(this,"Actualización Fallida.");
         }
     }
     if(procedencia == 1)
@@ -1128,15 +1129,15 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
             String mes = this.ftxtfFechaNacimiento.getText(3,2);
             String año = this.ftxtfFechaNacimiento.getText(6,4);
             
-            error = MensajesValidaciones.corroborarFecha(dia,mes,año);
+            error = ValidationsAndMessages.corroborarFecha(dia,mes,año);
            
             if(!error.isEmpty())
             {
-                MensajesValidaciones.mostrarError(this, "Los siguientes valores de la fecha no son válidos o están fuera de rango: \n" + error);
+                ValidationsAndMessages.mostrarError(this, "Los siguientes valores de la fecha no son válidos o están fuera de rango: \n" + error);
                 return false;
             }
         } catch (BadLocationException ex) {
-            Logger.getLogger(ABMPacienteCompleto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ABMPatient.class.getName()).log(Level.SEVERE, null, ex);
         }
         p.setFechaNacimiento(this.ftxtfFechaNacimiento.getText());
         
@@ -1219,7 +1220,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
         obras = new LinkedList<>();
         cmbObraSocial.removeAllItems();
         obras.add(new PrepaidHealthInsurance(0, "Sin Obra Social"));
-        obras.addAll(daoObraSocial.getAllObrasSociales());
+        obras.addAll(daoObraSocial.getAllPrePaidHealthInsurances());
         for(int i = 0; i<obras.size(); i++)
             cmbObraSocial.addItem(obras.get(i).getNombre());
         cmbObraSocial.setSelectedIndex(0);
@@ -1289,11 +1290,11 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
             if (hc != null)
                 hc.cerrarHijo(this);
             else 
-                padreP.cerrarHijo(this);
+                padreP.closeChild(this);
         }
         else
         {
-            MensajesValidaciones.validarSalidaVentana(this);
+            ValidationsAndMessages.validarSalidaVentana(this);
         }
     }
     
@@ -1317,7 +1318,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
      * Devuelve el número de dni del paciente en cuestión
      * @return el dni del paciente, -1 si es un nuevo paciente aún no guardado
      */
-    public long getDniPaciente() {
+    public long getPatientDni() {
         if (p != null)
             return p.getDni();
         return -1;

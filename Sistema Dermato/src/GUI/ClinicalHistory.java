@@ -4,10 +4,10 @@
  */
 package GUI;
 
-import ClasesBase.modelo.Visit;
-import ClasesBase.GestorEstilos;
-import ClasesBase.MultiLineCellRenderer;
-import ClasesBase.modelo.Patient;
+import ClasesBase.Visit;
+import Utils.StyleManager;
+import Utils.MultiLineCellRenderer;
+import ClasesBase.Patient;
 import DAO.*;
 import java.awt.Component;
 import java.awt.Font;
@@ -20,16 +20,16 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class HistoriaClinica extends javax.swing.JFrame {
+public class ClinicalHistory extends javax.swing.JFrame {
 
     private Principal antecesor;
-    private DAOPaciente daoPaciente;
-    private DAOConsulta daoConsulta;
+    private DAOPatient daoPaciente;
+    private DAOVisit daoConsulta;
     private LinkedList<Visit> consultasDeTabla;
     private LinkedList<JFrame> ventanasAbiertas;
     private DAOAntecedentesFamiliares daoAntecFam;
     private DAOAntecedentesGinecologicos daoAntecGinec;
-    private DAOAntecedentes daoAntecGen;
+    private DAOAntecedents daoAntecGen;
     private DefaultTableModel dtmConsultas;
     private Antecedentes antecedentesGenerales;
     private Patient paciente;
@@ -40,15 +40,15 @@ public class HistoriaClinica extends javax.swing.JFrame {
     /**
      * Creates new form HistoriaClinica
      */
-    public HistoriaClinica(Component parent, Patient p, int procedencia) {
+    public ClinicalHistory(Component parent, Patient p, int procedencia) {
         initComponents();
         AntecFamModificado = false;
         AntecGenModificado = false;
         AntecGinecModificado = false;
-        daoPaciente = new DAOPaciente();
-        daoConsulta = new DAOConsulta();
+        daoPaciente = new DAOPatient();
+        daoConsulta = new DAOVisit();
         daoAntecFam = new DAOAntecedentesFamiliares();
-        daoAntecGen = new DAOAntecedentes();
+        daoAntecGen = new DAOAntecedents();
         daoAntecGinec = new DAOAntecedentesGinecologicos();
         ventanasAbiertas = new LinkedList<>();
         this.paciente = p;
@@ -64,8 +64,8 @@ public class HistoriaClinica extends javax.swing.JFrame {
         tblConsultas.setDefaultRenderer(String.class, new MultiLineCellRenderer());
         tblConsultas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         llenarTabla(paciente.getDni());
-        GestorEstilos.pintar(this);
-        pnlApellidoNombre.setBackground(GestorEstilos.getColorSecundario(GestorEstilos.colorActual));
+        StyleManager.paint(this);
+        pnlApellidoNombre.setBackground(StyleManager.getColorSecundario(StyleManager.colorActual));
         antecesor = (Principal) parent;
         this.setExtendedState(antecesor.getExtendedState());
         this.setLocationRelativeTo(antecesor);
@@ -516,7 +516,7 @@ public class HistoriaClinica extends javax.swing.JFrame {
     private void btnAntecedentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAntecedentesActionPerformed
        if(!AntecGenModificado)
        {
-            paciente.setAntecGen(daoAntecGen.getAntecedenteGeneral(paciente.getDni()));
+            paciente.setAntecGen(daoAntecGen.getAntecedent(paciente.getDni()));
             AntecGenModificado = true;
        }
        antecedentesGenerales = new Antecedentes(this,true,paciente);
@@ -546,7 +546,7 @@ public class HistoriaClinica extends javax.swing.JFrame {
 
     private void btnModificarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPacienteActionPerformed
         for (JFrame aux : ventanasAbiertas){
-            if (aux instanceof ABMPacienteCompleto)
+            if (aux instanceof ABMPatient)
                 aux.setVisible(true);
                 return;
         }      
@@ -559,7 +559,7 @@ public class HistoriaClinica extends javax.swing.JFrame {
 
         if(AntecGenModificado == false)
         {
-            paciente.setAntecGen(daoAntecGen.getAntecedenteGeneral(paciente.getDni()));
+            paciente.setAntecGen(daoAntecGen.getAntecedent(paciente.getDni()));
             AntecGenModificado = true;
         }
 
@@ -568,7 +568,7 @@ public class HistoriaClinica extends javax.swing.JFrame {
             paciente.setAntecGinec(daoAntecGinec.getAntecedenteGinecologico(paciente.getDni()));
             AntecGinecModificado = true;
         }
-        ABMPacienteCompleto pacienteInterfaz = new ABMPacienteCompleto(this,true,2,this.paciente);
+        ABMPatient pacienteInterfaz = new ABMPatient(this,true,2,this.paciente);
         ventanasAbiertas.add(pacienteInterfaz);
         pacienteInterfaz.setVisible(true);
     }//GEN-LAST:event_btnModificarPacienteActionPerformed
@@ -606,7 +606,7 @@ public class HistoriaClinica extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVerConsultaActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        antecesor.cerrarHijo(this);
+        antecesor.closeChild(this);
         cerrarVentanasAbiertas();
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
@@ -762,14 +762,14 @@ public class HistoriaClinica extends javax.swing.JFrame {
      */
     public void pintarHijos(int color) {
         for (JFrame window :  ventanasAbiertas){
-                ClasesBase.GestorEstilos.pintar(window, color);
+                Utils.StyleManager.paint(window, color);
         }
         if(antecedentesFamiliares != null)
-            ClasesBase.GestorEstilos.pintar(antecedentesFamiliares, color);
+            Utils.StyleManager.paint(antecedentesFamiliares, color);
         if(antecedentesGenerales != null)
-            ClasesBase.GestorEstilos.pintar(antecedentesGenerales, color);
+            Utils.StyleManager.paint(antecedentesGenerales, color);
         if(antecedentesGinecologicos != null)
-            ClasesBase.GestorEstilos.pintar(antecedentesGinecologicos, color);
+            Utils.StyleManager.paint(antecedentesGinecologicos, color);
     }
     
     /**
@@ -785,7 +785,7 @@ public class HistoriaClinica extends javax.swing.JFrame {
      * Devuelve el dni del paciente al cual pertenece la historia clínica
      * @return el dni del paciente al cual pertenece la historia clínica
      */
-    public long getDniPaciente(){
+    public long getPatientDni(){
         return paciente.getDni();
     }
 

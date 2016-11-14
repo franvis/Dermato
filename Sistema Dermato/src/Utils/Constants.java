@@ -1,0 +1,23 @@
+package Utils;
+
+/**
+ *
+ * @author Denise
+ */
+public class Constants {
+    
+//    No Modificar - Entorno de instalación
+//    Datos de Conexión con BD
+    public static final String HOST = "localhost";
+    public static final String PORT = "3306";
+    public static final String USER = "root";
+    public static final String PASSWORD = "3282";
+    public static final String DB = "Dermato";
+    public static final String URL = "jdbc:mysql://localhost:3306/Dermato";
+    
+    //Datos para el manejo de Archivos
+    public static final String COLOR_FILE_PATH = "C:\\Program Files\\Sistema Ginecologico\\Archivos Auxiliares\\Color.dat";
+    public static final String AUXILIAR_AUTOMATIC_BACKUP_PATH = "C:\\Program Files\\Sistema Ginecologico\\Backup Automatico\\BackUp.dat";
+    public static final String BACKUP_PRCESS_PATH = "\"C:\\Program Files\\MySQL\\MySQL Server 5.5\\bin\\mysqldump.exe\"";
+    public static final String BACKUPS_FOLDER_PATH = "C:\\Program Files\\Sistema Ginecologico\\Backup Automatico\\";
+}
