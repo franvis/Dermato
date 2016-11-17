@@ -592,7 +592,7 @@ public class ClinicalHistory extends javax.swing.JFrame {
                     }
                 }
             }
-            Visit c = daoConsulta.getConsultaCompleta(this.consultasDeTabla.get(id).getId(),paciente.getDni());
+            Visit c = daoConsulta.getFullVisit(this.consultasDeTabla.get(id).getId(),paciente.getDni());
             if(c.getTipoConsulta().compareTo("Completa") == 0)
                 j = 2;
             else if (c.getTipoConsulta().compareTo("Ginecologica") == 0)
@@ -698,7 +698,7 @@ public class ClinicalHistory extends javax.swing.JFrame {
         dtmConsultas = (DefaultTableModel) this.tblConsultas.getModel();
         borrarFilas(dtmConsultas);
         consultasDeTabla = new LinkedList<>();
-        consultasDeTabla = daoConsulta.getAllConsultasTabla(dni);
+        consultasDeTabla = daoConsulta.getAllPatientVisits(dni);
         
         if(consultasDeTabla.size() == 0)
             cambiarTamañoTabla(dtmConsultas,8);

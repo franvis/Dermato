@@ -4,7 +4,24 @@ Clase DAO dedicada a la consulta;
 package DAO;
 
 import ClasesBase.Visit;
+import Utils.DBConstants;
+import static Utils.DBConstants.MAX_WITH_ALIAS;
+import static Utils.DBConstants.SIMPLE_WHERE_CONDITION;
+import Utils.DBConstants.Tables;
+import Utils.DBConstants.VisitDBColumns;
+import static Utils.DBConstants.VisitDBColumns.biopsy;
+import static Utils.DBConstants.VisitDBColumns.complementaryStudies;
+import static Utils.DBConstants.VisitDBColumns.date;
+import static Utils.DBConstants.VisitDBColumns.diagnosis;
+import static Utils.DBConstants.VisitDBColumns.idVisit;
+import static Utils.DBConstants.VisitDBColumns.laboratory;
+import static Utils.DBConstants.VisitDBColumns.patient;
+import static Utils.DBConstants.VisitDBColumns.physicalExam;
+import static Utils.DBConstants.VisitDBColumns.reason;
+import static Utils.DBConstants.VisitDBColumns.treatment;
 import Utils.DBUtils;
+import static Utils.DBUtils.getSimpleWhereCondition;
+import static Utils.DBUtils.getWhereConditions;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -16,212 +33,205 @@ import java.util.logging.Logger;
  */
 public class DAOVisit {
 
-    private DAOConnection conexion;
-    private ResultSet rs;
-    private Connection conn;
-    private PreparedStatement pst;
-    private Visit c;
+    private final DAOConnection daoConnection;
+    private ResultSet resultSet;
+    private Connection connection;
+    private PreparedStatement preparedStatement;
+    private Visit visit;
 
     public DAOVisit() {
-        conexion = new DAOConnection();
+        daoConnection = new DAOConnection();
     }
 
     /**
-     * Metodo utilizado para registrar una consulta
+     * Method used to register a new visit
      *
-     * @param c Consulta a registrar
-     * @param dni dni del paciente que posee ese antecedente ginecologico
-     * @param tipoConsulta tipo de consulta de la consulta : 0(Obstetrica),
-     * 1(Ginecologica) o 2(Completa)
-     * @return true si se registra correctamente, false si no se registra
+     * @param visit
+     * @param dni
+     *
+     * @return true if registered, false otherwise
      */
-    public boolean RegistrarConsulta(Visit c, long dni, int tipoConsulta) {
-        boolean rtdo = false;
+    public boolean RegistrarConsulta(Visit visit, long dni) {
+        boolean result = false;
         try {
-            conn = conexion.openDBConnection();
-            conn.setAutoCommit(false);
-            pst = conn.prepareStatement(DBUtils.
-                    getInsertStatementWithValuesOnly(DBUtils.Tables.Visit,
+            connection = daoConnection.openDBConnection();
+            connection.setAutoCommit(false);
+            preparedStatement = connection.prepareStatement(DBUtils.
+                    getInsertStatementWithValuesOnly(Tables.Visit,
                             "null,str_to_date(?, '%d/%c/%Y'),?,?,?,?,?,?,?,?"));
-            pst.setString(1, c.getDate());
-            pst.setString(2, c.getReason());
-            pst.setString(3, c.getTreatment());
-            pst.setString(4, c.getComplementaryStudies());
-            pst.setString(5, c.getLaboratory());
-            pst.setString(6, c.getDiagnosis());
-            pst.setString(7, c.getPhysicalExam());
-            pst.setString(8, c.getBiopsy());
-            pst.setLong(9, dni);
-            pst.executeUpdate();
+            preparedStatement.setString(1, visit.getDate());
+            preparedStatement.setString(2, visit.getReason());
+            preparedStatement.setString(3, visit.getTreatment());
+            preparedStatement.setString(4, visit.getComplementaryStudies());
+            preparedStatement.setString(5, visit.getLaboratory());
+            preparedStatement.setString(6, visit.getDiagnosis());
+            preparedStatement.setString(7, visit.getPhysicalExam());
+            preparedStatement.setString(8, visit.getBiopsy());
+            preparedStatement.setLong(9, dni);
+            preparedStatement.executeUpdate();
 
-            conn.commit();
-            rtdo = true;
-            conn.setAutoCommit(true);
-            pst.close();
+            connection.commit();
+            result = true;
+            connection.setAutoCommit(true);
+            preparedStatement.close();
         } catch (Exception ex) {
             try {
-                conn.rollback();
+                connection.rollback();
             } catch (SQLException e) {
                 System.out.println("RollBack Failure." + e.getMessage());
             }
             System.out.println(ex.getMessage());
         } finally {
-            conexion.closeDBConnection(conn);
+            daoConnection.closeDBConnection(connection);
         }
-        return rtdo;
+        return result;
+    }
+
+    /**
+     * Method used to retrieve the last consult id for a certain patient
+     *
+     * @param dni patient's dni
+     *
+     * @return id last visit id
+     */
+    public long getLastVisitId(long dni) {
+        connection = daoConnection.openDBConnection();
+        return getLastVisitId(connection, dni);
+    }
+
+    /**
+     * Method used to retrieve the last consult id for a certain patient with a
+     * certain connection
+     *
+     * @param connection Connection used to perform the query
+     * @param dni patient's dni
+     *
+     * @return id last visit id
+     */
+    public long getLastVisitId(Connection connection, long dni) {
+        String columns = String.format(MAX_WITH_ALIAS, idVisit.name(),
+                idVisit.name());
+        String whereCondition = String.format(SIMPLE_WHERE_CONDITION, patient.name());
+
+        String consulta = DBUtils.getSelectStatementWithColumns(Tables.Visit,
+                columns, whereCondition);
+
+        long lastVisit = 0;
+        try {
+            connection = daoConnection.openDBConnection();
+            preparedStatement = connection.prepareStatement(consulta);
+            preparedStatement.setLong(1, dni);
+            preparedStatement.executeQuery();
+            resultSet = preparedStatement.getResultSet();
+            if (resultSet.next()) {
+                lastVisit = resultSet.getLong(idVisit.name());
+            }
+            preparedStatement.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            daoConnection.closeDBConnection(connection);
+        }
+        return lastVisit;
+    }
+
+    /**
+     * Method used to retrieve all the patient's consults
+     *
+     * @param dni patient
+     * @return List of patient's visits
+     */
+    public LinkedList<Visit> getAllPatientVisits(long dni) {
+        LinkedList<Visit> visits = new LinkedList<>();
+
+        String columns = DBUtils.getStringWithValuesSeparatedWithCommas(
+                idVisit.name(), date.name(), reason.name(), diagnosis.name());
+        String whereConditions = getSimpleWhereCondition(patient.name());
+        String orderConditions = DBUtils.getStringWithValuesSeparatedWithCommas(
+                DBUtils.getOrderByCondition(date.name(), false),
+                DBUtils.getOrderByCondition(idVisit.name(), false));
+
+        String query = DBUtils.getSelectStatementWithColumnsAndOrderCondition(
+                Tables.Visit, columns, whereConditions, orderConditions);
+        try {
+            connection = daoConnection.openDBConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setLong(1, dni);
+            preparedStatement.executeQuery();
+            resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                visit = new Visit();
+                String fecha = resultSet.getString(date.name());
+                String año = fecha.substring(0, 4);
+                String mes = fecha.substring(5, 7);
+                String dia = fecha.substring(8, 10);
+                visit.setId(Integer.parseInt(resultSet.getString(idVisit.name())));
+                visit.setDate(dia + "/" + mes + "/" + año);
+                visit.setReason(resultSet.getString(reason.name()));
+                visit.setDiagnosis(resultSet.getString(diagnosis.name()));
+                visits.add(visit);
+            }
+            preparedStatement.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            daoConnection.closeDBConnection(connection);
+        }
+        return visits;
+    }
+
+    /**
+     * Method used to retrieve a patient's full visit
+     *
+     * @param visitId visit
+     * @param dni patient
+     * @return Full patient's visit
+     */
+    public Visit getFullVisit(int visitId, long dni) {
+
+        String whereCondition = getWhereConditions(
+                getSimpleWhereCondition(patient.name()),
+                getSimpleWhereCondition(idVisit.name()));
+        
+        String query = DBUtils.getSelectStatementWithoutColumns(Tables.Visit, 
+                 whereCondition);
+        
+        try {
+            connection = daoConnection.openDBConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setLong(1, dni);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeQuery();
+            resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                visit = new Visit();
+                String fecha = resultSet.getString(date.name());
+                String año = fecha.substring(0, 4);
+                String mes = fecha.substring(5, 7);
+                String dia = fecha.substring(8, 10);
+                visit.setId(resultSet.getInt(idVisit.name()));
+                visit.setDate(dia + "/" + mes + "/" + año);
+                visit.setReason(resultSet.getString(reason.name()));
+                visit.setTreatment(resultSet.getString(treatment.name()));
+                visit.setComplementaryStudies(resultSet.getString(complementaryStudies.name()));
+                visit.setLaboratory(resultSet.getString(laboratory.name()));
+                visit.setDiagnosis(resultSet.getString(diagnosis.name()));
+                visit.setPhysicalExam(resultSet.getString(physicalExam.name()));
+                visit.setBiopsy(resultSet.getString(biopsy.name()));
+            }
+            preparedStatement.close();
+        } catch (SQLException ex) {
+        }
+        daoConnection.closeDBConnection(connection);
+        
+        return visit;
     }
 
 //    /**
-//     * Metodo utilizado para obtener el id de la ultima consulta de un paciente
+//     * Method used to update a visit
 //     *
-//     * @param dni dni del paciente del cual queremos obtener el id de la ultima
-//     * consulta
-//     * @return id de la ultima consulta
-//     */
-//    public long getIdUltimaConsulta(long dni) {
-//        conn = conexion.openDBConnection();
-//        String consulta = "SELECT MAX(idconsulta) AS idconsulta FROM SistemaCarla.consulta WHERE dniPaciente = ?";
-//        long ultimaConsulta = 0;
-//        try {
-//            conn = conexion.openDBConnection();
-//            pst = conn.prepareStatement(consulta);
-//            pst.setLong(1, dni);
-//            pst.executeQuery();
-//            rs = pst.getResultSet();
-//            if (rs.next()) {
-//                ultimaConsulta = rs.getLong("idconsulta");
-//            }
-//            pst.close();
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        } finally {
-//            conexion.closeDBConnection(conn);
-//        }
-//        return ultimaConsulta;
-//
-//    }
-//
-//    /**
-//     * Metodo utilizado para obtener el id de la ultima consulta de un paciente
-//     * embebida en una transaccion
-//     *
-//     * @param dni dni del paciente del cual queremos obtener el id de la ultima
-//     * consulta
-//     * @return id de la ultima consulta
-//     */
-//    public long getIdUltimaConsulta(Connection con, long dni) {
-//        conn = con;
-//        String consulta = "SELECT MAX(idconsulta) AS idconsulta FROM SistemaCarla.consulta WHERE dniPaciente = ?";
-//        long ultimaConsulta = 0;
-//        try {
-//            pst = conn.prepareStatement(consulta);
-//            pst.setLong(1, dni);
-//            pst.executeQuery();
-//            rs = pst.getResultSet();
-//            if (rs.next()) {
-//                ultimaConsulta = rs.getLong("idconsulta");
-//            }
-//            pst.close();
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        }
-//        return ultimaConsulta;
-//
-//    }
-//
-//    /**
-//     * Metodo utilizado para obtener todas las consultas de un paciente
-//     *
-//     * @param dni dni del paciente del cual queremos obtener todas las consultas
-//     * @return Lista de consultas del paciente
-//     */
-//    public LinkedList<Visit> getAllConsultasTabla(long dni) {
-//        LinkedList<Visit> consultas = new LinkedList<>();
-//
-//        String consulta = "SELECT idConsulta,fecha,motivo,diagnostico,tipoConsulta FROM sistemaCarla.Consulta WHERE dniPaciente = ? ORDER BY fecha DESC, idConsulta DESC";
-//
-//        try {
-//            conn = conexion.openDBConnection();
-//            pst = conn.prepareStatement(consulta);
-//            pst.setLong(1, dni);
-//            pst.executeQuery();
-//            rs = pst.getResultSet();
-//            while (rs.next()) {
-//                c = new Visit();
-//                String fecha = rs.getString("fecha");
-//                String año = fecha.substring(0, 4);
-//                String mes = fecha.substring(5, 7);
-//                String dia = fecha.substring(8, 10);
-//                c.setId(Integer.parseInt(rs.getString("idConsulta")));
-//                c.setFecha(dia + "/" + mes + "/" + año);
-//                c.setMotivo(rs.getString("motivo"));
-//                c.setDiagnostico(rs.getString("diagnostico"));
-//                c.setTipoConsulta(rs.getString("tipoConsulta"));
-//                consultas.add(c);
-//            }
-//            pst.close();
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        } finally {
-//            conexion.closeDBConnection(conn);
-//        }
-//        return consultas;
-//    }
-//
-//    /**
-//     * Metodo utilizado para obtener una consulta completa de un paciente
-//     *
-//     * @param id id de la consulta a buscar
-//     * @param dni dni del paciente del cual queremos obtener la consulta
-//     * @return Consulta completa
-//     */
-//    public Visit getConsultaCompleta(int id, long dni) {
-//
-//        String consulta = "SELECT * FROM sistemaCarla.Consulta WHERE dniPaciente = ? AND idConsulta = ?";
-//
-//        try {
-//            conn = conexion.openDBConnection();
-//            pst = conn.prepareStatement(consulta);
-//            pst.setLong(1, dni);
-//            pst.setInt(2, id);
-//            pst.executeQuery();
-//            rs = pst.getResultSet();
-//            while (rs.next()) {
-//                c = new Visit();
-//                String fecha = rs.getString("fecha");
-//                String año = fecha.substring(0, 4);
-//                String mes = fecha.substring(5, 7);
-//                String dia = fecha.substring(8, 10);
-//                c.setId(rs.getInt("idConsulta"));
-//                c.setDiagnostico(rs.getString("diagnostico"));
-//                c.setComplementaryStudies(rs.getString("estudiosComplementarios"));
-//                c.setObservaciones(rs.getString("observaciones"));
-//                c.setTratamiento(rs.getString("tratamiento"));
-//                c.setFecha(dia + "/" + mes + "/" + año);
-//                c.setMotivo(rs.getString("motivo"));
-//                c.setDiagnostico(rs.getString("diagnostico"));
-//                c.setTipoConsulta(rs.getString("tipoConsulta"));
-//            }
-//            pst.close();
-//        } catch (SQLException ex) {
-//        }
-//        conexion.closeDBConnection(conn);
-//        if (c.getTipoConsulta().compareTo("Completa") == 0 || c.getTipoConsulta().compareTo("Ginecologica") == 0) {
-//            c.setExamenGinecologico(daoExamGinec.getExamenGinec(c.getId()));
-//        }
-//
-//        if (c.getTipoConsulta().compareTo("Completa") == 0 || c.getTipoConsulta().compareTo("Obstetrica") == 0) {
-//            c.setExamenObstetrico(daoExamObste.getExamenObste(c.getId()));
-//        }
-//        return c;
-//
-//    }
-//
-//    /**
-//     * Metodo utilizado para actualizar una consulta
-//     *
-//     * @param consulta consulta modificada para actualizar
-//     * @return true si se actualiza correctamente, false si no se actualiza
+//     * @param visit modified visit
+//     * @return true if updated correctly, false otherwise
 //     */
 //    public boolean actualizarConsulta(Visit consulta) {
 //        try {
