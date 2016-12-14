@@ -28,10 +28,14 @@ public class DBConstants {
     
     public static final String ORDER_BY_COLUMN_DESC = "%s ASC";
     
+    //INSERT STATEMENTS
+    
     public static final String INSERT_WITH_VALUES_ONLY = "INSERT INTO "+DB_NAME
             + ".%s VALUES (%s)";
     public static final String INSERT_WITH_COLUMNS = "INSERT INTO "+DB_NAME
             +".%s (%s) VALUES (%s)";
+    
+    //SELECT STATEMENTS
     
     public static final String SELECT_WITH_COLUMNS = "SELECT %s FROM "+DB_NAME
             +".%s WHERE %s";
@@ -44,6 +48,9 @@ public class DBConstants {
     
     public static final String SELECT_WITHOUT_COLUMNS_WITH_ORDER = SELECT_WITHOUT_COLUMNS 
             + " ORDER BY %s";
+    
+    //UPDATE STATEMENTS
+    public static final String UPDATE = "UPDATE "+ DB_NAME+".%s SET %s WHERE %s";
     
     //VISIT TABLE COLUMNS
     public enum VisitDBColumns{ idVisit, date, reason, treatment, 

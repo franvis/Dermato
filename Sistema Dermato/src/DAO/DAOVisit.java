@@ -200,7 +200,7 @@ public class DAOVisit {
             connection = daoConnection.openDBConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setLong(1, dni);
-            preparedStatement.setInt(2, id);
+            preparedStatement.setInt(2, visitId);
             preparedStatement.executeQuery();
             resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
@@ -227,72 +227,47 @@ public class DAOVisit {
         return visit;
     }
 
-//    /**
-//     * Method used to update a visit
-//     *
-//     * @param visit modified visit
-//     * @return true if updated correctly, false otherwise
-//     */
-//    public boolean actualizarConsulta(Visit consulta) {
-//        try {
-//            c = consulta;
-//            conn = conexion.openDBConnection();
-//            String cons = "UPDATE sistemaCarla.Consulta SET "
-//                    + "motivo = ?,"
-//                    + "tratamiento = ?,"
-//                    + "estudiosComplementarios = ?,"
-//                    + "observaciones = ?,"
-//                    + "diagnostico = ?,"
-//                    + "tipoConsulta = ? "
-//                    + "WHERE idConsulta = ?";
-//            pst = conn.prepareStatement(cons);
-//            pst.setString(1, c.getMotivo());
-//            pst.setString(2, c.getTratamiento());
-//            pst.setString(3, c.getEstudiosComplementarios());
-//            pst.setString(4, c.getObservaciones());
-//            pst.setString(5, c.getDiagnostico());
-//            pst.setString(6, c.getTipoConsulta());
-//            pst.setInt(7, c.getId());
-//
-//            return (((pst.executeUpdate() > 0) ? true : false) && actualizarExamenes(c));
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DAOVisit.class.getName()).log(Level.SEVERE, null, ex);
-//            return false;
-//        } finally {
-//            try {
-//                pst.close();
-//            } catch (SQLException ex) {
-//                Logger.getLogger(DAOVisit.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            conexion.closeDBConnection(conn);
-//        }
-//    }
-//
-//    /**
-//     * Metodo utilizado para actualizar los examenes de una consulta
-//     *
-//     * @param consulta consulta modificada que contiene los examenes a
-//     * actualizar
-//     * @return true si se actualizan correctamente, false si no se actualizan
-//     */
-//    private boolean actualizarExamenes(Visit c) {
-//
-//        boolean Resultado1 = true, Resultado2 = true;
-//        switch (c.getTipoConsulta()) {
-//            case "Obstetrica":
-//                Resultado2 = daoExamObste.ActualizarExamObste(c.getExamenObstetrico(), c.getId());
-//                break;
-//
-//            case "Ginecologica":
-//                Resultado1 = daoExamGinec.ActualizarExamGinec(c.getExamenGinecologico(), c.getId());
-//                break;
-//
-//            case "Completa":
-//                Resultado1 = daoExamGinec.ActualizarExamGinec(c.getExamenGinecologico(), c.getId());
-//                Resultado2 = daoExamObste.ActualizarExamObste(c.getExamenObstetrico(), c.getId());
-//                break;
-//        }
-//        return (Resultado1 && Resultado2);
-//
-//    }
+    /**
+     * Method used to update a visit
+     *
+     * @param visit modified visit
+     * @return true if updated correctly, false otherwise
+     */
+    public boolean actualizarConsulta(Visit visit) {
+        try {
+            this.visit = visit;
+            connection = daoConnection.openDBConnection();
+                        
+            String columns = DBUtils.getStringWithValuesSeparatedWithCommas(
+                    reason.name(), treatment.name(), complementaryStudies.name(),
+                    laboratory.name(), diagnosis.name(), physicalExam.name(),
+                    biopsy.name());
+            
+            String whereCondition = DBUtils.getSimpleWhereCondition(idVisit.name());
+            
+            String cons = DBUtils.getUpdateStatement(Tables.Visit, columns, whereCondition);
+            
+            preparedStatement = connection.prepareStatement(cons);
+            preparedStatement.setString(1, visit.getReason());
+            preparedStatement.setString(2, visit.getTreatment());
+            preparedStatement.setString(3, visit.getComplementaryStudies());
+            preparedStatement.setString(4, visit.getLaboratory());
+            preparedStatement.setString(5, visit.getDiagnosis());
+            preparedStatement.setString(6, visit.getPhysicalExam());
+            preparedStatement.setString(7, visit.getBiopsy());
+            preparedStatement.setInt(8, visit.getId());
+
+            return (((preparedStatement.executeUpdate() > 0)));
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOVisit.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } finally {
+            try {
+                preparedStatement.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOVisit.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            daoConnection.closeDBConnection(connection);
+        }
+    }
 }

@@ -51,6 +51,12 @@ public class DBUtils {
 
     //UPDATE STATEMENTS
     
+    public static String getUpdateStatement(Tables table, String columns,
+            String whereConditions) {
+        return String.format(DBConstants.UPDATE, table.name(),
+                columns, whereConditions);
+    }
+    
     //WHERE ORDER AND OTHERS
     
     public static String getSimpleWhereCondition(String column){
