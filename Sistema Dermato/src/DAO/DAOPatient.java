@@ -3,7 +3,7 @@
  */
 package DAO;
 
-import ClasesBase.PrepaidHealthInsurance;
+import ClasesBase.PrePaidHealthInsurance;
 import ClasesBase.Patient;
 import Utils.DBUtils;
 import Utils.DBUtils.Tables;

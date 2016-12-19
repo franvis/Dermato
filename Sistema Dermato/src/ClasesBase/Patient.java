@@ -18,7 +18,7 @@ public class Patient {
     private String address;
     private String city;
     private String birthday;
-    private PrepaidHealthInsurance prepaidHealthInsurance;
+    private PrePaidHealthInsurance prepaidHealthInsurance;
     private String prepaidHealthInsuranceNumber;
     private String firstVisitDate;
     private Antecedents antecendents;
@@ -30,7 +30,7 @@ public class Patient {
 
     public Patient(String name, String lastname, String phone, long dni,
             String address, String city, String birthday, 
-            PrepaidHealthInsurance prepaidHealthInsurance, String prepaidHealthInsuranceNumber, Antecedents antecendent,
+            PrePaidHealthInsurance prepaidHealthInsurance, String prepaidHealthInsuranceNumber, Antecedents antecendent,
             String firstVisitDate) {
         this.name = name;
         this.lastname = lastname;
@@ -47,7 +47,7 @@ public class Patient {
 
     public Patient(String name, String lastname, String phone, long dni,
             String address, String city, String birthday,
-            PrepaidHealthInsurance prepaidHealthInsurance, String prepaidHealthInsuranceNumber, Antecedents antecendent, 
+            PrePaidHealthInsurance prepaidHealthInsurance, String prepaidHealthInsuranceNumber, Antecedents antecendent, 
             String firstVisitDate, LinkedList<Visit> visits) {
         this.name = name;
         this.lastname = lastname;
@@ -111,11 +111,11 @@ public class Patient {
         this.prepaidHealthInsuranceNumber = prepaidHealthInsuranceNumber;
     }
 
-    public PrepaidHealthInsurance getPrepaidHealthInsurance() {
+    public PrePaidHealthInsurance getPrepaidHealthInsurance() {
         return prepaidHealthInsurance;
     }
 
-    public void setPrepaidHealthInsurance(PrepaidHealthInsurance prepaidHealthInsurance) {
+    public void setPrepaidHealthInsurance(PrePaidHealthInsurance prepaidHealthInsurance) {
         this.prepaidHealthInsurance = prepaidHealthInsurance;
     }
 

@@ -33,7 +33,7 @@ public class DBUtils {
     }
     
     public static String getSelectStatementWithoutColumns(Tables table, String whereConditions) {
-        return String.format(DBConstants.SELECT_WITHOUT_COLUMNS, table.name(),
+        return String.format(DBConstants.SELECT_ALL_WITHOUT_WHERE, table.name(),
                 whereConditions);
     }
 
@@ -48,6 +48,12 @@ public class DBUtils {
         return String.format(DBConstants.SELECT_WITHOUT_COLUMNS_WITH_ORDER, table.name(),
                 whereConditions, orderConditions);
     }
+    
+    public static String getSelectStatementWithoutColumnsWithoutWhereWithOrder(Tables table,
+            String orderConditions) {
+        return String.format(DBConstants.SELECT_WITHOUT_COLUMNS_WITH_ORDER, table.name(),
+                orderConditions);
+    }
 
     //UPDATE STATEMENTS
     
@@ -57,10 +63,21 @@ public class DBUtils {
                 columns, whereConditions);
     }
     
+    //DELETE STATEMENTS
+    
+    public static String getDeleteStatement(Tables table, 
+            String whereConditions) {
+        return String.format(DBConstants.DELETE, table.name(), whereConditions);
+    }
+    
     //WHERE ORDER AND OTHERS
     
     public static String getSimpleWhereCondition(String column){
         return String.format(DBConstants.SIMPLE_WHERE_CONDITION, column);
+    }
+    
+    public static String getIsNullWhereCondition(String column){
+        return String.format(DBConstants.IS_NULL_WHERE_CONDITION, column);
     }
     
     public static String getOrderByCondition(String column, boolean asc) {
@@ -78,6 +95,17 @@ public class DBUtils {
                 builder.append(values[i]);
             else
                 builder.append(", ").append(values[i]);
+        }
+        return builder.toString();
+    }
+    
+    public static String getStringWithValuesSeparatedWithCommasForUpdate(String... values){
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < values.length; i++) {
+            if(i==0 || i == values.length - 1)
+                builder.append(values[i]).append(" = ?");
+            else
+                builder.append(", ").append(values[i]).append(" = ?");
         }
         return builder.toString();
     }

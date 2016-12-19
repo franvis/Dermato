@@ -1,6 +1,6 @@
 package GUI;
 
-import ClasesBase.PrepaidHealthInsurance;
+import ClasesBase.PrePaidHealthInsurance;
 import ClasesBase.Patient;
 import Utils.StyleManager;
 import Utils.ValidationsAndMessages;
@@ -23,7 +23,7 @@ public class ABMPatient extends javax.swing.JFrame {
     private DAOPatient daoPaciente;
     private Patient p;
     private DAOPrepaidHealthInsurance daoObraSocial;
-    private LinkedList<PrepaidHealthInsurance> obras;
+    private LinkedList<PrePaidHealthInsurance> obras;
     private AntecedentesFamiliares af;
     private Antecedentes agen;
     private AntecedentesGinecologicos aginec;
@@ -823,7 +823,7 @@ public class ABMPatient extends javax.swing.JFrame {
             return;
         }
         String nuevaObra = this.txtfNuevaObraSocial.getText();
-        if (daoObraSocial.registerPrePaidHealthInsurance(new PrepaidHealthInsurance(0, nuevaObra))) {
+        if (daoObraSocial.registerPrePaidHealthInsurance(new PrePaidHealthInsurance(0, nuevaObra))) {
             ValidationsAndMessages.mostrarInformacion(this, "Registro Exitoso.");
             llenarObrasSociales();
         } else {
@@ -883,7 +883,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     }   
     long dniPaciente = Long.parseLong(this.txtfDni.getText());
     
-    PrepaidHealthInsurance osAux = new PrepaidHealthInsurance();
+    PrePaidHealthInsurance osAux = new PrePaidHealthInsurance();
     for (int i = 0; i < obras.size(); i++) {
         if(obras.get(i).getNombre().compareTo(cmbObraSocial.getSelectedItem().toString()) == 0)
             osAux = obras.get(i);
@@ -1219,7 +1219,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     private void llenarObrasSociales() {
         obras = new LinkedList<>();
         cmbObraSocial.removeAllItems();
-        obras.add(new PrepaidHealthInsurance(0, "Sin Obra Social"));
+        obras.add(new PrePaidHealthInsurance(0, "Sin Obra Social"));
         obras.addAll(daoObraSocial.getAllPrePaidHealthInsurances());
         for(int i = 0; i<obras.size(); i++)
             cmbObraSocial.addItem(obras.get(i).getNombre());

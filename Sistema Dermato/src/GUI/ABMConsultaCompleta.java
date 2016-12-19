@@ -816,7 +816,7 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         }
         else
         {
-            if(daoConsulta.actualizarConsulta(cons))
+            if(daoConsulta.updateVisit(cons))
             {
                 ValidationsAndMessages.mostrarInformacion(this, "Actualización Exitosa.");
                 cambiarBotones(false);

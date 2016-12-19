@@ -4,11 +4,9 @@ Clase DAO dedicada a la consulta;
 package DAO;
 
 import ClasesBase.Visit;
-import Utils.DBConstants;
 import static Utils.DBConstants.MAX_WITH_ALIAS;
 import static Utils.DBConstants.SIMPLE_WHERE_CONDITION;
 import Utils.DBConstants.Tables;
-import Utils.DBConstants.VisitDBColumns;
 import static Utils.DBConstants.VisitDBColumns.biopsy;
 import static Utils.DBConstants.VisitDBColumns.complementaryStudies;
 import static Utils.DBConstants.VisitDBColumns.date;
@@ -136,7 +134,7 @@ public class DAOVisit {
     }
 
     /**
-     * Method used to retrieve all the patient's consults
+     * Method used to retrieve all the patient's visits
      *
      * @param dni patient
      * @return List of patient's visits
@@ -233,12 +231,12 @@ public class DAOVisit {
      * @param visit modified visit
      * @return true if updated correctly, false otherwise
      */
-    public boolean actualizarConsulta(Visit visit) {
+    public boolean updateVisit(Visit visit) {
         try {
             this.visit = visit;
             connection = daoConnection.openDBConnection();
                         
-            String columns = DBUtils.getStringWithValuesSeparatedWithCommas(
+            String columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
                     reason.name(), treatment.name(), complementaryStudies.name(),
                     laboratory.name(), diagnosis.name(), physicalExam.name(),
                     biopsy.name());

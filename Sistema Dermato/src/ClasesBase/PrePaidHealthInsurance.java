@@ -7,16 +7,16 @@ package ClasesBase;
  *
  * @author Fran
  */
-public class PrepaidHealthInsurance {
+public class PrePaidHealthInsurance {
     private int id;
     private String name;
 
-    public PrepaidHealthInsurance(int id, String name) {
+    public PrePaidHealthInsurance(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public PrepaidHealthInsurance() {
+    public PrePaidHealthInsurance() {
     }
 
     public int getId() {
@@ -44,7 +44,7 @@ public class PrepaidHealthInsurance {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        PrepaidHealthInsurance otherPrepaidHealthInsurance = (PrepaidHealthInsurance) obj;
+        PrePaidHealthInsurance otherPrepaidHealthInsurance = (PrePaidHealthInsurance) obj;
         if (this.id != otherPrepaidHealthInsurance.id) {
             return false;
         }

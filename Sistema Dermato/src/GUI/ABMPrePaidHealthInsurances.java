@@ -10,7 +10,7 @@
 package GUI;
 
 import Utils.ValidationsAndMessages;
-import ClasesBase.PrepaidHealthInsurance;
+import ClasesBase.PrePaidHealthInsurance;
 import DAO.DAOPrepaidHealthInsurance;
 import java.awt.Frame;
 import java.awt.Image;
@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
 public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
 
     private DAOPrepaidHealthInsurance daoObraSocial;
-    private LinkedList<PrepaidHealthInsurance> obras;
+    private LinkedList<PrePaidHealthInsurance> obras;
     private DefaultTableModel dtmObras;
     private boolean esModificar;
     
@@ -356,7 +356,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if(!obras.isEmpty()){
             int idObraSeleccionada = obras.get(tblObrasSociales.getSelectedRow()).getId();
-            if(daoObraSocial.eliminarObraSocial(new PrepaidHealthInsurance(idObraSeleccionada, ""))){
+            if(daoObraSocial.deletePrePaidHealthInsurance(new PrePaidHealthInsurance(idObraSeleccionada, ""))){
                 ValidationsAndMessages.mostrarInformacion(this, "Borrado Exitoso.");
                 obras = daoObraSocial.getAllPrePaidHealthInsurances();
                 llenarObrasSociales(obras);
@@ -392,7 +392,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         if(!obras.isEmpty()){
             int idObraSeleccionada = obras.get(tblObrasSociales.getSelectedRow()).getId();
-            PrepaidHealthInsurance aModificar = daoObraSocial.getObraSocial(idObraSeleccionada);
+            PrePaidHealthInsurance aModificar = daoObraSocial.getObraSocial(idObraSeleccionada);
             txtNombreObraSocial.setText(aModificar.getNombre());
             txtNombreObraSocial.grabFocus();
             esModificar = true;
@@ -408,7 +408,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
         return;
         }
         if(!esModificar){
-            if (daoObraSocial.registerPrePaidHealthInsurance(new PrepaidHealthInsurance(0, txtNombreObraSocial.getText()))) {
+            if (daoObraSocial.registerPrePaidHealthInsurance(new PrePaidHealthInsurance(0, txtNombreObraSocial.getText()))) {
                 ValidationsAndMessages.mostrarInformacion(this, "Registro Exitoso.");
                 this.txtNombreObraSocial.setText("");
                 this.obras.removeAll(obras);
@@ -421,7 +421,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
         else
         {
             int idObraSeleccionada = obras.get(tblObrasSociales.getSelectedRow()).getId();
-            if(daoObraSocial.actualizarObraSocial(new PrepaidHealthInsurance(idObraSeleccionada,txtNombreObraSocial.getText())))
+            if(daoObraSocial.updatePrepaidHealthInsurance(new PrePaidHealthInsurance(idObraSeleccionada,txtNombreObraSocial.getText())))
             {
             ValidationsAndMessages.mostrarInformacion(this, "Actualización Exitosa.");
                 this.txtNombreObraSocial.setText("");
@@ -475,7 +475,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
      * Carga en la tabla de la ventana los datos de las obras sociales existentes
      * @param obras lista de obras sociales a cargarse en la tabla
      */
-    private void llenarObrasSociales(LinkedList<PrepaidHealthInsurance> obras) {
+    private void llenarObrasSociales(LinkedList<PrePaidHealthInsurance> obras) {
         Object[] o;
         this.dtmObras = (DefaultTableModel) this.tblObrasSociales.getModel();
         this.borrarFilas(dtmObras);
