@@ -4,8 +4,8 @@
 package DAO;
 
 import ClasesBase.Antecedents;
+import Utils.DBConstants.Tables;
 import Utils.DBUtils;
-import Utils.DBUtils.Tables;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -5,8 +5,8 @@ package DAO;
 
 import ClasesBase.PrePaidHealthInsurance;
 import ClasesBase.Patient;
+import Utils.DBConstants.Tables;
 import Utils.DBUtils;
-import Utils.DBUtils.Tables;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.logging.Level;
