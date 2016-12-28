@@ -5,6 +5,9 @@
  */
 package Utils;
 
+import static Utils.DBConstants.INNER_JOIN;
+import static Utils.DBConstants.LEFT_JOIN;
+import static Utils.DBConstants.RIGHT_JOIN;
 import Utils.DBConstants.Tables;
 
 /**
@@ -48,6 +51,12 @@ public class DBUtils {
             String whereConditions, String orderConditions) {
         return String.format(DBConstants.SELECT_ALL_WITH_WHERE_AND_ORDER, table.name(),
                 whereConditions, orderConditions);
+    }
+    
+    public static String getSelectColumnsStatementWithWhereGroupByAndOrder(Tables table, String columns, 
+            String whereConditions, String groupByCondition, String orderConditions) {
+        return String.format(DBConstants.SELECT_COLUMNS_WITH_WHERE_GROUP_BY_AND_ORDER, table.name(),
+                columns, whereConditions, groupByCondition, orderConditions);
     }
     
     public static String getSelectColumnsStatementWithWhere(Tables table, String columns, String whereConditions) {
@@ -94,6 +103,12 @@ public class DBUtils {
         }
     }
     
+    public static String getTableJoin(int joinType, Tables firstTable, 
+            Tables secondTable, String firstTableColumn, String secondTableColumn){
+        return String.format(DBConstants.JOIN, firstTable.name(), getJoinType(joinType), secondTable.name(),
+                firstTableColumn, secondTableColumn);
+    }
+    
     public static String getStringWithValuesSeparatedWithCommas(String... values){
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < values.length; i++) {
@@ -125,5 +140,17 @@ public class DBUtils {
                 builder.append(" AND ").append(values[i]);
         }
         return builder.toString();
+    }
+    
+    private static String getJoinType(int joinType){
+        switch(joinType){
+            case INNER_JOIN:
+                return "INNER JOIN";
+            case LEFT_JOIN:
+                return "LEFT JOIN";
+            case RIGHT_JOIN:
+                return "RIGHT_JOIN";
+            default: return null;
+        }
     }
 }

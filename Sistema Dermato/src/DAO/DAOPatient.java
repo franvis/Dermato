@@ -4,7 +4,10 @@
 package DAO;
 
 import ClasesBase.Patient;
+import static Utils.DBConstants.LEFT_JOIN;
+import static Utils.DBConstants.PatientDBColumns.dni;
 import Utils.DBConstants.Tables;
+import Utils.DBConstants.VisitDBColumns;
 import Utils.DBUtils;
 import java.sql.*;
 import java.util.LinkedList;
@@ -44,8 +47,6 @@ public class DAOPatient extends DAOBasics{
                 preparedStatement.setInt(8, patient.getPrepaidHealthInsurance().getId());
                 preparedStatement.setString(9, patient.getPrepaidHealthInsuranceNumber());
             } else {
-//                cons = DBUtils.getInsertStatementWithColumns(Tables.Patient, cons, cons)
-//                cons = "INSERT INTO sistemaCarla.Paciente (dni, nombre, apellido, telefono, fechaNacimiento, grupoSanguineo, factor, obrasocial, numeroAfiliado) VALUES (?,?,?,?,str_to_date(?, '%d/%c/%Y'),?,?,?,?)";
                 preparedStatement = connection.prepareStatement(cons);
                 preparedStatement.setNull(8, java.sql.Types.INTEGER);
                 preparedStatement.setString(9, "");
@@ -70,7 +71,6 @@ public class DAOPatient extends DAOBasics{
             }
             daoConnection.closeDBConnection(connection);
         }
-
     }
 
     /**
@@ -85,22 +85,25 @@ public class DAOPatient extends DAOBasics{
     }
 
     /**
-     * Metodo utilizado para obtener todos los pacientes segun filtro
+     * Method used to retrieve all the patients according to the filters
      *
-     * @param nombre nombre a partir del cual filtrar
-     * @param apellido apellido a partir del cual filtrar
-     * @param dni dni a partir del cual filtrar
-     * @return Lista que contiene todos los pacientes segun filtros
+     * @param nombre name filter
+     * @param apellido last name filter
+     * @param dni dni filter
+     * @return List containing all the patients according to the filters
      */
-    public LinkedList<Patient> getAllPatients(String nombre, String apellido, String dni) {
+    public LinkedList<Patient> getAllPatients(String filterName, String filterLastName, String filterDni) {
         pacientes = new LinkedList<>();
 
-//        query = "SELECT dni, nombre, apellido, fechaNacimiento, MAX(fecha) AS fechaUltimaConsulta FROM sistemaCarla.paciente LEFT JOIN sistemaCarla.consulta ON dni=dniPaciente ";
-//
+        query = "SELECT dni, nombre, apellido, fechaNacimiento, MAX(fecha) AS fechaUltimaConsulta FROM  ";
+
+        String from = DBUtils.getTableJoin(LEFT_JOIN, Tables.Patient, 
+                Tables.Visit, dni.name(), VisitDBColumns.patient.name());
+        
 //        String where = "";
 //        String orderBy = "";
 //
-//        if (!dni.isEmpty()) {
+//        if (!filterDni.isEmpty()) {
 //            if (!where.isEmpty()) {
 //                where += " AND ";
 //            }
@@ -134,6 +137,7 @@ public class DAOPatient extends DAOBasics{
 //        }
 //
 //        if (!where.isEmpty()) {
+//            query = DBUtils.getSelectColumnsStatementWithWhereGroupByAndOrder(from, columns, whereCondition, groupByColumns);
 //            query += " WHERE " + where + " GROUP BY dni, nombre, apellido, fechaNacimiento ORDER BY " + orderBy;
 //        } else {
 //            return pacientes;

@@ -4,7 +4,6 @@
 package DAO;
 
 import ClasesBase.Antecedents;
-import Utils.DBConstants;
 import static Utils.DBConstants.AntecedentsDBColumns.family;
 import static Utils.DBConstants.AntecedentsDBColumns.patient;
 import static Utils.DBConstants.AntecedentsDBColumns.personal;
