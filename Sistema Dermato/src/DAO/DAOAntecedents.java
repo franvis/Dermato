@@ -4,6 +4,13 @@
 package DAO;
 
 import ClasesBase.Antecedents;
+import Utils.DBConstants;
+import static Utils.DBConstants.AntecedentsDBColumns.family;
+import static Utils.DBConstants.AntecedentsDBColumns.patient;
+import static Utils.DBConstants.AntecedentsDBColumns.personal;
+import static Utils.DBConstants.AntecedentsDBColumns.pharmacological;
+import static Utils.DBConstants.AntecedentsDBColumns.surgical;
+import static Utils.DBConstants.AntecedentsDBColumns.toxic;
 import Utils.DBConstants.Tables;
 import Utils.DBUtils;
 import java.sql.*;
@@ -14,18 +21,9 @@ import java.util.logging.Logger;
  *
  * @author Fran
  */
-public class DAOAntecedents {
-    
-    private final DAOConnection daoConnection;
-    private ResultSet resultSet;
-    private Connection connection;
-    private Antecedents antecedents;
-    private PreparedStatement pst;
+public class DAOAntecedents extends DAOBasics{
 
-    public DAOAntecedents() {
-        daoConnection = new DAOConnection();
-    }
-    
+    private Antecedents antecedents;
     
     /**
      * Method used to register the patient antecedents
@@ -33,26 +31,26 @@ public class DAOAntecedents {
      * @param dni patient dni
      * @return true if registered, false otherwise
      */
-    public boolean registerAntecedents(Antecedents antecedents,long dni) {
+    public boolean registerAntecedents(Antecedents antecedents, long dni) {
         try {
             connection = daoConnection.openDBConnection();
-            String cons = DBUtils.getInsertStatementWithValuesOnly(
+            query = DBUtils.getInsertStatementWithValuesOnly(
                     Tables.Antecedents, "null,?, ?, ?, ?, ?");
-            pst = connection.prepareStatement(cons);
-            pst.setString(1, antecedents.getPersonalAntecedents());
-            pst.setString(2, antecedents.getSurgicalAntecedents());
-            pst.setString(3, antecedents.getToxicAntecedents());
-            pst.setString(4, antecedents.getPharmacologicalAntecedents());
-            pst.setString(5, antecedents.getFamilyAntecedents());
-            pst.setLong(6, dni);
-            return (pst.executeUpdate() > 0);
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, antecedents.getPersonalAntecedents());
+            preparedStatement.setString(2, antecedents.getSurgicalAntecedents());
+            preparedStatement.setString(3, antecedents.getToxicAntecedents());
+            preparedStatement.setString(4, antecedents.getPharmacologicalAntecedents());
+            preparedStatement.setString(5, antecedents.getFamilyAntecedents());
+            preparedStatement.setLong(6, dni);
+            return (preparedStatement.executeUpdate() > 0);
         } catch (SQLException ex) {
             Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         finally {
             try {
-                pst.close();
+                preparedStatement.close();
             } catch (SQLException ex) {
                 Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -60,68 +58,76 @@ public class DAOAntecedents {
         }
     }
     
-//    /**
-//     * Method used to retrieve some patient antecedents
-//     * @param dni dni of the patient
-//     * @return Antecedent
-//     */ 
-//    public Antecedents getAntecedent(long dni) {
-//        antecedents = null;
-//        String consulta = "SELECT * FROM sistemaCarla.AntecedentesGenerales WHERE dniPaciente = ?";
-//        try {
-//            connection = daoConnection.openDBConnection();
-//            pst = connection.prepareStatement(consulta);
-//            pst.setLong(1, dni);
-//            pst.executeQuery();
-//            resultSet = pst.getResultSet();
-//            while(resultSet.next())
-//            {   
-//                antecedents = new Antecedents();
-//                antecedents.setAntecedentesPersonales(resultSet.getString("antecedentesP"));
-//                antecedents.setAntecedentesQuirurgicos(resultSet.getString("antecedentesQ"));
-//                antecedents.setAntecedentesToxicos(resultSet.getString("antecedentesT"));
-//            }
-//            pst.close();
-//        }
-//        catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        }
-//        finally {
-//            daoConnection.closeDBConnection(connection);
-//        }
-//        return antecedents;
-//    }
-//    
-//     /**
-//     * Metodo utilizado para actualizar un antecedente general
-//     * @param agen Antecedente General modificado para actualizar
-//     * @param dni dni del paciente que posee ese antecedente familiar
-//     * @return true si se actualiza correctamente, false si no se actualiza
-//     */
-//    public boolean actualizarAntecedente(Antecedents agen,long dni) {
-//        try {
-//            connection = daoConnection.openDBConnection();
-//            String cons = "UPDATE sistemaCarla.AntecedentesGenerales SET "
-//                    + "antecedentesP = ?,"
-//                    + "antecedentesQ = ?,"
-//                    + "antecedentesT = ? "
-//                    + "WHERE dniPaciente = ?";
-//            pst = connection.prepareStatement(cons);
-//            pst.setString(1, agen.getAntecedentesPersonales());
-//            pst.setString(2, agen.getAntecedentesQuirurgicos());
-//            pst.setString(3, agen.getAntecedentesToxicos());
-//            pst.setLong(4, dni);
-//            return (pst.executeUpdate() > 0) ? true : false;
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
-//            return false;
-//        } finally {
-//            try {
-//                pst.close();
-//            } catch (SQLException ex) {
-//                Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            daoConnection.closeDBConnection(connection);
-//        }
-//    }
+    /**
+     * Method used to retrieve some patient antecedents
+     * @param dni dni of the patient
+     * @return Antecedent
+     */ 
+    public Antecedents getAntecedent(long dni) {
+        antecedents = null;
+        
+        String whereCondition = DBUtils.getSimpleWhereCondition(patient.name());
+        query = DBUtils.getSelectAllStatementWithWhere(Tables.Antecedents, whereCondition);
+        
+        try {
+            connection = daoConnection.openDBConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setLong(1, dni);
+            preparedStatement.executeQuery();
+            resultSet = preparedStatement.getResultSet();
+            while(resultSet.next())
+            {   
+                antecedents = new Antecedents();
+                antecedents.setPersonalAntecedents(resultSet.getString(personal.name()));
+                antecedents.setSurgicalAntecedents(resultSet.getString(surgical.name()));
+                antecedents.setToxicAntecedents(resultSet.getString(toxic.name()));
+                antecedents.setFamilyAntecedents(resultSet.getString(family.name()));
+                antecedents.setPharmacologicalAntecedents(resultSet.getString(pharmacological.name()));
+            }
+            preparedStatement.close();
+        }
+        catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        finally {
+            daoConnection.closeDBConnection(connection);
+        }
+        return antecedents;
+    }
+    
+     /**
+     * Method used to update a patient antecedents
+     * @param antecedents Updated antecedents
+     * @param dni patient's dni
+     * @return true if updated correctly, false otherwise
+     */
+    public boolean updateAntecedents(Antecedents antecedents, long dni) {
+        try {
+            connection = daoConnection.openDBConnection();
+            String columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
+            personal.name(), surgical.name(), toxic.name(), pharmacological.name(), family.name());
+            String whereCondition = DBUtils.getSimpleWhereCondition(patient.name());
+            query = DBUtils.getUpdateStatement(Tables.Antecedents, columns, whereCondition);
+            
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, antecedents.getPersonalAntecedents());
+            preparedStatement.setString(2, antecedents.getSurgicalAntecedents());
+            preparedStatement.setString(3, antecedents.getToxicAntecedents());
+            preparedStatement.setString(4, antecedents.getPharmacologicalAntecedents());
+            preparedStatement.setString(5, antecedents.getFamilyAntecedents());
+            preparedStatement.setLong(6, dni);
+            
+            return (preparedStatement.executeUpdate() > 0);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } finally {
+            try {
+                preparedStatement.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            daoConnection.closeDBConnection(connection);
+        }
+    }
 }

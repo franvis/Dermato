@@ -27,34 +27,40 @@ public class DBUtils {
 
     //SELECT STATEMENTS
     
-    public static String getSelectStatementWithColumns(Tables table, String columns, String whereConditions) {
-        return String.format(DBConstants.SELECT_WITH_COLUMNS, columns, table.name(),
-                whereConditions);
-    }
-    
-    public static String getSelectStatementWithoutColumns(Tables table, String whereConditions) {
-        return String.format(DBConstants.SELECT_ALL_WITHOUT_WHERE, table.name(),
+    public static String getSelectAllStatement(Tables table, String whereConditions) {
+        return String.format(DBConstants.SELECT_ALL, table.name(),
                 whereConditions);
     }
 
-    public static String getSelectStatementWithColumnsAndOrderCondition(Tables table, 
-            String columns, String whereConditions, String orderConditions) {
-        return String.format(DBConstants.SELECT_WITH_COLUMNS_AND_ORDER, columns, table.name(),
-                whereConditions, orderConditions);
+    public static String getSelectAllStatementWithWhere(Tables table,
+            String whereConditions) {
+        return String.format(DBConstants.SELECT_ALL_WITH_WHERE, table.name(),
+                whereConditions);
     }
     
-    public static String getSelectStatementWithoutColumnsWithOrder(Tables table,
-            String whereConditions, String orderConditions) {
-        return String.format(DBConstants.SELECT_WITHOUT_COLUMNS_WITH_ORDER, table.name(),
-                whereConditions, orderConditions);
-    }
-    
-    public static String getSelectStatementWithoutColumnsWithoutWhereWithOrder(Tables table,
+    public static String getSelectAllStatementWithOrder(Tables table,
             String orderConditions) {
-        return String.format(DBConstants.SELECT_WITHOUT_COLUMNS_WITH_ORDER, table.name(),
+        return String.format(DBConstants.SELECT_ALL_WITH_ORDER, table.name(),
                 orderConditions);
     }
+    
+    public static String getSelectAllStatementWithWhereAndOrder(Tables table,
+            String whereConditions, String orderConditions) {
+        return String.format(DBConstants.SELECT_ALL_WITH_WHERE_AND_ORDER, table.name(),
+                whereConditions, orderConditions);
+    }
+    
+    public static String getSelectColumnsStatementWithWhere(Tables table, String columns, String whereConditions) {
+        return String.format(DBConstants.SELECT_COLUMNS_WITH_WHERE, columns, table.name(),
+                whereConditions);
+    }
 
+    public static String getSelectStatementWithColumnsAndOrder(Tables table, 
+            String columns, String whereConditions, String orderConditions) {
+        return String.format(DBConstants.SELECT_COLUMNS_WITH_WHERE_AND_ORDER, columns, table.name(),
+                whereConditions, orderConditions);
+    }
+    
     //UPDATE STATEMENTS
     
     public static String getUpdateStatement(Tables table, String columns,

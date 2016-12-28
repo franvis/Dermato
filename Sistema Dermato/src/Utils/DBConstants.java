@@ -11,9 +11,6 @@ package Utils;
  */
 public class DBConstants {
     
-    //TABLES
-    public enum Tables { Patient, Antecedents, PrePaidHealthInsurance, Visit };
-    
     //SQL STATEMENTS
     
     public static final String DB_NAME = "Dermato";
@@ -24,7 +21,7 @@ public class DBConstants {
     
     public static final String IS_NULL_WHERE_CONDITION = "%s IS NULL";
     
-    public static final String ORDER_BY_CONDITION = "ORDER BY %s";
+    public static final String ORDER_BY_CONDITION = " ORDER BY %s";
     
     public static final String ORDER_BY_COLUMN_ASC = "%s DESC";
     
@@ -39,23 +36,23 @@ public class DBConstants {
     
     //SELECT STATEMENTS
     
-    public static final String SELECT_ALL_WITHOUT_WHERE = "SELECT * FROM "+DB_NAME
+    public static final String SELECT_ALL = "SELECT * FROM "+DB_NAME
             +".%s";
-    
-    public static final String SELECT_WITH_COLUMNS = "SELECT %s FROM "+DB_NAME
+ 
+    public static final String SELECT_ALL_WITH_WHERE = "SELECT * FROM "+DB_NAME
             +".%s WHERE %s";
     
-    public static final String SELECT_WITH_COLUMNS_AND_ORDER = "SELECT %s FROM "+DB_NAME
+    public static final String SELECT_ALL_WITH_ORDER = SELECT_ALL 
+            + ORDER_BY_CONDITION;
+    
+    public static final String SELECT_ALL_WITH_WHERE_AND_ORDER = SELECT_ALL_WITH_WHERE 
+            + ORDER_BY_CONDITION;
+    
+    public static final String SELECT_COLUMNS_WITH_WHERE = "SELECT %s FROM "+DB_NAME
+            +".%s WHERE %s";
+    
+    public static final String SELECT_COLUMNS_WITH_WHERE_AND_ORDER = "SELECT %s FROM "+DB_NAME
             +".%s WHERE %s ORDER BY %s";
-    
-    public static final String SELECT_WITHOUT_COLUMNS = "SELECT * FROM "+DB_NAME
-            +".%s WHERE %s";
-    
-    public static final String SELECT_WITHOUT_COLUMNS_WITH_ORDER = SELECT_WITHOUT_COLUMNS 
-            + " ORDER BY %s";
-    
-    public static final String SELECT_WITHOUT_COLUMNS_WITHOUT_WHERE_WITH_ORDER = SELECT_ALL_WITHOUT_WHERE 
-            + " ORDER BY %s";
     
     //UPDATE STATEMENTS
     public static final String UPDATE = "UPDATE "+ DB_NAME+".%s SET %s WHERE %s";
@@ -63,13 +60,18 @@ public class DBConstants {
     //DELETE STATEMENTS
     public static final String DELETE = "DELETE FROM "+ DB_NAME +".%s WHERE %s";
     
+    //TABLES
+    public enum Tables { Patient, Antecedents, PrePaidHealthInsurance, Visit };
+    
     // TABLE COLUMNS
     public enum VisitDBColumns{ idVisit, date, reason, treatment, 
-    complementaryStudies, laboratory, diagnosis, physicalExam, biopsy, patient}
+    complementaryStudies, laboratory, diagnosis, physicalExam, biopsy, patient }
     
-    public enum PrePaidHealthInsuranceDBColumns{ idPrePaidHealthInsurance, name}
+    public enum AntecedentsDBColumns{ personal, surgical, toxic, pharmacological
+    , family, patient }
     
-    public enum PatientDBColumns{ prePaidHealthInsuranceNumber
-    }
+    public enum PrePaidHealthInsuranceDBColumns{ idPrePaidHealthInsurance, name }
+    
+    public enum PatientDBColumns{ prePaidHealthInsuranceNumber }
     
 }

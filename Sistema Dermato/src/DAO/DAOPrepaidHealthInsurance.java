@@ -10,8 +10,6 @@ import Utils.DBConstants.PrePaidHealthInsuranceDBColumns;
 import static Utils.DBConstants.PrePaidHealthInsuranceDBColumns.name;
 import Utils.DBConstants.Tables;
 import Utils.DBUtils;
-import static Utils.DBUtils.getSimpleWhereCondition;
-import static Utils.DBUtils.getWhereConditions;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -24,19 +22,10 @@ import static Utils.DBUtils.getWhereConditions;
  *
  * @author Fran
  */
-public class DAOPrepaidHealthInsurance {
+public class DAOPrepaidHealthInsurance extends DAOBasics{
 
-    private final DAOConnection daoConnection;
-    private ResultSet resultSet;
-    private Connection connection;
     private PrePaidHealthInsurance prePaidHealthInsurance;
-    private String query;
-    private PreparedStatement preparedStatement;
     private LinkedList<PrePaidHealthInsurance> prePaidHealthInsurances;
-
-    public DAOPrepaidHealthInsurance() {
-        daoConnection = new DAOConnection();
-    }
 
     /**
      * Method used to get all the pre paid health insurances
@@ -46,7 +35,7 @@ public class DAOPrepaidHealthInsurance {
     {
         prePaidHealthInsurances = new LinkedList<>();
         connection = daoConnection.openDBConnection();
-        query = DBUtils.getSelectStatementWithoutColumnsWithoutWhereWithOrder(Tables.PrePaidHealthInsurance,
+        query = DBUtils.getSelectAllStatementWithOrder(Tables.PrePaidHealthInsurance,
                 DBUtils.getOrderByCondition(name.name(), true));
         try {
             preparedStatement = connection.prepareStatement(query);
@@ -177,7 +166,7 @@ public class DAOPrepaidHealthInsurance {
     public PrePaidHealthInsurance getObraSocial(int idPrePaidHealthInsurance) {
         String whereCondition = getWhereConditions(getSimpleWhereCondition(PrePaidHealthInsuranceDBColumns.idPrePaidHealthInsurance.name()));
         
-        query = DBUtils.getSelectStatementWithoutColumns(Tables.PrePaidHealthInsurance, 
+        query = DBUtils.getSelectAllStatement(Tables.PrePaidHealthInsurance, 
                  whereCondition);
         try {
             connection = daoConnection.openDBConnection();

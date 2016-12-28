@@ -424,7 +424,7 @@ private void txtaToxicosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:eve
         agen.setAntecedentesQuirurgicos(this.txtaQuirurgicos.getText());
         agen.setAntecedentesToxicos(this.txtaToxicos.getText());
         paciente.setAntecGen(agen);
-        if(daoAntecGen.actualizarAntecedente(agen,paciente.getDni())){
+        if(daoAntecGen.updateAntecedents(agen,paciente.getDni())){
             ValidationsAndMessages.mostrarInformacion(this, "Actualización Exitosa.");
             CambiarEstadoCajas(false);
             this.btnGuardar.setEnabled(false);

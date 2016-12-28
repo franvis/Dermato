@@ -3,7 +3,6 @@
  */
 package DAO;
 
-import ClasesBase.PrePaidHealthInsurance;
 import ClasesBase.Patient;
 import Utils.DBConstants.Tables;
 import Utils.DBUtils;
@@ -16,20 +15,14 @@ import java.util.logging.Logger;
  *
  * @author Fran
  */
-public class DAOPatient {
+public class DAOPatient extends DAOBasics{
 
-    private final DAOConnection daoConnection;
     private final DAOPrepaidHealthInsurance daoPrepaidHealthInsurance;
     private final DAOAntecedents daoAntecedents;
     private LinkedList<Patient> pacientes;
-    private ResultSet resultSet;
-    private Connection connection;
     private Patient patient;
-    private String query;
-    private PreparedStatement preparedStatement;
 
     public DAOPatient() {
-        daoConnection = new DAOConnection();
         daoPrepaidHealthInsurance = new DAOPrepaidHealthInsurance();
         daoAntecedents = new DAOAntecedents();
     }

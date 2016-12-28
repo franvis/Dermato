@@ -29,17 +29,9 @@ import java.util.logging.Logger;
  *
  * @author Fran
  */
-public class DAOVisit {
+public class DAOVisit extends DAOBasics{
 
-    private final DAOConnection daoConnection;
-    private ResultSet resultSet;
-    private Connection connection;
-    private PreparedStatement preparedStatement;
     private Visit visit;
-
-    public DAOVisit() {
-        daoConnection = new DAOConnection();
-    }
 
     /**
      * Method used to register a new visit
@@ -49,7 +41,7 @@ public class DAOVisit {
      *
      * @return true if registered, false otherwise
      */
-    public boolean RegistrarConsulta(Visit visit, long dni) {
+    public boolean registerVisit(Visit visit, long dni) {
         boolean result = false;
         try {
             connection = daoConnection.openDBConnection();
@@ -111,13 +103,13 @@ public class DAOVisit {
                 idVisit.name());
         String whereCondition = String.format(SIMPLE_WHERE_CONDITION, patient.name());
 
-        String consulta = DBUtils.getSelectStatementWithColumns(Tables.Visit,
+        query = DBUtils.getSelectColumnsStatementWithWhere(Tables.Visit,
                 columns, whereCondition);
 
         long lastVisit = 0;
         try {
             connection = daoConnection.openDBConnection();
-            preparedStatement = connection.prepareStatement(consulta);
+            preparedStatement = connection.prepareStatement(query);
             preparedStatement.setLong(1, dni);
             preparedStatement.executeQuery();
             resultSet = preparedStatement.getResultSet();
@@ -149,7 +141,7 @@ public class DAOVisit {
                 DBUtils.getOrderByCondition(date.name(), false),
                 DBUtils.getOrderByCondition(idVisit.name(), false));
 
-        String query = DBUtils.getSelectStatementWithColumnsAndOrderCondition(
+        query = DBUtils.getSelectStatementWithColumnsAndOrder(
                 Tables.Visit, columns, whereConditions, orderConditions);
         try {
             connection = daoConnection.openDBConnection();
@@ -191,7 +183,7 @@ public class DAOVisit {
                 getSimpleWhereCondition(patient.name()),
                 getSimpleWhereCondition(idVisit.name()));
         
-        String query = DBUtils.getSelectStatementWithoutColumns(Tables.Visit, 
+        query = DBUtils.getSelectAllStatement(Tables.Visit, 
                  whereCondition);
         
         try {
