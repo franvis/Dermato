@@ -432,7 +432,7 @@ private void txtaToxicosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:eve
             paciente.setAntecGen(agen);
         }
         else
-            ValidationsAndMessages.mostrarError(this, "Actualización Fallida.");
+            ValidationsAndMessages.showError(this, "Actualización Fallida.");
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered

@@ -97,7 +97,7 @@ public class DBConstants {
     public static final String DELETE = "DELETE FROM "+ DB_NAME +".%s WHERE %s";
     
     //TABLES
-    public enum Tables { Patient, Antecedents, PrePaidHealthInsurance, Visit };
+    public enum Tables { Patient, Antecedents, PrepaidHealthInsurance, Visit };
     
     // TABLE COLUMNS
     public enum VisitDBColumns{ idVisit, date, reason, treatment, 
@@ -106,7 +106,7 @@ public class DBConstants {
     public enum AntecedentsDBColumns{ personal, surgical, toxic, pharmacological
     , family, patient }
     
-    public enum PrePaidHealthInsuranceDBColumns{ idPrePaidHealthInsurance, name }
+    public enum PrePaidHealthInsuranceDBColumns{ idPrepaidHealthInsurance, name }
     
     public enum PatientDBColumns{ idPatient, dni, name, lastname, phone, address,
     city, birthday, prepaidHealthInsurance, prePaidHealthInsuranceNumber, 

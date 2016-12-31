@@ -24,6 +24,9 @@ public class DAOAntecedents extends DAOBasics {
 
     private Antecedents antecedents;
 
+    public DAOAntecedents(){
+        daoConnection = new DAOConnection();
+    }
     /**
      * Method used to register the patient antecedents
      *
@@ -104,10 +107,10 @@ public class DAOAntecedents extends DAOBasics {
             if (connection == null || connection.isClosed()) {
                 connection = daoConnection.openDBConnection();
             }
-            String columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
+            columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
                     personal.name(), surgical.name(), toxic.name(), pharmacological.name(), family.name());
-            String whereCondition = DBUtils.getSimpleWhereCondition(patient.name());
-            query = DBUtils.getUpdateStatement(Tables.Antecedents, columns, whereCondition);
+            where = DBUtils.getSimpleWhereCondition(patient.name());
+            query = DBUtils.getUpdateStatement(Tables.Antecedents, columns, where);
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, antecedents.getPersonalAntecedents());

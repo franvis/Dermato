@@ -404,7 +404,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (this.txtNombreObraSocial.getText().isEmpty()) {
-        ValidationsAndMessages.mostrarError(this, "Ingrese un nombre de obra social válido...");
+        ValidationsAndMessages.showError(this, "Ingrese un nombre de obra social válido...");
         return;
         }
         if(!esModificar){
@@ -415,7 +415,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
                 this.obras = daoObraSocial.getAllPrePaidHealthInsurances();
                 llenarObrasSociales(obras);
             } else {
-                ValidationsAndMessages.mostrarError(this, "Registro Fallido.");
+                ValidationsAndMessages.showError(this, "Registro Fallido.");
             }
         }
         else
@@ -429,7 +429,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
                 this.obras = daoObraSocial.getAllPrePaidHealthInsurances();
                 llenarObrasSociales(obras);
             } else {
-                ValidationsAndMessages.mostrarError(this, "Actualización Fallida.");
+                ValidationsAndMessages.showError(this, "Actualización Fallida.");
             }
             this.txtNombreObraSocial.setText("");
             esModificar = false;

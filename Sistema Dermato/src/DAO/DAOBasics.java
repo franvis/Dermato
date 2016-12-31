@@ -15,10 +15,15 @@ import java.sql.Statement;
  * @author fran
  */
 public abstract class DAOBasics {
-    protected final DAOConnection daoConnection = new DAOConnection();
+    protected DAOConnection daoConnection;
     protected ResultSet resultSet;
     protected Connection connection;
     protected PreparedStatement preparedStatement;
     protected String query;
+    protected String columns;
+    protected String where;
+    protected String from;
+    protected String orderBy;
+    protected String groupBy;
     protected Statement statement;
 }

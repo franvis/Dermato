@@ -72,7 +72,7 @@ public class FileManager {
             run.destroy();
             return true;
         } catch (IOException e) {
-            ValidationsAndMessages.mostrarError(j, "Back Up fallido en " + destino.getAbsolutePath() + ". " + e.getMessage());
+            ValidationsAndMessages.showError(j, "Back Up fallido en " + destino.getAbsolutePath() + ". " + e.getMessage());
             return false;
         } finally {
             try {
@@ -116,7 +116,7 @@ public class FileManager {
                 pw.print(temp.toString());
             
         } catch (IOException e) {
-            ValidationsAndMessages.mostrarError(null, "Back Up automático fallido en " + Constants.BACKUPS_FOLDER_PATH + ". " + e.getMessage());
+            ValidationsAndMessages.showError(null, "Back Up automático fallido en " + Constants.BACKUPS_FOLDER_PATH + ". " + e.getMessage());
         } finally {
             try {
                 if (null != fichero) {
@@ -166,7 +166,7 @@ public class FileManager {
                 pw.print(temp.toString());
             }
         } catch (IOException e) {
-            ValidationsAndMessages.mostrarError(null, "Back Up automático fallido en " + Constants.BACKUPS_FOLDER_PATH + ". " + e.getMessage());
+            ValidationsAndMessages.showError(null, "Back Up automático fallido en " + Constants.BACKUPS_FOLDER_PATH + ". " + e.getMessage());
         } finally {
             try {
                 if (null != fichero) {
@@ -229,7 +229,7 @@ public class FileManager {
             pw.println(dia + "/" + mes + "/" + año);
         
         } catch (IOException e) {
-            ValidationsAndMessages.mostrarError(null, "Imposible leer archivo de back up en " + Constants.AUXILIAR_AUTOMATIC_BACKUP_PATH + ". " + e.getMessage());
+            ValidationsAndMessages.showError(null, "Imposible leer archivo de back up en " + Constants.AUXILIAR_AUTOMATIC_BACKUP_PATH + ". " + e.getMessage());
         } finally {
             try {
                 if (null != fichero) {
@@ -256,7 +256,7 @@ public class FileManager {
             pw = new PrintWriter(fichero);
             pw.println(color + "");
         } catch (Exception e) {
-            ValidationsAndMessages.mostrarError(j, "No se pudo guardar el código de color.");
+            ValidationsAndMessages.showError(j, "No se pudo guardar el código de color.");
         } finally {
             try {
                 if (null != fichero) {

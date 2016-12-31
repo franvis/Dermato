@@ -134,7 +134,7 @@ public class StyleManager {
      * Devuelve el color terciario según el estilo actual
      * @return color terciario actual
      */
-    public static Color getColorTerciario() {
+    public static Color getThirdColor() {
         return getColorTerciario(colorActual);
     }
     
@@ -177,7 +177,7 @@ public class StyleManager {
      * Devuelve el color de texto según el estilo actual
      * @return color actual de texto
      */
-    public static Color getColorTexto() {
+    public static Color getTextColor() {
         return getColorTexto(colorActual);
     }
     

@@ -29,7 +29,7 @@ public class DBUtils {
             case Patient:
                 return String.format(DBConstants.INSERT_WITH_VALUES_ONLY,
                         table.name(), DBConstants.PATIENT_INSERT);
-            case PrePaidHealthInsurance:
+            case PrepaidHealthInsurance:
                 return String.format(DBConstants.INSERT_WITH_VALUES_ONLY,
                         table.name(), DBConstants.PRE_PAID_HEALTH_INSURANCE_INSERT);
             case Visit:

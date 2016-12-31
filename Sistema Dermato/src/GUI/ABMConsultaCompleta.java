@@ -69,14 +69,14 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
      */
     public ABMConsultaCompleta(java.awt.Frame parent, boolean modal,int tipoConsulta,long dni, Patient paciente, Visit con) {
         initComponents();
-        this.txtfAlturaUterina.setDisabledTextColor(StyleManager.getColorTexto());
-        this.txtfAlturaUterina.setBackground(StyleManager.getColorTerciario());
+        this.txtfAlturaUterina.setDisabledTextColor(StyleManager.getTextColor());
+        this.txtfAlturaUterina.setBackground(StyleManager.getThirdColor());
         this.txtfAlturaUterina.setSelectionColor(StyleManager.getColorSecundario(StyleManager.colorActual));
-        this.txtfPresionArterialmm.setBackground(StyleManager.getColorTerciario());
-        this.txtfPresionArterialmm.setDisabledTextColor(StyleManager.getColorTexto());
+        this.txtfPresionArterialmm.setBackground(StyleManager.getThirdColor());
+        this.txtfPresionArterialmm.setDisabledTextColor(StyleManager.getTextColor());
         this.txtfPresionArterialmm.setSelectionColor(StyleManager.getColorSecundario(StyleManager.colorActual));
-        this.txtfPresionArterialHg.setBackground(StyleManager.getColorTerciario());
-        this.txtfPresionArterialHg.setDisabledTextColor(StyleManager.getColorTexto());
+        this.txtfPresionArterialHg.setBackground(StyleManager.getThirdColor());
+        this.txtfPresionArterialHg.setDisabledTextColor(StyleManager.getTextColor());
         this.txtfPresionArterialHg.setSelectionColor(StyleManager.getColorSecundario(StyleManager.colorActual));
         this.txtaMotivo.grabFocus();
         eGinec = new ExamenGinecologico();
@@ -795,7 +795,7 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
         String error = comprobarObligatorias(tipoConsulta);
         if(!error.isEmpty())
         {
-            ValidationsAndMessages.mostrarError(this,"Debe completar los siguientes datos obligatorios: \n"+error);
+            ValidationsAndMessages.showError(this,"Debe completar los siguientes datos obligatorios: \n"+error);
             return;
         }   
     
@@ -810,7 +810,7 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
             }
             else
             {
-                ValidationsAndMessages.mostrarError(this, "Registro Fallido.");
+                ValidationsAndMessages.showError(this, "Registro Fallido.");
                 return;
             }
         }
@@ -823,7 +823,7 @@ public class ABMConsultaCompleta extends javax.swing.JFrame {
             }
             else
             {
-                ValidationsAndMessages.mostrarError(this, "Actualización Fallida.");
+                ValidationsAndMessages.showError(this, "Actualización Fallida.");
                 return;
             }
         }

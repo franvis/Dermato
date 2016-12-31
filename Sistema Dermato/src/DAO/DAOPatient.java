@@ -31,6 +31,7 @@ public class DAOPatient extends DAOBasics {
     public DAOPatient() {
         daoPrepaidHealthInsurance = new DAOPrepaidHealthInsurance();
         daoAntecedents = new DAOAntecedents();
+        daoConnection = new DAOConnection();
     }
 
     /**
@@ -63,6 +64,7 @@ public class DAOPatient extends DAOBasics {
             return ((preparedStatement.executeUpdate() > 0) && registerAntecedents(patient));
         } catch (SQLException ex) {
             Logger.getLogger(DAOPrepaidHealthInsurance.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("query: "+query);
             return false;
         } finally {
             try {
@@ -98,16 +100,16 @@ public class DAOPatient extends DAOBasics {
 
         String lastVisitDateColumn = "lastVisitDate";
 
-        String from = DBUtils.getTableJoin(LEFT_JOIN, Tables.Patient,
+        from = DBUtils.getTableJoin(LEFT_JOIN, Tables.Patient,
                 Tables.Visit, dni.name(), VisitDBColumns.patient.name());
 
-        String columns = DBUtils.getStringWithValuesSeparatedWithCommas(dni.name(),
+        columns = DBUtils.getStringWithValuesSeparatedWithCommas(dni.name(),
                 name.name(), lastname.name(), birthday.name(), DBUtils
                 .getMaxColumnAs(VisitDBColumns.date.name(), lastVisitDateColumn));
 
-        String where = DBUtils.getWhereForFilters(filterName, filterLastName, filterDni);
-        String orderBy = DBUtils.getOrderByForFilters(filterName, filterLastName, filterDni);
-        String groupBy = DBUtils.getStringWithValuesSeparatedWithCommas(dni.name(), name.name(),
+        where = DBUtils.getWhereForFilters(filterName, filterLastName, filterDni);
+        orderBy = DBUtils.getOrderByForFilters(filterName, filterLastName, filterDni);
+        groupBy = DBUtils.getStringWithValuesSeparatedWithCommas(dni.name(), name.name(),
                 lastname.name(), birthday.name());
 
         if (!where.isEmpty()) {
@@ -198,10 +200,10 @@ public class DAOPatient extends DAOBasics {
         patient = null;
         String lastVisitDateColumn = "lastVisitDate";
 
-        String from = DBUtils.getTableJoin(LEFT_JOIN, Tables.Patient,
+        from = DBUtils.getTableJoin(LEFT_JOIN, Tables.Patient,
                 Tables.Visit, PatientDBColumns.dni.name(), VisitDBColumns.patient.name());
 
-        String columns = DBUtils.getStringWithValuesSeparatedWithCommas(PatientDBColumns.dni.name(),
+        columns = DBUtils.getStringWithValuesSeparatedWithCommas(PatientDBColumns.dni.name(),
                 name.name(), lastname.name(), birthday.name(), DBUtils
                 .getMaxColumnAs(VisitDBColumns.date.name(), lastVisitDateColumn));
 
@@ -241,14 +243,14 @@ public class DAOPatient extends DAOBasics {
      * @param dni
      * @return Required full data patient
      */
-    public Patient getPacienteCompleto(long dni) {
+    public Patient getFullPatient(long dni) {
         patient = null;
         String lastVisitDateColumn = "lastVisitDate";
 
-        String from = DBUtils.getTableJoin(LEFT_JOIN, Tables.Patient,
+        from = DBUtils.getTableJoin(LEFT_JOIN, Tables.Patient,
                 Tables.Visit, PatientDBColumns.dni.name(), VisitDBColumns.patient.name());
 
-        String columns = DBUtils.getStringWithValuesSeparatedWithCommas(PatientDBColumns.dni.name(),
+        columns = DBUtils.getStringWithValuesSeparatedWithCommas(PatientDBColumns.dni.name(),
                 name.name(), lastname.name(), birthday.name(), DBUtils
                 .getMaxColumnAs(VisitDBColumns.date.name(), lastVisitDateColumn));
 
@@ -303,7 +305,6 @@ public class DAOPatient extends DAOBasics {
      * @return true if updated correctly, false otherwise
      */
     public boolean updatePatient(Patient p, long dniAnterior) {
-        String columns;
         try {
             connection = daoConnection.openDBConnection();
             connection.setAutoCommit(false);
@@ -379,8 +380,8 @@ public class DAOPatient extends DAOBasics {
         Patient match = null;
         try {
             connection = daoConnection.openDBConnection();
-            String columns = DBUtils.getStringWithValuesSeparatedWithCommas(dni.name(), name.name(), lastname.name());
-            String where = DBUtils.getWhereConditions(DBUtils.getSimpleWhereCondition(
+            columns = DBUtils.getStringWithValuesSeparatedWithCommas(dni.name(), name.name(), lastname.name());
+            where = DBUtils.getWhereConditions(DBUtils.getSimpleWhereCondition(
                     prepaidHealthInsurance.name()), DBUtils.getSimpleWhereCondition(prePaidHealthInsuranceNumber.name()));
             query = DBUtils.getSelectColumnsStatementWithWhere(Tables.Patient, columns, where);
             preparedStatement = connection.prepareStatement(query);

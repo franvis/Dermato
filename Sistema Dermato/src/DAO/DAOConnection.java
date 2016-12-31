@@ -24,7 +24,7 @@ public class DAOConnection extends DAOBasics {
     private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
     private static final String PROBLEM_CLOSING_CONNECTION = "Connection couldn't be closed. Error: \n%s";
     private static final String CLOSING_CONNECTION_OK = "Database disconected successfully";
-
+    
     /**
      * Method used to open a new connection with de DB
      *

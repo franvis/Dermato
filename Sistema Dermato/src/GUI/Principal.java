@@ -674,7 +674,7 @@ public class Principal extends javax.swing.JFrame {
                     return;
                 }
             }
-            patients = daoPatient.getPacienteCompleto(patients.getDni());
+            patients = daoPatient.getFullPatient(patients.getDni());
 
             ABMPatient pacienteInterfaz = new ABMPatient(this, true, 1, patients);
             pacienteInterfaz.setVisible(true);
@@ -708,7 +708,7 @@ public class Principal extends javax.swing.JFrame {
                     return;
                 }
             }
-            patients = daoPatient.getPatient(patients.getDni());
+            patients = daoPatient.getFullPatient(patients.getDni());
 
             ClinicalHistory CH = new ClinicalHistory(this, patients, 0);
             CH.setVisible(true);

@@ -550,7 +550,7 @@ public class ClinicalHistory extends javax.swing.JFrame {
                 aux.setVisible(true);
                 return;
         }      
-        paciente = daoPaciente.getPacienteCompleto(paciente.getDni());
+        paciente = daoPaciente.getFullPatient(paciente.getDni());
         if(AntecFamModificado == false)
         {
             paciente.setAntecFam(daoAntecFam.getAntecedenteFamiliar(paciente.getDni()));

@@ -57,7 +57,7 @@ public class ValidationsAndMessages {
      * @param f Componente donde se ejecuto el evento
      * @param error Error a mostrar
      */
-    public static void mostrarError(Component f,String error) {
+    public static void showError(Component f,String error) {
          JOptionPane.showOptionDialog(
                     f,
                     error,

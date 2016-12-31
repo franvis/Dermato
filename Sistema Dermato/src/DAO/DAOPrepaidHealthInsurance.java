@@ -14,9 +14,10 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static Utils.DBConstants.PrePaidHealthInsuranceDBColumns.idPrePaidHealthInsurance;
 import static Utils.DBUtils.getSimpleWhereCondition;
 import static Utils.DBUtils.getWhereConditions;
+import static Utils.DBConstants.PrePaidHealthInsuranceDBColumns.idPrepaidHealthInsurance;
+
 
 /**
  *
@@ -27,6 +28,10 @@ public class DAOPrepaidHealthInsurance extends DAOBasics{
     private PrePaidHealthInsurance prePaidHealthInsurance;
     private LinkedList<PrePaidHealthInsurance> prePaidHealthInsurances;
 
+    public DAOPrepaidHealthInsurance(){
+        daoConnection = new DAOConnection();
+    }
+    
     /**
      * Method used to get all the pre paid health insurances
      * @return All the pre paid health insurances
@@ -35,7 +40,7 @@ public class DAOPrepaidHealthInsurance extends DAOBasics{
     {
         prePaidHealthInsurances = new LinkedList<>();
         connection = daoConnection.openDBConnection();
-        query = DBUtils.getSelectAllStatementWithOrder(Tables.PrePaidHealthInsurance,
+        query = DBUtils.getSelectAllStatementWithOrder(Tables.PrepaidHealthInsurance,
                 DBUtils.getOrderByCondition(name.name(), true));
         try {
             preparedStatement = connection.prepareStatement(query);
@@ -44,13 +49,14 @@ public class DAOPrepaidHealthInsurance extends DAOBasics{
             while(resultSet.next())
             {
                 prePaidHealthInsurance = new PrePaidHealthInsurance();
-                prePaidHealthInsurance.setId(resultSet.getInt(idPrePaidHealthInsurance.name()));
+                prePaidHealthInsurance.setId(resultSet.getInt(idPrepaidHealthInsurance.name()));
                 prePaidHealthInsurance.setName(resultSet.getString(name.name()));
                 prePaidHealthInsurances.add(prePaidHealthInsurance);
             }
             preparedStatement.close();
         }
         catch (SQLException ex) {
+            System.out.println("query: " + query);
         }
         daoConnection.closeDBConnection(connection);
         return prePaidHealthInsurances;
@@ -65,7 +71,7 @@ public class DAOPrepaidHealthInsurance extends DAOBasics{
     public boolean registerPrePaidHealthInsurance(PrePaidHealthInsurance prePaidHealthInsurance) {
         try {
             connection = daoConnection.openDBConnection();
-            query = DBUtils.getInsertStatementWithValuesOnly(Tables.PrePaidHealthInsurance);
+            query = DBUtils.getInsertStatementWithValuesOnly(Tables.PrepaidHealthInsurance);
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, prePaidHealthInsurance.getName());
             return (preparedStatement.executeUpdate() > 0);
@@ -78,20 +84,20 @@ public class DAOPrepaidHealthInsurance extends DAOBasics{
     }
 
      /**
-     * Method used to update a Prepaid health insurance
-     * @param prepaidHealthInsurance  Prepaid Health Insurance to update
+     * Method used to update a Pre paid health insurance
+     * @param prepaidHealthInsurance  Pre paid Health Insurance to update
      * @return true if updated correctly, false otherwise
      */
     public boolean updatePrepaidHealthInsurance(PrePaidHealthInsurance prepaidHealthInsurance) {
         try {
             connection = daoConnection.openDBConnection();
             
-            String columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
+            columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
                     name.name());
             
-            String whereCondition = DBUtils.getSimpleWhereCondition(idPrePaidHealthInsurance.name());
+            where = DBUtils.getSimpleWhereCondition(idPrepaidHealthInsurance.name());
             
-            query = DBUtils.getUpdateStatement(Tables.PrePaidHealthInsurance, columns, whereCondition);
+            query = DBUtils.getUpdateStatement(Tables.PrepaidHealthInsurance, columns, where);
             
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, prepaidHealthInsurance.getName());
@@ -118,26 +124,25 @@ public class DAOPrepaidHealthInsurance extends DAOBasics{
             connection = daoConnection.openDBConnection();
             connection.setAutoCommit(false);
             
-            String whereCondition = getWhereConditions(
-                getSimpleWhereCondition(idPrePaidHealthInsurance.name()));
+            where = getWhereConditions(getSimpleWhereCondition(idPrepaidHealthInsurance.name()));
             
-            query = DBUtils.getDeleteStatement(Tables.PrePaidHealthInsurance, whereCondition);
+            query = DBUtils.getDeleteStatement(Tables.PrepaidHealthInsurance, where);
             
-            PreparedStatement deleteObraSocial =  connection.prepareStatement(
+            preparedStatement =  connection.prepareStatement(
 			query);
-            deleteObraSocial.setInt(1, prePaidHealthInsurance.getId());
-            deleteObraSocial.executeUpdate();
+            preparedStatement.setInt(1, prePaidHealthInsurance.getId());
+            preparedStatement.executeUpdate();
             
-            String columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
+            columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
                     prePaidHealthInsuranceNumber.name());
             
-            whereCondition = DBUtils.getIsNullWhereCondition(idPrePaidHealthInsurance.name());
+            where = DBUtils.getIsNullWhereCondition(idPrepaidHealthInsurance.name());
             
-            query = DBUtils.getUpdateStatement(Tables.PrePaidHealthInsurance, columns, whereCondition);
+            query = DBUtils.getUpdateStatement(Tables.PrepaidHealthInsurance, columns, where);
             
-            PreparedStatement updatePacientes = connection.prepareStatement(
+            preparedStatement = connection.prepareStatement(
                         query);
-            updatePacientes.executeUpdate();
+            preparedStatement.executeUpdate();
             connection.commit();
             rtdo = true;
             connection.setAutoCommit(true);
@@ -164,10 +169,10 @@ public class DAOPrepaidHealthInsurance extends DAOBasics{
     * @return Pre paid health insurance
     */
     public PrePaidHealthInsurance getObraSocial(int idPrePaidHealthInsurance) {
-        String whereCondition = getWhereConditions(getSimpleWhereCondition(PrePaidHealthInsuranceDBColumns.idPrePaidHealthInsurance.name()));
+        where = getWhereConditions(getSimpleWhereCondition(PrePaidHealthInsuranceDBColumns.idPrepaidHealthInsurance.name()));
         
-        query = DBUtils.getSelectAllStatement(Tables.PrePaidHealthInsurance, 
-                 whereCondition);
+        query = DBUtils.getSelectAllStatement(Tables.PrepaidHealthInsurance, 
+                 where);
         try {
             connection = daoConnection.openDBConnection();
             preparedStatement = connection.prepareStatement(query);
@@ -178,7 +183,7 @@ public class DAOPrepaidHealthInsurance extends DAOBasics{
             {
                 prePaidHealthInsurance = new PrePaidHealthInsurance();
                 prePaidHealthInsurance.setId(resultSet.getInt(DBConstants.
-                        PrePaidHealthInsuranceDBColumns.idPrePaidHealthInsurance.name()));
+                        PrePaidHealthInsuranceDBColumns.idPrepaidHealthInsurance.name()));
                 prePaidHealthInsurance.setName(resultSet.getString(name.name()));
             }
             preparedStatement.close();
