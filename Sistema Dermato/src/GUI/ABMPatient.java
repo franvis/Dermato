@@ -894,7 +894,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     if(procedencia == 0) //Principal, nuevo
     {
         
-        if(daoPaciente.verificarPaciente(dniPaciente)){
+        if(daoPaciente.verifyPatient(dniPaciente)){
             ValidationsAndMessages.mostrarError(this, "El paciente ya se encuentra registrado. Corrija el DNI o búsquelo en la ventana principal.");
             this.txtfDni.setText("");
             this.txtfDni.grabFocus();
@@ -929,7 +929,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     }
     else if(procedencia == 1 || procedencia == 2)//Historia clinica(2), Principal-Modificar(1) 
     {
-        if(dniPaciente != dniOriginal && daoPaciente.verificarPaciente(dniPaciente)){
+        if(dniPaciente != dniOriginal && daoPaciente.verifyPatient(dniPaciente)){
             ValidationsAndMessages.mostrarError(this,"El dni ingresado para la modificación ya se encuentra en la base de datos a nombre de otro paciente.\n"
                                              + " Corrija el DNI.");
             this.txtfDni.setText("");
@@ -962,7 +962,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
             return;
         }   
     
-        if(daoPaciente.actualizarPaciente(p,dniOriginal))
+        if(daoPaciente.updatePatient(p,dniOriginal))
         {
             ValidationsAndMessages.mostrarInformacion(this,"Actualización Exitosa.");
             
@@ -977,7 +977,7 @@ private void cmbObraSocialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
                 else
                 {
                     LinkedList<Patient> pacienteList = new LinkedList<Patient>();
-                    pacienteList.add(daoPaciente.getPacienteBasico(p.getDni()));
+                    pacienteList.add(daoPaciente.getBasicPatient(p.getDni()));
                     padreP.updatePatientList(pacienteList);
                 }
         }

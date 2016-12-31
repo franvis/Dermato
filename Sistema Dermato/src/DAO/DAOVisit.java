@@ -47,8 +47,7 @@ public class DAOVisit extends DAOBasics{
             connection = daoConnection.openDBConnection();
             connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(DBUtils.
-                    getInsertStatementWithValuesOnly(Tables.Visit,
-                            "null,str_to_date(?, '%d/%c/%Y'),?,?,?,?,?,?,?,?"));
+                    getInsertStatementWithValuesOnly(Tables.Visit));
             preparedStatement.setString(1, visit.getDate());
             preparedStatement.setString(2, visit.getReason());
             preparedStatement.setString(3, visit.getTreatment());

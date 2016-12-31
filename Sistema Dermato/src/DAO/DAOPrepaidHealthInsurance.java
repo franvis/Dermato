@@ -65,8 +65,8 @@ public class DAOPrepaidHealthInsurance extends DAOBasics{
     public boolean registerPrePaidHealthInsurance(PrePaidHealthInsurance prePaidHealthInsurance) {
         try {
             connection = daoConnection.openDBConnection();
-            String cons = "INSERT INTO sistemaCarla.ObraSocial VALUES (null,?)";
-            preparedStatement = connection.prepareStatement(cons);
+            query = DBUtils.getInsertStatementWithValuesOnly(Tables.PrePaidHealthInsurance);
+            preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, prePaidHealthInsurance.getName());
             return (preparedStatement.executeUpdate() > 0);
         } catch (SQLException ex) {

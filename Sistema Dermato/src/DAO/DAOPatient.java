@@ -4,8 +4,11 @@
 package DAO;
 
 import ClasesBase.Patient;
+import ClasesBase.PrePaidHealthInsurance;
+import Utils.DBConstants;
 import static Utils.DBConstants.LEFT_JOIN;
-import static Utils.DBConstants.PatientDBColumns.dni;
+import Utils.DBConstants.PatientDBColumns;
+import static Utils.DBConstants.PatientDBColumns.*;
 import Utils.DBConstants.Tables;
 import Utils.DBConstants.VisitDBColumns;
 import Utils.DBUtils;
@@ -18,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author Fran
  */
-public class DAOPatient extends DAOBasics{
+public class DAOPatient extends DAOBasics {
 
     private final DAOPrepaidHealthInsurance daoPrepaidHealthInsurance;
     private final DAOAntecedents daoAntecedents;
@@ -39,9 +42,7 @@ public class DAOPatient extends DAOBasics{
     public boolean registerPatient(Patient patient) {
         try {
             connection = daoConnection.openDBConnection();
-            String cons = DBUtils.getInsertStatementWithValuesOnly(Tables.Patient,
-                    "?,?,?,?,?,?,str_to_date(?, '%d/%c/%Y'),?,?,"
-                    + "str_to_date(?, '%d/%c/%Y')");
+            String cons = DBUtils.getInsertStatementWithValuesOnly(Tables.Patient);
             preparedStatement = connection.prepareStatement(cons);
             if (patient.getPrepaidHealthInsurance().getId() != 0) {
                 preparedStatement.setInt(8, patient.getPrepaidHealthInsurance().getId());
@@ -87,406 +88,318 @@ public class DAOPatient extends DAOBasics{
     /**
      * Method used to retrieve all the patients according to the filters
      *
-     * @param nombre name filter
-     * @param apellido last name filter
-     * @param dni dni filter
+     * @param filterName
+     * @param filterLastName
+     * @param filterDni
      * @return List containing all the patients according to the filters
      */
     public LinkedList<Patient> getAllPatients(String filterName, String filterLastName, String filterDni) {
         pacientes = new LinkedList<>();
 
-        query = "SELECT dni, nombre, apellido, fechaNacimiento, MAX(fecha) AS fechaUltimaConsulta FROM  ";
+        String lastVisitDateColumn = "lastVisitDate";
 
-        String from = DBUtils.getTableJoin(LEFT_JOIN, Tables.Patient, 
+        String from = DBUtils.getTableJoin(LEFT_JOIN, Tables.Patient,
                 Tables.Visit, dni.name(), VisitDBColumns.patient.name());
-        
-//        String where = "";
-//        String orderBy = "";
-//
-//        if (!filterDni.isEmpty()) {
-//            if (!where.isEmpty()) {
-//                where += " AND ";
-//            }
-//            where += " CONVERT(dni, CHAR) LIKE ? ";
-//            if (!orderBy.isEmpty()) {
-//                orderBy += " , ";
-//            }
-//            orderBy += " dni ASC ";
-//        }
-//
-//        if (!apellido.isEmpty()) {
-//            if (!where.isEmpty()) {
-//                where += " AND ";
-//            }
-//            where += " apellido LIKE ? ";
-//            if (!orderBy.isEmpty()) {
-//                orderBy += " , ";
-//            }
-//            orderBy += " apellido ASC ";
-//        }
-//
-//        if (!nombre.isEmpty()) {
-//            if (!where.isEmpty()) {
-//                where += " AND ";
-//            }
-//            where += " nombre LIKE ? ";
-//            if (!orderBy.isEmpty()) {
-//                orderBy += " , ";
-//            }
-//            orderBy += " nombre ASC ";
-//        }
-//
-//        if (!where.isEmpty()) {
-//            query = DBUtils.getSelectColumnsStatementWithWhereGroupByAndOrder(from, columns, whereCondition, groupByColumns);
-//            query += " WHERE " + where + " GROUP BY dni, nombre, apellido, fechaNacimiento ORDER BY " + orderBy;
-//        } else {
-//            return pacientes;
-//        }
-//
-//        try {
-//            connection = daoConnection.openDBConnection();
-//            preparedStatement = connection.prepareStatement(query);
-//            int cant = 0;
-//            if (where.contains("dni")) {
-//                cant++;
-//                preparedStatement.setString(cant, dni + '%');
-//            }
-//            if (where.contains("apellido")) {
-//                cant++;
-//                preparedStatement.setString(cant, apellido + '%');
-//            }
-//            if (where.contains("nombre")) {
-//                cant++;
-//                preparedStatement.setString(cant, nombre + '%');
-//            }
-//            preparedStatement.executeQuery();
-//            resultSet = preparedStatement.getResultSet();
-//            while (resultSet.next()) {
-//                patient = new Patient();
-//                patient.setDni(resultSet.getLong("dni"));
-//                if (patient.getDni() == 0) {
-//                    break;
-//                }
-//                patient.setNombre(resultSet.getString("nombre"));
-//                patient.setApellido(resultSet.getString("apellido"));
-//                String año, mes, dia;
-//                String fecha = resultSet.getString("fechaNacimiento");
-//                año = fecha.substring(0, 4);
-//                mes = fecha.substring(5, 7);
-//                dia = fecha.substring(8, 10);
-//                patient.setFechaNacimiento(dia + "/" + mes + "/" + año);
-//                String fechaUltimaConsulta = "Sin consultas";
-//                if (resultSet.getObject("fechaUltimaConsulta") != null) {
-//                    fechaUltimaConsulta = resultSet.getString("fechaUltimaConsulta");
-//                    año = fechaUltimaConsulta.substring(0, 4);
-//                    mes = fechaUltimaConsulta.substring(5, 7);
-//                    dia = fechaUltimaConsulta.substring(8, 10);
-//                    fechaUltimaConsulta = dia + "/" + mes + "/" + año;
-//                }
-//                patient.setLastVisitDate(fechaUltimaConsulta);
-//                pacientes.add(patient);
-//            }
-//            preparedStatement.close();
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        }
-//        daoConnection.closeDBConnection(connection);
+
+        String columns = DBUtils.getStringWithValuesSeparatedWithCommas(dni.name(),
+                name.name(), lastname.name(), birthday.name(), DBUtils
+                .getMaxColumnAs(VisitDBColumns.date.name(), lastVisitDateColumn));
+
+        String where = DBUtils.getWhereForFilters(filterName, filterLastName, filterDni);
+        String orderBy = DBUtils.getOrderByForFilters(filterName, filterLastName, filterDni);
+        String groupBy = DBUtils.getStringWithValuesSeparatedWithCommas(dni.name(), name.name(),
+                lastname.name(), birthday.name());
+
+        if (!where.isEmpty()) {
+            query = DBUtils.getSelectColumnsMultipleTablesStatementWithWhereGroupByAndOrder(
+                    columns, from, where, groupBy, orderBy);
+        } else {
+            return pacientes;
+        }
+
+        try {
+            connection = daoConnection.openDBConnection();
+            preparedStatement = connection.prepareStatement(query);
+            int cant = 0;
+            if (where.contains(dni.name())) {
+                cant++;
+                preparedStatement.setString(cant, filterDni + '%');
+            }
+            if (where.contains(lastname.name())) {
+                cant++;
+                preparedStatement.setString(cant, filterLastName + '%');
+            }
+            if (where.contains(name.name())) {
+                cant++;
+                preparedStatement.setString(cant, filterName + '%');
+            }
+            preparedStatement.executeQuery();
+            resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                patient = new Patient();
+                patient.setDni(resultSet.getLong(dni.name()));
+                if (patient.getDni() == 0) {
+                    break;
+                }
+                patient.setName(resultSet.getString(name.name()));
+                patient.setLastname(resultSet.getString(lastname.name()));
+                patient.setBirthday(DBUtils.getFormattedDate(resultSet.getString(birthday.name())));
+                String lastVisitDate = "Sin consultas";
+                if (resultSet.getObject(lastVisitDateColumn) != null) {
+                    lastVisitDate = DBUtils.getFormattedDate(resultSet.
+                            getString(lastVisitDateColumn));
+                }
+                patient.setLastVisitDate(lastVisitDate);
+                pacientes.add(patient);
+            }
+            preparedStatement.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        daoConnection.closeDBConnection(connection);
         return pacientes;
     }
 
     /**
-     * Metodo utilizado para verificar la existencia de un paciente
+     * Method used to verify the existence of a patient
      *
-     * @param dni dni del paciente a validar
-     * @return true si se encuentra, false si no se encuentra
+     * @param dni patient's dni
+     * @return true if exists, false otherwise
      */
-    public boolean verificarPaciente(long dni) {
-        boolean verificacion = false;
-//        connection = daoConnection.openDBConnection();
-//        query = "SELECT 1 FROM sistemaCarla.paciente WHERE dni = ?";
-//        try {
-//            preparedStatement = connection.prepareStatement(query);
-//            preparedStatement.setLong(1, dni);
-//            preparedStatement.executeQuery();
-//            if (preparedStatement.getResultSet().next()) {
-//                verificacion = true;
-//            }
-//            preparedStatement.close();
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        } finally {
-//            daoConnection.closeDBConnection(connection);
-//        }
-        return verificacion;
+    public boolean verifyPatient(long dni) {
+        boolean exists = false;
+        connection = daoConnection.openDBConnection();
+        query = DBUtils.getSelectOneStatementWithWhere(Tables.Patient,
+                DBUtils.getSimpleWhereCondition(PatientDBColumns.dni.name()));
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setLong(1, dni);
+            preparedStatement.executeQuery();
+            if (preparedStatement.getResultSet().next()) {
+                exists = true;
+            }
+            preparedStatement.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            daoConnection.closeDBConnection(connection);
+        }
+        return exists;
     }
 
     /**
-     * Metodo utilizado para obtener datos básicos de un paciente
+     * Method used to retrieve all the basic data for a patient
      *
      * @param dni
-     * @return Paciente con datos básicos para ventana principal: dni, nombre,
-     * apellido, fechaNacimiento, fechaUltimaConsulta
+     * @return Patient containing dni, name, last name, birthday and last visit
+     * date
      */
-    public Patient getPacienteBasico(long dni) {
+    public Patient getBasicPatient(long dni) {
         patient = null;
-//        query = "SELECT dni, nombre, apellido, fechaNacimiento, MAX(fecha) AS fechaUltimaConsulta FROM sistemaCarla.paciente LEFT JOIN sistemaCarla.consulta ON dni=dniPaciente WHERE dni = ?";
-//        try {
-//            connection = daoConnection.openDBConnection();
-//            preparedStatement = connection.prepareStatement(query);
-//            preparedStatement.setLong(1, dni);
-//            preparedStatement.executeQuery();
-//            resultSet = preparedStatement.getResultSet();
-//            while (resultSet.next()) {
-//                patient = new Patient();
-//                patient.setDni(dni);
-//                patient.setNombre(resultSet.getString("nombre"));
-//                patient.setApellido(resultSet.getString("apellido"));
-//                String fecha = resultSet.getString("fechaNacimiento");
-//                String año = fecha.substring(0, 4);
-//                String mes = fecha.substring(5, 7);
-//                String dia = fecha.substring(8, 10);
-//                patient.setFechaNacimiento(dia + "/" + mes + "/" + año);
-//                String fechaUltimaConsulta = "Sin consultas";
-//                if (resultSet.getObject("fechaUltimaConsulta") != null) {
-//                    fechaUltimaConsulta = resultSet.getString("fechaUltimaConsulta");
-//                    año = fechaUltimaConsulta.substring(0, 4);
-//                    mes = fechaUltimaConsulta.substring(5, 7);
-//                    dia = fechaUltimaConsulta.substring(8, 10);
-//                    fechaUltimaConsulta = dia + "/" + mes + "/" + año;
-//                }
-//                patient.setLastVisitDate(fechaUltimaConsulta);
-//            }
-//            preparedStatement.close();
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        } finally {
-//            daoConnection.closeDBConnection(connection);
-//        }
+        String lastVisitDateColumn = "lastVisitDate";
+
+        String from = DBUtils.getTableJoin(LEFT_JOIN, Tables.Patient,
+                Tables.Visit, PatientDBColumns.dni.name(), VisitDBColumns.patient.name());
+
+        String columns = DBUtils.getStringWithValuesSeparatedWithCommas(PatientDBColumns.dni.name(),
+                name.name(), lastname.name(), birthday.name(), DBUtils
+                .getMaxColumnAs(VisitDBColumns.date.name(), lastVisitDateColumn));
+
+        query = DBUtils.getSelectColumnsMultipleTablesStatementWithWhere(columns, from,
+                DBUtils.getSimpleWhereCondition(PatientDBColumns.dni.name()));
+        try {
+            connection = daoConnection.openDBConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setLong(1, dni);
+            preparedStatement.executeQuery();
+            resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                patient = new Patient();
+                patient.setDni(dni);
+                patient.setName(resultSet.getString("nombre"));
+                patient.setLastname(resultSet.getString("apellido"));
+                patient.setBirthday(DBUtils.getFormattedDate(resultSet.getString(birthday.name())));
+                String lastVisitDate = "Sin consultas";
+                if (resultSet.getObject(lastVisitDateColumn) != null) {
+                    lastVisitDate = DBUtils.getFormattedDate(resultSet.
+                            getString(lastVisitDateColumn));
+                }
+                patient.setLastVisitDate(lastVisitDate);
+            }
+            preparedStatement.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            daoConnection.closeDBConnection(connection);
+        }
         return patient;
     }
 
     /**
-     * Metodo utilizado para obtener un paciente completo
+     * Method used to retrieve a full data patient
      *
      * @param dni
-     * @return Paciente completo requerido
+     * @return Required full data patient
      */
     public Patient getPacienteCompleto(long dni) {
         patient = null;
-//        query = "SELECT * FROM paciente WHERE dni = ?";
-//        try {
-//            connection = daoConnection.openDBConnection();
-//            preparedStatement = connection.prepareStatement(query);
-//            preparedStatement.setLong(1, dni);
-//            preparedStatement.executeQuery();
-//            resultSet = preparedStatement.getResultSet();
-//            while (resultSet.next()) {
-//                patient = new Patient();
-//                patient.setDni(dni);
-//                patient.setNombre(resultSet.getString("nombre"));
-//                patient.setApellido(resultSet.getString("apellido"));
-//                String año, mes, dia;
-//                String fecha = resultSet.getString("fechaNacimiento");
-//                año = fecha.substring(0, 4);
-//                mes = fecha.substring(5, 7);
-//                dia = fecha.substring(8, 10);
-//                patient.setFechaNacimiento(dia + "/" + mes + "/" + año);
-//                patient.setFactor(resultSet.getBoolean("factor"));
-//                patient.setGrupoSanguineo(resultSet.getString("grupoSanguineo"));
-//                patient.setNumeroAfiliado(resultSet.getString("numeroAfiliado"));
-//                if (resultSet.getObject("obraSocial") != null && resultSet.getInt("obraSocial") != 0) {
-//                    patient.setObraSocial(daoPrepaidHealthInsurance.getObraSocial(resultSet.getInt("obraSocial")));
-//                } else {
-//                    patient.setObraSocial(new PrepaidHealthInsurance(0, "Sin Obra Social"));
-//                }
-//                patient.setTelefono(resultSet.getString("telefono"));
-//            }
-//            preparedStatement.close();
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        } finally {
-//            daoConnection.closeDBConnection(connection);
-//        }
-//
-//        patient.setAntecFam(daoAntecFam.getAntecedenteFamiliar(dni));
-//        patient.setAntecGinec(daoAntecGinec.getAntecedenteGinecologico(dni));
-//        patient.setAntecGen(daoAntecGen.getAntecedenteGeneral(dni));
+        String lastVisitDateColumn = "lastVisitDate";
+
+        String from = DBUtils.getTableJoin(LEFT_JOIN, Tables.Patient,
+                Tables.Visit, PatientDBColumns.dni.name(), VisitDBColumns.patient.name());
+
+        String columns = DBUtils.getStringWithValuesSeparatedWithCommas(PatientDBColumns.dni.name(),
+                name.name(), lastname.name(), birthday.name(), DBUtils
+                .getMaxColumnAs(VisitDBColumns.date.name(), lastVisitDateColumn));
+
+        query = DBUtils.getSelectAllMultipleTablesStatementWithWhere(columns, from,
+                DBUtils.getSimpleWhereCondition(PatientDBColumns.dni.name()));
+        try {
+            connection = daoConnection.openDBConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setLong(1, dni);
+            preparedStatement.executeQuery();
+            resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                patient = new Patient();
+                patient.setDni(dni);
+                patient.setName(resultSet.getString(name.name()));
+                patient.setLastname(resultSet.getString(lastname.name()));
+                patient.setAddress(resultSet.getString(address.name()));
+                patient.setCity(resultSet.getString(city.name()));
+                patient.setFirstVisitDate(resultSet.getString(firstVisitDate.name()));
+                patient.setBirthday(DBUtils.getFormattedDate(resultSet.getString(birthday.name())));
+                patient.setPrepaidHealthInsuranceNumber(resultSet.getString(prePaidHealthInsuranceNumber.name()));
+                if (resultSet.getObject(prepaidHealthInsurance.name()) != null && resultSet.getInt(prepaidHealthInsurance.name()) != 0) {
+                    patient.setPrepaidHealthInsurance(daoPrepaidHealthInsurance.getObraSocial(resultSet.getInt(prepaidHealthInsurance.name())));
+                } else {
+                    patient.setPrepaidHealthInsurance(new PrePaidHealthInsurance(0, "Sin Obra Social"));
+                }
+                patient.setPhone(resultSet.getString(phone.name()));
+                String lastVisitDate = "Sin consultas";
+                if (resultSet.getObject(lastVisitDateColumn) != null) {
+                    lastVisitDate = DBUtils.getFormattedDate(resultSet.
+                            getString(lastVisitDateColumn));
+                }
+                patient.setLastVisitDate(lastVisitDate);
+            }
+            preparedStatement.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            daoConnection.closeDBConnection(connection);
+        }
+
+        patient.setAntecendents(daoAntecedents.getAntecedent(patient.getDni()));
 
         return patient;
     }
 
     /**
-     * Metodo utilizado para obtener un paciente sin antecedentes
+     * Method used to update a patient
      *
-     * @param dni dni del paciente buscado
-     * @return Paciente buscado
+     * @param dniAnterior Patient's dni before modifying it
+     * @param p Updated patient
+     * @return true if updated correctly, false otherwise
      */
-    public Patient getPatient(long dni) {
-        patient = null;
-//        query = "SELECT * FROM paciente WHERE dni = ?";
-//        try {
-//            connection = daoConnection.openDBConnection();
-//            preparedStatement = connection.prepareStatement(query);
-//            preparedStatement.setLong(1, dni);
-//            preparedStatement.executeQuery();
-//            resultSet = preparedStatement.getResultSet();
-//            while (resultSet.next()) {
-//                patient = new Patient();
-//                patient.setDni(dni);
-//                patient.setNombre(resultSet.getString("nombre"));
-//                patient.setApellido(resultSet.getString("apellido"));
-//                String año, mes, dia;
-//                String fecha = resultSet.getString("fechaNacimiento");
-//                año = fecha.substring(0, 4);
-//                mes = fecha.substring(5, 7);
-//                dia = fecha.substring(8, 10);
-//                patient.setFechaNacimiento(dia + "/" + mes + "/" + año);
-//                patient.setFactor(resultSet.getBoolean("factor"));
-//                patient.setGrupoSanguineo(resultSet.getString("grupoSanguineo"));
-//                patient.setNumeroAfiliado(resultSet.getString("numeroAfiliado"));
-//                if (resultSet.getObject("obraSocial") != null && resultSet.getInt("obraSocial") != 0) {
-//                    patient.setObraSocial(daoPrepaidHealthInsurance.getObraSocial(resultSet.getInt("obraSocial")));
-//                } else {
-//                    patient.setObraSocial(new PrepaidHealthInsurance(0, "Sin Obra Social"));
-//                }
-//                patient.setTelefono(resultSet.getString("telefono"));
-//            }
-//            preparedStatement.close();
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        } finally {
-//            daoConnection.closeDBConnection(connection);
-//        }
-        return patient;
-    }
-
-    /**
-     * Metodo utilizado para actualizar un paciente
-     *
-     * @param dniAnterior dni del paciente anterior a la modificacion
-     * @param p Paciente a actualizar
-     * @return true si se actualiza correctamente, false si no se actualiza
-     */
-    public boolean actualizarPaciente(Patient p, long dniAnterior) {
-        boolean rtdo = false;
-//        try {
-//            String cons = "";
-//            connection = daoConnection.openDBConnection();
-//            if (p.getObraSocial().getId() != 0) {
-//                cons = "UPDATE sistemaCarla.Paciente SET "
-//                        + "dni = ?,"
-//                        + "nombre = ?,"
-//                        + "apellido = ?,"
-//                        + "telefono = ?,"
-//                        + "fechaNacimiento = str_to_date(?, '%d/%c/%Y'),"
-//                        + "grupoSanguineo = ?,"
-//                        + "factor = ?,"
-//                        + "obraSocial = ?,"
-//                        + "numeroAfiliado = ? "
-//                        + "WHERE dni = ?";
-//                preparedStatement = connection.prepareStatement(cons);
-//                preparedStatement.setInt(8, p.getObraSocial().getId());
-//                preparedStatement.setString(9, p.getNumeroAfiliado());
-//                preparedStatement.setLong(10, dniAnterior);
-//            } else {
-//                cons = "UPDATE sistemaCarla.Paciente SET "
-//                        + "dni = ?,"
-//                        + "nombre = ?,"
-//                        + "apellido = ?,"
-//                        + "telefono = ?,"
-//                        + "fechaNacimiento = str_to_date(?, '%d/%c/%Y'),"
-//                        + "grupoSanguineo = ?,"
-//                        + "factor = ?,"
-//                        + "obraSocial = NULL,"
-//                        + "numeroAfiliado = NULL "
-//                        + "WHERE dni = ?";
-//                preparedStatement = connection.prepareStatement(cons);
-//                preparedStatement.setLong(8, dniAnterior);
-//            }
-//            preparedStatement.setLong(1, p.getDni());
-//            preparedStatement.setString(2, p.getNombre());
-//            preparedStatement.setString(3, p.getApellido());
-//            preparedStatement.setString(4, p.getTelefono());
-//            preparedStatement.setString(5, p.getFechaNacimiento());
-//            preparedStatement.setString(6, p.getGrupoSanguineo());
-//            preparedStatement.setBoolean(7, p.getFactor());
-//            rtdo = (((preparedStatement.executeUpdate() > 0) ? true : false) && actualizarAntecedentes(p));
-//            preparedStatement.close();
-//        } catch (Exception ex) {
-//            System.out.println(ex.getMessage());
-//        } finally {
-//            daoConnection.closeDBConnection(connection);
-//        }
-        return rtdo;
-    }
-
-    /**
-     * Metodo utilizado para actualizar los antecedentes de un paciente
-     *
-     * @param p Paciente que contiene los antecedentes a actualizar
-     * @return true si se actualizan correctamente, false si no se actualizan
-     */
-    private boolean actualizarAntecedentes(Patient p) {
-//        long dni = p.getDni();
-//        return (daoAntecFam.actualizarAntecedente(p.getAntecFam(), dni)
-//                && daoAntecGen.actualizarAntecedente(p.getAntecGen(), dni)
-//                && daoAntecGinec.actualizarAntecedente(p.getAntecGinec(), dni));
-        return false;
-    }
-
-    /**
-     * Metodo utilizado para eliminar un paciente
-     *
-     * @param dni dni del paciente a eliminar
-     * @return true si se elimina correctamente, false si no se elimina
-     */
-    public boolean borrarPaciente(long dni) {
-//        try {
-//            connection = daoConnection.openDBConnection();
-//            String cons = "DELETE FROM sistemaCarla.PACIENTE WHERE dni = ?";
-//            preparedStatement = connection.prepareStatement(cons);
-//            preparedStatement.setLong(1, dni);
-//            return (preparedStatement.executeUpdate() > 0) ? true : false;
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DAOPrepaidHealthInsurance.class.getName()).log(Level.SEVERE, null, ex);
+    public boolean updatePatient(Patient p, long dniAnterior) {
+        String columns;
+        try {
+            connection = daoConnection.openDBConnection();
+            connection.setAutoCommit(false);
+            columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
+                    dni.name(), name.name(), lastname.name(), phone.name(),
+                    prepaidHealthInsurance.name(), prePaidHealthInsuranceNumber.name(),
+                    city.name(), address.name());
+            columns = DBUtils.getStringWithValuesSeparatedWithCommas(columns,
+                    String.format(DBConstants.STR_TO_DATE_UPDATE_COLUMN, birthday.name()));
+            query = DBUtils.getUpdateStatement(Tables.Patient, columns, DBUtils.getSimpleWhereCondition(dni.name()));
+            preparedStatement = connection.prepareStatement(query);
+            if (p.getPrepaidHealthInsurance().getId() != 0) {
+                preparedStatement.setInt(5, p.getPrepaidHealthInsurance().getId());
+                preparedStatement.setString(6, p.getPrepaidHealthInsuranceNumber());
+            } else {
+                preparedStatement.setNull(5, Types.INTEGER);
+                preparedStatement.setNull(6, Types.VARCHAR);
+            }
+            preparedStatement.setLong(10, dniAnterior);
+            preparedStatement.setLong(1, p.getDni());
+            preparedStatement.setString(2, p.getName());
+            preparedStatement.setString(3, p.getLastname());
+            preparedStatement.setString(4, p.getPhone());
+            preparedStatement.setString(7, p.getCity());
+            preparedStatement.setString(8, p.getAddress());
+            preparedStatement.setString(9, p.getBirthday());
+            preparedStatement.executeUpdate();
+            daoAntecedents.withConnection(connection)
+                    .updateAntecedents(p.getAntecendents(), p.getDni());
+            preparedStatement.close();
+            connection.commit();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
             return false;
-//        } finally {
-//            daoConnection.closeDBConnection(connection);
-//        }
+        } finally {
+            daoConnection.closeDBConnection(connection);
+        }
+        return true;
     }
 
     /**
-     * Permite verificar que no existan dos pacientes registrados en la misma
-     * obra social con el mismo número de afiliado
+     * Method used to delete a patient
      *
-     * @param idObraSocial id de la Obra Social a la que pertenece el número de
-     * afiliado a verificar
-     * @param numeroAfiliado número de afiliado a verificar
-     * @return el paciente que concuerda con dicha obra social y n° de afiliado,
-     * null si no hubo coincidencias
+     * @param dni dni of the patient intended to delete
+     * @return true if deleted correctly, false otherwise
      */
-    public Patient verificarNroAfiliado(int idObraSocial, String numeroAfiliado) {
+    public boolean deletePatient(long dni) {
+        try {
+            connection = daoConnection.openDBConnection();
+            query = DBUtils.getDeleteStatement(Tables.Patient, 
+                    DBUtils.getSimpleWhereCondition(PatientDBColumns.dni.name()));
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setLong(1, dni);
+            return (preparedStatement.executeUpdate() > 0);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOPrepaidHealthInsurance.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } finally {
+            daoConnection.closeDBConnection(connection);
+        }
+    }
+
+    /**
+     * Allows to verify that duplicated patients don't exist for a certain Pre Paid Health 
+     * Insurance with a certain Insurance Number
+     *
+     * @param prePaidHealthInsuranceId pre paid health insurance id
+     * @param insuranceNumber patient's insurance number
+     * @return the only patient that exists for the pre paid health insurance and with that insurance number
+     * null if no match were found
+     */
+    public Patient verificarNroAfiliado(int prePaidHealthInsuranceId, String insuranceNumber) {
         Patient match = null;
-//        try {
-//            connection = daoConnection.openDBConnection();
-//            query = "SELECT dni, nombre, apellido FROM sistemaCarla.paciente WHERE obraSocial = ? AND numeroAfiliado = ?";
-//            preparedStatement = connection.prepareStatement(query);
-//            preparedStatement.setInt(1, idObraSocial);
-//            preparedStatement.setString(2, numeroAfiliado);
-//            preparedStatement.executeQuery();
-//            resultSet = preparedStatement.getResultSet();
-//            while (resultSet.next()) {
-//                match = new Patient();
-//                match.setDni(resultSet.getLong("dni"));
-//                match.setNombre(resultSet.getString("nombre"));
-//                match.setApellido(resultSet.getString("apellido"));
-//            }
-//            preparedStatement.close();
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        } finally {
-//            daoConnection.closeDBConnection(connection);
-//        }
+        try {
+            connection = daoConnection.openDBConnection();
+            String columns = DBUtils.getStringWithValuesSeparatedWithCommas(dni.name(), name.name(), lastname.name());
+            String where = DBUtils.getWhereConditions(DBUtils.getSimpleWhereCondition(
+                    prepaidHealthInsurance.name()), DBUtils.getSimpleWhereCondition(prePaidHealthInsuranceNumber.name()));
+            query = DBUtils.getSelectColumnsStatementWithWhere(Tables.Patient, columns, where);
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, prePaidHealthInsuranceId);
+            preparedStatement.setString(2, insuranceNumber);
+            preparedStatement.executeQuery();
+            resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                match = new Patient();
+                match.setDni(resultSet.getLong(dni.name()));
+                match.setName(resultSet.getString(name.name()));
+                match.setLastname(resultSet.getString(lastname.name()));
+            }
+            preparedStatement.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            daoConnection.closeDBConnection(connection);
+        }
         return match;
     }
 }
