@@ -27,6 +27,7 @@ public class DAOAntecedents extends DAOBasics {
     public DAOAntecedents(){
         daoConnection = new DAOConnection();
     }
+    
     /**
      * Method used to register the patient antecedents
      *
@@ -35,6 +36,40 @@ public class DAOAntecedents extends DAOBasics {
      * @return true if registered, false otherwise
      */
     public boolean registerAntecedents(Antecedents antecedents, long dni) {
+        try {
+            connection = daoConnection.openDBConnection();
+            query = DBUtils.getInsertStatementWithValuesOnly(
+                    Tables.Antecedents);
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, antecedents.getPersonalAntecedents());
+            preparedStatement.setString(2, antecedents.getSurgicalAntecedents());
+            preparedStatement.setString(3, antecedents.getToxicAntecedents());
+            preparedStatement.setString(4, antecedents.getPharmacologicalAntecedents());
+            preparedStatement.setString(5, antecedents.getFamilyAntecedents());
+            preparedStatement.setLong(6, dni);
+            return (preparedStatement.executeUpdate() > 0);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } finally {
+            try {
+                preparedStatement.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            daoConnection.closeDBConnection(connection);
+        }
+    }
+    
+    /**
+     * Method used to register the patient antecedents using a transaction connection
+     *
+     * @param antecedents Antecedents
+     * @param dni patient dni
+     * @param connection connection
+     * @return true if registered, false otherwise
+     */
+    public boolean registerAntecedents(Antecedents antecedents, long dni, Connection connection) {
         try {
             connection = daoConnection.openDBConnection();
             query = DBUtils.getInsertStatementWithValuesOnly(

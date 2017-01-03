@@ -43,13 +43,13 @@ public class DAOPatient extends DAOBasics {
     public boolean registerPatient(Patient patient) {
         try {
             connection = daoConnection.openDBConnection();
-            String cons = DBUtils.getInsertStatementWithValuesOnly(Tables.Patient);
-            preparedStatement = connection.prepareStatement(cons);
+            connection.setAutoCommit(false);
+            query = DBUtils.getInsertStatementWithValuesOnly(Tables.Patient);
+            preparedStatement = connection.prepareStatement(query);
             if (patient.getPrepaidHealthInsurance().getId() != 0) {
                 preparedStatement.setInt(8, patient.getPrepaidHealthInsurance().getId());
                 preparedStatement.setString(9, patient.getPrepaidHealthInsuranceNumber());
             } else {
-                preparedStatement = connection.prepareStatement(cons);
                 preparedStatement.setNull(8, java.sql.Types.INTEGER);
                 preparedStatement.setString(9, "");
             }
@@ -61,7 +61,9 @@ public class DAOPatient extends DAOBasics {
             preparedStatement.setString(6, patient.getCity());
             preparedStatement.setString(7, patient.getBirthday());
             preparedStatement.setString(10, patient.getFirstVisitDate());
-            return ((preparedStatement.executeUpdate() > 0) && registerAntecedents(patient));
+            preparedStatement.executeUpdate();
+            registerAntecedents(patient);
+            connection.commit();
         } catch (SQLException ex) {
             Logger.getLogger(DAOPrepaidHealthInsurance.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("query: "+query);
@@ -74,6 +76,7 @@ public class DAOPatient extends DAOBasics {
             }
             daoConnection.closeDBConnection(connection);
         }
+        return true;
     }
 
     /**
@@ -84,7 +87,7 @@ public class DAOPatient extends DAOBasics {
      */
     private boolean registerAntecedents(Patient patient) {
         return (daoAntecedents.registerAntecedents(patient.getAntecendents(),
-                patient.getDni()));
+                patient.getDni(), connection));
     }
 
     /**
