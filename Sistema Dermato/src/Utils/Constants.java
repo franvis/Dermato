@@ -16,10 +16,10 @@ public class Constants {
     public static final String URL = "jdbc:mysql://localhost:3306/Dermato";
     
     //Datos para el manejo de Archivos
-    public static final String COLOR_FILE_PATH = "C:\\Program Files\\Sistema Ginecologico\\Archivos Auxiliares\\Color.dat";
-    public static final String AUXILIAR_AUTOMATIC_BACKUP_PATH = "C:\\Program Files\\Sistema Ginecologico\\Backup Automatico\\BackUp.dat";
+    public static final String COLOR_FILE_PATH = "C:\\Program Files\\Sistema Dermatologico\\Archivos Auxiliares\\Color.dat";
+    public static final String AUXILIAR_AUTOMATIC_BACKUP_PATH = "C:\\Program Files\\Sistema Dermatologico\\Backup Automatico\\BackUp.dat";
     public static final String BACKUP_PRCESS_PATH = "\"C:\\Program Files\\MySQL\\MySQL Server 5.5\\bin\\mysqldump.exe\"";
-    public static final String BACKUPS_FOLDER_PATH = "C:\\Program Files\\Sistema Ginecologico\\Backup Automatico\\";
+    public static final String BACKUPS_FOLDER_PATH = "C:\\Program Files\\Sistema Dermatologico\\Backup Automatico\\";
     
     //OTHERS
     public static final String FULLNAME = "%s, %s";

@@ -171,7 +171,7 @@ public class DAOPrepaidHealthInsurance extends DAOBasics{
     public PrePaidHealthInsurance getPPHealthInsurance(int idPrePaidHealthInsurance) {
         where = getWhereConditions(getSimpleWhereCondition(PrePaidHealthInsuranceDBColumns.idPrepaidHealthInsurance.name()));
         
-        query = DBUtils.getSelectAllStatement(Tables.PrepaidHealthInsurance, 
+        query = DBUtils.getSelectAllStatementWithWhere(Tables.PrepaidHealthInsurance, 
                  where);
         try {
             connection = daoConnection.openDBConnection();

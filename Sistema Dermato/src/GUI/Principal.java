@@ -23,7 +23,7 @@ public class Principal extends javax.swing.JFrame {
     private final DAOPatient daoPatient;
     private LinkedList<Patient> patientsList;
     private final LinkedList<JFrame> openFrames;
-    private Patient patients;
+    private Patient patient;
     private ABMPrePaidHealthInsurances abmPrePaidHealthInsurances;
 
     /**
@@ -665,18 +665,18 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnModifyPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyPatientActionPerformed
         if (!patientsList.isEmpty()) {
-            patients = new Patient();
+            patient = new Patient();
             dtmPatients = (DefaultTableModel) this.tblPatients.getModel();
-            patients = patientsList.get(tblPatients.getSelectedRow());
+            patient = patientsList.get(tblPatients.getSelectedRow());
             for (JFrame aux : openFrames){
-                if (aux instanceof ABMPatient && ((ABMPatient)aux).getPatientDni() == patients.getDni()){
+                if (aux instanceof ABMPatient && ((ABMPatient)aux).getPatientDni() == patient.getDni()){
                     aux.setVisible(true);
                     return;
                 }
             }
-            patients = daoPatient.getFullPatient(patients.getDni());
+            patient = daoPatient.getFullPatient(patient.getDni());
 
-            ABMPatient pacienteInterfaz = new ABMPatient(this, true, 1, patients);
+            ABMPatient pacienteInterfaz = new ABMPatient(this, true, 1, patient);
             pacienteInterfaz.setVisible(true);
             openFrames.add(pacienteInterfaz);
             ButtonsSetup(btnModifyPatient, false);
@@ -693,10 +693,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnSeeCHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeCHActionPerformed
         if (!patientsList.isEmpty()) {
-            patients = new Patient();
-            patients = patientsList.get(tblPatients.getSelectedRow());
+            patient = new Patient();
+            patient = patientsList.get(tblPatients.getSelectedRow());
             for (JFrame aux : openFrames){
-                if (aux instanceof ClinicalHistory && ((ClinicalHistory)aux).getPatientDni() == patients.getDni()){
+                if (aux instanceof ClinicalHistory && ((ClinicalHistory)aux).getPatientDni() == patient.getDni()){
                     aux.setVisible(true);
                     deleteRows(dtmPatients);
                     this.txtfLastname.setText("");
@@ -708,9 +708,9 @@ public class Principal extends javax.swing.JFrame {
                     return;
                 }
             }
-            patients = daoPatient.getFullPatient(patients.getDni());
+            patient = daoPatient.getFullPatient(patient.getDni());
 
-            ClinicalHistory CH = new ClinicalHistory(this, patients, 0);
+            ClinicalHistory CH = new ClinicalHistory(this, patient, 0);
             CH.setVisible(true);
             openFrames.add(CH);
             deleteRows(dtmPatients);

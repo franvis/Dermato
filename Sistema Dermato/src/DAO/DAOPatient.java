@@ -254,12 +254,18 @@ public class DAOPatient extends DAOBasics {
         from = DBUtils.getTableJoin(LEFT_JOIN, Tables.Patient,
                 Tables.Visit, PatientDBColumns.dni.name(), VisitDBColumns.patient.name());
 
-        columns = DBUtils.getStringWithValuesSeparatedWithCommas(PatientDBColumns.dni.name(),
-                name.name(), lastname.name(), birthday.name(), DBUtils
-                .getMaxColumnAs(VisitDBColumns.date.name(), lastVisitDateColumn));
+        columns = DBUtils.getStringWithValuesSeparatedWithCommas(
+                PatientDBColumns.dni.name(), name.name(), lastname.name(), phone.name(), address.name(),
+    city.name(), birthday.name(), prepaidHealthInsurance.name(), prePaidHealthInsuranceNumber.name(), 
+    firstVisitDate.name(),DBUtils.getMaxColumnAs(VisitDBColumns.date.name(), lastVisitDateColumn));
+        
+        groupBy = DBUtils.getStringWithValuesSeparatedWithCommas(
+                PatientDBColumns.dni.name(), name.name(), lastname.name(), phone.name(), address.name(),
+    city.name(), birthday.name(), prepaidHealthInsurance.name(), prePaidHealthInsuranceNumber.name(), 
+    firstVisitDate.name());
 
-        query = DBUtils.getSelectAllMultipleTablesStatementWithWhere(columns, from,
-                DBUtils.getSimpleWhereCondition(PatientDBColumns.dni.name()));
+        query = DBUtils.getSelectColumnsMultipleTablesStatementWithWhereAndGroupBy(columns, from,
+                DBUtils.getSimpleWhereCondition(PatientDBColumns.dni.name()), groupBy);
         try {
             connection = daoConnection.openDBConnection();
             preparedStatement = connection.prepareStatement(query);
@@ -296,6 +302,8 @@ public class DAOPatient extends DAOBasics {
             daoConnection.closeDBConnection(connection);
         }
 
+        System.out.println(query);
+        
         patient.setAntecendents(daoAntecedents.getAntecedent(patient.getDni()));
 
         return patient;

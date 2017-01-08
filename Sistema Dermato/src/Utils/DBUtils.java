@@ -45,9 +45,8 @@ public class DBUtils {
     }
 
     //SELECT STATEMENTS
-    public static String getSelectAllStatement(Tables table, String whereConditions) {
-        return String.format(DBConstants.SELECT_ALL, table.name(),
-                whereConditions);
+    public static String getSelectAllStatement(Tables table) {
+        return String.format(DBConstants.SELECT_ALL, table.name());
     }
 
     public static String getSelectAllStatementWithWhere(Tables table,
@@ -80,7 +79,13 @@ public class DBUtils {
                 columns, from, whereConditions);
     }
     
-    public static String getSelectAllMultipleTablesStatementWithWhere(String columns,
+    public static String getSelectColumnsMultipleTablesStatementWithWhereAndGroupBy(String columns,
+            String from, String whereConditions, String groupBy) {
+        return String.format(DBConstants.SELECT_COLUMNS_MULTIPLE_TABLES_WITH_WHERE_AND_GROUP_BY,
+                columns, from, whereConditions, groupBy);
+    }
+    
+    public static String getSelectAllMultipleTablesStatementWithWhere(
             String from, String whereConditions) {
         return String.format(DBConstants.SELECT_ALL_MULTIPLE_TABLES_WITH_WHERE,
                 from, whereConditions);
