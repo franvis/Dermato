@@ -9,11 +9,10 @@ import static Utils.DBConstants.INNER_JOIN;
 import static Utils.DBConstants.LEFT_JOIN;
 import static Utils.DBConstants.MAX_COLUMN_AS;
 import static Utils.DBConstants.PatientDBColumns.dni;
-import static Utils.DBConstants.PatientDBColumns.lastname;
 import static Utils.DBConstants.PatientDBColumns.name;
 import static Utils.DBConstants.RIGHT_JOIN;
 import Utils.DBConstants.Tables;
-
+import static Utils.DBConstants.PatientDBColumns.lastname;
 /**
  *
  * @author fran
@@ -153,7 +152,7 @@ public class DBUtils {
     public static String getStringWithValuesSeparatedWithCommas(String... values) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < values.length; i++) {
-            if (i == 0 || i == values.length - 1) {
+            if (i == 0) {
                 builder.append(values[i]);
             } else {
                 builder.append(", ").append(values[i]);
@@ -201,7 +200,6 @@ public class DBUtils {
 
     public static String getWhereForFilters(String filterName, String filterLastName, String filterDni) {
         StringBuilder where = new StringBuilder();
-        where.append(" ");
         if (!filterDni.isEmpty()) {
             where.append(getSimpleWhereCondition("CONVERT(" + dni.name() + ", CHAR)"));
         }
@@ -225,7 +223,6 @@ public class DBUtils {
 
     public static String getOrderByForFilters(String filterName, String filterLastName, String filterDni) {
         StringBuilder orderBy = new StringBuilder();
-        orderBy.append(" ");
         if (!filterDni.isEmpty()) {
             orderBy.append(getOrderByCondition(dni.name(), true));
         }

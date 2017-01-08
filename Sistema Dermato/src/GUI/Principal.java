@@ -757,7 +757,7 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
             if (entering) {
                 jbtn.setEnabled(true);
                 jbtn.setFont(new java.awt.Font("Tahoma", 1, 15));
-                jbtn.setForeground(StyleManager.getColorTexto(StyleManager.colorActual));
+                jbtn.setForeground(StyleManager.getColorTexto(StyleManager.actualColor));
             } else {
                 jbtn.setEnabled(false);
                 jbtn.setFont(new java.awt.Font("Tahoma", 1, 14));

@@ -14,7 +14,7 @@ import javax.swing.border.TitledBorder;
  */
 public class StyleManager {
     
-    public static int colorActual = 5;
+    public static int actualColor = 5;
     
     /* 0 - Por defecto
      * 1 - Rosa pálido
@@ -65,7 +65,7 @@ public class StyleManager {
      * @param color int - El código representativo de la paleta de colores a usar
      * @return Color - El color secundario para la paleta en cuestión
      */
-    public static Color getColorSecundario(int color) {
+    public static Color getSecondaryColor(int color) {
         int a, b, c;
         switch (color){
             case 0:
@@ -135,7 +135,7 @@ public class StyleManager {
      * @return color terciario actual
      */
     public static Color getThirdColor() {
-        return getColorTerciario(colorActual);
+        return getColorTerciario(actualColor);
     }
     
     /**
@@ -178,7 +178,7 @@ public class StyleManager {
      * @return color actual de texto
      */
     public static Color getTextColor() {
-        return getColorTexto(colorActual);
+        return getColorTexto(actualColor);
     }
     
     /**
@@ -190,7 +190,7 @@ public class StyleManager {
 //            colorActual = ManejoArchivos.leerColor();
 //        }
 //        catch (Exception e) {}
-        pintarComponentes(c, colorActual);
+        pintarComponentes(c, actualColor);
     }   
     
     /**
@@ -217,7 +217,7 @@ public class StyleManager {
         }
         if (parent instanceof ClinicalHistory)
         {
-            ((GUI.ClinicalHistory) parent).pintarHijos(color);
+            ((GUI.ClinicalHistory) parent).paintChilds(color);
         }
         for (Component componente : parent.getComponents())
         {
@@ -227,15 +227,15 @@ public class StyleManager {
             if (componente instanceof JTextArea){
                 componente.setBackground(getColorTerciario(color));
                 ((JTextArea)componente).setDisabledTextColor(getColorTexto(color));
-                ((JTextArea)componente).setSelectionColor(getColorSecundario(color));
+                ((JTextArea)componente).setSelectionColor(getSecondaryColor(color));
             }
             else if (componente instanceof JTextField){
                 componente.setBackground(getColorTerciario(color));
                 ((JTextField)componente).setDisabledTextColor(getColorTexto(color));
-                ((JTextField)componente).setSelectionColor(getColorSecundario(color));
+                ((JTextField)componente).setSelectionColor(getSecondaryColor(color));
             }
             else if (componente instanceof JButton)
-                componente.setBackground(getColorSecundario(color));
+                componente.setBackground(getSecondaryColor(color));
             else if (componente instanceof JTable)
                 componente.setBackground(getColorTerciario(color));
             else if (componente instanceof JComboBox){
@@ -257,7 +257,7 @@ public class StyleManager {
                 JPanel comp = (JPanel)componente;
                 if (comp.getBorder() instanceof TitledBorder) {
                     String texto = ((TitledBorder)comp.getBorder()).getTitle();
-                    comp.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), texto, javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), getColorTexto(colorActual)));
+                    comp.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), texto, javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), getColorTexto(actualColor)));
                 }
             }
             if (componente instanceof Container || componente instanceof JPanel)

@@ -25,7 +25,7 @@ public class DBConstants {
     
     public static final String MAX_WITH_ALIAS = "MAX(%s) AS %s";
     
-    public static final String SIMPLE_WHERE_CONDITION = "%s = ?";
+    public static final String SIMPLE_WHERE_CONDITION = "%s LIKE ?";
     
     public static final String IS_NULL_WHERE_CONDITION = "%s IS NULL";
     

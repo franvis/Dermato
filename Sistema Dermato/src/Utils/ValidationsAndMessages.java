@@ -75,7 +75,7 @@ public class ValidationsAndMessages {
      * @param f Componente donde se ejecuto el evento
      * @param info Informacion a mostrar
      */
-    public static void mostrarInformacion(Component f,String info)
+    public static void showInfo(Component f,String info)
     {
         JOptionPane.showOptionDialog(
                     f,

@@ -39,23 +39,23 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Component id="pnlMotivo" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="pnlFecha" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnlReason" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnlDate" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="pnlTratamiento" min="-2" max="-2" attributes="0"/>
-                      <Component id="pnlEstudiosComplementarios" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlTreatment" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlComplementaryStudies" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="pnlLaboratorio" alignment="1" max="32767" attributes="0"/>
-                      <Component id="pnlObservaciones1" alignment="1" max="32767" attributes="0"/>
+                      <Component id="pnlLaboratory" alignment="1" max="32767" attributes="0"/>
+                      <Component id="pnlDiagnosis" alignment="1" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="pnlDatosPersonales" min="-2" pref="622" max="-2" attributes="2"/>
-                  <Component id="tpaneExamenes" alignment="0" max="32767" attributes="2"/>
-                  <Component id="pnlBotones1" alignment="0" max="32767" attributes="2"/>
-                  <Component id="pnlBiopsia" alignment="0" max="32767" attributes="0"/>
+                  <Component id="pnlPatientsData" min="-2" pref="622" max="-2" attributes="2"/>
+                  <Component id="pnlExams" alignment="0" max="32767" attributes="2"/>
+                  <Component id="pnlButtons" alignment="0" max="32767" attributes="2"/>
+                  <Component id="pnlBiopsy" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -67,31 +67,31 @@
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="pnlFecha" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlDate" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                      <Component id="pnlMotivo" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlReason" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pnlTratamiento" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlTreatment" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pnlEstudiosComplementarios" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlComplementaryStudies" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="pnlDatosPersonales" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlPatientsData" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tpaneExamenes" max="32767" attributes="0"/>
+                      <Component id="pnlExams" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="pnlBiopsia" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlBiopsy" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-                      <Component id="pnlBotones1" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlButtons" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="pnlLaboratorio" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlLaboratory" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pnlObservaciones1" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlDiagnosis" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -100,7 +100,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JTabbedPane" name="tpaneExamenes">
+    <Container class="javax.swing.JTabbedPane" name="pnlExams">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -122,7 +122,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="pnlFisico">
+        <Container class="javax.swing.JPanel" name="pnlPhysical">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="F&#xed;sico">
@@ -151,7 +151,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="txtaExamenFisico">
+                <Component class="javax.swing.JTextArea" name="txtaPhysicalExam">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -162,11 +162,11 @@
                     <Property name="tabSize" type="int" value="0"/>
                     <Property name="wrapStyleWord" type="boolean" value="true"/>
                     <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                      <ComponentRef name="txtaEstudiosComple"/>
+                      <ComponentRef name="txtaComplementaryStudies"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtaExamenFisicoKeyPressed"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtaPhysicalExamKeyPressed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -175,7 +175,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="pnlMotivo">
+    <Container class="javax.swing.JPanel" name="pnlReason">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -215,7 +215,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="txtaMotivo">
+            <Component class="javax.swing.JTextArea" name="txtaReason">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -226,18 +226,18 @@
                 <Property name="tabSize" type="int" value="0"/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="txtaTratamiento"/>
+                  <ComponentRef name="txtaTreatment"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtaMotivoKeyPressed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtaReasonKeyPressed"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="pnlFecha">
+    <Container class="javax.swing.JPanel" name="pnlDate">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f1" green="e4" red="e4" type="rgb"/>
@@ -257,22 +257,22 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
-                  <Component id="lblstaticFecha" min="-2" pref="58" max="-2" attributes="0"/>
+                  <Component id="lblstaticDate" min="-2" pref="58" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblFecha" min="-2" pref="88" max="-2" attributes="0"/>
+                  <Component id="lblDate" min="-2" pref="88" max="-2" attributes="0"/>
                   <EmptySpace pref="240" max="32767" attributes="1"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="lblstaticFecha" alignment="0" pref="27" max="32767" attributes="0"/>
-              <Component id="lblFecha" alignment="0" pref="27" max="32767" attributes="0"/>
+              <Component id="lblstaticDate" alignment="0" pref="27" max="32767" attributes="0"/>
+              <Component id="lblDate" alignment="0" pref="27" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lblstaticFecha">
+        <Component class="javax.swing.JLabel" name="lblstaticDate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="2"/>
@@ -283,7 +283,7 @@
             <Property name="text" type="java.lang.String" value="Fecha:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblFecha">
+        <Component class="javax.swing.JLabel" name="lblDate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="2"/>
@@ -296,7 +296,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="pnlTratamiento">
+    <Container class="javax.swing.JPanel" name="pnlTreatment">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -336,7 +336,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="txtaTratamiento">
+            <Component class="javax.swing.JTextArea" name="txtaTreatment">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -347,18 +347,18 @@
                 <Property name="tabSize" type="int" value="0"/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="txtaEstudiosComple"/>
+                  <ComponentRef name="txtaComplementaryStudies"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtaTratamientoKeyPressed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtaTreatmentKeyPressed"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="pnlEstudiosComplementarios">
+    <Container class="javax.swing.JPanel" name="pnlComplementaryStudies">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -398,7 +398,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="txtaEstudiosComple">
+            <Component class="javax.swing.JTextArea" name="txtaComplementaryStudies">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -409,18 +409,18 @@
                 <Property name="tabSize" type="int" value="0"/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="txtaLaboratorio"/>
+                  <ComponentRef name="txtaLaboratory"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtaEstudiosCompleKeyPressed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtaComplementaryStudiesKeyPressed"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="pnlLaboratorio">
+    <Container class="javax.swing.JPanel" name="pnlLaboratory">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -460,7 +460,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="txtaLaboratorio">
+            <Component class="javax.swing.JTextArea" name="txtaLaboratory">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -471,18 +471,18 @@
                 <Property name="tabSize" type="int" value="0"/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="txtaDiagnostico"/>
+                  <ComponentRef name="txtaDiagnosis"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtaLaboratorioKeyPressed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtaLaboratoryKeyPressed"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="pnlObservaciones1">
+    <Container class="javax.swing.JPanel" name="pnlDiagnosis">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -522,7 +522,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="txtaDiagnostico">
+            <Component class="javax.swing.JTextArea" name="txtaDiagnosis">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -534,14 +534,14 @@
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtaDiagnosticoKeyPressed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtaDiagnosisKeyPressed"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="pnlBotones1">
+    <Container class="javax.swing.JPanel" name="pnlButtons">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -554,29 +554,29 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="btnVolver" min="-2" pref="120" max="-2" attributes="0"/>
+                  <Component id="btnBack" min="-2" pref="120" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                  <Component id="btnModificar" min="-2" pref="119" max="-2" attributes="0"/>
+                  <Component id="btnModify" min="-2" pref="119" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btnCancelar" min="-2" pref="117" max="-2" attributes="0"/>
+                  <Component id="btnCancel" min="-2" pref="117" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="btnGuardar" min="-2" pref="124" max="-2" attributes="0"/>
+                  <Component id="btnSave" min="-2" pref="124" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                  <Component id="btnVolver" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
-                  <Component id="btnModificar" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
-                  <Component id="btnCancelar" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
-                  <Component id="btnGuardar" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="btnBack" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="btnModify" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="btnCancel" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="btnSave" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnCancelar">
+        <Component class="javax.swing.JButton" name="btnCancel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -599,17 +599,17 @@
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="btnVolver"/>
+              <ComponentRef name="btnBack"/>
             </Property>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCancelarMouseExited"/>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCancelarMouseEntered"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCancelMouseExited"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCancelMouseEntered"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnGuardar">
+        <Component class="javax.swing.JButton" name="btnSave">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -631,17 +631,17 @@
               <Color id="Default Cursor"/>
             </Property>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="btnCancelar"/>
+              <ComponentRef name="btnCancel"/>
             </Property>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnGuardarMouseExited"/>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnGuardarMouseEntered"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSaveMouseExited"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSaveMouseEntered"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnModificar">
+        <Component class="javax.swing.JButton" name="btnModify">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -664,17 +664,17 @@
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="txtaMotivo"/>
+              <ComponentRef name="txtaReason"/>
             </Property>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnModificarMouseExited"/>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnModificarMouseEntered"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarActionPerformed"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnModifyMouseExited"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnModifyMouseEntered"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModifyActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnVolver">
+        <Component class="javax.swing.JButton" name="btnBack">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -697,19 +697,19 @@
             </Property>
             <Property name="horizontalTextPosition" type="int" value="4"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="btnModificar"/>
+              <ComponentRef name="btnModify"/>
             </Property>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnVolverMouseExited"/>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnVolverMouseEntered"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVolverActionPerformed"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnBackMouseExited"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnBackMouseEntered"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="pnlDatosPersonales">
+    <Container class="javax.swing.JPanel" name="pnlPatientsData">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -736,20 +736,20 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="pnlApellidoNombre" min="-2" pref="593" max="-2" attributes="0"/>
+                          <Component id="pnlFullName" min="-2" pref="593" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="lblstaticFechaNacimiento" max="32767" attributes="0"/>
+                                  <Component id="lblstaticBirthday" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblstaticLocalidad" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblstaticEdad" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblstaticCity" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblstaticAge" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblstaticDni" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -759,35 +759,35 @@
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="lblDni" max="32767" attributes="0"/>
-                                      <Component id="lblEdad" max="32767" attributes="0"/>
+                                      <Component id="lblAge" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="lblLocalidad" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblFechaNacimiento" alignment="0" pref="89" max="32767" attributes="0"/>
+                                  <Component id="lblCity" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lblBirthday" alignment="0" pref="89" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="lblstaticFechaPrimeraConsulta" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblstaticFirstVisitDate" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lblstaticObraSocial" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblstaticNumAfiliado" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblstaticPPHealthInsurance" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblstaticInsuranceNumber" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="lblstaticLocalidad1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblstaticAddress" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblFechaPrimeraConsulta" max="32767" attributes="0"/>
+                                  <Component id="lblFirstVisitDate" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="lblObraSocial" max="32767" attributes="0"/>
-                              <Component id="lblNumeroAfiliado" max="32767" attributes="0"/>
-                              <Component id="lblLocalidad1" max="32767" attributes="0"/>
+                              <Component id="lblPPHealthInsurance" max="32767" attributes="0"/>
+                              <Component id="lblInsuranceNumber" max="32767" attributes="0"/>
+                              <Component id="lblAddress" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
                       </Group>
@@ -798,51 +798,51 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Component id="pnlApellidoNombre" min="-2" max="-2" attributes="0"/>
+                  <Component id="pnlFullName" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="lblstaticFechaNacimiento" max="32767" attributes="0"/>
+                                  <Component id="lblstaticBirthday" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                                   <Component id="lblstaticDni" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  <Component id="lblstaticEdad" max="32767" attributes="0"/>
+                                  <Component id="lblstaticAge" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="lblFechaNacimiento" max="32767" attributes="0"/>
+                                  <Component id="lblBirthday" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                                   <Component id="lblDni" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  <Component id="lblEdad" max="32767" attributes="0"/>
+                                  <Component id="lblAge" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblLocalidad" alignment="3" max="32767" attributes="0"/>
-                              <Component id="lblstaticLocalidad" alignment="3" max="32767" attributes="0"/>
+                              <Component id="lblCity" alignment="3" max="32767" attributes="0"/>
+                              <Component id="lblstaticCity" alignment="3" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblstaticFechaPrimeraConsulta" alignment="3" max="32767" attributes="0"/>
-                              <Component id="lblFechaPrimeraConsulta" alignment="3" max="32767" attributes="0"/>
+                              <Component id="lblstaticFirstVisitDate" alignment="3" max="32767" attributes="0"/>
+                              <Component id="lblFirstVisitDate" alignment="3" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblstaticObraSocial" alignment="3" max="32767" attributes="0"/>
-                              <Component id="lblObraSocial" alignment="3" max="32767" attributes="0"/>
+                              <Component id="lblstaticPPHealthInsurance" alignment="3" max="32767" attributes="0"/>
+                              <Component id="lblPPHealthInsurance" alignment="3" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblstaticNumAfiliado" alignment="3" max="32767" attributes="0"/>
-                              <Component id="lblNumeroAfiliado" alignment="3" max="32767" attributes="0"/>
+                              <Component id="lblstaticInsuranceNumber" alignment="3" max="32767" attributes="0"/>
+                              <Component id="lblInsuranceNumber" alignment="3" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblLocalidad1" alignment="3" max="32767" attributes="0"/>
-                              <Component id="lblstaticLocalidad1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblAddress" alignment="3" max="32767" attributes="0"/>
+                              <Component id="lblstaticAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -860,7 +860,7 @@
             <Property name="text" type="java.lang.String" value="Nro. Documento:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticNumAfiliado">
+        <Component class="javax.swing.JLabel" name="lblstaticInsuranceNumber">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -868,7 +868,7 @@
             <Property name="text" type="java.lang.String" value="Nro. Afiliado:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticObraSocial">
+        <Component class="javax.swing.JLabel" name="lblstaticPPHealthInsurance">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -876,7 +876,7 @@
             <Property name="text" type="java.lang.String" value="Obra Social:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticFechaNacimiento">
+        <Component class="javax.swing.JLabel" name="lblstaticBirthday">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -892,7 +892,7 @@
             <Property name="text" type="java.lang.String" value="35953232"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblFechaNacimiento">
+        <Component class="javax.swing.JLabel" name="lblBirthday">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -900,7 +900,7 @@
             <Property name="text" type="java.lang.String" value="21/03/1991"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblNumeroAfiliado">
+        <Component class="javax.swing.JLabel" name="lblInsuranceNumber">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -908,7 +908,7 @@
             <Property name="text" type="java.lang.String" value="3-4534543-2"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblObraSocial">
+        <Component class="javax.swing.JLabel" name="lblPPHealthInsurance">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -916,7 +916,7 @@
             <Property name="text" type="java.lang.String" value="OSPAC"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticFechaPrimeraConsulta">
+        <Component class="javax.swing.JLabel" name="lblstaticFirstVisitDate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -924,7 +924,7 @@
             <Property name="text" type="java.lang.String" value="Fecha de Primera Consulta:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblFechaPrimeraConsulta">
+        <Component class="javax.swing.JLabel" name="lblFirstVisitDate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -932,7 +932,7 @@
             <Property name="text" type="java.lang.String" value="0 -"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblLocalidad">
+        <Component class="javax.swing.JLabel" name="lblCity">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -940,7 +940,7 @@
             <Property name="text" type="java.lang.String" value="423654"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticLocalidad">
+        <Component class="javax.swing.JLabel" name="lblstaticCity">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -948,7 +948,7 @@
             <Property name="text" type="java.lang.String" value="Localidad:"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="pnlApellidoNombre">
+        <Container class="javax.swing.JPanel" name="pnlFullName">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f1" green="e4" red="e4" type="rgb"/>
@@ -1008,7 +1008,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="lblstaticEdad">
+        <Component class="javax.swing.JLabel" name="lblstaticAge">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -1016,7 +1016,7 @@
             <Property name="text" type="java.lang.String" value="Edad:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblEdad">
+        <Component class="javax.swing.JLabel" name="lblAge">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -1024,7 +1024,7 @@
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblLocalidad1">
+        <Component class="javax.swing.JLabel" name="lblAddress">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -1032,7 +1032,7 @@
             <Property name="text" type="java.lang.String" value="423654"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticLocalidad1">
+        <Component class="javax.swing.JLabel" name="lblstaticAddress">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -1042,7 +1042,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="pnlBiopsia">
+    <Container class="javax.swing.JPanel" name="pnlBiopsy">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1082,7 +1082,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="txtaBiopsia">
+            <Component class="javax.swing.JTextArea" name="txtaBiopsy">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1093,11 +1093,11 @@
                 <Property name="tabSize" type="int" value="0"/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="txtaDiagnostico"/>
+                  <ComponentRef name="txtaDiagnosis"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtaBiopsiaKeyPressed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtaBiopsyKeyPressed"/>
               </Events>
             </Component>
           </SubComponents>

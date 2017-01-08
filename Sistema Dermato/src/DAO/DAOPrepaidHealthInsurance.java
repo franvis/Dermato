@@ -168,7 +168,7 @@ public class DAOPrepaidHealthInsurance extends DAOBasics{
     * @param idPrePaidHealthInsurance id of the pre paid health insurance
     * @return Pre paid health insurance
     */
-    public PrePaidHealthInsurance getObraSocial(int idPrePaidHealthInsurance) {
+    public PrePaidHealthInsurance getPPHealthInsurance(int idPrePaidHealthInsurance) {
         where = getWhereConditions(getSimpleWhereCondition(PrePaidHealthInsuranceDBColumns.idPrepaidHealthInsurance.name()));
         
         query = DBUtils.getSelectAllStatement(Tables.PrepaidHealthInsurance, 

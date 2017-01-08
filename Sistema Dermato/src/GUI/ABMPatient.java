@@ -7,6 +7,8 @@ import Utils.StyleManager;
 import Utils.ValidationsAndMessages;
 import DAO.DAOPrepaidHealthInsurance;
 import DAO.DAOPatient;
+import static Utils.GeneralUtils.handleFocus;
+import static Utils.GeneralUtils.setCustomFont;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -818,7 +820,7 @@ public class ABMPatient extends javax.swing.JFrame {
         }
         String nuevaObra = this.txtfNewPPHealthInsurance.getText();
         if (daoPrePaidHealthInsurance.registerPrePaidHealthInsurance(new PrePaidHealthInsurance(0, nuevaObra))) {
-            ValidationsAndMessages.mostrarInformacion(this, "Registro Exitoso.");
+            ValidationsAndMessages.showInfo(this, "Registro Exitoso.");
             fillPrePaidHealthInsurances();
         } else {
             ValidationsAndMessages.showError(this, "Registro Fallido.");
@@ -855,11 +857,11 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
 }//GEN-LAST:event_cmbPPHealthInsuranceItemStateChanged
 
     private void btnSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseEntered
-        this.setearLabels(btnSave, true);
+        setCustomFont(btnSave, true);
     }//GEN-LAST:event_btnSaveMouseEntered
 
     private void btnSaveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseExited
-        this.setearLabels(btnSave, false);
+        setCustomFont(btnSave, false);
     }//GEN-LAST:event_btnSaveMouseExited
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -905,9 +907,9 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
             }
 
             if (daoPatient.registerPatient(patient)) {
-                ValidationsAndMessages.mostrarInformacion(this, "Registro Exitoso.");
+                ValidationsAndMessages.showInfo(this, "Registro Exitoso.");
                 clinicalHistory = new ClinicalHistory(frameParent, patient, 1);
-                clinicalHistory.llenarCampos(patient, 1);
+                clinicalHistory.fillFields(patient);
                 principalParent.updatePatientList(null);
                 this.dispose();
                 clinicalHistory.setVisible(true);
@@ -946,15 +948,15 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
             }
 
             if (daoPatient.updatePatient(patient, previousDni)) {
-                ValidationsAndMessages.mostrarInformacion(this, "Actualización Exitosa.");
+                ValidationsAndMessages.showInfo(this, "Actualización Exitosa.");
 
                 if (this.origin == 2) {
-                    clinicalHistory.setPaciente(patient);
-                    clinicalHistory.llenarCampos(patient, 1);
+                    clinicalHistory.setPatient(patient);
+                    clinicalHistory.fillFields(patient);
                     this.dispose();
                     clinicalHistory.setVisible(true);
                 } else {
-                    LinkedList<Patient> pacienteList = new LinkedList<Patient>();
+                    LinkedList<Patient> pacienteList = new LinkedList<>();
                     pacienteList.add(daoPatient.getBasicPatient(patient.getDni()));
                     principalParent.updatePatientList(pacienteList);
                 }
@@ -970,11 +972,11 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
-        this.setearLabels(btnBack, true);
+        setCustomFont(btnBack, true);
     }//GEN-LAST:event_btnBackMouseEntered
 
     private void btnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseExited
-        this.setearLabels(btnBack, false);
+        setCustomFont(btnBack, false);
     }//GEN-LAST:event_btnBackMouseExited
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -982,11 +984,11 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnModifyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyMouseEntered
-        this.setearLabels(btnModify, true);
+        setCustomFont(btnModify, true);
     }//GEN-LAST:event_btnModifyMouseEntered
 
     private void btnModifyMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyMouseExited
-        this.setearLabels(btnModify, false);
+        setCustomFont(btnModify, false);
     }//GEN-LAST:event_btnModifyMouseExited
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
@@ -1008,34 +1010,24 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
     }//GEN-LAST:event_txtfCityKeyTyped
 
     private void txtaPersonalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaPersonalKeyPressed
-        this.handleFocus(evt);
+        handleFocus(evt);
     }//GEN-LAST:event_txtaPersonalKeyPressed
 
     private void txtaToxicsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaToxicsKeyPressed
-        this.handleFocus(evt);
+        handleFocus(evt);
     }//GEN-LAST:event_txtaToxicsKeyPressed
 
     private void txtaSurgicalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaSurgicalKeyPressed
-        this.handleFocus(evt);
+        handleFocus(evt);
     }//GEN-LAST:event_txtaSurgicalKeyPressed
 
     private void txtaFamilyKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaFamilyKeyPressed
-        // TODO add your handling code here:
+        handleFocus(evt);
     }//GEN-LAST:event_txtaFamilyKeyPressed
 
     private void txtaPharmacologicalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaPharmacologicalKeyPressed
-        // TODO add your handling code here:
+        handleFocus(evt);
     }//GEN-LAST:event_txtaPharmacologicalKeyPressed
-
-    private void setearLabels(JButton jbtn, boolean entrada) {
-        if (jbtn.isEnabled()) {
-            if (entrada) {
-                jbtn.setFont(new java.awt.Font("Tahoma", 1, 15));
-            } else {
-                jbtn.setFont(new java.awt.Font("Tahoma", 1, 14));
-            }
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -1272,7 +1264,7 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
     }
 
     /**
-     * Method used to close de windows making all the needed validations
+     * Method used to close de windows making all the needed validations.
      */
     private void exit() {
         if (!btnSave.isEnabled()) {
@@ -1281,28 +1273,12 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
                 this.getParent().setVisible(true);
             }
             if (clinicalHistory != null) {
-                clinicalHistory.cerrarHijo(this);
+                clinicalHistory.closeChild(this);
             } else {
                 principalParent.closeChild(this);
             }
         } else {
             ValidationsAndMessages.validarSalidaVentana(this);
-        }
-    }
-
-    /**
-     * Handle the focus gain-loss with TAB and shift TAB keys.
-     *
-     * @param evt
-     */
-    private void handleFocus(KeyEvent evt) {
-        if (evt.getKeyCode() == KeyEvent.VK_TAB && !evt.isShiftDown()) {
-            evt.consume();
-            KeyboardFocusManager.getCurrentKeyboardFocusManager().focusNextComponent();
-        } else if (evt.getKeyCode() == KeyEvent.VK_TAB
-                && evt.isShiftDown()) {
-            evt.consume();
-            KeyboardFocusManager.getCurrentKeyboardFocusManager().focusPreviousComponent();
         }
     }
 

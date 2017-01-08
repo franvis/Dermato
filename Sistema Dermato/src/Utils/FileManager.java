@@ -68,7 +68,7 @@ public class FileManager {
             pw = new PrintWriter(fichero);
             pw.println(temp.toString());
 
-            ValidationsAndMessages.mostrarInformacion(j, "Back Up exitoso en " + destino.getAbsolutePath());
+            ValidationsAndMessages.showInfo(j, "Back Up exitoso en " + destino.getAbsolutePath());
             run.destroy();
             return true;
         } catch (IOException e) {

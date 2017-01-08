@@ -22,7 +22,7 @@ import javax.swing.KeyStroke;
 public class ChooseColor extends javax.swing.JDialog {
 
     public Principal padre;
-    private int color = StyleManager.colorActual;
+    private int color = StyleManager.actualColor;
     
     /** Creates new form EleccionColor */
     public ChooseColor(Principal parent, boolean modal) {

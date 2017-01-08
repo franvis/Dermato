@@ -126,15 +126,15 @@ public class DAOPatient extends DAOBasics {
             connection = daoConnection.openDBConnection();
             preparedStatement = connection.prepareStatement(query);
             int cant = 0;
-            if (where.contains(dni.name())) {
+            if (!filterDni.isEmpty()) {
                 cant++;
                 preparedStatement.setString(cant, filterDni + '%');
             }
-            if (where.contains(lastname.name())) {
+            if (!filterLastName.isEmpty()) {
                 cant++;
                 preparedStatement.setString(cant, filterLastName + '%');
             }
-            if (where.contains(name.name())) {
+            if (!filterName.isEmpty()) {
                 cant++;
                 preparedStatement.setString(cant, filterName + '%');
             }
@@ -161,6 +161,7 @@ public class DAOPatient extends DAOBasics {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        System.out.println(query);
         daoConnection.closeDBConnection(connection);
         return pacientes;
     }
@@ -276,7 +277,7 @@ public class DAOPatient extends DAOBasics {
                 patient.setBirthday(DBUtils.getFormattedDate(resultSet.getString(birthday.name())));
                 patient.setPrepaidHealthInsuranceNumber(resultSet.getString(prePaidHealthInsuranceNumber.name()));
                 if (resultSet.getObject(prepaidHealthInsurance.name()) != null && resultSet.getInt(prepaidHealthInsurance.name()) != 0) {
-                    patient.setPrepaidHealthInsurance(daoPrepaidHealthInsurance.getObraSocial(resultSet.getInt(prepaidHealthInsurance.name())));
+                    patient.setPrepaidHealthInsurance(daoPrepaidHealthInsurance.getPPHealthInsurance(resultSet.getInt(prepaidHealthInsurance.name())));
                 } else {
                     patient.setPrepaidHealthInsurance(new PrePaidHealthInsurance(0, "Sin Obra Social"));
                 }

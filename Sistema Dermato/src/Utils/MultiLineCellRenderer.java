@@ -43,13 +43,13 @@ public class MultiLineCellRenderer extends JTextArea implements TableCellRendere
         Color color, aux;
         if (isSelected) {  
             setForeground(new java.awt.Color(0,0,0));  
-            color = StyleManager.getColorSecundario(StyleManager.colorActual);
+            color = StyleManager.getSecondaryColor(StyleManager.actualColor);
             aux = new Color(color.getRed(), color.getGreen(), color.getBlue(), 50);
             setBackground(aux);  
         }  
         else {  
             setForeground(table.getForeground());  
-            color = StyleManager.getColorTerciario(StyleManager.colorActual);
+            color = StyleManager.getColorTerciario(StyleManager.actualColor);
             aux = new Color(color.getRed(), color.getGreen(), color.getBlue(), 50);
             setBackground(aux);  
         }
