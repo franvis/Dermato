@@ -560,7 +560,7 @@ private void txtaToxicKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             this.dispose();
             this.getOwner().setVisible(true);
         } else {
-            ValidationsAndMessages.validarSalidaVentana(this);
+            ValidationsAndMessages.validateWindowExit(this);
         }
     }
 }

@@ -783,22 +783,22 @@ public class ABMPatient extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtfPhoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfPhoneKeyTyped
-        ValidationsAndMessages.negarLetras(evt, this);
-        ValidationsAndMessages.limitarLargo(this.txtfPhone, evt, 45, this);
+        ValidationsAndMessages.denyLetterCharacter(evt, this);
+        ValidationsAndMessages.validateTextLength(this.txtfPhone, evt, 45, this);
     }//GEN-LAST:event_txtfPhoneKeyTyped
 
     private void txtfDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfDniKeyTyped
-        ValidationsAndMessages.negarLetras(evt, this);
+        ValidationsAndMessages.denyLetterCharacter(evt, this);
     }//GEN-LAST:event_txtfDniKeyTyped
 
     private void txtfNamesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfNamesKeyTyped
-        ValidationsAndMessages.negarNumeros(evt, this);
-        ValidationsAndMessages.limitarLargo(this.txtfNames, evt, 45, this);
+        ValidationsAndMessages.denyNumberCharacter(evt, this);
+        ValidationsAndMessages.validateTextLength(this.txtfNames, evt, 45, this);
     }//GEN-LAST:event_txtfNamesKeyTyped
 
     private void txtfLastNamesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfLastNamesKeyTyped
-        ValidationsAndMessages.negarNumeros(evt, this);
-        ValidationsAndMessages.limitarLargo(this.txtfLastNames, evt, 45, this);
+        ValidationsAndMessages.denyNumberCharacter(evt, this);
+        ValidationsAndMessages.validateTextLength(this.txtfLastNames, evt, 45, this);
     }//GEN-LAST:event_txtfLastNamesKeyTyped
 
     private void btnNewPPHealthInsuranceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPPHealthInsuranceActionPerformed
@@ -810,8 +810,8 @@ public class ABMPatient extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNewPPHealthInsuranceActionPerformed
 
     private void txtfInsuranceNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfInsuranceNumberKeyTyped
-        ValidationsAndMessages.limitarLargo(this.txtfInsuranceNumber, evt, 45, this);
-        ValidationsAndMessages.validarNumeroAfiliado(evt, this);
+        ValidationsAndMessages.validateTextLength(this.txtfInsuranceNumber, evt, 45, this);
+        ValidationsAndMessages.validateHealthInsuranceNumberCharacter(evt, this);
     }//GEN-LAST:event_txtfInsuranceNumberKeyTyped
 
     private void btnSavePPHealthInsuranceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavePPHealthInsuranceActionPerformed
@@ -836,7 +836,7 @@ public class ABMPatient extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSavePPHealthInsuranceActionPerformed
 
     private void txtfNewPPHealthInsuranceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfNewPPHealthInsuranceKeyTyped
-        ValidationsAndMessages.limitarLargo(this.txtfNewPPHealthInsurance, evt, 80, this);
+        ValidationsAndMessages.validateTextLength(this.txtfNewPPHealthInsurance, evt, 80, this);
     }//GEN-LAST:event_txtfNewPPHealthInsuranceKeyTyped
 
     private void btnCancelPPHealthInsuranceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelPPHealthInsuranceActionPerformed
@@ -1099,7 +1099,7 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
             String mes = this.ftxtfBirthday.getText(3, 2);
             String año = this.ftxtfBirthday.getText(6, 4);
 
-            error = ValidationsAndMessages.corroborarFecha(dia, mes, año);
+            error = ValidationsAndMessages.validateDateInCommonRange(dia, mes, año);
 
             if (!error.isEmpty()) {
                 ValidationsAndMessages.showError(this, "Los siguientes valores de la fecha no son válidos o están fuera de rango: \n" + error);
@@ -1115,7 +1115,7 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
             String mes = this.ftxtfFirstVisitDate.getText(3, 2);
             String año = this.ftxtfFirstVisitDate.getText(6, 4);
 
-            error = ValidationsAndMessages.corroborarFecha(dia, mes, año);
+            error = ValidationsAndMessages.validateDateInCommonRange(dia, mes, año);
 
             if (!error.isEmpty()) {
                 ValidationsAndMessages.showError(this, "Los siguientes valores de la fecha no son válidos o están fuera de rango: \n" + error);
@@ -1296,7 +1296,7 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
                 principalParent.closeChild(this);
             }
         } else {
-            ValidationsAndMessages.validarSalidaVentana(this);
+            ValidationsAndMessages.validateWindowExit(this);
         }
     }
 

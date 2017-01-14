@@ -889,7 +889,7 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
      * Method used to validate exit
      */
     private void validateExit() {
-        ValidationsAndMessages.validarSalida(this);
+        ValidationsAndMessages.validateExit(this);
     }
 
     /**

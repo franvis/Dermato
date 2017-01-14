@@ -1006,7 +1006,7 @@ public class ABMVisit extends javax.swing.JFrame {
             }
             clinicalHistoryFrame.closeChild(this);
         } else {
-            ValidationsAndMessages.validarSalidaVentana(this);
+            ValidationsAndMessages.validateWindowExit(this);
         }
     }
 

@@ -9,293 +9,286 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
- * Clase para el manejo de mensajes al usuario y validaciones de campos
+ * Handles messages to user and validations
  */
 public class ValidationsAndMessages {
 
-    /**
-     * El componente que origina el mensaje
-     */
-    private  Component c;
-    
+    private static final String EXIT_SYSTEM_MESSAGE = "¿Realmente desea salir?";
+    private static final String EXIT_WINDOW_MESSAGE = "¿Realmente desea salir sin guardar?";
+    private static final String EXIT_WINDOW_MESSAGE_TITLE = "Confirmación de salida";
+    private static final String OPTION_OK = "Aceptar";
+    private static final String OPTION_CANCEL = "Cancelar";
+    private static final String ATENTION = "Atención";
+    private static final String DEFAULT = "default";
+    private static final String ABOUT_MESSAGE = "Sistema de Gestión de Pacientes de Dermatologia\nVersión 1.0";
+    private static final String ABOUT_TITLE = "Acerca De...";
 
     /**
-     * Metodo dedicado a la prohibicion de caracteres innecesarios en la escritura de un numero decimal.
-     * @param evt Evento de escritura
-     * @param ch Componente donde se ejecuto el evento
+     * Validates and denies unnecessary characters for a float field.
+     *
+     * @param evt writing event
+     * @param ch component where event was triggered
+     * 
+     * @return true if the character was denied, false otherwise
      */
-    public static boolean negarCaracteresFloat(KeyEvent evt, Component ch) {
+    public static boolean denyCharactersForFloatField(KeyEvent evt, Component ch) {
         char c = evt.getKeyChar();
-        boolean resultado = false;
-        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) ||
-        (c == KeyEvent.VK_DELETE) || c == KeyEvent.VK_PERIOD)) {
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE)
+                || (c == KeyEvent.VK_DELETE) || c == KeyEvent.VK_PERIOD)) {
             ch.getToolkit().beep();
             evt.consume();
-            resultado = true;
+            return true;
+        } else {
+            return false;
         }
-        return resultado;
     }
-    
-    
+
     /**
-     * Metodo dedicado a la validacion del largo permitido en la escritura
-     * @param txtf Caja de texto a validar
-     * @param evt Evento de escritura
-     * @param ch Componente donde se ejecuto el evento
+     * Validates and limits the length of the text for a text field
+     *
+     * @param txtf text field to validate
+     * @param evt writing event
+     * @param ch component where event was triggered
+     * @param textMaxLength maximum length for the given text field
      */
-    public static void limitarLargo(JTextField txtf, KeyEvent evt, int i,Component ch) {
-        if(txtf.getText().length() == i)
-        {
+    public static void validateTextLength(JTextField txtf, KeyEvent evt, int textMaxLength, Component ch) {
+        if (txtf.getText().length() == textMaxLength) {
             ch.getToolkit().beep();
             evt.consume();
         }
     }
-    
-    
+
     /**
-     * Metodo dedicado a mostrar por pantalla un error mediante un mensaje
-     * @param f Componente donde se ejecuto el evento
-     * @param error Error a mostrar
+     * Shows an error to the user
+     *
+     * @param f component where error has been triggered
+     * @param error error to show
      */
-    public static void showError(Component f,String error) {
-         JOptionPane.showOptionDialog(
-                    f,
-                    error,
-                    "Atención",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.ERROR_MESSAGE,
-                    null,
-                    null,
-                    "Aceptar");
-    }
-     
-    
-    /**
-     * Metodo dedicado a mostrar por pantalla un error mediante un mensaje
-     * @param f Componente donde se ejecuto el evento
-     * @param info Informacion a mostrar
-     */
-    public static void showInfo(Component f,String info)
-    {
+    public static void showError(Component f, String error) {
         JOptionPane.showOptionDialog(
-                    f,
-                    info,
-                    "Atención",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.INFORMATION_MESSAGE,
-                    null,
-                    null,
-                    "Aceptar");
+                f,
+                error,
+                ATENTION,
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.ERROR_MESSAGE,
+                null,
+                null,
+                OPTION_OK);
     }
-    
+
     /**
-     * metodo para validar la salida del sistema mediante un mensaje
-     * @param f Componente del mensaje
+     * Shows information to the user
+     *
+     * @param f component where info is wanted to be shown
+     * @param info information to show
      */
-    public static void validarSalida(Component f){
+    public static void showInfo(Component f, String info) {
+        JOptionPane.showOptionDialog(
+                f,
+                info,
+                ATENTION,
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                null,
+                OPTION_OK);
+    }
+
+    /**
+     * Validates system exiting asking to the user if it's sure.
+     *
+     * @param f message component
+     */
+    public static void validateExit(Component f) {
         int ans = JOptionPane.showConfirmDialog(
                 f,
-                "¿Realmente desea salir?",
-                "Confirmación de salida",
+                EXIT_SYSTEM_MESSAGE,
+                EXIT_WINDOW_MESSAGE_TITLE,
                 JOptionPane.YES_NO_OPTION);
-        if (ans == JOptionPane.YES_OPTION)
+        if (ans == JOptionPane.YES_OPTION) {
             System.exit(0);
+        }
     }
-    
+
     /**
-     * metodo para validar la salida del sistema
-     * @param f Componente del mensaje
+     * Shows about this dialog to user
+     *
+     * @param f message component
      */
-    public static void showAbout(Component f){
+    public static void showAbout(Component f) {
         JOptionPane.showMessageDialog(
                 f,
-                "Sistema de Gestión de Pacientes\nVersión 1.5",
-                "Acerca De...",
+                ABOUT_MESSAGE,
+                ABOUT_TITLE,
                 JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
     /**
-     * metodo que corrobora que la fecha sea "valida"
-     * 
-     * @param d dia
-     * @param m mes
-     * @param a año
+     * Validates that a certain date is inside the common ranges
+     *
+     * @param d day
+     * @param m month
+     * @param a year
+     *
+     * @return empty string if it's in range and a wrong fields string if it
+     * isn't
      */
-    public static String corroborarFecha(String d, String m, String a) {
-    int dia,mes,año;
-    String incorrectos="";
-    Calendar c = Calendar.getInstance();
-    if(!d.isEmpty())
-        dia = Integer.parseInt(d);
-    else
-        dia=0;
-    
-    if(!m.isEmpty())
-        mes = Integer.parseInt(m);  
-    else
-        mes = 0;
-    
-    if(!a.isEmpty())
-        año = Integer.parseInt(a);
-    else
-        año = 0;
-    
-        if(año<=1900 || año > c.get(Calendar.YEAR))
-        incorrectos +="Año";
-        
-        if(mes<=0 || mes>12)
-        incorrectos +="Mes \n";
-        
-        if((mes == 4 || mes == 6 || mes == 9 || mes == 11) && (dia < 0 || dia > 30))
-        incorrectos += "Día \n";
-        else if((mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) && (dia < 0 || dia > 31))
-        incorrectos+="Día \n";
-    
-    if(isBiciesto(año))
-    {
-        if (mes == 2 && (dia < 0 || dia > 29))
-        incorrectos+="Día \n";
+    public static String validateDateInCommonRange(String d, String m, String a) {
+        int day, month, year;
+        String wrongFields = "";
+        Calendar c = Calendar.getInstance();
+        if (!d.isEmpty()) {
+            day = Integer.parseInt(d);
+        } else {
+            day = 0;
+        }
+
+        if (!m.isEmpty()) {
+            month = Integer.parseInt(m);
+        } else {
+            month = 0;
+        }
+
+        if (!a.isEmpty()) {
+            year = Integer.parseInt(a);
+        } else {
+            year = 0;
+        }
+
+        if (year <= 1900 || year > c.get(Calendar.YEAR)) {
+            wrongFields += "Año";
+        }
+
+        if (month <= 0 || month > 12) {
+            wrongFields += "Mes \n";
+        }
+
+        if ((month == 4 || month == 6 || month == 9 || month == 11) && (day < 0 || day > 30)) {
+            wrongFields += "Día \n";
+        } else if ((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && (day < 0 || day > 31)) {
+            wrongFields += "Día \n";
+        }
+
+        if (isLeapYear(year)) {
+            if (month == 2 && (day < 0 || day > 29)) {
+                wrongFields += "Día \n";
+            }
+        } else if (month == 2 && (day < 0 || day > 28)) {
+            wrongFields += "Día \n";
+        }
+
+        return wrongFields;
     }
-    else
-    {
-        
-        if (mes == 2 && (dia < 0 || dia > 28))
-        incorrectos+="Día \n";
-    }
-    
-    return incorrectos;
-    }    
-    
-      
-     
-      
+
     /**
-     * Metodo dedicado a la prohibicion de letras en la escritura
-     * @param evt Evento de escritura
-     * @param ch Componente donde se ejecuto el evento
+     * Denies letter characters in a certain component.
+     *
+     * @param evt writing event
+     * @param component component where event was triggered
+     * @return true if the character is denied, false otherwise
      */
-    public static void negarLetras(KeyEvent evt,Component ch) {
+    public static boolean denyLetterCharacter(KeyEvent evt, Component component) {
         char c = evt.getKeyChar();
-        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) ||
-        (c == KeyEvent.VK_DELETE))) {
-            ch.getToolkit().beep();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE)
+                || (c == KeyEvent.VK_DELETE))) {
+            component.getToolkit().beep();
+            evt.consume();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Denies numbers characters in a certain component.
+     *
+     * @param evt writing event
+     * @param component component where event was triggered
+     * @return true if the character is denied, false otherwise
+     */
+    public static boolean denyNumberCharacter(KeyEvent evt, Component component) {
+        char c = evt.getKeyChar();
+        if (!(!Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE)
+                || (c == KeyEvent.VK_DELETE))) {
+            component.getToolkit().beep();
+            evt.consume();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Validates character entries for Health Insurance Number
+     *
+     * @param evt writing event
+     * @param component Component where event was triggered
+     */
+    public static void validateHealthInsuranceNumberCharacter(KeyEvent evt, Component component) {
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE)
+                || (c == KeyEvent.VK_DELETE) || (c == KeyEvent.VK_SLASH) || (c == KeyEvent.VK_PERIOD) || (c == KeyEvent.VK_MINUS))) {
+            component.getToolkit().beep();
             evt.consume();
         }
     }
 
     /**
-     * Metodo dedicado a la prohibicion de numeros en la escritura
-     * @param evt Evento de escritura
-     * @param ch Componente donde se ejecuto el evento
+     * Validates leap years
+     *
+     * @param year
+     * @return true if leap, false otherwise
      */
-    public static void negarNumeros(KeyEvent evt,Component ch) {
-        char c = evt.getKeyChar();
-        if (!(!Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) ||
-        (c == KeyEvent.VK_DELETE))) {
-            ch.getToolkit().beep();
-            evt.consume();
+    public static boolean isLeapYear(int year) {
+        if (year == 0) {
+            return false;
         }
-        
+        return ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0);
     }
-    
+
     /**
-     * Metodo dedicado a la prohibicion de letras en la escritura
-     * @param evt Evento de escritura
-     * @param ch Componente donde se ejecuto el evento
-     * @return true si el caracter fue negado, false si es valido.
+     * Validates window exiting asking to the user if it's sure to do it.
+     *
+     * @param windowToClose
      */
-    public static boolean negarLetrasBool(KeyEvent evt,Component ch) {
-        char c = evt.getKeyChar();
-        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) ||
-        (c == KeyEvent.VK_DELETE))) {
-            ch.getToolkit().beep();
-            evt.consume();
-            return true;
+    public static void validateWindowExit(JDialog windowToClose) {
+        if (windowToClose == null) {
+            return;
         }
-        return false;
-    }
-    
-    /**
-     * Metodo dedicado a la prohibicion de numeros en la escritura
-     * @param evt Evento de escritura
-     * @param ch Componente donde se ejecuto el evento
-     * @return true si el caracter fue negado, false si es valido
-     */
-    public static boolean negarNumerosBool(KeyEvent evt,Component ch) {
-        char c = evt.getKeyChar();
-        if (!(!Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) ||
-        (c == KeyEvent.VK_DELETE))) {
-            ch.getToolkit().beep();
-            evt.consume();
-            return true;
-        }
-        return false;
-    }
-    
-    /**
-     * Metodo dedicado a la validacion del numero de afiliado
-     * @param evt Evento de escritura
-     * @param ch Componente donde se ejecuto el evento
-     */
-    public static void validarNumeroAfiliado(KeyEvent evt,Component ch) {
-        char c = evt.getKeyChar();
-        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) ||
-        (c == KeyEvent.VK_DELETE) ||(c== KeyEvent.VK_SLASH) ||(c== KeyEvent.VK_PERIOD) ||(c== KeyEvent.VK_MINUS))) {
-            ch.getToolkit().beep();
-            evt.consume();
-        }
-    }
-    
-    
-    /**
-     * Metodo utilizado para validar si un año es biciesto
-     * @param year año
-     * @return true si es biciesto, false si no lo es o es 0
-     */
-    public static boolean isBiciesto(int year) {
-    if(year == 0)
-    return false;
-    return ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0);
-    }
-    
-   
-    /**
-     * metodo para validar la salida de una ventana mediante un mensaje 
-     * @param windowToClose ventana a cerrar
-     */
-    public static void validarSalidaVentana(JDialog windowToClose){
-        if (windowToClose == null) return;
-        int ans = JOptionPane.showConfirmDialog(
-                windowToClose,
-                "¿Realmente desea salir sin guardar?",
-                "Confirmación de salida",
-                JOptionPane.YES_NO_OPTION);
-        if (ans == JOptionPane.YES_OPTION)
-        {
+        int ans = JOptionPane.showOptionDialog(windowToClose,
+                EXIT_WINDOW_MESSAGE,
+                EXIT_WINDOW_MESSAGE_TITLE,
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                new String[]{OPTION_OK, OPTION_CANCEL},
+                DEFAULT);
+        if (ans == JOptionPane.YES_OPTION) {
             windowToClose.dispose();
             windowToClose.getOwner().setVisible(true);
         }
     }
-    
+
     /**
-     * metodo para validar la salida de una ventana mediante un mensaje 
-     * @param windowToClose ventana a cerrar
+     * Validates window exiting asking to the user if it's sure.
+     *
+     * @param windowToClose
      */
-    public static void validarSalidaVentana(JFrame windowToClose){
-        if (windowToClose == null) return;
-        int ans = JOptionPane.showOptionDialog(windowToClose, 
-        "¿Realmente desea salir sin guardar?", 
-        "Confirmación de salida", 
-        JOptionPane.OK_CANCEL_OPTION, 
-        JOptionPane.INFORMATION_MESSAGE, 
-        null, 
-        new String[]{"Aceptar", "Cancelar"}, // this is the array
-        "default");
-        if (ans == JOptionPane.YES_OPTION)
-        {
+    public static void validateWindowExit(JFrame windowToClose) {
+        if (windowToClose == null) {
+            return;
+        }
+        int ans = JOptionPane.showOptionDialog(windowToClose,
+                EXIT_WINDOW_MESSAGE,
+                EXIT_WINDOW_MESSAGE_TITLE,
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                new String[]{OPTION_OK, OPTION_CANCEL},
+                DEFAULT);
+        if (ans == JOptionPane.YES_OPTION) {
             windowToClose.dispose();
-            if (windowToClose.getParent() != null)
+            if (windowToClose.getParent() != null) {
                 windowToClose.getParent().setVisible(true);
+            }
         }
     }
 }

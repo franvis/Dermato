@@ -489,7 +489,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
      */
     private void exit() {
         if (isUpdating) {
-            ValidationsAndMessages.validarSalidaVentana(this);
+            ValidationsAndMessages.validateWindowExit(this);
         } else {
             this.dispose();
         }
