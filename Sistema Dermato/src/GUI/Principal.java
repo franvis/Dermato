@@ -910,7 +910,7 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
     }
 
     /**
-     * Method used to set the color of this frame childs
+     * Method used to set the color of this frame child
      */
     public void paintChilds(int color) {
         for (JFrame window :  openFrames){

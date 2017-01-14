@@ -182,7 +182,7 @@ public class DAOVisit extends DAOBasics{
                 getSimpleWhereCondition(patient.name()),
                 getSimpleWhereCondition(idVisit.name()));
         
-        query = DBUtils.getSelectAllStatement(Tables.Visit, 
+        query = DBUtils.getSelectAllStatementWithWhere(Tables.Visit, 
                  where);
         
         try {

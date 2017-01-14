@@ -46,7 +46,11 @@ public class DBConstants {
     public static final String ANTECEDENTS_INSERT = "null,?,?,?,?,?,?";
     
     public static final String PATIENT_INSERT = "null,?,?,?,?,?,?,"
-            + "str_to_date(?, '%d/%c/%Y'),?,?,str_to_date(?, '%d/%c/%Y')";
+            + "str_to_date(?, '%d/%c/%Y'),?,?,str_to_date(?, '%d/%c/%Y'),?";
+    
+    public static final String PATIENT_INSERT_WITHOUT_P_P_HEALTH_INSURANCE = 
+            "null,?,?,?,?,?,?,"
+            + "str_to_date(?, '%d/%c/%Y'),null,'',str_to_date(?, '%d/%c/%Y')";
     
     public static final String PRE_PAID_HEALTH_INSURANCE_INSERT = "null,?";
     

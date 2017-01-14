@@ -283,11 +283,14 @@ public class ValidationsAndMessages {
      */
     public static void validarSalidaVentana(JFrame windowToClose){
         if (windowToClose == null) return;
-        int ans = JOptionPane.showConfirmDialog(
-                windowToClose,
-                "¿Realmente desea salir sin guardar?",
-                "Confirmación de salida",
-                JOptionPane.YES_NO_OPTION);
+        int ans = JOptionPane.showOptionDialog(windowToClose, 
+        "¿Realmente desea salir sin guardar?", 
+        "Confirmación de salida", 
+        JOptionPane.OK_CANCEL_OPTION, 
+        JOptionPane.INFORMATION_MESSAGE, 
+        null, 
+        new String[]{"Aceptar", "Cancelar"}, // this is the array
+        "default");
         if (ans == JOptionPane.YES_OPTION)
         {
             windowToClose.dispose();

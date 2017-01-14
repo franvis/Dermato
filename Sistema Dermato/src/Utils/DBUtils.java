@@ -13,6 +13,8 @@ import static Utils.DBConstants.PatientDBColumns.name;
 import static Utils.DBConstants.RIGHT_JOIN;
 import Utils.DBConstants.Tables;
 import static Utils.DBConstants.PatientDBColumns.lastname;
+import static Utils.DBConstants.Tables.Patient;
+
 /**
  *
  * @author fran
@@ -78,19 +80,19 @@ public class DBUtils {
         return String.format(DBConstants.SELECT_COLUMNS_MULTIPLE_TABLES_WITH_WHERE,
                 columns, from, whereConditions);
     }
-    
+
     public static String getSelectColumnsMultipleTablesStatementWithWhereAndGroupBy(String columns,
             String from, String whereConditions, String groupBy) {
         return String.format(DBConstants.SELECT_COLUMNS_MULTIPLE_TABLES_WITH_WHERE_AND_GROUP_BY,
                 columns, from, whereConditions, groupBy);
     }
-    
+
     public static String getSelectAllMultipleTablesStatementWithWhere(
             String from, String whereConditions) {
         return String.format(DBConstants.SELECT_ALL_MULTIPLE_TABLES_WITH_WHERE,
                 from, whereConditions);
     }
-    
+
     public static String getSelectColumnsMultipleTablesStatementWithWhereGroupByAndOrder(String columns,
             String from, String whereConditions, String groupByCondition, String orderConditions) {
         return String.format(DBConstants.SELECT_COLUMNS_MULTIPLE_TABLES_WITH_WHERE_GROUP_BY_AND_ORDER,
@@ -107,13 +109,13 @@ public class DBUtils {
         return String.format(DBConstants.SELECT_COLUMNS_WITH_WHERE_AND_ORDER, columns, table.name(),
                 whereConditions, orderConditions);
     }
-    
+
     public static String getSelectOneStatementWithWhere(Tables table,
             String whereConditions) {
         return String.format(DBConstants.SELECT_ONE_WITH_WHERE, table.name(),
                 whereConditions);
     }
-    
+
     //UPDATE STATEMENTS
     public static String getUpdateStatement(Tables table, String columns,
             String whereConditions) {
@@ -149,8 +151,8 @@ public class DBUtils {
         return String.format(DBConstants.JOIN, firstTable.name(), getJoinType(joinType), secondTable.name(),
                 firstTableColumn, secondTableColumn);
     }
-    
-    public static String getMaxColumnAs(String column, String as){
+
+    public static String getMaxColumnAs(String column, String as) {
         return String.format(MAX_COLUMN_AS, column, as);
     }
 
@@ -253,6 +255,6 @@ public class DBUtils {
         anio = date.substring(0, 4);
         mes = date.substring(5, 7);
         dia = date.substring(8, 10);
-        return String.format("%s/%s/%s",dia,mes,anio);
+        return String.format("%s/%s/%s", dia, mes, anio);
     }
 }

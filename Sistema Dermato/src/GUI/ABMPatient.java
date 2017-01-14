@@ -36,6 +36,7 @@ public class ABMPatient extends javax.swing.JFrame {
 
     /**
      * Creates new form DatosPaciente
+     *
      * @param parent
      * @param modal
      * @param origin
@@ -1104,10 +1105,26 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
                 ValidationsAndMessages.showError(this, "Los siguientes valores de la fecha no son válidos o están fuera de rango: \n" + error);
                 return false;
             }
+            patient.setBirthday(this.ftxtfBirthday.getText());
         } catch (BadLocationException ex) {
             Logger.getLogger(ABMPatient.class.getName()).log(Level.SEVERE, null, ex);
         }
-        patient.setBirthday(this.ftxtfBirthday.getText());
+        
+        try {
+            String dia = this.ftxtfFirstVisitDate.getText(0, 2);
+            String mes = this.ftxtfFirstVisitDate.getText(3, 2);
+            String año = this.ftxtfFirstVisitDate.getText(6, 4);
+
+            error = ValidationsAndMessages.corroborarFecha(dia, mes, año);
+
+            if (!error.isEmpty()) {
+                ValidationsAndMessages.showError(this, "Los siguientes valores de la fecha no son válidos o están fuera de rango: \n" + error);
+                return false;
+            }
+            patient.setFirstVisitDate(this.ftxtfFirstVisitDate.getText());
+        } catch (BadLocationException ex) {
+            Logger.getLogger(ABMPatient.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         for (int i = 0; i < prePaidHealthInsurances.size(); i++) {
             if (prePaidHealthInsurances.get(i).getName().compareTo((String) cmbPPHealthInsurance.getSelectedItem()) == 0) {
@@ -1134,7 +1151,7 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
     }
 
     /**
-     * Validates that mandatory fields are filled(name, lastname, phone, dni, 
+     * Validates that mandatory fields are filled(name, lastname, phone, dni,
      * birthday, insurance number).
      */
     private String validateMandatoryFields() {
@@ -1255,7 +1272,8 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
 
     /**
      * Method used to retrieve the system image.
-     * @return 
+     *
+     * @return
      */
     @Override
     public Image getIconImage() {

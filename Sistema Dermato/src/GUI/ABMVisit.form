@@ -9,7 +9,7 @@
     <Property name="defaultCloseOperation" type="int" value="0"/>
     <Property name="title" type="java.lang.String" value="Consulta Completa"/>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[889, 490]"/>
+      <Dimension value="[40, 40]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -35,66 +35,60 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Component id="pnlReason" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="pnlDate" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="pnlTreatment" min="-2" max="-2" attributes="0"/>
-                      <Component id="pnlComplementaryStudies" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="pnlLaboratory" alignment="1" max="32767" attributes="0"/>
-                      <Component id="pnlDiagnosis" alignment="1" max="32767" attributes="0"/>
-                  </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="pnlReason" alignment="0" max="32767" attributes="0"/>
+                  <Component id="pnlDate" alignment="1" max="32767" attributes="0"/>
+                  <Component id="pnlTreatment" alignment="1" max="32767" attributes="0"/>
+                  <Component id="pnlComplementaryStudies" alignment="1" max="32767" attributes="0"/>
+                  <Component id="pnlLaboratory" alignment="1" max="32767" attributes="0"/>
+                  <Component id="pnlDiagnosis" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="pnlPatientsData" min="-2" pref="622" max="-2" attributes="2"/>
-                  <Component id="pnlExams" alignment="0" max="32767" attributes="2"/>
-                  <Component id="pnlButtons" alignment="0" max="32767" attributes="2"/>
-                  <Component id="pnlBiopsy" alignment="0" max="32767" attributes="0"/>
+                  <Component id="pnlExams" alignment="1" max="32767" attributes="2"/>
+                  <Component id="pnlPatientsData" alignment="1" min="-2" pref="694" max="-2" attributes="2"/>
+                  <Component id="pnlBiopsy" alignment="1" max="32767" attributes="0"/>
+                  <Component id="pnlButtons" alignment="1" max="32767" attributes="2"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
-      <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+      <Group type="103" groupAlignment="1" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="pnlDate" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                      <Component id="pnlReason" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlReason" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pnlTreatment" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlTreatment" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pnlComplementaryStudies" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlComplementaryStudies" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="pnlPatientsData" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="pnlExams" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="pnlBiopsy" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                      <Component id="pnlLaboratory" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="pnlDiagnosis" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="pnlBiopsy" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="pnlButtons" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="pnlLaboratory" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pnlDiagnosis" min="-2" max="-2" attributes="0"/>
-                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -134,12 +128,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane12" alignment="0" pref="608" max="32767" attributes="0"/>
+                  <Component id="jScrollPane12" alignment="0" pref="680" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane12" alignment="0" pref="210" max="32767" attributes="0"/>
+                  <Component id="jScrollPane12" alignment="0" pref="170" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -198,12 +192,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane9" alignment="0" pref="504" max="32767" attributes="0"/>
+              <Component id="jScrollPane9" alignment="0" pref="523" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane9" alignment="0" pref="104" max="32767" attributes="0"/>
+              <Component id="jScrollPane9" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -256,18 +250,20 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
-                  <Component id="lblstaticDate" min="-2" pref="58" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblstaticDate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblDate" min="-2" pref="88" max="-2" attributes="0"/>
-                  <EmptySpace pref="240" max="32767" attributes="1"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="lblstaticDate" alignment="0" pref="27" max="32767" attributes="0"/>
-              <Component id="lblDate" alignment="0" pref="27" max="32767" attributes="0"/>
+              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                  <Component id="lblDate" alignment="3" pref="27" max="32767" attributes="0"/>
+                  <Component id="lblstaticDate" alignment="3" pref="27" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -319,12 +315,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane7" alignment="0" pref="504" max="32767" attributes="0"/>
+              <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane7" alignment="0" pref="105" max="32767" attributes="0"/>
+              <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -381,12 +377,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane10" alignment="0" pref="504" max="32767" attributes="0"/>
+              <Component id="jScrollPane10" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane10" alignment="0" pref="103" max="32767" attributes="0"/>
+              <Component id="jScrollPane10" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -443,12 +439,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane8" alignment="0" pref="504" max="32767" attributes="0"/>
+              <Component id="jScrollPane8" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane8" min="-2" pref="105" max="-2" attributes="0"/>
+              <Component id="jScrollPane8" alignment="0" pref="93" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -555,11 +551,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="btnBack" min="-2" pref="120" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                  <Component id="btnModify" min="-2" pref="119" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="btnModify" min="-2" pref="119" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnCancel" min="-2" pref="117" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnSave" min="-2" pref="124" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -742,10 +738,6 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="lblstaticBirthday" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="lblstaticCity" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -753,43 +745,43 @@
                                       <Component id="lblstaticDni" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <Component id="lblstaticBirthday" alignment="1" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lblDni" max="32767" attributes="0"/>
-                                      <Component id="lblAge" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="lblAge" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="lblCity" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lblBirthday" alignment="0" pref="89" max="32767" attributes="0"/>
+                                  <Component id="lblDni" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="lblstaticFirstVisitDate" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lblstaticPPHealthInsurance" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblstaticInsuranceNumber" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblstaticPPHealthInsurance" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblstaticPhone" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblstaticAddress" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="lblstaticAddress" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblFirstVisitDate" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="lblInsuranceNumber" alignment="0" pref="212" max="32767" attributes="0"/>
+                                  <Component id="lblPhone" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Component id="lblAddress" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lblPPHealthInsurance" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="lblPPHealthInsurance" max="32767" attributes="0"/>
-                              <Component id="lblInsuranceNumber" max="32767" attributes="0"/>
-                              <Component id="lblAddress" max="32767" attributes="0"/>
+                              <Component id="lblFirstVisitDate" min="-2" pref="90" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -800,53 +792,39 @@
               <Group type="102" attributes="0">
                   <Component id="pnlFullName" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="lblstaticBirthday" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                  <Component id="lblstaticDni" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  <Component id="lblstaticAge" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="lblBirthday" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                  <Component id="lblDni" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  <Component id="lblAge" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblCity" alignment="3" max="32767" attributes="0"/>
-                              <Component id="lblstaticCity" alignment="3" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblstaticFirstVisitDate" alignment="3" max="32767" attributes="0"/>
-                              <Component id="lblFirstVisitDate" alignment="3" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblstaticPPHealthInsurance" alignment="3" max="32767" attributes="0"/>
-                              <Component id="lblPPHealthInsurance" alignment="3" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblstaticInsuranceNumber" alignment="3" max="32767" attributes="0"/>
-                              <Component id="lblInsuranceNumber" alignment="3" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblAddress" alignment="3" max="32767" attributes="0"/>
-                              <Component id="lblstaticAddress" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblBirthday" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblstaticFirstVisitDate" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblstaticBirthday" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblFirstVisitDate" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblstaticDni" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDni" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblstaticPPHealthInsurance" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblPPHealthInsurance" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblstaticAge" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAge" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="lblstaticInsuranceNumber" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblInsuranceNumber" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblstaticCity" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblCity" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblstaticAddress" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAddress" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblstaticPhone" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblPhone" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -978,7 +956,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="lblNombrePaciente" alignment="3" pref="26" max="32767" attributes="0"/>
+                      <Component id="lblNombrePaciente" alignment="3" max="32767" attributes="0"/>
                       <Component id="lblstaticNombre" alignment="3" pref="22" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -1040,6 +1018,22 @@
             <Property name="text" type="java.lang.String" value="Domicilio:"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="lblstaticPhone">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Telefono:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblPhone">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="0"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="pnlBiopsy">
@@ -1070,7 +1064,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane13" alignment="0" pref="104" max="32767" attributes="0"/>
+              <Component id="jScrollPane13" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

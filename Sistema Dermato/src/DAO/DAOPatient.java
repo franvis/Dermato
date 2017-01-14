@@ -42,16 +42,17 @@ public class DAOPatient extends DAOBasics {
      */
     public boolean registerPatient(Patient patient) {
         try {
+            boolean hasPPHealthInsurance = patient.getPrepaidHealthInsurance().getId() != 0;
             connection = daoConnection.openDBConnection();
             connection.setAutoCommit(false);
             query = DBUtils.getInsertStatementWithValuesOnly(Tables.Patient);
             preparedStatement = connection.prepareStatement(query);
-            if (patient.getPrepaidHealthInsurance().getId() != 0) {
+            if (hasPPHealthInsurance) {
                 preparedStatement.setInt(8, patient.getPrepaidHealthInsurance().getId());
                 preparedStatement.setString(9, patient.getPrepaidHealthInsuranceNumber());
             } else {
                 preparedStatement.setNull(8, java.sql.Types.INTEGER);
-                preparedStatement.setString(9, "");
+                preparedStatement.setNull(9, java.sql.Types.VARCHAR);
             }
             preparedStatement.setLong(1, patient.getDni());
             preparedStatement.setString(2, patient.getName());
@@ -61,6 +62,7 @@ public class DAOPatient extends DAOBasics {
             preparedStatement.setString(6, patient.getCity());
             preparedStatement.setString(7, patient.getBirthday());
             preparedStatement.setString(10, patient.getFirstVisitDate());
+            preparedStatement.setNull(11, java.sql.Types.VARCHAR);
             preparedStatement.executeUpdate();
             registerAntecedents(patient);
             connection.commit();
@@ -279,7 +281,7 @@ public class DAOPatient extends DAOBasics {
                 patient.setLastname(resultSet.getString(lastname.name()));
                 patient.setAddress(resultSet.getString(address.name()));
                 patient.setCity(resultSet.getString(city.name()));
-                patient.setFirstVisitDate(resultSet.getString(firstVisitDate.name()));
+                patient.setFirstVisitDate(DBUtils.getFormattedDate(resultSet.getString(firstVisitDate.name())));
                 patient.setBirthday(DBUtils.getFormattedDate(resultSet.getString(birthday.name())));
                 patient.setPrepaidHealthInsuranceNumber(resultSet.getString(prePaidHealthInsuranceNumber.name()));
                 if (resultSet.getObject(prepaidHealthInsurance.name()) != null && resultSet.getInt(prepaidHealthInsurance.name()) != 0) {

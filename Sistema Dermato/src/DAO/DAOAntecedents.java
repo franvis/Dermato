@@ -24,10 +24,10 @@ public class DAOAntecedents extends DAOBasics {
 
     private Antecedents antecedents;
 
-    public DAOAntecedents(){
+    public DAOAntecedents() {
         daoConnection = new DAOConnection();
     }
-    
+
     /**
      * Method used to register the patient antecedents
      *
@@ -60,9 +60,10 @@ public class DAOAntecedents extends DAOBasics {
             daoConnection.closeDBConnection(connection);
         }
     }
-    
+
     /**
-     * Method used to register the patient antecedents using a transaction connection
+     * Method used to register the patient antecedents using a transaction
+     * connection
      *
      * @param antecedents Antecedents
      * @param dni patient dni
@@ -70,8 +71,11 @@ public class DAOAntecedents extends DAOBasics {
      * @return true if registered, false otherwise
      */
     public boolean registerAntecedents(Antecedents antecedents, long dni, Connection connection) {
+        boolean isTransaction = connection != null;
         try {
-            connection = daoConnection.openDBConnection();
+            if (!isTransaction) {
+                connection = daoConnection.openDBConnection();
+            }
             query = DBUtils.getInsertStatementWithValuesOnly(
                     Tables.Antecedents);
             preparedStatement = connection.prepareStatement(query);
@@ -91,7 +95,9 @@ public class DAOAntecedents extends DAOBasics {
             } catch (SQLException ex) {
                 Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
             }
-            daoConnection.closeDBConnection(connection);
+            if (!isTransaction) {
+                daoConnection.closeDBConnection(connection);
+            }
         }
     }
 
@@ -127,6 +133,7 @@ public class DAOAntecedents extends DAOBasics {
         } finally {
             daoConnection.closeDBConnection(connection);
         }
+        System.out.println(query);
         return antecedents;
     }
 
