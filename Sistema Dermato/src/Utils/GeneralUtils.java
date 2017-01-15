@@ -70,9 +70,9 @@ public class GeneralUtils {
     public static void setCustomFont(JButton jbtn, boolean mouseEntering) {
         if (jbtn.isEnabled()) {
             if (mouseEntering) {
-                jbtn.setFont(new java.awt.Font("Tahoma", 1, 15));
-            } else {
                 jbtn.setFont(new java.awt.Font("Tahoma", 1, 14));
+            } else {
+                jbtn.setFont(new java.awt.Font("Tahoma", 1, 13));
             }
         }
     }

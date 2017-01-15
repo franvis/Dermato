@@ -21,6 +21,7 @@ import static Utils.GeneralUtils.calculateAge;
 import static Utils.GeneralUtils.changeTableSize;
 import static Utils.GeneralUtils.clearTable;
 import static Utils.Constants.FULLNAME;
+import static Utils.GeneralUtils.setCustomFont;
 
 public class ClinicalHistory extends javax.swing.JFrame {
 
@@ -117,7 +118,6 @@ public class ClinicalHistory extends javax.swing.JFrame {
         setTitle("Historia Clínica");
         setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(850, 600));
-        setPreferredSize(new java.awt.Dimension(928, 700));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -166,7 +166,7 @@ public class ClinicalHistory extends javax.swing.JFrame {
             tblVisits.getColumnModel().getColumn(0).setMaxWidth(80);
         }
 
-        btnSeeVisit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSeeVisit.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnSeeVisit.setForeground(new java.awt.Color(0, 51, 102));
         btnSeeVisit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ver_enabled.png"))); // NOI18N
         btnSeeVisit.setText("Ver");
@@ -206,9 +206,9 @@ public class ClinicalHistory extends javax.swing.JFrame {
         pnlVisitsLayout.setVerticalGroup(
             pnlVisitsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlVisitsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSeeVisit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(78, 78, 78))
         );
@@ -243,7 +243,7 @@ public class ClinicalHistory extends javax.swing.JFrame {
         lblstaticFirstVisitDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblstaticFirstVisitDate.setText("Fecha Primera Consulta:");
 
-        btnModifyPatient.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModifyPatient.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnModifyPatient.setForeground(new java.awt.Color(0, 51, 102));
         btnModifyPatient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edit_enabled.png"))); // NOI18N
         btnModifyPatient.setText("Modificar");
@@ -252,11 +252,11 @@ public class ClinicalHistory extends javax.swing.JFrame {
         btnModifyPatient.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnModifyPatient.setOpaque(true);
         btnModifyPatient.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnModifyPatientMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnModifyPatientMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModifyPatientMouseEntered(evt);
             }
         });
         btnModifyPatient.addActionListener(new java.awt.event.ActionListener() {
@@ -313,6 +313,14 @@ public class ClinicalHistory extends javax.swing.JFrame {
         btnAntecedents.setContentAreaFilled(false);
         btnAntecedents.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAntecedents.setOpaque(true);
+        btnAntecedents.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAntecedentsMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAntecedentsMouseEntered(evt);
+            }
+        });
         btnAntecedents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAntecedentsActionPerformed(evt);
@@ -372,7 +380,7 @@ public class ClinicalHistory extends javax.swing.JFrame {
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(pnlPatientDataLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnAntecedents, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnAntecedents, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(pnlNameLastname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -431,13 +439,21 @@ public class ClinicalHistory extends javax.swing.JFrame {
         btnNewVisit.setContentAreaFilled(false);
         btnNewVisit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNewVisit.setOpaque(true);
+        btnNewVisit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnNewVisitMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnNewVisitMouseEntered(evt);
+            }
+        });
         btnNewVisit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewVisitActionPerformed(evt);
             }
         });
 
-        btnBack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnBack.setForeground(new java.awt.Color(0, 51, 102));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/home_enabled.png"))); // NOI18N
         btnBack.setText("Volver");
@@ -467,7 +483,7 @@ public class ClinicalHistory extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnNewVisit, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnNewVisit, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,11 +543,11 @@ public class ClinicalHistory extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAntecedentsActionPerformed
 
     private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
-        this.setFont(btnBack, true);
+        setCustomFont(btnBack, true);
     }//GEN-LAST:event_btnBackMouseEntered
 
     private void btnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseExited
-        this.setFont(btnBack, false);
+        setCustomFont(btnBack, false);
     }//GEN-LAST:event_btnBackMouseExited
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -540,11 +556,11 @@ public class ClinicalHistory extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnModifyPatientMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyPatientMouseEntered
-        this.setFont(btnModifyPatient, true);
+        setCustomFont(btnModifyPatient, true);
     }//GEN-LAST:event_btnModifyPatientMouseEntered
 
     private void btnModifyPatientMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyPatientMouseExited
-        this.setFont(btnModifyPatient, false);
+        setCustomFont(btnModifyPatient, false);
     }//GEN-LAST:event_btnModifyPatientMouseExited
 
     private void btnModifyPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyPatientActionPerformed
@@ -565,11 +581,11 @@ public class ClinicalHistory extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModifyPatientActionPerformed
 
     private void btnSeeVisitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeeVisitMouseEntered
-        this.setFont(btnSeeVisit, true);
+        setCustomFont(btnSeeVisit, true);
     }//GEN-LAST:event_btnSeeVisitMouseEntered
 
     private void btnSeeVisitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeeVisitMouseExited
-        this.setFont(btnSeeVisit, false);
+        setCustomFont(btnSeeVisit, false);
     }//GEN-LAST:event_btnSeeVisitMouseExited
 
     private void btnSeeVisitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeVisitActionPerformed
@@ -596,15 +612,21 @@ public class ClinicalHistory extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
-    private void setFont(JButton jbtn, boolean mouseEntering) {
-        if (jbtn.isEnabled()) {
-            if (mouseEntering) {
-                jbtn.setFont(new java.awt.Font("Tahoma", 1, 15));
-            } else {
-                jbtn.setFont(new java.awt.Font("Tahoma", 1, 14));
-            }
-        }
-    }
+    private void btnAntecedentsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAntecedentsMouseEntered
+        setCustomFont(btnAntecedents, true);
+    }//GEN-LAST:event_btnAntecedentsMouseEntered
+
+    private void btnAntecedentsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAntecedentsMouseExited
+        setCustomFont(btnAntecedents, false);
+    }//GEN-LAST:event_btnAntecedentsMouseExited
+
+    private void btnNewVisitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewVisitMouseEntered
+        setCustomFont(btnNewVisit, true);
+    }//GEN-LAST:event_btnNewVisitMouseEntered
+
+    private void btnNewVisitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewVisitMouseExited
+        setCustomFont(btnNewVisit, false);
+    }//GEN-LAST:event_btnNewVisitMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAntecedents;
@@ -738,5 +760,4 @@ public class ClinicalHistory extends javax.swing.JFrame {
         }
         openWindows.clear();
     }
-
 }
