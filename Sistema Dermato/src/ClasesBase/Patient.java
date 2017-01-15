@@ -11,6 +11,7 @@ import java.util.LinkedList;
  */
 public class Patient {
 
+    private int id;
     private String name;
     private String lastname;
     private String phone;
@@ -28,7 +29,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(String name, String lastname, String phone, long dni,
+    public Patient(int id, String name, String lastname, String phone, long dni,
             String address, String city, String birthday, 
             PrePaidHealthInsurance prepaidHealthInsurance, String prepaidHealthInsuranceNumber, Antecedents antecendent,
             String firstVisitDate) {
@@ -45,7 +46,7 @@ public class Patient {
         this.firstVisitDate = firstVisitDate;
     }
 
-    public Patient(String name, String lastname, String phone, long dni,
+    public Patient(int id, String name, String lastname, String phone, long dni,
             String address, String city, String birthday,
             PrePaidHealthInsurance prepaidHealthInsurance, String prepaidHealthInsuranceNumber, Antecedents antecendent, 
             String firstVisitDate, LinkedList<Visit> visits) {
@@ -61,6 +62,14 @@ public class Patient {
         this.antecendents = antecendent;
         this.firstVisitDate = firstVisitDate;
         this.visits = visits;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLastname() {

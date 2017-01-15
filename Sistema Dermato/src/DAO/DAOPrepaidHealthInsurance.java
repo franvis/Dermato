@@ -119,10 +119,8 @@ public class DAOPrepaidHealthInsurance extends DAOBasics{
      */
     public boolean deletePrePaidHealthInsurance(PrePaidHealthInsurance prePaidHealthInsurance)
     {
-        boolean rtdo = false;
         try {
             connection = daoConnection.openDBConnection();
-            connection.setAutoCommit(false);
             
             where = getWhereConditions(getSimpleWhereCondition(idPrepaidHealthInsurance.name()));
             
@@ -133,19 +131,7 @@ public class DAOPrepaidHealthInsurance extends DAOBasics{
             preparedStatement.setInt(1, prePaidHealthInsurance.getId());
             preparedStatement.executeUpdate();
             
-            columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
-                    prePaidHealthInsuranceNumber.name());
-            
-            where = DBUtils.getIsNullWhereCondition(idPrepaidHealthInsurance.name());
-            
-            query = DBUtils.getUpdateStatement(Tables.PrepaidHealthInsurance, columns, where);
-            
-            preparedStatement = connection.prepareStatement(
-                        query);
-            preparedStatement.executeUpdate();
-            connection.commit();
-            rtdo = true;
-            connection.setAutoCommit(true);
+            return true;
         }
         
         catch (Exception ex) {
@@ -156,11 +142,11 @@ public class DAOPrepaidHealthInsurance extends DAOBasics{
                 System.out.println("RollBack Failure." + e.getMessage());
             }
             System.out.println(ex.getMessage());
+            return false;
         }
         finally {
             daoConnection.closeDBConnection(connection);
         }
-        return rtdo;
     }
     
     /**

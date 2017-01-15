@@ -5,6 +5,7 @@
  */
 package Utils;
 
+import static Utils.DBConstants.COLUMN_WITH_TABLE_PREFIX;
 import static Utils.DBConstants.INNER_JOIN;
 import static Utils.DBConstants.LEFT_JOIN;
 import static Utils.DBConstants.MAX_COLUMN_AS;
@@ -151,6 +152,12 @@ public class DBUtils {
         return String.format(DBConstants.JOIN, firstTable.name(), getJoinType(joinType), secondTable.name(),
                 firstTableColumn, secondTableColumn);
     }
+    
+    public static String appendTableJoin(int joinType, String currentFrom, Tables tableToJoin,
+            String currentFormColumn, String tableToJoinColumn){
+        return String.format(DBConstants.APPEND_JOIN, currentFrom, getJoinType(joinType), tableToJoin, 
+                currentFormColumn, tableToJoinColumn);
+    }
 
     public static String getMaxColumnAs(String column, String as) {
         return String.format(MAX_COLUMN_AS, column, as);
@@ -226,6 +233,10 @@ public class DBUtils {
         }
 
         return where.toString();
+    }
+    
+    public static String getColumnWithTablePrefix(Tables table, String column){
+        return String.format(COLUMN_WITH_TABLE_PREFIX, table.name(), column);
     }
 
     public static String getOrderByForFilters(String filterName, String filterLastName, String filterDni) {

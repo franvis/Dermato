@@ -3,9 +3,16 @@
  */
 package DAO;
 
+import ClasesBase.Antecedents;
 import ClasesBase.Patient;
 import ClasesBase.PrePaidHealthInsurance;
 import Utils.DBConstants;
+import Utils.DBConstants.AntecedentsDBColumns;
+import static Utils.DBConstants.AntecedentsDBColumns.family;
+import static Utils.DBConstants.AntecedentsDBColumns.personal;
+import static Utils.DBConstants.AntecedentsDBColumns.pharmacological;
+import static Utils.DBConstants.AntecedentsDBColumns.surgical;
+import static Utils.DBConstants.AntecedentsDBColumns.toxic;
 import static Utils.DBConstants.LEFT_JOIN;
 import Utils.DBConstants.PatientDBColumns;
 import static Utils.DBConstants.PatientDBColumns.*;
@@ -22,6 +29,10 @@ import java.util.logging.Logger;
  * @author Fran
  */
 public class DAOPatient extends DAOBasics {
+
+    private static final String LAST_VISIT_DATE_KEY = "lastVisitDate";
+    private static final String LAST_VISIT_DATE_DEFAULT_VALUE = "Sin consultas";
+    private static final String PP_HEALTH_INSURANCE_NAME_DEFAULT_VALUE = "Sin Obra Social";
 
     private final DAOPrepaidHealthInsurance daoPrepaidHealthInsurance;
     private final DAOAntecedents daoAntecedents;
@@ -46,7 +57,7 @@ public class DAOPatient extends DAOBasics {
             connection = daoConnection.openDBConnection();
             connection.setAutoCommit(false);
             query = DBUtils.getInsertStatementWithValuesOnly(Tables.Patient);
-            preparedStatement = connection.prepareStatement(query);
+            preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             if (hasPPHealthInsurance) {
                 preparedStatement.setInt(8, patient.getPrepaidHealthInsurance().getId());
                 preparedStatement.setString(9, patient.getPrepaidHealthInsuranceNumber());
@@ -64,11 +75,17 @@ public class DAOPatient extends DAOBasics {
             preparedStatement.setString(10, patient.getFirstVisitDate());
             preparedStatement.setNull(11, java.sql.Types.VARCHAR);
             preparedStatement.executeUpdate();
-            registerAntecedents(patient);
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    registerAntecedents(patient, generatedKeys.getLong(1));
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
             connection.commit();
         } catch (SQLException ex) {
             Logger.getLogger(DAOPrepaidHealthInsurance.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("query: "+query);
+            System.out.println("query: " + query);
             return false;
         } finally {
             try {
@@ -87,9 +104,9 @@ public class DAOPatient extends DAOBasics {
      * @param patient Patient with antecedents
      * @return true if registered correctly, false otherwise
      */
-    private boolean registerAntecedents(Patient patient) {
+    private boolean registerAntecedents(Patient patient, long patientId) {
         return (daoAntecedents.registerAntecedents(patient.getAntecendents(),
-                patient.getDni(), connection));
+                patientId, connection));
     }
 
     /**
@@ -103,14 +120,12 @@ public class DAOPatient extends DAOBasics {
     public LinkedList<Patient> getAllPatients(String filterName, String filterLastName, String filterDni) {
         pacientes = new LinkedList<>();
 
-        String lastVisitDateColumn = "lastVisitDate";
-
         from = DBUtils.getTableJoin(LEFT_JOIN, Tables.Patient,
                 Tables.Visit, dni.name(), VisitDBColumns.patient.name());
 
         columns = DBUtils.getStringWithValuesSeparatedWithCommas(dni.name(),
                 name.name(), lastname.name(), birthday.name(), DBUtils
-                .getMaxColumnAs(VisitDBColumns.date.name(), lastVisitDateColumn));
+                .getMaxColumnAs(VisitDBColumns.date.name(), LAST_VISIT_DATE_KEY));
 
         where = DBUtils.getWhereForFilters(filterName, filterLastName, filterDni);
         orderBy = DBUtils.getOrderByForFilters(filterName, filterLastName, filterDni);
@@ -151,10 +166,10 @@ public class DAOPatient extends DAOBasics {
                 patient.setName(resultSet.getString(name.name()));
                 patient.setLastname(resultSet.getString(lastname.name()));
                 patient.setBirthday(DBUtils.getFormattedDate(resultSet.getString(birthday.name())));
-                String lastVisitDate = "Sin consultas";
-                if (resultSet.getObject(lastVisitDateColumn) != null) {
+                String lastVisitDate = LAST_VISIT_DATE_DEFAULT_VALUE;
+                if (resultSet.getObject(LAST_VISIT_DATE_KEY) != null) {
                     lastVisitDate = DBUtils.getFormattedDate(resultSet.
-                            getString(lastVisitDateColumn));
+                            getString(LAST_VISIT_DATE_KEY));
                 }
                 patient.setLastVisitDate(lastVisitDate);
                 pacientes.add(patient);
@@ -204,14 +219,13 @@ public class DAOPatient extends DAOBasics {
      */
     public Patient getBasicPatient(long dni) {
         patient = null;
-        String lastVisitDateColumn = "lastVisitDate";
 
         from = DBUtils.getTableJoin(LEFT_JOIN, Tables.Patient,
                 Tables.Visit, PatientDBColumns.dni.name(), VisitDBColumns.patient.name());
 
         columns = DBUtils.getStringWithValuesSeparatedWithCommas(PatientDBColumns.dni.name(),
                 name.name(), lastname.name(), birthday.name(), DBUtils
-                .getMaxColumnAs(VisitDBColumns.date.name(), lastVisitDateColumn));
+                .getMaxColumnAs(VisitDBColumns.date.name(), LAST_VISIT_DATE_KEY));
 
         query = DBUtils.getSelectColumnsMultipleTablesStatementWithWhere(columns, from,
                 DBUtils.getSimpleWhereCondition(PatientDBColumns.dni.name()));
@@ -224,13 +238,13 @@ public class DAOPatient extends DAOBasics {
             while (resultSet.next()) {
                 patient = new Patient();
                 patient.setDni(dni);
-                patient.setName(resultSet.getString("nombre"));
-                patient.setLastname(resultSet.getString("apellido"));
+                patient.setName(resultSet.getString(name.name()));
+                patient.setLastname(resultSet.getString(lastname.name()));
                 patient.setBirthday(DBUtils.getFormattedDate(resultSet.getString(birthday.name())));
-                String lastVisitDate = "Sin consultas";
-                if (resultSet.getObject(lastVisitDateColumn) != null) {
+                String lastVisitDate = LAST_VISIT_DATE_DEFAULT_VALUE;
+                if (resultSet.getObject(LAST_VISIT_DATE_KEY) != null) {
                     lastVisitDate = DBUtils.getFormattedDate(resultSet.
-                            getString(lastVisitDateColumn));
+                            getString(LAST_VISIT_DATE_KEY));
                 }
                 patient.setLastVisitDate(lastVisitDate);
             }
@@ -250,21 +264,27 @@ public class DAOPatient extends DAOBasics {
      * @return Required full data patient
      */
     public Patient getFullPatient(long dni) {
+        Antecedents antecedents;
         patient = null;
-        String lastVisitDateColumn = "lastVisitDate";
 
-        from = DBUtils.getTableJoin(LEFT_JOIN, Tables.Patient,
-                Tables.Visit, PatientDBColumns.dni.name(), VisitDBColumns.patient.name());
+        from = DBUtils.appendTableJoin(LEFT_JOIN,
+                DBUtils.getTableJoin(LEFT_JOIN, Tables.Patient, Tables.Visit, idPatient.name(), DBUtils.getColumnWithTablePrefix(Tables.Visit, VisitDBColumns.patient.name())),
+                Tables.Antecedents,
+                idPatient.name(),
+                DBUtils.getColumnWithTablePrefix(Tables.Antecedents, AntecedentsDBColumns.patient.name()));
 
         columns = DBUtils.getStringWithValuesSeparatedWithCommas(
-                PatientDBColumns.dni.name(), name.name(), lastname.name(), phone.name(), address.name(),
-    city.name(), birthday.name(), prepaidHealthInsurance.name(), prePaidHealthInsuranceNumber.name(), 
-    firstVisitDate.name(),DBUtils.getMaxColumnAs(VisitDBColumns.date.name(), lastVisitDateColumn));
-        
+                idPatient.name(), PatientDBColumns.dni.name(), name.name(), lastname.name(), phone.name(), address.name(),
+                city.name(), birthday.name(), prepaidHealthInsurance.name(), prePaidHealthInsuranceNumber.name(),
+                firstVisitDate.name(), DBUtils.getMaxColumnAs(VisitDBColumns.date.name(), LAST_VISIT_DATE_KEY),
+                        personal.name(), surgical.name(), toxic.name(), family.name(),
+                        pharmacological.name());
+
         groupBy = DBUtils.getStringWithValuesSeparatedWithCommas(
-                PatientDBColumns.dni.name(), name.name(), lastname.name(), phone.name(), address.name(),
-    city.name(), birthday.name(), prepaidHealthInsurance.name(), prePaidHealthInsuranceNumber.name(), 
-    firstVisitDate.name());
+                idPatient.name(), PatientDBColumns.dni.name(), name.name(), lastname.name(), phone.name(), address.name(),
+                city.name(), birthday.name(), prepaidHealthInsurance.name(), prePaidHealthInsuranceNumber.name(),
+                firstVisitDate.name(), personal.name(), surgical.name(), toxic.name(), family.name(),
+                        pharmacological.name());
 
         query = DBUtils.getSelectColumnsMultipleTablesStatementWithWhereAndGroupBy(columns, from,
                 DBUtils.getSimpleWhereCondition(PatientDBColumns.dni.name()), groupBy);
@@ -277,6 +297,7 @@ public class DAOPatient extends DAOBasics {
             while (resultSet.next()) {
                 patient = new Patient();
                 patient.setDni(dni);
+                patient.setId(resultSet.getInt(idPatient.name()));
                 patient.setName(resultSet.getString(name.name()));
                 patient.setLastname(resultSet.getString(lastname.name()));
                 patient.setAddress(resultSet.getString(address.name()));
@@ -287,16 +308,25 @@ public class DAOPatient extends DAOBasics {
                 if (resultSet.getObject(prepaidHealthInsurance.name()) != null && resultSet.getInt(prepaidHealthInsurance.name()) != 0) {
                     patient.setPrepaidHealthInsurance(daoPrepaidHealthInsurance.getPPHealthInsurance(resultSet.getInt(prepaidHealthInsurance.name())));
                 } else {
-                    patient.setPrepaidHealthInsurance(new PrePaidHealthInsurance(0, "Sin Obra Social"));
+                    patient.setPrepaidHealthInsurance(new PrePaidHealthInsurance(0, PP_HEALTH_INSURANCE_NAME_DEFAULT_VALUE));
                 }
                 patient.setPhone(resultSet.getString(phone.name()));
-                String lastVisitDate = "Sin consultas";
-                if (resultSet.getObject(lastVisitDateColumn) != null) {
+                String lastVisitDate = LAST_VISIT_DATE_DEFAULT_VALUE;
+                if (resultSet.getObject(LAST_VISIT_DATE_KEY) != null) {
                     lastVisitDate = DBUtils.getFormattedDate(resultSet.
-                            getString(lastVisitDateColumn));
+                            getString(LAST_VISIT_DATE_KEY));
                 }
                 patient.setLastVisitDate(lastVisitDate);
+
+                antecedents = new Antecedents();
+                antecedents.setPersonalAntecedents(resultSet.getString(personal.name()));
+                antecedents.setSurgicalAntecedents(resultSet.getString(surgical.name()));
+                antecedents.setToxicAntecedents(resultSet.getString(toxic.name()));
+                antecedents.setFamilyAntecedents(resultSet.getString(family.name()));
+                antecedents.setPharmacologicalAntecedents(resultSet.getString(pharmacological.name()));
+                patient.setAntecendents(antecedents);
             }
+
             preparedStatement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -305,8 +335,6 @@ public class DAOPatient extends DAOBasics {
         }
 
         System.out.println(query);
-        
-        patient.setAntecendents(daoAntecedents.getAntecedent(patient.getDni()));
 
         return patient;
     }
@@ -368,7 +396,7 @@ public class DAOPatient extends DAOBasics {
     public boolean deletePatient(long dni) {
         try {
             connection = daoConnection.openDBConnection();
-            query = DBUtils.getDeleteStatement(Tables.Patient, 
+            query = DBUtils.getDeleteStatement(Tables.Patient,
                     DBUtils.getSimpleWhereCondition(PatientDBColumns.dni.name()));
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setLong(1, dni);
@@ -382,13 +410,13 @@ public class DAOPatient extends DAOBasics {
     }
 
     /**
-     * Allows to verify that duplicated patients don't exist for a certain Pre Paid Health 
-     * Insurance with a certain Insurance Number
+     * Allows to verify that duplicated patients don't exist for a certain Pre
+     * Paid Health Insurance with a certain Insurance Number
      *
      * @param prePaidHealthInsuranceId pre paid health insurance id
      * @param insuranceNumber patient's insurance number
-     * @return the only patient that exists for the pre paid health insurance and with that insurance number
-     * null if no match were found
+     * @return the only patient that exists for the pre paid health insurance
+     * and with that insurance number null if no match were found
      */
     public Patient verificarNroAfiliado(int prePaidHealthInsuranceId, String insuranceNumber) {
         Patient match = null;

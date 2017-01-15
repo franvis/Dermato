@@ -33,13 +33,17 @@ public class DBConstants {
     
     public static final String GROUP_BY_CONDITION = " GROUP BY %s";
     
-    public static final String ORDER_BY_COLUMN_ASC = "%s DESC";
+    public static final String ORDER_BY_COLUMN_ASC = "%s ASC";
     
-    public static final String ORDER_BY_COLUMN_DESC = "%s ASC";
+    public static final String ORDER_BY_COLUMN_DESC = "%s DESC";
     
     public static final String MAX_COLUMN_AS = "MAX(%s) AS %s";
     
     public static final String JOIN = DB_NAME+".%s %s "+DB_NAME+".%s ON %s=%s";
+    
+    public static final String APPEND_JOIN = "%s %s "+DB_NAME+".%s ON %s=%s";
+    
+    public static final String COLUMN_WITH_TABLE_PREFIX = "%s.%s";
     
     //INSERT STATEMENTS
     

@@ -7,6 +7,8 @@ import Utils.TextFilter;
 import Utils.StyleManager;
 import ClasesBase.Patient;
 import DAO.DAOPatient;
+import static GUI.ABMPatient.PRINCIPAL_MODIFY;
+import static GUI.ABMPatient.PRINCIPAL_NEW;
 import de.javasoft.plaf.synthetica.SyntheticaLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaMauveMetallicLookAndFeel;
 import java.awt.*;
@@ -676,7 +678,7 @@ public class Principal extends javax.swing.JFrame {
             }
             patient = daoPatient.getFullPatient(patient.getDni());
 
-            ABMPatient pacienteInterfaz = new ABMPatient(this, true, 1, patient);
+            ABMPatient pacienteInterfaz = new ABMPatient(this, true, PRINCIPAL_MODIFY, patient);
             pacienteInterfaz.setVisible(true);
             openFrames.add(pacienteInterfaz);
             ButtonsSetup(btnModifyPatient, false);
@@ -710,9 +712,9 @@ public class Principal extends javax.swing.JFrame {
             }
             patient = daoPatient.getFullPatient(patient.getDni());
 
-            ClinicalHistory CH = new ClinicalHistory(this, patient, 0);
-            CH.setVisible(true);
-            openFrames.add(CH);
+            ClinicalHistory clinicalHistory = new ClinicalHistory(this, patient, 0);
+            clinicalHistory.setVisible(true);
+            openFrames.add(clinicalHistory);
             deleteRows(dtmPatients);
             this.txtfLastname.setText("");
             this.txtfName.setText("");
@@ -866,7 +868,7 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
                 return;
             }
         }
-        ABMPatient patientFrame = new ABMPatient(this, true, 0);
+        ABMPatient patientFrame = new ABMPatient(this, true, PRINCIPAL_NEW);
         patientFrame.setVisible(true);
         ButtonsSetup(btnModifyPatient, false);
         openFrames.add(patientFrame);

@@ -5,7 +5,13 @@
         <group>
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/GUI/ABMVisit.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/DAO/DAOPatient.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/GUI/AntecedentsDialog.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/GUI/ABMPatient.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/GUI/Principal.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/DAO/DAOAntecedents.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/Utils/DBUtils.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/GUI/ClinicalHistory.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/Utils/DBConstants.java</file>
         </group>
     </open-files>
 </project-private>

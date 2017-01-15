@@ -5,6 +5,7 @@ import Utils.StyleManager;
 import Utils.MultiLineCellRenderer;
 import ClasesBase.Patient;
 import DAO.*;
+import static GUI.ABMPatient.CLINICAL_HISTORY;
 import static Utils.Constants.BIRTHDAY_WITH_AGE;
 import java.awt.Component;
 import java.awt.Font;
@@ -518,7 +519,7 @@ public class ClinicalHistory extends javax.swing.JFrame {
 
     private void btnAntecedentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAntecedentsActionPerformed
         if (!antecedentsModified) {
-            patient.setAntecendents(antecedentsDao.getAntecedent(patient.getDni()));
+            patient.setAntecendents(antecedentsDao.getAntecedent(patient.getId()));
             antecedentsModified = true;
         }
         antecedents = new AntecedentsDialog(this, true, patient);
@@ -558,7 +559,7 @@ public class ClinicalHistory extends javax.swing.JFrame {
             patient.setAntecendents(antecedentsDao.getAntecedent(patient.getDni()));
             antecedentsModified = true;
         }
-        ABMPatient pacienteInterfaz = new ABMPatient(this, true, 2, this.patient);
+        ABMPatient pacienteInterfaz = new ABMPatient(this, true, CLINICAL_HISTORY, patient);
         openWindows.add(pacienteInterfaz);
         pacienteInterfaz.setVisible(true);
     }//GEN-LAST:event_btnModifyPatientActionPerformed

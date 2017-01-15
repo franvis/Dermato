@@ -104,10 +104,10 @@ public class DAOAntecedents extends DAOBasics {
     /**
      * Method used to retrieve some patient antecedents
      *
-     * @param dni dni of the patient
+     * @param patientId dni of the patient
      * @return Antecedent
      */
-    public Antecedents getAntecedent(long dni) {
+    public Antecedents getAntecedent(long patientId) {
         antecedents = null;
 
         String whereCondition = DBUtils.getSimpleWhereCondition(patient.name());
@@ -116,7 +116,7 @@ public class DAOAntecedents extends DAOBasics {
         try {
             connection = daoConnection.openDBConnection();
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, dni);
+            preparedStatement.setLong(1, patientId);
             preparedStatement.executeQuery();
             resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
