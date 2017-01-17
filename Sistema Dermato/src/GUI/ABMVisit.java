@@ -27,7 +27,7 @@ public class ABMVisit extends javax.swing.JFrame {
     private final DAOVisit daoVisit;
     private Visit visit;
     private int idVisit;
-    private final long dni;
+    private Patient patient;
     private boolean origin;//true if comes from "see" false otherwise
 
     /**
@@ -37,16 +37,15 @@ public class ABMVisit extends javax.swing.JFrame {
      * @param dni
      * @param patient
      */
-    public ABMVisit(java.awt.Frame parent, long dni,
-            Patient patient) {
-        this.dni = dni;
+    public ABMVisit(java.awt.Frame parent, Patient patient) {
         this.origin = false;
         daoVisit = new DAOVisit();
         clinicalHistoryFrame = (ClinicalHistory) parent;
+        this.patient = patient;
         
         initComponents();
         setDateLabel();
-        fillPatientFields(patient);
+        fillPatientFields(this.patient);
         StyleManager.paint(this);
         txtaReason.grabFocus();
         pnlDate.setBackground(StyleManager.getSecondaryColor(StyleManager.actualColor));
@@ -59,21 +58,20 @@ public class ABMVisit extends javax.swing.JFrame {
      * Creates new form ABMConsultaCompleta
      * 
      * @param parent
-     * @param dni
      * @param patient
      * @param visit
      */
-    public ABMVisit(java.awt.Frame parent, long dni, Patient patient, Visit visit) {
+    public ABMVisit(java.awt.Frame parent, Patient patient, Visit visit) {
         this.visit = visit;
-        this.dni = dni;
         daoVisit = new DAOVisit();
         clinicalHistoryFrame = (ClinicalHistory) parent;
         origin = true;
+        this.patient = patient;
         
         initComponents();
         setDateLabel();
         fillVisitFields(this.visit);
-        fillPatientFields(patient);
+        fillPatientFields(this.patient);
         setButtonsState(false);
         setFieldsState(!origin);
         StyleManager.paint(this);
@@ -163,7 +161,7 @@ public class ABMVisit extends javax.swing.JFrame {
         txtaPhysicalExam.setRows(2);
         txtaPhysicalExam.setTabSize(0);
         txtaPhysicalExam.setWrapStyleWord(true);
-        txtaPhysicalExam.setNextFocusableComponent(txtaComplementaryStudies);
+        txtaPhysicalExam.setNextFocusableComponent(txtaBiopsy);
         txtaPhysicalExam.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtaPhysicalExamKeyPressed(evt);
@@ -334,6 +332,7 @@ public class ABMVisit extends javax.swing.JFrame {
         txtaDiagnosis.setRows(2);
         txtaDiagnosis.setTabSize(0);
         txtaDiagnosis.setWrapStyleWord(true);
+        txtaDiagnosis.setNextFocusableComponent(txtaPhysicalExam);
         txtaDiagnosis.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtaDiagnosisKeyPressed(evt);
@@ -362,7 +361,7 @@ public class ABMVisit extends javax.swing.JFrame {
         btnCancel.setContentAreaFilled(false);
         btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCancel.setEnabled(false);
-        btnCancel.setNextFocusableComponent(btnBack);
+        btnCancel.setNextFocusableComponent(btnModify);
         btnCancel.setOpaque(true);
         btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -409,7 +408,7 @@ public class ABMVisit extends javax.swing.JFrame {
         btnModify.setContentAreaFilled(false);
         btnModify.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnModify.setEnabled(false);
-        btnModify.setNextFocusableComponent(txtaReason);
+        btnModify.setNextFocusableComponent(btnBack);
         btnModify.setOpaque(true);
         btnModify.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -433,7 +432,7 @@ public class ABMVisit extends javax.swing.JFrame {
         btnBack.setContentAreaFilled(false);
         btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBack.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnBack.setNextFocusableComponent(btnModify);
+        btnBack.setNextFocusableComponent(txtaReason);
         btnBack.setOpaque(true);
         btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -649,7 +648,7 @@ public class ABMVisit extends javax.swing.JFrame {
         txtaBiopsy.setRows(2);
         txtaBiopsy.setTabSize(0);
         txtaBiopsy.setWrapStyleWord(true);
-        txtaBiopsy.setNextFocusableComponent(txtaDiagnosis);
+        txtaBiopsy.setNextFocusableComponent(btnSave);
         txtaBiopsy.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtaBiopsyKeyPressed(evt);
@@ -740,7 +739,7 @@ public class ABMVisit extends javax.swing.JFrame {
         generateVisit();
 
         if (!origin) {
-            if (daoVisit.registerVisit(visit, dni)) {
+            if (daoVisit.registerVisit(visit, patient.getId())) {
                 this.idVisit = visit.getId();
                 ValidationsAndMessages.showInfo(this, "Registro Exitoso.");
             } else {
@@ -755,7 +754,7 @@ public class ABMVisit extends javax.swing.JFrame {
             return;
         }
         this.setFieldsState(false);
-        clinicalHistoryFrame.fillTable(dni);
+        clinicalHistoryFrame.fillTable(patient.getId());
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnCancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseEntered

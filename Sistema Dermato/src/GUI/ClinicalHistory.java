@@ -22,6 +22,9 @@ import static Utils.GeneralUtils.changeTableSize;
 import static Utils.GeneralUtils.clearTable;
 import static Utils.Constants.FULLNAME;
 import static Utils.GeneralUtils.setCustomFont;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ClinicalHistory extends javax.swing.JFrame {
 
@@ -49,9 +52,8 @@ public class ClinicalHistory extends javax.swing.JFrame {
         openWindows = new LinkedList<>();
         this.patient = patient;
         this.btnModifyPatient.grabFocus();
-        this.btnSeeVisit.setEnabled(false);
         fillFields(patient);
-        tblVisits.getColumn(TABLE_COLUMN_DATE).setMaxWidth(100);
+        tblVisits.getColumn(TABLE_COLUMN_DATE).setMaxWidth(120);
         tblVisits.getColumn(TABLE_COLUMN_DATE).setResizable(false);
         tblVisits.getColumn(TABLE_COLUMN_REASON).setResizable(false);
         tblVisits.getColumn(TABLE_COLUMN_DIAGNOSIS).setResizable(false);
@@ -87,7 +89,6 @@ public class ClinicalHistory extends javax.swing.JFrame {
         pnlVisits = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVisits = new javax.swing.JTable();
-        btnSeeVisit = new javax.swing.JButton();
         pnlPatientData = new javax.swing.JPanel();
         lblstaticDni = new javax.swing.JLabel();
         lblstaticInsuranceNumber = new javax.swing.JLabel();
@@ -157,38 +158,13 @@ public class ClinicalHistory extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblVisits.setOpaque(false);
         tblVisits.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblVisits);
         if (tblVisits.getColumnModel().getColumnCount() > 0) {
-            tblVisits.getColumnModel().getColumn(0).setMinWidth(80);
-            tblVisits.getColumnModel().getColumn(0).setPreferredWidth(80);
-            tblVisits.getColumnModel().getColumn(0).setMaxWidth(80);
+            tblVisits.getColumnModel().getColumn(0).setMinWidth(100);
+            tblVisits.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblVisits.getColumnModel().getColumn(0).setMaxWidth(100);
         }
-
-        btnSeeVisit.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnSeeVisit.setForeground(new java.awt.Color(0, 51, 102));
-        btnSeeVisit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ver_enabled.png"))); // NOI18N
-        btnSeeVisit.setText("Ver");
-        btnSeeVisit.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        btnSeeVisit.setContentAreaFilled(false);
-        btnSeeVisit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSeeVisit.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnSeeVisit.setNextFocusableComponent(btnNewVisit);
-        btnSeeVisit.setOpaque(true);
-        btnSeeVisit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnSeeVisitMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnSeeVisitMouseExited(evt);
-            }
-        });
-        btnSeeVisit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSeeVisitActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnlVisitsLayout = new javax.swing.GroupLayout(pnlVisits);
         pnlVisits.setLayout(pnlVisitsLayout);
@@ -196,21 +172,15 @@ public class ClinicalHistory extends javax.swing.JFrame {
             pnlVisitsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlVisitsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlVisitsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
-                    .addGroup(pnlVisitsLayout.createSequentialGroup()
-                        .addComponent(btnSeeVisit, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlVisitsLayout.setVerticalGroup(
             pnlVisitsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlVisitsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSeeVisit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78))
+            .addGroup(pnlVisitsLayout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pnlPatientData.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Datos del Paciente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
@@ -512,7 +482,7 @@ public class ClinicalHistory extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlPatientData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlVisits, javax.swing.GroupLayout.PREFERRED_SIZE, 360, Short.MAX_VALUE)
+                .addComponent(pnlVisits, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -527,7 +497,7 @@ public class ClinicalHistory extends javax.swing.JFrame {
                 return;
             }
         }
-        ABMVisit abmVisit = new ABMVisit(this, patient.getDni(), patient);
+        ABMVisit abmVisit = new ABMVisit(this, patient);
         openWindows.add(abmVisit);
         abmVisit.setVisible(true);
         abmVisit.requestFocus();
@@ -580,32 +550,6 @@ public class ClinicalHistory extends javax.swing.JFrame {
         pacienteInterfaz.setVisible(true);
     }//GEN-LAST:event_btnModifyPatientActionPerformed
 
-    private void btnSeeVisitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeeVisitMouseEntered
-        setCustomFont(btnSeeVisit, true);
-    }//GEN-LAST:event_btnSeeVisitMouseEntered
-
-    private void btnSeeVisitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeeVisitMouseExited
-        setCustomFont(btnSeeVisit, false);
-    }//GEN-LAST:event_btnSeeVisitMouseExited
-
-    private void btnSeeVisitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeVisitActionPerformed
-        int j = 0, id = this.tblVisits.getSelectedRow();
-        for (JFrame aux : openWindows) {
-            if (aux instanceof ABMVisit) {
-                ABMVisit auxCons = (ABMVisit) aux;
-                if (auxCons.getVisitId() == this.visits.get(id).getId()) {
-                    aux.setVisible(true);
-                    return;
-                }
-            }
-        }
-        Visit visit = visitDao.getFullVisit(this.visits.get(id).getId(), patient.getDni());
-        ABMVisit abmVisit = new ABMVisit(this, patient.getDni(), patient, visit);
-        abmVisit.setVisible(true);
-        abmVisit.requestFocus();
-        openWindows.add(abmVisit);
-    }//GEN-LAST:event_btnSeeVisitActionPerformed
-
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         principalParent.closeChild(this);
         closeOpenWindows();
@@ -633,7 +577,6 @@ public class ClinicalHistory extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnModifyPatient;
     private javax.swing.JButton btnNewVisit;
-    private javax.swing.JButton btnSeeVisit;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAddress;
@@ -668,7 +611,8 @@ public class ClinicalHistory extends javax.swing.JFrame {
     }
 
     /**
-     * Method used to fill all the fields for the clinical history of a certain patient
+     * Method used to fill all the fields for the clinical history of a certain
+     * patient
      *
      * @param patient
      */
@@ -678,11 +622,11 @@ public class ClinicalHistory extends javax.swing.JFrame {
         this.lblBirthday.setText(String.format(BIRTHDAY_WITH_AGE, patient.getBirthday(), calculateAge(patient.getBirthday())));
         this.lblDni.setText(patient.getDni() + "");
         this.lblCity.setText(patient.getCity());
-        
+
         this.lblPhone.setText(patient.getPhone());
         this.lblFirstVisitDate.setText(patient.getFirstVisitDate());
         this.lblAddress.setText(patient.getAddress());
-        
+
         this.lblPPHealthInsurance.setText(patient.getPrepaidHealthInsurance().getName());
         this.lblInsuranceNumber.setText(patient.getPrepaidHealthInsuranceNumber());
     }
@@ -703,8 +647,8 @@ public class ClinicalHistory extends javax.swing.JFrame {
             changeTableSize(visitsDtm, 8);
         } else {
             changeTableSize(visitsDtm, 0);
-            this.btnSeeVisit.setEnabled(true);
         }
+        
         for (int i = 0; i < visits.size(); i++) {
             o = new Object[3];
             o[0] = visits.get(i).getDate();
@@ -713,6 +657,33 @@ public class ClinicalHistory extends javax.swing.JFrame {
             visitsDtm.addRow(o);
         }
         tblVisits.changeSelection(0, 0, false, false);
+
+        tblVisits.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent me) {
+                JTable table = (JTable) me.getSource();
+                Point p = me.getPoint();
+                int row = table.rowAtPoint(p);
+                if (me.getClickCount() == 2 && row != -1
+                        && ClinicalHistory.this.visits.size() > 0
+                        && ClinicalHistory.this.visits.get(row) != null) {
+                    for (JFrame aux : openWindows) {
+                        if (aux instanceof ABMVisit) {
+                            ABMVisit auxCons = (ABMVisit) aux;
+                            if (auxCons.getVisitId() == ClinicalHistory.this.visits.get(row).getId()) {
+                                aux.setVisible(true);
+                                return;
+                            }
+                        }
+                    }
+                    Visit visit = visitDao.getFullVisit(ClinicalHistory.this.visits.get(row).getId(), patient.getDni());
+                    ABMVisit abmVisit = new ABMVisit(ClinicalHistory.this, patient, visit);
+                    abmVisit.setVisible(true);
+                    abmVisit.requestFocus();
+                    openWindows.add(abmVisit);
+                }
+            }
+        });
     }
 
     @Override
@@ -722,7 +693,9 @@ public class ClinicalHistory extends javax.swing.JFrame {
     }
 
     /**
-     * Communicates color changes in the GUI to those frames that has this one as a parent.
+     * Communicates color changes in the GUI to those frames that has this one
+     * as a parent.
+     *
      * @param color New color
      */
     public void paintChilds(int color) {

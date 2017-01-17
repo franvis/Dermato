@@ -1159,25 +1159,23 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
         return incomplete;
     }
 
-    /**
-     * Method used to fill all the data
-     */
-    private void fillFields(Patient p) {
-        this.txtfNames.setText(p.getName());
-        this.txtfLastNames.setText(p.getLastname());
-        this.txtfPhone.setText(p.getPhone());
-        this.txtfAddress.setText(p.getAddress());
-        this.txtfCity.setText(p.getCity());
-        this.txtfDni.setText(p.getDni() + "");
-        this.ftxtfBirthday.setText(p.getBirthday());
-        this.cmbPPHealthInsurance.setSelectedItem(p.getPrepaidHealthInsurance().getName());
-        this.txtfInsuranceNumber.setText(p.getPrepaidHealthInsuranceNumber());
+    private void fillFields(Patient patient) {
+        this.txtfNames.setText(patient.getName());
+        this.txtfLastNames.setText(patient.getLastname());
+        this.txtfPhone.setText(patient.getPhone());
+        this.txtfAddress.setText(patient.getAddress());
+        this.txtfCity.setText(patient.getCity());
+        this.txtfDni.setText(patient.getDni() + "");
+        this.ftxtfBirthday.setText(patient.getBirthday());
+        this.cmbPPHealthInsurance.setSelectedItem(patient.getPrepaidHealthInsurance().getName());
+        this.txtfInsuranceNumber.setText(patient.getPrepaidHealthInsuranceNumber());
+        this.ftxtfFirstVisitDate.setText(patient.getFirstVisitDate());
 
-        this.txtaPersonal.setText(p.getAntecendents().getPersonalAntecedents());
-        this.txtaToxics.setText(p.getAntecendents().getToxicAntecedents());
-        this.txtaSurgical.setText(p.getAntecendents().getSurgicalAntecedents());
-        this.txtaFamily.setText(p.getAntecendents().getFamilyAntecedents());
-        this.txtaPharmacological.setText(p.getAntecendents().getPharmacologicalAntecedents());
+        this.txtaPersonal.setText(patient.getAntecendents().getPersonalAntecedents());
+        this.txtaToxics.setText(patient.getAntecendents().getToxicAntecedents());
+        this.txtaSurgical.setText(patient.getAntecendents().getSurgicalAntecedents());
+        this.txtaFamily.setText(patient.getAntecendents().getFamilyAntecedents());
+        this.txtaPharmacological.setText(patient.getAntecendents().getPharmacologicalAntecedents());
     }
 
     /**
