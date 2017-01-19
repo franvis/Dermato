@@ -21,10 +21,10 @@ import static Utils.GeneralUtils.calculateAge;
 import static Utils.GeneralUtils.changeTableSize;
 import static Utils.GeneralUtils.clearTable;
 import static Utils.Constants.FULLNAME;
-import static Utils.GeneralUtils.setCustomFont;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import static Utils.GeneralUtils.setButtonFontForPointerEvent;
 
 public class ClinicalHistory extends javax.swing.JFrame {
 
@@ -513,11 +513,11 @@ public class ClinicalHistory extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAntecedentsActionPerformed
 
     private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
-        setCustomFont(btnBack, true);
+        setButtonFontForPointerEvent(btnBack, true);
     }//GEN-LAST:event_btnBackMouseEntered
 
     private void btnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseExited
-        setCustomFont(btnBack, false);
+        setButtonFontForPointerEvent(btnBack, false);
     }//GEN-LAST:event_btnBackMouseExited
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -526,11 +526,11 @@ public class ClinicalHistory extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnModifyPatientMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyPatientMouseEntered
-        setCustomFont(btnModifyPatient, true);
+        setButtonFontForPointerEvent(btnModifyPatient, true);
     }//GEN-LAST:event_btnModifyPatientMouseEntered
 
     private void btnModifyPatientMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyPatientMouseExited
-        setCustomFont(btnModifyPatient, false);
+        setButtonFontForPointerEvent(btnModifyPatient, false);
     }//GEN-LAST:event_btnModifyPatientMouseExited
 
     private void btnModifyPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyPatientActionPerformed
@@ -557,19 +557,19 @@ public class ClinicalHistory extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void btnAntecedentsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAntecedentsMouseEntered
-        setCustomFont(btnAntecedents, true);
+        setButtonFontForPointerEvent(btnAntecedents, true);
     }//GEN-LAST:event_btnAntecedentsMouseEntered
 
     private void btnAntecedentsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAntecedentsMouseExited
-        setCustomFont(btnAntecedents, false);
+        setButtonFontForPointerEvent(btnAntecedents, false);
     }//GEN-LAST:event_btnAntecedentsMouseExited
 
     private void btnNewVisitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewVisitMouseEntered
-        setCustomFont(btnNewVisit, true);
+        setButtonFontForPointerEvent(btnNewVisit, true);
     }//GEN-LAST:event_btnNewVisitMouseEntered
 
     private void btnNewVisitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewVisitMouseExited
-        setCustomFont(btnNewVisit, false);
+        setButtonFontForPointerEvent(btnNewVisit, false);
     }//GEN-LAST:event_btnNewVisitMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

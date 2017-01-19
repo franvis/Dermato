@@ -5,10 +5,13 @@
  */
 package Utils;
 
+import static Utils.Constants.SYSTEM_FONT;
+import java.awt.Component;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class GeneralUtils {
 
+    private static final String PERFORM_BACK_UP_DIALOG_TITLE = "Elija un directorio destino para el archivo de Back Up...";
+    
     /**
      * Method used to clean a table deleting all of the rows
      *
@@ -66,13 +71,19 @@ public class GeneralUtils {
         return age;
     }
     
-    
-    public static void setCustomFont(JButton jbtn, boolean mouseEntering) {
+    /**
+     * Changes the button font according to the mouse pointer event passing trough it.
+     *
+     * @param jbtn JButton to set
+     * @param mouseEntering boolean true if the mouse pointer is entering the jButton
+     * area, false otherwise
+     */
+    public static void setButtonFontForPointerEvent(JButton jbtn, boolean mouseEntering) {
         if (jbtn.isEnabled()) {
             if (mouseEntering) {
-                jbtn.setFont(new java.awt.Font("Tahoma", 1, 14));
+                jbtn.setFont(new java.awt.Font(SYSTEM_FONT, 1, 14));
             } else {
-                jbtn.setFont(new java.awt.Font("Tahoma", 1, 13));
+                jbtn.setFont(new java.awt.Font(SYSTEM_FONT, 1, 13));
             }
         }
     }
@@ -90,6 +101,21 @@ public class GeneralUtils {
                 && evt.isShiftDown()) {
             evt.consume();
             KeyboardFocusManager.getCurrentKeyboardFocusManager().focusPreviousComponent();
+        }
+    }
+    
+    /**
+     * Method used to perform a manual backup
+     * 
+     * @param parent component where save dialog will be shown
+     */
+    public static void performBackup(Component parent) {
+        JFileChooser jfd = new JFileChooser();
+        jfd.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        jfd.setDialogTitle(PERFORM_BACK_UP_DIALOG_TITLE);
+        int r = jfd.showSaveDialog(parent);
+        if (r == JFileChooser.APPROVE_OPTION) {
+            FileManager.backUp(parent, jfd.getSelectedFile());
         }
     }
 }

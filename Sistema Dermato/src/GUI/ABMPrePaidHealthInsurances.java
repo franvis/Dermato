@@ -23,7 +23,7 @@ import java.util.LinkedList;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
-import static Utils.GeneralUtils.setCustomFont;
+import static Utils.GeneralUtils.setButtonFontForPointerEvent;
 
 public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
 
@@ -339,11 +339,11 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
-        setCustomFont(btnBack, true);
+        setButtonFontForPointerEvent(btnBack, true);
     }//GEN-LAST:event_btnBackMouseEntered
 
     private void btnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseExited
-        setCustomFont(btnBack, false);
+        setButtonFontForPointerEvent(btnBack, false);
     }//GEN-LAST:event_btnBackMouseExited
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -351,11 +351,11 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseEntered
-        setCustomFont(btnDelete, true);
+        setButtonFontForPointerEvent(btnDelete, true);
     }//GEN-LAST:event_btnDeleteMouseEntered
 
     private void btnDeleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseExited
-        setCustomFont(btnDelete, false);
+        setButtonFontForPointerEvent(btnDelete, false);
     }//GEN-LAST:event_btnDeleteMouseExited
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -372,11 +372,11 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseEntered
-        setCustomFont(btnCancel, true);
+        setButtonFontForPointerEvent(btnCancel, true);
     }//GEN-LAST:event_btnCancelMouseEntered
 
     private void btnCancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseExited
-        setCustomFont(btnCancel, false);
+        setButtonFontForPointerEvent(btnCancel, false);
     }//GEN-LAST:event_btnCancelMouseExited
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -387,11 +387,11 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnModifyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyMouseEntered
-        setCustomFont(btnModify, true);
+        setButtonFontForPointerEvent(btnModify, true);
     }//GEN-LAST:event_btnModifyMouseEntered
 
     private void btnModifyMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyMouseExited
-        setCustomFont(btnModify, false);
+        setButtonFontForPointerEvent(btnModify, false);
     }//GEN-LAST:event_btnModifyMouseExited
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed

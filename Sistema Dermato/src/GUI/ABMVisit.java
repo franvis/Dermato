@@ -11,7 +11,6 @@ import DAO.DAOVisit;
 import Utils.Constants;
 import static Utils.GeneralUtils.calculateAge;
 import static Utils.GeneralUtils.handleFocus;
-import static Utils.GeneralUtils.setCustomFont;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +19,7 @@ import java.util.Calendar;
 import javax.swing.JComponent;
 import javax.swing.JRootPane;
 import javax.swing.KeyStroke;
+import static Utils.GeneralUtils.setButtonFontForPointerEvent;
 
 public class ABMVisit extends javax.swing.JFrame {
 
@@ -722,11 +722,11 @@ public class ABMVisit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseEntered
-        setCustomFont(btnSave, true);
+        setButtonFontForPointerEvent(btnSave, true);
     }//GEN-LAST:event_btnSaveMouseEntered
 
     private void btnSaveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseExited
-        setCustomFont(btnSave, false);
+        setButtonFontForPointerEvent(btnSave, false);
     }//GEN-LAST:event_btnSaveMouseExited
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -758,11 +758,11 @@ public class ABMVisit extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnCancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseEntered
-        setCustomFont(btnCancel, true);
+        setButtonFontForPointerEvent(btnCancel, true);
     }//GEN-LAST:event_btnCancelMouseEntered
 
     private void btnCancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseExited
-        setCustomFont(btnCancel, false);
+        setButtonFontForPointerEvent(btnCancel, false);
     }//GEN-LAST:event_btnCancelMouseExited
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -773,11 +773,11 @@ public class ABMVisit extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
-        setCustomFont(btnBack, true);
+        setButtonFontForPointerEvent(btnBack, true);
     }//GEN-LAST:event_btnBackMouseEntered
 
     private void btnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseExited
-        setCustomFont(btnBack, false);
+        setButtonFontForPointerEvent(btnBack, false);
     }//GEN-LAST:event_btnBackMouseExited
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -785,11 +785,11 @@ public class ABMVisit extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnModifyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyMouseEntered
-        setCustomFont(btnModify, true);
+        setButtonFontForPointerEvent(btnModify, true);
     }//GEN-LAST:event_btnModifyMouseEntered
 
     private void btnModifyMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyMouseExited
-        setCustomFont(btnModify, false);
+        setButtonFontForPointerEvent(btnModify, false);
     }//GEN-LAST:event_btnModifyMouseExited
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
