@@ -11,6 +11,8 @@ import java.util.LinkedList;
  */
 public class Patient {
 
+    private static final String FULLNAME = "%s, %s";
+    
     private int id;
     private String name;
     private String lastname;
@@ -174,5 +176,9 @@ public class Patient {
 
     public void setCity(String city) {
         this.city = city;
+    }
+    
+    public String getFullName(){
+        return String.format(FULLNAME, lastname, name);
     }
 }

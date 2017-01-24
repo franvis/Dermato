@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import static Utils.DBUtils.getSimpleWhereCondition;
 import static Utils.DBUtils.getWhereConditions;
 import static Utils.DBConstants.PrePaidHealthInsuranceDBColumns.idPrepaidHealthInsurance;
+import java.util.HashMap;
 
 
 /**
@@ -26,7 +27,7 @@ import static Utils.DBConstants.PrePaidHealthInsuranceDBColumns.idPrepaidHealthI
 public class DAOPrepaidHealthInsurance extends DAOBasics{
 
     private PrePaidHealthInsurance prePaidHealthInsurance;
-    private LinkedList<PrePaidHealthInsurance> prePaidHealthInsurances;
+    private HashMap<Integer, PrePaidHealthInsurance> prePaidHealthInsurances;
 
     public DAOPrepaidHealthInsurance(){
         daoConnection = new DAOConnection();
@@ -36,9 +37,9 @@ public class DAOPrepaidHealthInsurance extends DAOBasics{
      * Method used to get all the pre paid health insurances
      * @return All the pre paid health insurances
      */
-    public LinkedList<PrePaidHealthInsurance> getAllPrePaidHealthInsurances()
+    public HashMap<Integer, PrePaidHealthInsurance> getAllPrePaidHealthInsurances()
     {
-        prePaidHealthInsurances = new LinkedList<>();
+        prePaidHealthInsurances = new HashMap<>();
         connection = daoConnection.openDBConnection();
         query = DBUtils.getSelectAllStatementWithOrder(Tables.PrepaidHealthInsurance,
                 DBUtils.getOrderByCondition(name.name(), true));
@@ -49,9 +50,10 @@ public class DAOPrepaidHealthInsurance extends DAOBasics{
             while(resultSet.next())
             {
                 prePaidHealthInsurance = new PrePaidHealthInsurance();
-                prePaidHealthInsurance.setId(resultSet.getInt(idPrepaidHealthInsurance.name()));
+                int id = resultSet.getInt(idPrepaidHealthInsurance.name());
+                prePaidHealthInsurance.setId(id);
                 prePaidHealthInsurance.setName(resultSet.getString(name.name()));
-                prePaidHealthInsurances.add(prePaidHealthInsurance);
+                prePaidHealthInsurances.put(id, prePaidHealthInsurance);
             }
             preparedStatement.close();
         }

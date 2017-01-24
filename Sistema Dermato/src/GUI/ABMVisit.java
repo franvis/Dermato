@@ -23,7 +23,7 @@ import static Utils.GeneralUtils.setButtonFontForPointerEvent;
 
 public class ABMVisit extends javax.swing.JFrame {
 
-    private final ClinicalHistory clinicalHistoryFrame;
+    private final ClinicalHistoryJFrame clinicalHistoryFrame;
     private final DAOVisit daoVisit;
     private Visit visit;
     private int idVisit;
@@ -40,7 +40,7 @@ public class ABMVisit extends javax.swing.JFrame {
     public ABMVisit(java.awt.Frame parent, Patient patient) {
         this.origin = false;
         daoVisit = new DAOVisit();
-        clinicalHistoryFrame = (ClinicalHistory) parent;
+        clinicalHistoryFrame = (ClinicalHistoryJFrame) parent;
         this.patient = patient;
         
         initComponents();
@@ -64,7 +64,7 @@ public class ABMVisit extends javax.swing.JFrame {
     public ABMVisit(java.awt.Frame parent, Patient patient, Visit visit) {
         this.visit = visit;
         daoVisit = new DAOVisit();
-        clinicalHistoryFrame = (ClinicalHistory) parent;
+        clinicalHistoryFrame = (ClinicalHistoryJFrame) parent;
         origin = true;
         this.patient = patient;
         

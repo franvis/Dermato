@@ -1,7 +1,7 @@
 package Utils;
 
 import GUI.ChooseColor;
-import GUI.ClinicalHistory;
+import GUI.ClinicalHistoryJFrame;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -213,11 +213,11 @@ public class StyleManager {
         if (parent instanceof ChooseColor)
         {
             pintarComponentes(parent.getParent(), color);
-            ((GUI.Principal) parent.getParent()).paintChilds(color);
+            ((GUI.PrincipalJFrame) parent.getParent()).paintChilds(color);
         }
-        if (parent instanceof ClinicalHistory)
+        if (parent instanceof ClinicalHistoryJFrame)
         {
-            ((GUI.ClinicalHistory) parent).paintChilds(color);
+            ((GUI.ClinicalHistoryJFrame) parent).paintChilds(color);
         }
         for (Component componente : parent.getComponents())
         {

@@ -24,11 +24,12 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 import static Utils.GeneralUtils.setButtonFontForPointerEvent;
+import java.util.HashMap;
 
 public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
 
     private final DAOPrepaidHealthInsurance daoPrePaidHealthInsurance;
-    private LinkedList<PrePaidHealthInsurance> PrePaidHealthInsurances;
+    private HashMap<Integer, PrePaidHealthInsurance> prePaidHealthInsurances;
     private DefaultTableModel dtmPrePaidHealthInsurances;
     private boolean isUpdating;
 
@@ -40,8 +41,8 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
     public ABMPrePaidHealthInsurances(Frame parent) {
         initComponents();
         daoPrePaidHealthInsurance = new DAOPrepaidHealthInsurance();
-        PrePaidHealthInsurances = daoPrePaidHealthInsurance.getAllPrePaidHealthInsurances();
-        fillPrePaidHealthInsurances(PrePaidHealthInsurances);
+        prePaidHealthInsurances = daoPrePaidHealthInsurance.getAllPrePaidHealthInsurances();
+        fillPrePaidHealthInsurances(prePaidHealthInsurances);
         this.setLocationRelativeTo(parent);
         isUpdating = false;
         Utils.StyleManager.paint(this);
@@ -359,12 +360,12 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteMouseExited
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        if (!PrePaidHealthInsurances.isEmpty()) {
-            int idObraSeleccionada = PrePaidHealthInsurances.get(tblPrePaidHealthInsurances.getSelectedRow()).getId();
+        if (!prePaidHealthInsurances.isEmpty()) {
+            int idObraSeleccionada = prePaidHealthInsurances.get(tblPrePaidHealthInsurances.getSelectedRow()).getId();
             if (daoPrePaidHealthInsurance.deletePrePaidHealthInsurance(new PrePaidHealthInsurance(idObraSeleccionada, ""))) {
                 ValidationsAndMessages.showInfo(this, "Borrado Exitoso.");
-                PrePaidHealthInsurances = daoPrePaidHealthInsurance.getAllPrePaidHealthInsurances();
-                fillPrePaidHealthInsurances(PrePaidHealthInsurances);
+                prePaidHealthInsurances = daoPrePaidHealthInsurance.getAllPrePaidHealthInsurances();
+                fillPrePaidHealthInsurances(prePaidHealthInsurances);
             } else {
                 ValidationsAndMessages.showInfo(this, "Borrado Fallido.");
             }
@@ -395,8 +396,8 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModifyMouseExited
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
-        if (!PrePaidHealthInsurances.isEmpty()) {
-            int idSelectedPPHealthInsurance = PrePaidHealthInsurances.get(tblPrePaidHealthInsurances.getSelectedRow()).getId();
+        if (!prePaidHealthInsurances.isEmpty()) {
+            int idSelectedPPHealthInsurance = prePaidHealthInsurances.get(tblPrePaidHealthInsurances.getSelectedRow()).getId();
             PrePaidHealthInsurance pPHealthInsuranceToModify = daoPrePaidHealthInsurance.getPPHealthInsurance(idSelectedPPHealthInsurance);
             txtPPHealthInsuranceName.setText(pPHealthInsuranceToModify.getName());
             txtPPHealthInsuranceName.grabFocus();
@@ -416,20 +417,20 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
             if (daoPrePaidHealthInsurance.registerPrePaidHealthInsurance(new PrePaidHealthInsurance(0, txtPPHealthInsuranceName.getText()))) {
                 ValidationsAndMessages.showInfo(this, "Registro Exitoso.");
                 this.txtPPHealthInsuranceName.setText("");
-                this.PrePaidHealthInsurances.removeAll(PrePaidHealthInsurances);
-                this.PrePaidHealthInsurances = daoPrePaidHealthInsurance.getAllPrePaidHealthInsurances();
-                fillPrePaidHealthInsurances(PrePaidHealthInsurances);
+                this.prePaidHealthInsurances = new HashMap<>();
+                this.prePaidHealthInsurances = daoPrePaidHealthInsurance.getAllPrePaidHealthInsurances();
+                fillPrePaidHealthInsurances(prePaidHealthInsurances);
             } else {
                 ValidationsAndMessages.showError(this, "Registro Fallido.");
             }
         } else {
-            int idSelectedPPHealthInsurance = PrePaidHealthInsurances.get(tblPrePaidHealthInsurances.getSelectedRow()).getId();
+            int idSelectedPPHealthInsurance = prePaidHealthInsurances.get(tblPrePaidHealthInsurances.getSelectedRow()).getId();
             if (daoPrePaidHealthInsurance.updatePrepaidHealthInsurance(new PrePaidHealthInsurance(idSelectedPPHealthInsurance, txtPPHealthInsuranceName.getText()))) {
                 ValidationsAndMessages.showInfo(this, "Actualización Exitosa.");
                 this.txtPPHealthInsuranceName.setText("");
-                this.PrePaidHealthInsurances.removeAll(PrePaidHealthInsurances);
-                this.PrePaidHealthInsurances = daoPrePaidHealthInsurance.getAllPrePaidHealthInsurances();
-                fillPrePaidHealthInsurances(PrePaidHealthInsurances);
+                this.prePaidHealthInsurances = new HashMap<>();
+                this.prePaidHealthInsurances = daoPrePaidHealthInsurance.getAllPrePaidHealthInsurances();
+                fillPrePaidHealthInsurances(prePaidHealthInsurances);
             } else {
                 ValidationsAndMessages.showError(this, "Actualización Fallida.");
             }
@@ -466,7 +467,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
      *
      * @param prePaidHealthInsurances
      */
-    private void fillPrePaidHealthInsurances(LinkedList<PrePaidHealthInsurance> prePaidHealthInsurances) {
+    private void fillPrePaidHealthInsurances(HashMap<Integer, PrePaidHealthInsurance> prePaidHealthInsurances) {
         Object[] o;
         this.dtmPrePaidHealthInsurances = (DefaultTableModel) this.tblPrePaidHealthInsurances.getModel();
         clearTable(dtmPrePaidHealthInsurances);

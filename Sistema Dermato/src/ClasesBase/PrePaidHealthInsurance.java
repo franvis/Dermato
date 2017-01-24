@@ -8,6 +8,9 @@ package ClasesBase;
  * @author Fran
  */
 public class PrePaidHealthInsurance {
+    public static final String NO_PRE_PAID_HEALTH_INSURANCE_NAME = 
+            "Sin Obra Social";
+    
     private int id;
     private String name;
 

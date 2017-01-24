@@ -22,13 +22,32 @@ public class ValidationsAndMessages {
     private static final String DEFAULT = "default";
     private static final String ABOUT_MESSAGE = "Sistema de Gestión de Pacientes de Dermatologia\nVersión 1.0";
     private static final String ABOUT_TITLE = "Acerca De...";
+    public static final String BIRTHDAY_DATE_FORMAT_ERROR = "Los siguientes valores de "
+                    + "la fecha de nacimiento no son válidos "
+                    + "o están fuera de rango: \n%s";
+    public static final String FIRST_VISIT_DATE_FORMAT_ERROR = "Los siguientes valores de "
+                    + "la fecha de primera consulta no son válidos "
+                    + "o están fuera de rango: \n%s";
+    public static final String PRE_PAID_HEALTH_INSURANCE_NAME_EMPTY = "El nombre de la nueva obra social esta vacio.";
+    public static final String REGISTER_SUCCESSFUL = "Registro Exitoso.";
+    public static final String UPDATE_SUCCESSFUL = "Actualización Exitosa.";
+    public static final String REGISTER_FAILED = "Registro Fallido.";
+    public static final String UPDATE_FAILED = "Actualización Fallida.";
+    public static final String MANDATORY_FIELDS_ERROR = "Debe completar los siguientes datos obligatorios: \n%s";
+    public static final String PATIENT_ALREADY_REGISTERED_MODIFIED_DNI_ERROR = 
+            "El dni ingresado para la modificación ya se encuentra en la "
+            + "base de datos a nombre del paciente:.\n%s. Corrija el DNI";
+    public static final String PATIENT_ALREADY_REGISTERED_DNI_ERROR = "El paciente "
+            + "%s ya se encuentra registrado con el mismo dni. "
+            + "Corrija el DNI o búsquelo en la ventana principal.";
+    public static final String PATIENT_ALREADY_REGISTERED_INSURANCE_NUMBER_ERROR = "El paciente %s ya se encuentra registrado con misma obra social y N° de afiliado.";
 
     /**
      * Validates and denies unnecessary characters for a float field.
      *
      * @param evt writing event
      * @param ch component where event was triggered
-     * 
+     *
      * @return true if the character was denied, false otherwise
      */
     public static boolean denyCharactersForFloatField(KeyEvent evt, Component ch) {
@@ -97,14 +116,17 @@ public class ValidationsAndMessages {
     /**
      * Validates system exiting asking to the user if it's sure.
      *
-     * @param f message component
+     * @param windowToExit message component
      */
-    public static void validateExit(Component f) {
-        int ans = JOptionPane.showConfirmDialog(
-                f,
+    public static void validateExit(Component windowToExit) {
+        int ans = JOptionPane.showOptionDialog(windowToExit,
                 EXIT_SYSTEM_MESSAGE,
                 EXIT_WINDOW_MESSAGE_TITLE,
-                JOptionPane.YES_NO_OPTION);
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                new String[]{OPTION_OK, OPTION_CANCEL},
+                DEFAULT);
         if (ans == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
@@ -126,14 +148,15 @@ public class ValidationsAndMessages {
     /**
      * Validates that a certain date is inside the common ranges
      *
-     * @param d day
-     * @param m month
-     * @param a year
+     * @param date date to validate
      *
      * @return empty string if it's in range and a wrong fields string if it
      * isn't
      */
-    public static String validateDateInCommonRange(String d, String m, String a) {
+    public static String validateDateInCommonRange(String date) {
+        String d = date.substring(0, 2);
+        String m = date.substring(3, 5);
+        String a = date.substring(6, 10);
         int day, month, year;
         String wrongFields = "";
         Calendar c = Calendar.getInstance();

@@ -189,17 +189,20 @@ public class DAOPatient extends DAOBasics {
      * @param dni patient's dni
      * @return true if exists, false otherwise
      */
-    public boolean verifyPatient(long dni) {
-        boolean exists = false;
+    public Patient verifyPatient(long dni) {
+        Patient patient = null;
         connection = daoConnection.openDBConnection();
-        query = DBUtils.getSelectOneStatementWithWhere(Tables.Patient,
+        query = DBUtils.getSelectAllStatementWithWhere(Tables.Patient,
                 DBUtils.getSimpleWhereCondition(PatientDBColumns.dni.name()));
         try {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setLong(1, dni);
             preparedStatement.executeQuery();
             if (preparedStatement.getResultSet().next()) {
-                exists = true;
+                patient = new Patient();
+                patient.setDni(resultSet.getInt(PatientDBColumns.dni.name()));
+                patient.setName(resultSet.getString(name.name()));
+                patient.setLastname(resultSet.getString(lastname.name()));
             }
             preparedStatement.close();
         } catch (SQLException ex) {
@@ -207,7 +210,7 @@ public class DAOPatient extends DAOBasics {
         } finally {
             daoConnection.closeDBConnection(connection);
         }
-        return exists;
+        return patient;
     }
 
     /**
@@ -418,7 +421,7 @@ public class DAOPatient extends DAOBasics {
      * @return the only patient that exists for the pre paid health insurance
      * and with that insurance number null if no match were found
      */
-    public Patient verificarNroAfiliado(int prePaidHealthInsuranceId, String insuranceNumber) {
+    public Patient validatePatientByInsuranceNumber(int prePaidHealthInsuranceId, String insuranceNumber) {
         Patient match = null;
         try {
             connection = daoConnection.openDBConnection();

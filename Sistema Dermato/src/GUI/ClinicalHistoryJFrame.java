@@ -5,14 +5,13 @@ import Utils.StyleManager;
 import Utils.MultiLineCellRenderer;
 import ClasesBase.Patient;
 import DAO.*;
-import static GUI.ABMPatient.CLINICAL_HISTORY;
+import static GUI.ABMPatientJFrame.Origin.CLINICAL_HISTORY;
 import static Utils.Constants.BIRTHDAY_WITH_AGE;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.*;
 import javax.swing.*;
@@ -21,38 +20,197 @@ import static Utils.GeneralUtils.calculateAge;
 import static Utils.GeneralUtils.changeTableSize;
 import static Utils.GeneralUtils.clearTable;
 import static Utils.Constants.FULLNAME;
+import static Utils.Constants.SYSTEM_ICON_IMAGE_PATH;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import static Utils.GeneralUtils.setButtonFontForPointerEvent;
 
-public class ClinicalHistory extends javax.swing.JFrame {
+public class ClinicalHistoryJFrame extends javax.swing.JFrame {
 
+    //STATIC VARS
     private static final String TABLE_COLUMN_DATE = "Fecha";
     private static final String TABLE_COLUMN_REASON = "Motivo";
     private static final String TABLE_COLUMN_DIAGNOSIS = "Diagnóstico";
 
-    private Principal principalParent;
-    private final DAOPatient patientDao;
-    private final DAOVisit visitDao;
-    private LinkedList<Visit> visits;
+    //UI
     private final LinkedList<JFrame> openWindows;
-    private final DAOAntecedents antecedentsDao;
+    private final PrincipalJFrame principalParent;
     private DefaultTableModel visitsDtm;
     private AntecedentsDialog antecedents;
+
+    //DATA
+    private final DAOPatient patientDao;
+    private final DAOVisit visitDao;
+    private final DAOAntecedents antecedentsDao;
+
+    //MODELS
+    private LinkedList<Visit> visits;
     private Patient patient;
+
+    //OTHER VARS
     private boolean antecedentsModified;
 
-    public ClinicalHistory(Component parent, Patient patient, int origin) {
-        initComponents();
-        antecedentsModified = false;
+    public ClinicalHistoryJFrame(Component parent, Patient patient) {
         patientDao = new DAOPatient();
         visitDao = new DAOVisit();
         antecedentsDao = new DAOAntecedents();
         openWindows = new LinkedList<>();
+        antecedentsModified = false;
         this.patient = patient;
-        this.btnModifyPatient.grabFocus();
-        fillFields(patient);
+        principalParent = (PrincipalJFrame) parent;
+
+        initComponents();
+        setupInitialUI();
+    }
+
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(SYSTEM_ICON_IMAGE_PATH));
+        return retValue;
+    }
+
+    @Override
+    public JRootPane getRootPane() {
+        super.getRootPane().registerKeyboardAction((ActionEvent e) -> {
+            exit();
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                JComponent.WHEN_IN_FOCUSED_WINDOW);
+        return super.getRootPane();
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    /**
+     * Method used to fill all the fields for the clinical history of a certain
+     * patient.
+     */
+    public void fillFields() {
+        this.lblNombrePaciente.setText(String.format(FULLNAME, patient.getLastname(), patient.getName()));
+
+        this.lblBirthday.setText(String.format(BIRTHDAY_WITH_AGE, patient.getBirthday(), calculateAge(patient.getBirthday())));
+        this.lblDni.setText(patient.getDni() + "");
+        this.lblCity.setText(patient.getCity());
+
+        this.lblPhone.setText(patient.getPhone());
+        this.lblFirstVisitDate.setText(patient.getFirstVisitDate());
+        this.lblAddress.setText(patient.getAddress());
+
+        this.lblPPHealthInsurance.setText(patient.getPrepaidHealthInsurance().getName());
+        this.lblInsuranceNumber.setText(patient.getPrepaidHealthInsuranceNumber());
+    }
+
+    /**
+     * Method used to fill the visits table
+     *
+     * @param dni patient's dni
+     */
+    public void fillTable(long dni) {
+        Object[] o;
+        visitsDtm = (DefaultTableModel) this.tblVisits.getModel();
+        clearTable(visitsDtm);
+        visits = new LinkedList<>();
+        visits = visitDao.getAllPatientVisits(dni);
+
+        if (visits.isEmpty()) {
+            changeTableSize(visitsDtm, 8);
+        } else {
+            changeTableSize(visitsDtm, 0);
+        }
+
+        for (int i = 0; i < visits.size(); i++) {
+            o = new Object[3];
+            o[0] = visits.get(i).getDate();
+            o[1] = visits.get(i).getReason();
+            o[2] = visits.get(i).getDiagnosis();
+            visitsDtm.addRow(o);
+        }
+        tblVisits.changeSelection(0, 0, false, false);
+
+        tblVisits.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent me) {
+                JTable table = (JTable) me.getSource();
+                Point p = me.getPoint();
+                int row = table.rowAtPoint(p);
+                if (me.getClickCount() == 2 && row != -1
+                        && ClinicalHistoryJFrame.this.visits.size() > 0
+                        && ClinicalHistoryJFrame.this.visits.get(row) != null) {
+                    for (JFrame aux : openWindows) {
+                        if (aux instanceof ABMVisit) {
+                            ABMVisit auxCons = (ABMVisit) aux;
+                            if (auxCons.getVisitId() == ClinicalHistoryJFrame.this.visits.get(row).getId()) {
+                                aux.setVisible(true);
+                                return;
+                            }
+                        }
+                    }
+                    Visit visit = visitDao.getFullVisit(ClinicalHistoryJFrame.this.visits.get(row).getId(), patient.getDni());
+                    ABMVisit abmVisit = new ABMVisit(ClinicalHistoryJFrame.this, patient, visit);
+                    abmVisit.setVisible(true);
+                    abmVisit.requestFocus();
+                    openWindows.add(abmVisit);
+                }
+            }
+        });
+    }
+
+    /**
+     * Communicates color changes in the GUI to those frames that has this one
+     * as a parent.
+     *
+     * @param color New color
+     */
+    public void paintChilds(int color) {
+        openWindows.stream().forEach((window) -> {
+            Utils.StyleManager.paint(window, color);
+        });
+        if (antecedents != null) {
+            Utils.StyleManager.paint(antecedents, color);
+        }
+    }
+
+    /**
+     * Updates child when some of them is closed
+     *
+     * @param closedWindow
+     */
+    public void closeChild(JFrame closedWindow) {
+        if (closedWindow != null) {
+            openWindows.remove(closedWindow);
+        }
+    }
+
+    /**
+     * Returns this clinical history patient's dni
+     *
+     * @return dni
+     */
+    public long getPatientDni() {
+        return patient.getDni();
+    }
+
+    private void closeOpenWindows() {
+        for (JFrame window : openWindows) {
+            window.dispose();
+        }
+        openWindows.clear();
+    }
+
+    private void exit() {
+        principalParent.setVisible(true);
+        dispose();
+    }
+
+    private void setupInitialUI() {
+        btnModifyPatient.grabFocus();
+        fillFields();
         tblVisits.getColumn(TABLE_COLUMN_DATE).setMaxWidth(120);
         tblVisits.getColumn(TABLE_COLUMN_DATE).setResizable(false);
         tblVisits.getColumn(TABLE_COLUMN_REASON).setResizable(false);
@@ -62,19 +220,9 @@ public class ClinicalHistory extends javax.swing.JFrame {
         tblVisits.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         fillTable(patient.getDni());
         pnlNameLastname.setBackground(StyleManager.getSecondaryColor(StyleManager.actualColor));
-        principalParent = (Principal) parent;
         StyleManager.paint(this);
-        this.setLocationRelativeTo(principalParent);
-        this.setExtendedState(principalParent.getExtendedState());
-        //eventos de la página
-        KeyStroke strokeEsc = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
-        this.getRootPane().registerKeyboardAction(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                principalParent.setVisible(true);
-                dispose();
-            }
-        }, strokeEsc, JComponent.WHEN_IN_FOCUSED_WINDOW);
+        setLocationRelativeTo(principalParent);
+        setExtendedState(principalParent.getExtendedState());
     }
 
     /**
@@ -482,7 +630,7 @@ public class ClinicalHistory extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlPatientData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlVisits, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                .addComponent(pnlVisits, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -535,7 +683,7 @@ public class ClinicalHistory extends javax.swing.JFrame {
 
     private void btnModifyPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyPatientActionPerformed
         for (JFrame aux : openWindows) {
-            if (aux instanceof ABMPatient) {
+            if (aux instanceof ABMPatientJFrame) {
                 aux.setVisible(true);
             }
             return;
@@ -545,7 +693,7 @@ public class ClinicalHistory extends javax.swing.JFrame {
             patient.setAntecendents(antecedentsDao.getAntecedent(patient.getDni()));
             antecedentsModified = true;
         }
-        ABMPatient pacienteInterfaz = new ABMPatient(this, true, CLINICAL_HISTORY, patient);
+        ABMPatientJFrame pacienteInterfaz = new ABMPatientJFrame(this, CLINICAL_HISTORY, patient);
         openWindows.add(pacienteInterfaz);
         pacienteInterfaz.setVisible(true);
     }//GEN-LAST:event_btnModifyPatientActionPerformed
@@ -602,135 +750,4 @@ public class ClinicalHistory extends javax.swing.JFrame {
     private javax.swing.JPanel pnlVisits;
     private javax.swing.JTable tblVisits;
     // End of variables declaration//GEN-END:variables
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
-
-    /**
-     * Method used to fill all the fields for the clinical history of a certain
-     * patient
-     *
-     * @param patient
-     */
-    public void fillFields(Patient patient) {
-        this.lblNombrePaciente.setText(String.format(FULLNAME, patient.getLastname(), patient.getName()));
-
-        this.lblBirthday.setText(String.format(BIRTHDAY_WITH_AGE, patient.getBirthday(), calculateAge(patient.getBirthday())));
-        this.lblDni.setText(patient.getDni() + "");
-        this.lblCity.setText(patient.getCity());
-
-        this.lblPhone.setText(patient.getPhone());
-        this.lblFirstVisitDate.setText(patient.getFirstVisitDate());
-        this.lblAddress.setText(patient.getAddress());
-
-        this.lblPPHealthInsurance.setText(patient.getPrepaidHealthInsurance().getName());
-        this.lblInsuranceNumber.setText(patient.getPrepaidHealthInsuranceNumber());
-    }
-
-    /**
-     * Method used to fill the visits table
-     *
-     * @param dni patient's dni
-     */
-    public void fillTable(long dni) {
-        Object[] o;
-        visitsDtm = (DefaultTableModel) this.tblVisits.getModel();
-        clearTable(visitsDtm);
-        visits = new LinkedList<>();
-        visits = visitDao.getAllPatientVisits(dni);
-
-        if (visits.isEmpty()) {
-            changeTableSize(visitsDtm, 8);
-        } else {
-            changeTableSize(visitsDtm, 0);
-        }
-        
-        for (int i = 0; i < visits.size(); i++) {
-            o = new Object[3];
-            o[0] = visits.get(i).getDate();
-            o[1] = visits.get(i).getReason();
-            o[2] = visits.get(i).getDiagnosis();
-            visitsDtm.addRow(o);
-        }
-        tblVisits.changeSelection(0, 0, false, false);
-
-        tblVisits.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent me) {
-                JTable table = (JTable) me.getSource();
-                Point p = me.getPoint();
-                int row = table.rowAtPoint(p);
-                if (me.getClickCount() == 2 && row != -1
-                        && ClinicalHistory.this.visits.size() > 0
-                        && ClinicalHistory.this.visits.get(row) != null) {
-                    for (JFrame aux : openWindows) {
-                        if (aux instanceof ABMVisit) {
-                            ABMVisit auxCons = (ABMVisit) aux;
-                            if (auxCons.getVisitId() == ClinicalHistory.this.visits.get(row).getId()) {
-                                aux.setVisible(true);
-                                return;
-                            }
-                        }
-                    }
-                    Visit visit = visitDao.getFullVisit(ClinicalHistory.this.visits.get(row).getId(), patient.getDni());
-                    ABMVisit abmVisit = new ABMVisit(ClinicalHistory.this, patient, visit);
-                    abmVisit.setVisible(true);
-                    abmVisit.requestFocus();
-                    openWindows.add(abmVisit);
-                }
-            }
-        });
-    }
-
-    @Override
-    public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/sistema.png"));
-        return retValue;
-    }
-
-    /**
-     * Communicates color changes in the GUI to those frames that has this one
-     * as a parent.
-     *
-     * @param color New color
-     */
-    public void paintChilds(int color) {
-        for (JFrame window : openWindows) {
-            Utils.StyleManager.paint(window, color);
-        }
-        if (antecedents != null) {
-            Utils.StyleManager.paint(antecedents, color);
-        }
-    }
-
-    /**
-     * Updates child when some of them is closed
-     *
-     * @param closedWindow
-     */
-    public void closeChild(JFrame closedWindow) {
-        if (closedWindow != null) {
-            openWindows.remove(closedWindow);
-        }
-    }
-
-    /**
-     * Returns this clinical history patient's dni
-     *
-     * @return dni
-     */
-    public long getPatientDni() {
-        return patient.getDni();
-    }
-
-    private void closeOpenWindows() {
-        for (JFrame window : openWindows) {
-            window.dispose();
-        }
-        openWindows.clear();
-    }
 }

@@ -6,9 +6,10 @@ import Utils.TextFilter;
 import Utils.StyleManager;
 import ClasesBase.Patient;
 import DAO.DAOPatient;
-import static GUI.ABMPatient.PRINCIPAL_MODIFY;
-import static GUI.ABMPatient.PRINCIPAL_NEW;
+import static GUI.ABMPatientJFrame.Origin.PRINCIPAL_MODIFY;
+import static GUI.ABMPatientJFrame.Origin.PRINCIPAL_NEW;
 import static Utils.Constants.SYSTEM_FONT;
+import static Utils.Constants.SYSTEM_ICON_IMAGE_PATH;
 import static Utils.GeneralUtils.changeTableSize;
 import static Utils.GeneralUtils.clearTable;
 import static Utils.GeneralUtils.performBackup;
@@ -18,8 +19,11 @@ import static Utils.ValidationsAndMessages.validateExit;
 import de.javasoft.plaf.synthetica.SyntheticaLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaMauveMetallicLookAndFeel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import static java.awt.event.KeyEvent.VK_DOWN;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -27,13 +31,14 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class Principal extends javax.swing.JFrame {
+public class PrincipalJFrame extends javax.swing.JFrame {
 
+    //STATIC VARS
     public static final String PATIENTS_TABLE_LASTNAME_COLUMN_TITLE = "Apellido";
     public static final String PATIENTS_TABLE_NAME_COLUMN_TITLE = "Nombre";
     public static final String PATIENTS_TABLE_BIRTHDAY_COLUMN_TITLE = "Fecha de Nacimiento";
     public static final String PATIENTS_TABLE_LAST_VISIT_COLUMN_TITLE = "Ultima Consulta";
-    
+
     //UI
     private DefaultTableModel dtmPatients;
     private final LinkedList<JFrame> openFrames;
@@ -49,13 +54,13 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
-    public Principal() {
+    public PrincipalJFrame() {
         patientsList = new LinkedList<>();
         openFrames = new LinkedList<>();
         daoPatient = new DAOPatient();
 
         initComponents();
-        setUpUI();
+        setupInitialUI();
     }
 
     /**
@@ -70,18 +75,234 @@ public class Principal extends javax.swing.JFrame {
             SyntheticaLookAndFeel.setFont(new java.awt.Font(SYSTEM_FONT, 0, 13));
 
         } catch (ParseException | UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PrincipalJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         FileManager.AutomaticBackup();
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(() -> {
+            new PrincipalJFrame().setVisible(true);
+        });
+    }
+
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(SYSTEM_ICON_IMAGE_PATH));
+        return retValue;
+    }
+
+    @Override
+    public JRootPane getRootPane() {
+        super.getRootPane().registerKeyboardAction((ActionEvent e) -> {
+            validateExit(this);
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                JComponent.WHEN_IN_FOCUSED_WINDOW);
+        return super.getRootPane();
+    }
+
+    private void setupInitialUI() {
+        //Textfields
+        txtfDni.setEditable(true);
+        txtfLastname.setDocument(new TextFilter(TextFilter.LETTERS));
+        txtfName.setDocument(new TextFilter(TextFilter.LETTERS));
+        txtfDni.setDocument(new TextFilter(TextFilter.DIGITS));
+
+        //Buttons
+        buttonSetup(btnModifyPatient, false);
+        buttonSetup(btnNewPatient, false);
+        buttonSetup(btnPerformBackup, false);
+        buttonSetup(btnSeeCH, false);
+
+        //Table
+        tblPatients.getColumn(PATIENTS_TABLE_LASTNAME_COLUMN_TITLE).setResizable(false);
+        tblPatients.getColumn(PATIENTS_TABLE_NAME_COLUMN_TITLE).setResizable(false);
+        tblPatients.getColumn(PATIENTS_TABLE_BIRTHDAY_COLUMN_TITLE).setResizable(false);
+        tblPatients.getColumn(PATIENTS_TABLE_LAST_VISIT_COLUMN_TITLE).setResizable(false);
+        tblPatients.setDefaultRenderer(Object.class, new MultiLineCellRenderer());
+        tblPatients.getTableHeader().setFont(new Font(SYSTEM_FONT, Font.PLAIN, 14));
+        tblPatients.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        dtmPatients = (DefaultTableModel) tblPatients.getModel();
+        changeTableSize(dtmPatients, 10);
+
+        tblPatients.addMouseListener(new MouseAdapter() {
             @Override
-            public void run() {
-                new Principal().setVisible(true);
+            public void mousePressed(MouseEvent me) {
+                JTable table = (JTable) me.getSource();
+                Point p = me.getPoint();
+                int row = table.rowAtPoint(p);
+                if (me.getClickCount() == 2 && row != -1) {
+                    seePatientsCH();
+                }
             }
         });
 
+        //Window
+        setLocationRelativeTo(getRootPane());
+        StyleManager.paint(this);
+        setExtendedState(PrincipalJFrame.MAXIMIZED_BOTH);
+    }
+
+    /**
+     * Method used to fill the patients table
+     *
+     * @param patientsList patients list used to fill the table
+     */
+    private void fillTable() {
+        clearTable(dtmPatients);
+        if (patientsList.isEmpty()) {
+            btnModifyPatient.setEnabled(false);
+            btnSeeCH.setEnabled(false);
+            changeTableSize(dtmPatients, 10);
+            return;
+        }
+
+        Object[] o;
+        dtmPatients = (DefaultTableModel) tblPatients.getModel();
+        changeTableSize(dtmPatients, 0);
+
+        for (int i = 0; i < patientsList.size(); i++) {
+            o = new Object[4];
+            o[0] = patientsList.get(i).getLastname();
+            o[1] = patientsList.get(i).getName();
+            o[2] = patientsList.get(i).getBirthday();
+            o[3] = patientsList.get(i).getLastVisitDate();
+            dtmPatients.addRow(o);
+        }
+        tblPatients.changeSelection(0, 0, false, false);
+    }
+
+    /**
+     * Method used to register a new patient
+     */
+    private void newPatient() {
+        for (JFrame aux : openFrames) {
+            if (aux instanceof ABMPatientJFrame && ((ABMPatientJFrame) aux).getPatientDni() == -1) {
+                aux.setVisible(true);
+                return;
+            }
+        }
+        ABMPatientJFrame patientFrame = new ABMPatientJFrame(this, PRINCIPAL_NEW);
+        patientFrame.setVisible(true);
+        buttonSetup(btnModifyPatient, false);
+        openFrames.add(patientFrame);
+    }
+
+    /**
+     * Method used to update the patients list according to the filters from
+     * another frame.
+     *
+     */
+    public void updatePatientList() {
+        patientsList = daoPatient.getAllPatients(txtfName.getText(),
+                txtfLastname.getText(), txtfDni.getText());
+        fillTable();
+    }
+
+    /**
+     * Sets the buttons in the principal menu according to the mouse pointer
+     *
+     * @param jbtn JButton to set
+     * @param entering boolean true if the mouse pointer is entering the jButton
+     * area, false otherwise
+     */
+    private void buttonSetup(JButton jbtn, boolean entering) {
+        if (!patientsList.isEmpty() || (jbtn == btnNewPatient || jbtn == btnPerformBackup)) {
+            if (entering) {
+                jbtn.setEnabled(true);
+                setButtonFontForPointerEvent(jbtn, entering);
+                jbtn.setForeground(StyleManager.getColorTexto(StyleManager.actualColor));
+            } else {
+                jbtn.setEnabled(false);
+                setButtonFontForPointerEvent(jbtn, entering);
+                jbtn.setForeground(new Color(153, 153, 153));
+            }
+        }
+    }
+
+    /**
+     * Method used to set the color of this frame child
+     *
+     * @param color selectedColor
+     */
+    public void paintChilds(int color) {
+        openFrames.stream().forEach((window) -> {
+            Utils.StyleManager.paint(window, color);
+        });
+        if (abmPrePaidHealthInsurances != null) {
+            Utils.StyleManager.paint(abmPrePaidHealthInsurances, color);
+        }
+    }
+
+    /**
+     * Notifies to other frames that some of the frame that had it as owners has
+     * been closed.
+     *
+     * @param closedWindow closed frame
+     */
+    public void closeChild(JFrame closedWindow) {
+        if (closedWindow != null) {
+            openFrames.remove(closedWindow);
+        }
+    }
+
+    private String captureTextWhenDeleting(char eventKeyChar, JTextField textField) {
+        String text = "";
+        int textFieldLength = textField.getText().length();
+        if (eventKeyChar == KeyEvent.VK_BACK_SPACE || eventKeyChar == KeyEvent.VK_DELETE) {
+            if (textFieldLength > 1) {
+                text = textField.getText().substring(0, textFieldLength);
+            } else if (textFieldLength == 1) {
+                text = textField.getText();
+            }
+        } else {
+            text = textField.getText();
+        }
+        return text;
+    }
+
+    private void scrollInTable(int eventKeyCode, JTextField textField) {
+        try {
+            textField.setNextFocusableComponent(scrollPaneTablaPacientes);
+            textField.transferFocus();
+            Robot r = new Robot();
+            System.out.println(eventKeyCode);
+            r.keyPress(VK_DOWN);
+            r.keyRelease(VK_DOWN);
+        } catch (AWTException ex) {
+            Logger.getLogger(PrincipalJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void seePatientsCH() {
+        if (!patientsList.isEmpty()) {
+            patient = new Patient();
+            patient = patientsList.get(tblPatients.getSelectedRow());
+            for (JFrame aux : openFrames) {
+                if (aux instanceof ClinicalHistoryJFrame && ((ClinicalHistoryJFrame) aux).getPatientDni() == patient.getDni()) {
+                    aux.setVisible(true);
+                    clearTable(dtmPatients);
+                    txtfLastname.setText("");
+                    txtfName.setText("");
+                    txtfDni.setText("");
+                    buttonSetup(btnSeeCH, false);
+                    patientsList.removeAll(patientsList);
+                    dtmPatients.setNumRows(15);
+                    return;
+                }
+            }
+            patient = daoPatient.getFullPatient(patient.getDni());
+
+            ClinicalHistoryJFrame clinicalHistory = new ClinicalHistoryJFrame(this, patient);
+            clinicalHistory.setVisible(true);
+            openFrames.add(clinicalHistory);
+            clearTable(dtmPatients);
+            txtfLastname.setText("");
+            txtfName.setText("");
+            txtfDni.setText("");
+            buttonSetup(btnSeeCH, false);
+            patientsList.removeAll(patientsList);
+            dtmPatients.setNumRows(15);
+        }
     }
 
     /**
@@ -129,6 +350,11 @@ public class Principal extends javax.swing.JFrame {
         setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(824, 443));
         setName("principal"); // NOI18N
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         pnlBuscar.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)), "Buscar por", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         pnlBuscar.setToolTipText("");
@@ -355,7 +581,7 @@ public class Principal extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Apellido", "Nombre", "Fecha de Nacimiento", "Última Consulta"
+                "Apellido", "Nombre", "Fecha de Nacimiento", "Ultima Consulta"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -520,7 +746,7 @@ public class Principal extends javax.swing.JFrame {
         String lastname, name, dni;
         int eventKeyCode = evt.getKeyCode();
         char eventKeyChar = evt.getKeyChar();
-        
+
         lastname = captureTextWhenDeleting(eventKeyChar, txtfLastname);
 
         if ((eventKeyCode == VK_DOWN) && !lastname.isEmpty()) {
@@ -531,7 +757,7 @@ public class Principal extends javax.swing.JFrame {
         dni = txtfDni.getText();
         patientsList = new LinkedList<>();
         patientsList = daoPatient.getAllPatients(name, lastname, dni);
-        fillTable(patientsList);
+        fillTable();
     }//GEN-LAST:event_txtfLastnameKeyReleased
 
     private void txtfNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfNameKeyReleased
@@ -540,7 +766,7 @@ public class Principal extends javax.swing.JFrame {
         char eventKeyChar = evt.getKeyChar();
 
         name = captureTextWhenDeleting(eventKeyChar, txtfName);
-        
+
         if ((eventKeyCode == VK_DOWN) && !name.isEmpty()) {
             scrollInTable(eventKeyCode, txtfName);
             return;
@@ -550,11 +776,11 @@ public class Principal extends javax.swing.JFrame {
         dni = txtfDni.getText();
         patientsList = new LinkedList<>();
         patientsList = daoPatient.getAllPatients(name, lastname, dni);
-        fillTable(patientsList);
+        fillTable();
     }//GEN-LAST:event_txtfNameKeyReleased
 
     private void txtfDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfDniKeyReleased
-        String name, lastname, dni = "";
+        String name, lastname, dni;
         int eventKeyCode = evt.getKeyCode();
         char eventKeyChar = evt.getKeyChar();
 
@@ -569,7 +795,7 @@ public class Principal extends javax.swing.JFrame {
         lastname = txtfLastname.getText();
         patientsList = new LinkedList<>();
         patientsList = daoPatient.getAllPatients(name, lastname, dni);
-        fillTable(patientsList);
+        fillTable();
     }//GEN-LAST:event_txtfDniKeyReleased
 
     private void btnPerformBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerformBackupActionPerformed
@@ -577,19 +803,19 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPerformBackupActionPerformed
 
     private void btnPerformBackupMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerformBackupMouseEntered
-        ButtonSetup(btnPerformBackup, true);
+        buttonSetup(btnPerformBackup, true);
     }//GEN-LAST:event_btnPerformBackupMouseEntered
 
     private void btnPerformBackupMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerformBackupMouseExited
-        ButtonSetup(btnPerformBackup, false);
+        buttonSetup(btnPerformBackup, false);
     }//GEN-LAST:event_btnPerformBackupMouseExited
 
     private void btnModifyPatientMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyPatientMouseEntered
-        ButtonSetup(btnModifyPatient, true);
+        buttonSetup(btnModifyPatient, true);
     }//GEN-LAST:event_btnModifyPatientMouseEntered
 
     private void btnModifyPatientMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyPatientMouseExited
-        ButtonSetup(btnModifyPatient, false);
+        buttonSetup(btnModifyPatient, false);
     }//GEN-LAST:event_btnModifyPatientMouseExited
 
     private void btnModifyPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyPatientActionPerformed
@@ -598,66 +824,38 @@ public class Principal extends javax.swing.JFrame {
             dtmPatients = (DefaultTableModel) tblPatients.getModel();
             patient = patientsList.get(tblPatients.getSelectedRow());
             for (JFrame aux : openFrames) {
-                if (aux instanceof ABMPatient && ((ABMPatient) aux).getPatientDni() == patient.getDni()) {
+                if (aux instanceof ABMPatientJFrame && ((ABMPatientJFrame) aux).getPatientDni() == patient.getDni()) {
                     aux.setVisible(true);
                     return;
                 }
             }
             patient = daoPatient.getFullPatient(patient.getDni());
 
-            ABMPatient pacienteInterfaz = new ABMPatient(this, true, PRINCIPAL_MODIFY, patient);
+            ABMPatientJFrame pacienteInterfaz = new ABMPatientJFrame(this, PRINCIPAL_MODIFY, patient);
             pacienteInterfaz.setVisible(true);
             openFrames.add(pacienteInterfaz);
-            ButtonSetup(btnModifyPatient, false);
+            buttonSetup(btnModifyPatient, false);
         }
     }//GEN-LAST:event_btnModifyPatientActionPerformed
 
     private void btnSeeCHMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeeCHMouseEntered
-        ButtonSetup(btnSeeCH, true);
+        buttonSetup(btnSeeCH, true);
     }//GEN-LAST:event_btnSeeCHMouseEntered
 
     private void btnSeeCHMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeeCHMouseExited
-        ButtonSetup(btnSeeCH, false);
+        buttonSetup(btnSeeCH, false);
     }//GEN-LAST:event_btnSeeCHMouseExited
 
     private void btnSeeCHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeCHActionPerformed
-        if (!patientsList.isEmpty()) {
-            patient = new Patient();
-            patient = patientsList.get(tblPatients.getSelectedRow());
-            for (JFrame aux : openFrames) {
-                if (aux instanceof ClinicalHistory && ((ClinicalHistory) aux).getPatientDni() == patient.getDni()) {
-                    aux.setVisible(true);
-                    clearTable(dtmPatients);
-                    txtfLastname.setText("");
-                    txtfName.setText("");
-                    txtfDni.setText("");
-                    ButtonSetup(btnSeeCH, false);
-                    patientsList.removeAll(patientsList);
-                    dtmPatients.setNumRows(15);
-                    return;
-                }
-            }
-            patient = daoPatient.getFullPatient(patient.getDni());
-
-            ClinicalHistory clinicalHistory = new ClinicalHistory(this, patient, 0);
-            clinicalHistory.setVisible(true);
-            openFrames.add(clinicalHistory);
-            clearTable(dtmPatients);
-            txtfLastname.setText("");
-            txtfName.setText("");
-            txtfDni.setText("");
-            ButtonSetup(btnSeeCH, false);
-            patientsList.removeAll(patientsList);
-            dtmPatients.setNumRows(15);
-        }
+        seePatientsCH();
     }//GEN-LAST:event_btnSeeCHActionPerformed
 
     private void btnNewPatientMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewPatientMouseEntered
-        ButtonSetup(btnNewPatient, true);
+        buttonSetup(btnNewPatient, true);
     }//GEN-LAST:event_btnNewPatientMouseEntered
 
     private void btnNewPatientMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewPatientMouseExited
-        ButtonSetup(btnNewPatient, false);
+        buttonSetup(btnNewPatient, false);
     }//GEN-LAST:event_btnNewPatientMouseExited
 
     private void btnNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPatientActionPerformed
@@ -668,32 +866,10 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
     new ChooseColor(this, true).setVisible(true);
 }//GEN-LAST:event_menuCambiarColorActionPerformed
 
-    @Override
-    public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/sistema.png"));
-        return retValue;
-    }
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        validateExit(this);
+    }//GEN-LAST:event_formWindowClosing
 
-    /**
-     * Sets the buttons in the principal menu according to the mouse pointer
-     *
-     * @param jbtn JButton to set
-     * @param entering boolean true if the mouse pointer is entering the jButton
-     * area, false otherwise
-     */
-    private void ButtonSetup(JButton jbtn, boolean entering) {
-        if (!patientsList.isEmpty() || (jbtn == btnNewPatient || jbtn == btnPerformBackup)) {
-            if (entering) {
-                jbtn.setEnabled(true);
-                setButtonFontForPointerEvent(jbtn, entering);
-                jbtn.setForeground(StyleManager.getColorTexto(StyleManager.actualColor));
-            } else {
-                jbtn.setEnabled(false);
-                setButtonFontForPointerEvent(jbtn, entering);
-                jbtn.setForeground(new Color(153, 153, 153));
-            }
-        }
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnModifyPatient;
     private javax.swing.JButton btnNewPatient;
@@ -723,153 +899,4 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
     private javax.swing.JTextField txtfLastname;
     private javax.swing.JTextField txtfName;
     // End of variables declaration//GEN-END:variables
-
-    private void setUpUI() {
-        //Textfields
-        txtfDni.setEditable(true);
-        txtfLastname.setDocument(new TextFilter(TextFilter.LETTERS));
-        txtfName.setDocument(new TextFilter(TextFilter.LETTERS));
-        txtfDni.setDocument(new TextFilter(TextFilter.DIGITS));
-
-        //Buttons
-        ButtonSetup(btnModifyPatient, false);
-        ButtonSetup(btnNewPatient, false);
-        ButtonSetup(btnPerformBackup, false);
-        ButtonSetup(btnSeeCH, false);
-
-        //Table
-        tblPatients.getColumn(PATIENTS_TABLE_LASTNAME_COLUMN_TITLE).setResizable(false);
-        tblPatients.getColumn(PATIENTS_TABLE_NAME_COLUMN_TITLE).setResizable(false);
-        tblPatients.getColumn(PATIENTS_TABLE_BIRTHDAY_COLUMN_TITLE).setResizable(false);
-        tblPatients.getColumn(PATIENTS_TABLE_LAST_VISIT_COLUMN_TITLE).setResizable(false);
-        tblPatients.setDefaultRenderer(Object.class, new MultiLineCellRenderer());
-        tblPatients.getTableHeader().setFont(new Font(SYSTEM_FONT, Font.PLAIN, 14));
-        tblPatients.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        dtmPatients = (DefaultTableModel) tblPatients.getModel();
-        changeTableSize(dtmPatients, 10);
-
-        //Window
-        this.setLocationRelativeTo(getRootPane());
-        StyleManager.paint(this);
-        this.setExtendedState(Principal.MAXIMIZED_BOTH);
-    }
-
-    /**
-     * Method used to fill the patients table
-     *
-     * @param patientsList patients list used to fill the table
-     */
-    private void fillTable(LinkedList<Patient> patientsList) {
-        Object[] o;
-        dtmPatients = (DefaultTableModel) this.tblPatients.getModel();
-        clearTable(dtmPatients);
-        LinkedList<Patient> lista = patientsList;
-        if (lista.isEmpty()) {
-            changeTableSize(dtmPatients, 10);
-        } else {
-            changeTableSize(dtmPatients, 0);
-        }
-
-        for (int i = 0; i < lista.size(); i++) {
-            o = new Object[4];
-            o[0] = lista.get(i).getLastname();
-            o[1] = lista.get(i).getName();
-            o[2] = lista.get(i).getBirthday();
-            o[3] = lista.get(i).getLastVisitDate();
-            dtmPatients.addRow(o);
-        }
-        tblPatients.changeSelection(0, 0, false, false);
-        if (patientsList.isEmpty()) {
-            btnModifyPatient.setEnabled(false);
-            btnSeeCH.setEnabled(false);
-        }
-    }
-
-    /**
-     * Method used to register a new patient
-     */
-    private void newPatient() {
-        for (JFrame aux : openFrames) {
-            if (aux instanceof ABMPatient && ((ABMPatient) aux).getPatientDni() == -1) {
-                aux.setVisible(true);
-                return;
-            }
-        }
-        ABMPatient patientFrame = new ABMPatient(this, true, PRINCIPAL_NEW);
-        patientFrame.setVisible(true);
-        ButtonSetup(btnModifyPatient, false);
-        openFrames.add(patientFrame);
-    }
-
-    /**
-     * Method used to set the patients list to be shown from another frame
-     * 
-     * @param patientsList
-     */
-    public void updatePatientList(LinkedList<Patient> patientsList) {
-        this.patientsList = patientsList;
-        if (this.patientsList == null) {
-            clearTable(dtmPatients);
-            txtfLastname.setText("");
-            txtfName.setText("");
-            txtfDni.setText("");
-            dtmPatients.setNumRows(10);
-        } else {
-            fillTable(this.patientsList);
-        }
-    }
-
-    /**
-     * Method used to set the color of this frame child
-     * 
-     * @param color selectedColor
-     */
-    public void paintChilds(int color) {
-        for (JFrame window : openFrames) {
-            Utils.StyleManager.paint(window, color);
-        }
-        if (abmPrePaidHealthInsurances != null) {
-            Utils.StyleManager.paint(abmPrePaidHealthInsurances, color);
-        }
-    }
-
-    /**
-     * Notifies to other frames that some of the frame that had it as owners has
-     * been closed.
-     *
-     * @param closedWindow closed frame
-     */
-    public void closeChild(JFrame closedWindow) {
-        if (closedWindow != null) {
-            openFrames.remove(closedWindow);
-        }
-    }
-
-    private String captureTextWhenDeleting(char eventKeyChar, JTextField textField) {
-        String text = "";
-        int textFieldLength = textField.getText().length();
-        if (eventKeyChar == KeyEvent.VK_BACK_SPACE || eventKeyChar == KeyEvent.VK_DELETE) {
-            if (textFieldLength > 1) {
-                text = textField.getText().substring(0, textFieldLength);
-            } else if (textFieldLength == 1) {
-                text = textField.getText();
-            }
-        } else {
-            text = textField.getText();
-        }
-        return text;
-    }
-
-    private void scrollInTable(int eventKeyCode, JTextField textField) {
-        try {
-            textField.setNextFocusableComponent(scrollPaneTablaPacientes);
-            textField.transferFocus();
-            Robot r = new Robot();
-            System.out.println(eventKeyCode);
-            r.keyPress(VK_DOWN);
-            r.keyRelease(VK_DOWN);
-        } catch (AWTException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 }

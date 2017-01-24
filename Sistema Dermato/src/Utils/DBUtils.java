@@ -262,10 +262,10 @@ public class DBUtils {
     }
 
     public static String getFormattedDate(String date) {
-        String anio, mes, dia;
-        anio = date.substring(0, 4);
-        mes = date.substring(5, 7);
-        dia = date.substring(8, 10);
-        return String.format("%s/%s/%s", dia, mes, anio);
+        String year, month, day;
+        year = date.substring(0, 4);
+        month = date.substring(5, 7);
+        day = date.substring(8, 10);
+        return String.format("%s/%s/%s", day, month, year);
     }
 }
