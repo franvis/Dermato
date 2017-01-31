@@ -13,6 +13,7 @@ import static Utils.GeneralUtils.changeTableSize;
 import static Utils.GeneralUtils.clearTable;
 import static Utils.GeneralUtils.performBackup;
 import static Utils.GeneralUtils.setButtonFontForPointerEvent;
+import static Utils.StyleManager.DEFAULT_TEXT_COLOR;
 import Utils.ValidationsAndMessages;
 import static Utils.ValidationsAndMessages.showAbout;
 import static Utils.ValidationsAndMessages.validateExit;
@@ -62,12 +63,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView {
         txtfDni.setDocument(new TextFilter(TextFilter.DIGITS));
 
         //Buttons
-        buttonHighlight(btnModifyPatient, false);
-        buttonHighlight(btnSeeCH, false);
-        buttonHighlight(btnNewPatient, false);
-        buttonHighlight(btnPerformBackup, false);
-        btnModifyPatient.setEnabled(false);
-        btnSeeCH.setEnabled(false);
+        changeSideBarButtonsHighlight(false);
 
         //Table
         tblPatients.getColumn(PATIENTS_TABLE_LASTNAME_COLUMN_TITLE).setResizable(false);
@@ -116,10 +112,6 @@ public class Principal extends javax.swing.JFrame implements PrincipalView {
             dtmPatients.addRow(o);
         }
         tblPatients.changeSelection(0, 0, false, false);
-        buttonHighlight(btnModifyPatient, true);
-        buttonHighlight(btnSeeCH, true);
-        btnModifyPatient.setEnabled(true);
-        btnSeeCH.setEnabled(true);
     }
 
     /**
@@ -127,11 +119,10 @@ public class Principal extends javax.swing.JFrame implements PrincipalView {
      */
     @Override
     public void showEmptyTable() {
-        btnModifyPatient.setEnabled(false);
-        btnSeeCH.setEnabled(false);
+        tblPatients.clearSelection();
+        clearTable(dtmPatients);
         changeTableSize(dtmPatients, 10);
-        btnModifyPatient.setEnabled(false);
-        btnSeeCH.setEnabled(false);
+        changeSideBarButtonsHighlight(false);
     }
 
     /**
@@ -142,12 +133,11 @@ public class Principal extends javax.swing.JFrame implements PrincipalView {
      * area, false otherwise
      */
     private void buttonHighlight(JButton jbtn, boolean entering) {
-        if (entering) {
+        if (tblPatients.getSelectedRow() != -1 || (jbtn == btnNewPatient || jbtn == btnPerformBackup)) {
             setButtonFontForPointerEvent(jbtn, entering);
-            jbtn.setForeground(StyleManager.getColorTexto(StyleManager.actualColor));
-        } else {
-            setButtonFontForPointerEvent(jbtn, entering);
-            jbtn.setForeground(new Color(153, 153, 153));
+            jbtn.setEnabled(entering);
+            jbtn.setForeground(entering ? StyleManager.getTextColor(
+                    StyleManager.actualColor) : DEFAULT_TEXT_COLOR);
         }
     }
 
@@ -793,5 +783,12 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
     public void modifyPatientData(Patient patient) {
         ABMPatientJFrame pacienteInterfaz = new ABMPatientJFrame(this, PRINCIPAL_MODIFY, patient);
         pacienteInterfaz.setVisible(true);
+    }
+
+    private void changeSideBarButtonsHighlight(boolean state) {
+        buttonHighlight(btnModifyPatient, state);
+        buttonHighlight(btnSeeCH, state);
+        buttonHighlight(btnNewPatient, state);
+        buttonHighlight(btnPerformBackup, state);
     }
 }

@@ -16,6 +16,8 @@ public class StyleManager {
     
     public static int actualColor = 5;
     
+    public static final Color DEFAULT_TEXT_COLOR = new Color(153, 153, 153);
+    
     /* 0 - Por defecto
      * 1 - Rosa pálido
      * 2 - Rosa viejo
@@ -143,7 +145,7 @@ public class StyleManager {
      * @param color int - El código representativo de la paleta de colores a usar
      * @return Color - El color secundario para la paleta en cuestión
      */
-    public static Color getColorTexto(int color) {
+    public static Color getTextColor(int color) {
         int a, b, c;
         switch (color){
             case 0:
@@ -178,7 +180,7 @@ public class StyleManager {
      * @return color actual de texto
      */
     public static Color getTextColor() {
-        return getColorTexto(actualColor);
+        return getTextColor(actualColor);
     }
     
     /**
@@ -226,12 +228,12 @@ public class StyleManager {
             //Seteo de background
             if (componente instanceof JTextArea){
                 componente.setBackground(getColorTerciario(color));
-                ((JTextArea)componente).setDisabledTextColor(getColorTexto(color));
+                ((JTextArea)componente).setDisabledTextColor(getTextColor(color));
                 ((JTextArea)componente).setSelectionColor(getSecondaryColor(color));
             }
             else if (componente instanceof JTextField){
                 componente.setBackground(getColorTerciario(color));
-                ((JTextField)componente).setDisabledTextColor(getColorTexto(color));
+                ((JTextField)componente).setDisabledTextColor(getTextColor(color));
                 ((JTextField)componente).setSelectionColor(getSecondaryColor(color));
             }
             else if (componente instanceof JButton)
@@ -242,7 +244,7 @@ public class StyleManager {
                 JComboBox aux = (JComboBox) componente;
                 ComboBoxEditor editor = aux.getEditor();
                 JTextField etf = (JTextField)editor.getEditorComponent();
-                etf.setDisabledTextColor(StyleManager.getColorTexto(color));
+                etf.setDisabledTextColor(StyleManager.getTextColor(color));
                 etf.setBackground(StyleManager.getColorTerciario(color));
             }
             else 
@@ -250,14 +252,14 @@ public class StyleManager {
             
             //Seteo de fuente
             if (componente instanceof JButton && componente.isEnabled())
-                componente.setForeground(getColorTexto(color));
+                componente.setForeground(getTextColor(color));
             
             //Seteo de títulos en bordes de paneles
             if (componente instanceof JPanel) {
                 JPanel comp = (JPanel)componente;
                 if (comp.getBorder() instanceof TitledBorder) {
                     String texto = ((TitledBorder)comp.getBorder()).getTitle();
-                    comp.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), texto, javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), getColorTexto(actualColor)));
+                    comp.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), texto, javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), getTextColor(actualColor)));
                 }
             }
             if (componente instanceof Container || componente instanceof JPanel)

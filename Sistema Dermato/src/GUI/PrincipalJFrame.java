@@ -210,7 +210,7 @@ public class PrincipalJFrame extends javax.swing.JFrame {
             if (entering) {
                 jbtn.setEnabled(true);
                 setButtonFontForPointerEvent(jbtn, entering);
-                jbtn.setForeground(StyleManager.getColorTexto(StyleManager.actualColor));
+                jbtn.setForeground(StyleManager.getTextColor(StyleManager.actualColor));
             } else {
                 jbtn.setEnabled(false);
                 setButtonFontForPointerEvent(jbtn, entering);
