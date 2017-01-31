@@ -263,10 +263,10 @@ public class DAOPatient extends DAOBasics {
     /**
      * Method used to retrieve a full data patient
      *
-     * @param dni
+     * @param id
      * @return Required full data patient
      */
-    public Patient getFullPatient(long dni) {
+    public Patient getFullPatient(long id) {
         Antecedents antecedents;
         patient = null;
 
@@ -290,16 +290,16 @@ public class DAOPatient extends DAOBasics {
                         pharmacological.name());
 
         query = DBUtils.getSelectColumnsMultipleTablesStatementWithWhereAndGroupBy(columns, from,
-                DBUtils.getSimpleWhereCondition(PatientDBColumns.dni.name()), groupBy);
+                DBUtils.getSimpleWhereCondition(PatientDBColumns.idPatient.name()), groupBy);
         try {
             connection = daoConnection.openDBConnection();
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, dni);
+            preparedStatement.setLong(1, id);
             preparedStatement.executeQuery();
             resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
                 patient = new Patient();
-                patient.setDni(dni);
+                patient.setDni(id);
                 patient.setId(resultSet.getInt(idPatient.name()));
                 patient.setName(resultSet.getString(name.name()));
                 patient.setLastname(resultSet.getString(lastname.name()));

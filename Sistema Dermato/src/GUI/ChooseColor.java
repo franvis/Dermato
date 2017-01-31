@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 
 /**
@@ -21,11 +22,11 @@ import javax.swing.KeyStroke;
  */
 public class ChooseColor extends javax.swing.JDialog {
 
-    public PrincipalJFrame padre;
+    public JFrame padre;
     private int color = StyleManager.actualColor;
     
     /** Creates new form EleccionColor */
-    public ChooseColor(PrincipalJFrame parent, boolean modal) {
+    public ChooseColor(JFrame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.padre = parent;
