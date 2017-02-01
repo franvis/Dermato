@@ -5,7 +5,7 @@ package DAO;
 
 import ClasesBase.Antecedents;
 import ClasesBase.Patient;
-import ClasesBase.PrePaidHealthInsurance;
+import ClasesBase.MedicalCoverage;
 import Utils.DBConstants;
 import Utils.DBConstants.AntecedentsDBColumns;
 import static Utils.DBConstants.AntecedentsDBColumns.family;
@@ -34,13 +34,13 @@ public class DAOPatient extends DAOBasics {
     private static final String LAST_VISIT_DATE_DEFAULT_VALUE = "Sin consultas";
     private static final String PP_HEALTH_INSURANCE_NAME_DEFAULT_VALUE = "Sin Obra Social";
 
-    private final DAOPrepaidHealthInsurance daoPrepaidHealthInsurance;
+    private final DAOMedicalCoverage daoPrepaidHealthInsurance;
     private final DAOAntecedents daoAntecedents;
     private LinkedList<Patient> pacientes;
     private Patient patient;
 
     public DAOPatient() {
-        daoPrepaidHealthInsurance = new DAOPrepaidHealthInsurance();
+        daoPrepaidHealthInsurance = new DAOMedicalCoverage();
         daoAntecedents = new DAOAntecedents();
         daoConnection = new DAOConnection();
     }
@@ -53,14 +53,14 @@ public class DAOPatient extends DAOBasics {
      */
     public boolean registerPatient(Patient patient) {
         try {
-            boolean hasPPHealthInsurance = patient.getPrepaidHealthInsurance().getId() != 0;
+            boolean hasPPHealthInsurance = patient.getMedicalCoverage().getId() != 0;
             connection = daoConnection.openDBConnection();
             connection.setAutoCommit(false);
             query = DBUtils.getInsertStatementWithValuesOnly(Tables.Patient);
             preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             if (hasPPHealthInsurance) {
-                preparedStatement.setInt(8, patient.getPrepaidHealthInsurance().getId());
-                preparedStatement.setString(9, patient.getPrepaidHealthInsuranceNumber());
+                preparedStatement.setInt(8, patient.getMedicalCoverage().getId());
+                preparedStatement.setString(9, patient.getMedicalCoverageNumber());
             } else {
                 preparedStatement.setNull(8, java.sql.Types.INTEGER);
                 preparedStatement.setNull(9, java.sql.Types.VARCHAR);
@@ -84,7 +84,7 @@ public class DAOPatient extends DAOBasics {
             }
             connection.commit();
         } catch (SQLException ex) {
-            Logger.getLogger(DAOPrepaidHealthInsurance.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOMedicalCoverage.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("query: " + query);
             return false;
         } finally {
@@ -278,14 +278,14 @@ public class DAOPatient extends DAOBasics {
 
         columns = DBUtils.getStringWithValuesSeparatedWithCommas(
                 idPatient.name(), PatientDBColumns.dni.name(), name.name(), lastname.name(), phone.name(), address.name(),
-                city.name(), birthday.name(), prepaidHealthInsurance.name(), prePaidHealthInsuranceNumber.name(),
+                city.name(), birthday.name(), medicalCoverage.name(), medicalCoverageNumber.name(),
                 firstVisitDate.name(), DBUtils.getMaxColumnAs(VisitDBColumns.date.name(), LAST_VISIT_DATE_KEY),
                         personal.name(), surgical.name(), toxic.name(), family.name(),
                         pharmacological.name());
 
         groupBy = DBUtils.getStringWithValuesSeparatedWithCommas(
                 idPatient.name(), PatientDBColumns.dni.name(), name.name(), lastname.name(), phone.name(), address.name(),
-                city.name(), birthday.name(), prepaidHealthInsurance.name(), prePaidHealthInsuranceNumber.name(),
+                city.name(), birthday.name(), medicalCoverage.name(), medicalCoverageNumber.name(),
                 firstVisitDate.name(), personal.name(), surgical.name(), toxic.name(), family.name(),
                         pharmacological.name());
 
@@ -307,11 +307,11 @@ public class DAOPatient extends DAOBasics {
                 patient.setCity(resultSet.getString(city.name()));
                 patient.setFirstVisitDate(DBUtils.getFormattedDate(resultSet.getString(firstVisitDate.name())));
                 patient.setBirthday(DBUtils.getFormattedDate(resultSet.getString(birthday.name())));
-                patient.setPrepaidHealthInsuranceNumber(resultSet.getString(prePaidHealthInsuranceNumber.name()));
-                if (resultSet.getObject(prepaidHealthInsurance.name()) != null && resultSet.getInt(prepaidHealthInsurance.name()) != 0) {
-                    patient.setPrepaidHealthInsurance(daoPrepaidHealthInsurance.getPPHealthInsurance(resultSet.getInt(prepaidHealthInsurance.name())));
+                patient.setPrepaidHealthInsuranceNumber(resultSet.getString(medicalCoverageNumber.name()));
+                if (resultSet.getObject(medicalCoverage.name()) != null && resultSet.getInt(medicalCoverage.name()) != 0) {
+                    patient.setMedicalCoverage(daoPrepaidHealthInsurance.getPPHealthInsurance(resultSet.getInt(medicalCoverage.name())));
                 } else {
-                    patient.setPrepaidHealthInsurance(new PrePaidHealthInsurance(0, PP_HEALTH_INSURANCE_NAME_DEFAULT_VALUE));
+                    patient.setMedicalCoverage(new MedicalCoverage(0, PP_HEALTH_INSURANCE_NAME_DEFAULT_VALUE));
                 }
                 patient.setPhone(resultSet.getString(phone.name()));
                 String lastVisitDate = LAST_VISIT_DATE_DEFAULT_VALUE;
@@ -345,40 +345,39 @@ public class DAOPatient extends DAOBasics {
     /**
      * Method used to update a patient
      *
-     * @param dniAnterior Patient's dni before modifying it
-     * @param p Updated patient
+     * @param patient Updated patient
      * @return true if updated correctly, false otherwise
      */
-    public boolean updatePatient(Patient p, long dniAnterior) {
+    public boolean updatePatient(Patient patient) {
         try {
             connection = daoConnection.openDBConnection();
             connection.setAutoCommit(false);
             columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
                     dni.name(), name.name(), lastname.name(), phone.name(),
-                    prepaidHealthInsurance.name(), prePaidHealthInsuranceNumber.name(),
+                    medicalCoverage.name(), medicalCoverageNumber.name(),
                     city.name(), address.name());
             columns = DBUtils.getStringWithValuesSeparatedWithCommas(columns,
                     String.format(DBConstants.STR_TO_DATE_UPDATE_COLUMN, birthday.name()));
-            query = DBUtils.getUpdateStatement(Tables.Patient, columns, DBUtils.getSimpleWhereCondition(dni.name()));
+            query = DBUtils.getUpdateStatement(Tables.Patient, columns, DBUtils.getSimpleWhereCondition(idPatient.name()));
             preparedStatement = connection.prepareStatement(query);
-            if (p.getPrepaidHealthInsurance().getId() != 0) {
-                preparedStatement.setInt(5, p.getPrepaidHealthInsurance().getId());
-                preparedStatement.setString(6, p.getPrepaidHealthInsuranceNumber());
+            if (patient.getMedicalCoverage().getId() != 0) {
+                preparedStatement.setInt(5, patient.getMedicalCoverage().getId());
+                preparedStatement.setString(6, patient.getMedicalCoverageNumber());
             } else {
                 preparedStatement.setNull(5, Types.INTEGER);
                 preparedStatement.setNull(6, Types.VARCHAR);
             }
-            preparedStatement.setLong(10, dniAnterior);
-            preparedStatement.setLong(1, p.getDni());
-            preparedStatement.setString(2, p.getName());
-            preparedStatement.setString(3, p.getLastname());
-            preparedStatement.setString(4, p.getPhone());
-            preparedStatement.setString(7, p.getCity());
-            preparedStatement.setString(8, p.getAddress());
-            preparedStatement.setString(9, p.getBirthday());
+            preparedStatement.setLong(10, patient.getId());
+            preparedStatement.setLong(1, patient.getDni());
+            preparedStatement.setString(2, patient.getName());
+            preparedStatement.setString(3, patient.getLastname());
+            preparedStatement.setString(4, patient.getPhone());
+            preparedStatement.setString(7, patient.getCity());
+            preparedStatement.setString(8, patient.getAddress());
+            preparedStatement.setString(9, patient.getBirthday());
             preparedStatement.executeUpdate();
             daoAntecedents.withConnection(connection)
-                    .updateAntecedents(p.getAntecendents(), p.getDni());
+                    .updateAntecedents(patient.getAntecendents(), patient.getDni());
             preparedStatement.close();
             connection.commit();
         } catch (Exception ex) {
@@ -405,7 +404,7 @@ public class DAOPatient extends DAOBasics {
             preparedStatement.setLong(1, dni);
             return (preparedStatement.executeUpdate() > 0);
         } catch (SQLException ex) {
-            Logger.getLogger(DAOPrepaidHealthInsurance.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOMedicalCoverage.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         } finally {
             daoConnection.closeDBConnection(connection);
@@ -427,7 +426,7 @@ public class DAOPatient extends DAOBasics {
             connection = daoConnection.openDBConnection();
             columns = DBUtils.getStringWithValuesSeparatedWithCommas(dni.name(), name.name(), lastname.name());
             where = DBUtils.getWhereConditions(DBUtils.getSimpleWhereCondition(
-                    prepaidHealthInsurance.name()), DBUtils.getSimpleWhereCondition(prePaidHealthInsuranceNumber.name()));
+                    medicalCoverage.name()), DBUtils.getSimpleWhereCondition(medicalCoverageNumber.name()));
             query = DBUtils.getSelectColumnsStatementWithWhere(Tables.Patient, columns, where);
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, prePaidHealthInsuranceId);

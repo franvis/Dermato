@@ -81,15 +81,15 @@ public class PrincipalPresenter {
             return;
         }
         
-        if (patientsList == null || patientsList.isEmpty()) {
+        if (patientsList == null || patientsList.isEmpty() 
+                || patientsList.get(selectedPatient) == null) {
             view.showInfoMessage("No se pudo encontrar el paciente. Por favor "
                     + "reinicie el sistema e intente nuevamente."
                     + "\nSi el error persiste comuniquese con el administrador.");
         } else {
             Patient patient = patientsList.get(selectedPatient);
-            patient = model.getFullPatient(patient.getId());
 
-            view.modifyPatientData(patient);
+            view.modifyPatientData(patient.getId());
         }
         
     }

@@ -10,8 +10,8 @@
 package GUI;
 
 import Utils.ValidationsAndMessages;
-import ClasesBase.PrePaidHealthInsurance;
-import DAO.DAOPrepaidHealthInsurance;
+import ClasesBase.MedicalCoverage;
+import DAO.DAOMedicalCoberture;
 import static Utils.GeneralUtils.clearTable;
 import java.awt.Frame;
 import java.awt.Image;
@@ -28,8 +28,8 @@ import java.util.HashMap;
 
 public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
 
-    private final DAOPrepaidHealthInsurance daoPrePaidHealthInsurance;
-    private HashMap<Integer, PrePaidHealthInsurance> prePaidHealthInsurances;
+    private final DAOMedicalCoberture daoPrePaidHealthInsurance;
+    private HashMap<Integer, MedicalCoverage> prePaidHealthInsurances;
     private DefaultTableModel dtmPrePaidHealthInsurances;
     private boolean isUpdating;
 
@@ -40,7 +40,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
      */
     public ABMPrePaidHealthInsurances(Frame parent) {
         initComponents();
-        daoPrePaidHealthInsurance = new DAOPrepaidHealthInsurance();
+        daoPrePaidHealthInsurance = new DAOMedicalCoberture();
         prePaidHealthInsurances = daoPrePaidHealthInsurance.getAllPrePaidHealthInsurances();
         fillPrePaidHealthInsurances(prePaidHealthInsurances);
         this.setLocationRelativeTo(parent);
@@ -362,7 +362,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         if (!prePaidHealthInsurances.isEmpty()) {
             int idObraSeleccionada = prePaidHealthInsurances.get(tblPrePaidHealthInsurances.getSelectedRow()).getId();
-            if (daoPrePaidHealthInsurance.deletePrePaidHealthInsurance(new PrePaidHealthInsurance(idObraSeleccionada, ""))) {
+            if (daoPrePaidHealthInsurance.deletePrePaidHealthInsurance(new MedicalCoverage(idObraSeleccionada, ""))) {
                 ValidationsAndMessages.showInfo(this, "Borrado Exitoso.");
                 prePaidHealthInsurances = daoPrePaidHealthInsurance.getAllPrePaidHealthInsurances();
                 fillPrePaidHealthInsurances(prePaidHealthInsurances);
@@ -398,7 +398,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
         if (!prePaidHealthInsurances.isEmpty()) {
             int idSelectedPPHealthInsurance = prePaidHealthInsurances.get(tblPrePaidHealthInsurances.getSelectedRow()).getId();
-            PrePaidHealthInsurance pPHealthInsuranceToModify = daoPrePaidHealthInsurance.getPPHealthInsurance(idSelectedPPHealthInsurance);
+            MedicalCoverage pPHealthInsuranceToModify = daoPrePaidHealthInsurance.getPPHealthInsurance(idSelectedPPHealthInsurance);
             txtPPHealthInsuranceName.setText(pPHealthInsuranceToModify.getName());
             txtPPHealthInsuranceName.grabFocus();
             isUpdating = true;
@@ -414,7 +414,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
             return;
         }
         if (!isUpdating) {
-            if (daoPrePaidHealthInsurance.registerPrePaidHealthInsurance(new PrePaidHealthInsurance(0, txtPPHealthInsuranceName.getText()))) {
+            if (daoPrePaidHealthInsurance.registerPrePaidHealthInsurance(new MedicalCoverage(0, txtPPHealthInsuranceName.getText()))) {
                 ValidationsAndMessages.showInfo(this, "Registro Exitoso.");
                 this.txtPPHealthInsuranceName.setText("");
                 this.prePaidHealthInsurances = new HashMap<>();
@@ -425,7 +425,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
             }
         } else {
             int idSelectedPPHealthInsurance = prePaidHealthInsurances.get(tblPrePaidHealthInsurances.getSelectedRow()).getId();
-            if (daoPrePaidHealthInsurance.updatePrepaidHealthInsurance(new PrePaidHealthInsurance(idSelectedPPHealthInsurance, txtPPHealthInsuranceName.getText()))) {
+            if (daoPrePaidHealthInsurance.updatePrepaidHealthInsurance(new MedicalCoverage(idSelectedPPHealthInsurance, txtPPHealthInsuranceName.getText()))) {
                 ValidationsAndMessages.showInfo(this, "Actualización Exitosa.");
                 this.txtPPHealthInsuranceName.setText("");
                 this.prePaidHealthInsurances = new HashMap<>();
@@ -467,7 +467,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
      *
      * @param prePaidHealthInsurances
      */
-    private void fillPrePaidHealthInsurances(HashMap<Integer, PrePaidHealthInsurance> prePaidHealthInsurances) {
+    private void fillPrePaidHealthInsurances(HashMap<Integer, MedicalCoverage> prePaidHealthInsurances) {
         Object[] o;
         this.dtmPrePaidHealthInsurances = (DefaultTableModel) this.tblPrePaidHealthInsurances.getModel();
         clearTable(dtmPrePaidHealthInsurances);

@@ -988,8 +988,8 @@ public class ABMVisit extends javax.swing.JFrame {
         lblCity.setText(patient.getCity());
 
         lblFirstVisitDate.setText(patient.getFirstVisitDate());
-        lblInsuranceNumber.setText(patient.getPrepaidHealthInsuranceNumber());
-        lblPPHealthInsurance.setText(patient.getPrepaidHealthInsurance().getName());
+        lblInsuranceNumber.setText(patient.getMedicalCoverageNumber());
+        lblPPHealthInsurance.setText(patient.getMedicalCoverage().getName());
         lblAddress.setText(patient.getAddress());
         lblPhone.setText(patient.getPhone());
     }

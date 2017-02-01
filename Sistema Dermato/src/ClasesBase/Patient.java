@@ -21,7 +21,7 @@ public class Patient {
     private String address;
     private String city;
     private String birthday;
-    private PrePaidHealthInsurance prepaidHealthInsurance;
+    private MedicalCoverage prepaidHealthInsurance;
     private String prepaidHealthInsuranceNumber;
     private String firstVisitDate;
     private Antecedents antecendents;
@@ -33,7 +33,7 @@ public class Patient {
 
     public Patient(int id, String name, String lastname, String phone, long dni,
             String address, String city, String birthday, 
-            PrePaidHealthInsurance prepaidHealthInsurance, String prepaidHealthInsuranceNumber, Antecedents antecendent,
+            MedicalCoverage prepaidHealthInsurance, String prepaidHealthInsuranceNumber, Antecedents antecendent,
             String firstVisitDate) {
         this.name = name;
         this.lastname = lastname;
@@ -50,7 +50,7 @@ public class Patient {
 
     public Patient(int id, String name, String lastname, String phone, long dni,
             String address, String city, String birthday,
-            PrePaidHealthInsurance prepaidHealthInsurance, String prepaidHealthInsuranceNumber, Antecedents antecendent, 
+            MedicalCoverage prepaidHealthInsurance, String prepaidHealthInsuranceNumber, Antecedents antecendent, 
             String firstVisitDate, LinkedList<Visit> visits) {
         this.name = name;
         this.lastname = lastname;
@@ -114,7 +114,7 @@ public class Patient {
         this.name = name;
     }
 
-    public String getPrepaidHealthInsuranceNumber() {
+    public String getMedicalCoverageNumber() {
         return prepaidHealthInsuranceNumber;
     }
 
@@ -122,11 +122,11 @@ public class Patient {
         this.prepaidHealthInsuranceNumber = prepaidHealthInsuranceNumber;
     }
 
-    public PrePaidHealthInsurance getPrepaidHealthInsurance() {
+    public MedicalCoverage getMedicalCoverage() {
         return prepaidHealthInsurance;
     }
 
-    public void setPrepaidHealthInsurance(PrePaidHealthInsurance prepaidHealthInsurance) {
+    public void setMedicalCoverage(MedicalCoverage prepaidHealthInsurance) {
         this.prepaidHealthInsurance = prepaidHealthInsurance;
     }
 

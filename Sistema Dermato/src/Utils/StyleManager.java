@@ -9,8 +9,9 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 /**
- * Clase para el manejo de los colores de ventana
- * @author Denise
+ * Class that handle styles along the application
+ * 
+ * @author Francisco Visintini
  */
 public class StyleManager {
     
@@ -192,7 +193,7 @@ public class StyleManager {
 //            colorActual = ManejoArchivos.leerColor();
 //        }
 //        catch (Exception e) {}
-        pintarComponentes(c, actualColor);
+//        pintarComponentes(c, actualColor);
     }   
     
     /**
@@ -202,68 +203,68 @@ public class StyleManager {
     public static void paint(Container c, int color) {
         if (color < 0 || color > 6)
             return;
-        pintarComponentes(c, color);
+//        pintarComponentes(c, color);
     }
     
-    /**
-     * Pinta los componentes pertenecientes a un objeto Container
-     * @param parent Container - El contenedor a pintar
-     * @param colorPrimario Color primario
-     * @param colorSecundario Color secundario
-     */
-    public static void pintarComponentes(Container parent, int color) {
-        if (parent instanceof ChooseColor)
-        {
-            pintarComponentes(parent.getParent(), color);
-            ((GUI.PrincipalJFrame) parent.getParent()).paintChilds(color);
-        }
-        if (parent instanceof ClinicalHistoryJFrame)
-        {
-            ((GUI.ClinicalHistoryJFrame) parent).paintChilds(color);
-        }
-        for (Component componente : parent.getComponents())
-        {
-            if (componente instanceof JRadioButton)
-                break;
-            //Seteo de background
-            if (componente instanceof JTextArea){
-                componente.setBackground(getColorTerciario(color));
-                ((JTextArea)componente).setDisabledTextColor(getTextColor(color));
-                ((JTextArea)componente).setSelectionColor(getSecondaryColor(color));
-            }
-            else if (componente instanceof JTextField){
-                componente.setBackground(getColorTerciario(color));
-                ((JTextField)componente).setDisabledTextColor(getTextColor(color));
-                ((JTextField)componente).setSelectionColor(getSecondaryColor(color));
-            }
-            else if (componente instanceof JButton)
-                componente.setBackground(getSecondaryColor(color));
-            else if (componente instanceof JTable)
-                componente.setBackground(getColorTerciario(color));
-            else if (componente instanceof JComboBox){
-                JComboBox aux = (JComboBox) componente;
-                ComboBoxEditor editor = aux.getEditor();
-                JTextField etf = (JTextField)editor.getEditorComponent();
-                etf.setDisabledTextColor(StyleManager.getTextColor(color));
-                etf.setBackground(StyleManager.getColorTerciario(color));
-            }
-            else 
-                componente.setBackground(getColorPrimario(color));
-            
-            //Seteo de fuente
-            if (componente instanceof JButton && componente.isEnabled())
-                componente.setForeground(getTextColor(color));
-            
-            //Seteo de títulos en bordes de paneles
-            if (componente instanceof JPanel) {
-                JPanel comp = (JPanel)componente;
-                if (comp.getBorder() instanceof TitledBorder) {
-                    String texto = ((TitledBorder)comp.getBorder()).getTitle();
-                    comp.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), texto, javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), getTextColor(actualColor)));
-                }
-            }
-            if (componente instanceof Container || componente instanceof JPanel)
-                pintarComponentes((Container)componente, color);
-        }
-    }
+//    /**
+//     * Pinta los componentes pertenecientes a un objeto Container
+//     * @param parent Container - El contenedor a pintar
+//     * @param colorPrimario Color primario
+//     * @param colorSecundario Color secundario
+//     */
+//    public static void pintarComponentes(Container parent, int color) {
+//        if (parent instanceof ChooseColor)
+//        {
+//            pintarComponentes(parent.getParent(), color);
+//            ((gui.Principal) parent.getParent()).paintChilds(color);
+//        }
+//        if (parent instanceof ClinicalHistoryJFrame)
+//        {
+//            ((GUI.ClinicalHistoryJFrame) parent).paintChilds(color);
+//        }
+//        for (Component componente : parent.getComponents())
+//        {
+//            if (componente instanceof JRadioButton)
+//                break;
+//            //Seteo de background
+//            if (componente instanceof JTextArea){
+//                componente.setBackground(getColorTerciario(color));
+//                ((JTextArea)componente).setDisabledTextColor(getTextColor(color));
+//                ((JTextArea)componente).setSelectionColor(getSecondaryColor(color));
+//            }
+//            else if (componente instanceof JTextField){
+//                componente.setBackground(getColorTerciario(color));
+//                ((JTextField)componente).setDisabledTextColor(getTextColor(color));
+//                ((JTextField)componente).setSelectionColor(getSecondaryColor(color));
+//            }
+//            else if (componente instanceof JButton)
+//                componente.setBackground(getSecondaryColor(color));
+//            else if (componente instanceof JTable)
+//                componente.setBackground(getColorTerciario(color));
+//            else if (componente instanceof JComboBox){
+//                JComboBox aux = (JComboBox) componente;
+//                ComboBoxEditor editor = aux.getEditor();
+//                JTextField etf = (JTextField)editor.getEditorComponent();
+//                etf.setDisabledTextColor(StyleManager.getTextColor(color));
+//                etf.setBackground(StyleManager.getColorTerciario(color));
+//            }
+//            else 
+//                componente.setBackground(getColorPrimario(color));
+//            
+//            //Seteo de fuente
+//            if (componente instanceof JButton && componente.isEnabled())
+//                componente.setForeground(getTextColor(color));
+//            
+//            //Seteo de títulos en bordes de paneles
+//            if (componente instanceof JPanel) {
+//                JPanel comp = (JPanel)componente;
+//                if (comp.getBorder() instanceof TitledBorder) {
+//                    String texto = ((TitledBorder)comp.getBorder()).getTitle();
+//                    comp.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), texto, javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), getTextColor(actualColor)));
+//                }
+//            }
+//            if (componente instanceof Container || componente instanceof JPanel)
+//                pintarComponentes((Container)componente, color);
+//        }
+//    }
 }

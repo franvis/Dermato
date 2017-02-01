@@ -1,18 +1,12 @@
-package GUI;
+package gui;
 
+import GUI.*;
 import ClasesBase.Antecedents;
 import ClasesBase.MedicalCoverage;
 import ClasesBase.Patient;
 import Utils.StyleManager;
 import Utils.ValidationsAndMessages;
-import DAO.DAOMedicalCoberture;
-import DAO.DAOPatient;
-import static GUI.ABMPatientJFrame.Origin.CLINICAL_HISTORY;
-import static GUI.ABMPatientJFrame.Origin.PRINCIPAL_MODIFY;
-import static GUI.ABMPatientJFrame.Origin.PRINCIPAL_NEW;
-import static Utils.Constants.SYSTEM_ICON_IMAGE_PATH;
 import static Utils.GeneralUtils.handleFocus;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
@@ -24,114 +18,64 @@ import static Utils.ValidationsAndMessages.PRE_PAID_HEALTH_INSURANCE_NAME_EMPTY;
 import java.util.HashMap;
 import static Utils.ValidationsAndMessages.PATIENT_ALREADY_REGISTERED_DNI_ERROR;
 import static Utils.ValidationsAndMessages.PATIENT_ALREADY_REGISTERED_INSURANCE_NUMBER_ERROR;
-import static Utils.ValidationsAndMessages.PATIENT_ALREADY_REGISTERED_MODIFIED_DNI_ERROR;
 import static Utils.ValidationsAndMessages.REGISTER_SUCCESSFUL;
 import static Utils.ValidationsAndMessages.REGISTER_FAILED;
-import static Utils.ValidationsAndMessages.UPDATE_FAILED;
-import static Utils.ValidationsAndMessages.UPDATE_SUCCESSFUL;
-import java.util.Map;
 import static ClasesBase.MedicalCoverage.NO_MEDICAL_COBERTURE_NAME;
+import com.sun.istack.internal.Nullable;
+import java.awt.Frame;
+import mvp.presenter.PatientABMPresenter;
+import mvp.view.PatientABMView;
+import mvp.view.PatientUpdatedListener;
 
-public class ABMPatientJFrame extends javax.swing.JFrame {
+public class PatientABM extends javax.swing.JDialog implements PatientABMView {
 
-    //UI
-    private PrincipalJFrame principalFrame;
-    private ClinicalHistoryJFrame clinicalHistoryFrame;
-
-    //DATA
-    private final DAOPatient daoPatient;
-    private final DAOMedicalCoberture daoPrePaidHealthInsurance;
-
-    //MODELS
-    private Patient patient;
-    private HashMap<Integer, MedicalCoverage> prePaidHealthInsurances;
-    private Antecedents antecedents;
-
-    //OTHER VARS
-    private final Origin origin;
-    private long dniBeforeModification;
-    private int PPHealthInsuranceIdBeforeModification;
-    private String insuranceNumberBeforeModification;
+    private final PatientABMPresenter presenter;
+    private PatientUpdatedListener patientUpdatedListener;
+    private Frame parent;
 
     /**
      * Creates new form DatosPaciente to register a new patient.
      *
      * @param parent parent frame where the new creation call is being made
-     * @param origin origin of the new creation call.
      */
-    public ABMPatientJFrame(java.awt.Frame parent, Origin origin) {
-        this.origin = origin;
-        daoPatient = new DAOPatient();
-        daoPrePaidHealthInsurance = new DAOMedicalCoberture();
-        prePaidHealthInsurances = new HashMap<>();
-        principalFrame = (PrincipalJFrame) parent;
+    public PatientABM(java.awt.Frame parent) {
+        super(parent, true);
+        presenter = new PatientABMPresenter(this);
 
         initComponents();
         setupInitialUI();
         btnModify.setVisible(false);
-        setExtendedState(principalFrame.getExtendedState());
-        setLocationRelativeTo(principalFrame);
+        setLocationRelativeTo(parent);
     }
 
     /**
      * Creates new form DatosPaciente to modify a certain patient.
      *
      * @param parent parent frame where the new creation call is being made
-     * @param origin origin of the creation call.
-     * @param patient patient to modify.
+     * @param patientUpdatedListener listener for the patient update.
+     * @param patientId patient to modify.
      */
-    public ABMPatientJFrame(java.awt.Frame parent, Origin origin, Patient patient) {
-        this.origin = origin;
-        daoPatient = new DAOPatient();
-        daoPrePaidHealthInsurance = new DAOMedicalCoberture();
-        prePaidHealthInsurances = new HashMap<>();
-        this.patient = patient;
-        dniBeforeModification = patient.getDni();
-        if (patient.getMedicalCoverage() != null) {
-            insuranceNumberBeforeModification = patient.getMedicalCoverageNumber();
-        }
-        if (origin.equals(PRINCIPAL_MODIFY)) {
-            principalFrame = (PrincipalJFrame) parent;
-        } else if (origin.equals(CLINICAL_HISTORY)) {
-            clinicalHistoryFrame = (ClinicalHistoryJFrame) parent;
-        }
+    public PatientABM(java.awt.Frame parent,
+            PatientUpdatedListener patientUpdatedListener, int patientId) {
+        this.patientUpdatedListener = patientUpdatedListener;
+        presenter = new PatientABMPresenter(this);
 
         initComponents();
         setupInitialUI();
-        if (origin.equals(PRINCIPAL_MODIFY)) {
-            btnModify.setEnabled(false);
-        }
-        setExtendedState(clinicalHistoryFrame.getExtendedState());
-        setLocationRelativeTo(clinicalHistoryFrame);
-        fillFields(patient);
-    }
-
-    /**
-     * Method used to retrieve the system image.
-     *
-     * @return
-     */
-    @Override
-    public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(SYSTEM_ICON_IMAGE_PATH));
-        return retValue;
-    }
-
-    @Override
-    public JRootPane getRootPane() {
-        super.getRootPane().registerKeyboardAction((ActionEvent e) -> {
-            exit();
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-                JComponent.WHEN_IN_FOCUSED_WINDOW);
-        return super.getRootPane();
+        btnModify.setEnabled(false);
+        setLocationRelativeTo(parent);
+        presenter.loadPatientData(patientId);
     }
 
     /**
      * Generates patient object that is going to be saved in the database.
+     *
+     * @return Patient if correctly generated, null if an error occurred
      */
-    private boolean generatePatient() {
+    @Nullable
+    private Patient generatePatient() {
         String error;
-        patient = new Patient();
+        Patient patient = new Patient();
 
         patient.setName(this.txtfNames.getText());
         patient.setLastname(this.txtfLastNames.getText());
@@ -141,50 +85,48 @@ public class ABMPatientJFrame extends javax.swing.JFrame {
         patient.setCity(this.txtfCity.getText());
 
         error = ValidationsAndMessages.validateDateInCommonRange(ftxtfBirthday.getText());
-
         if (!error.isEmpty()) {
-            ValidationsAndMessages.showError(this, String.format(BIRTHDAY_DATE_FORMAT_ERROR, error));
-            return false;
+            showErrorMessage(String.format(BIRTHDAY_DATE_FORMAT_ERROR, error));
+            return null;
+        } else {
+            patient.setBirthday(this.ftxtfBirthday.getText());
         }
-        patient.setBirthday(this.ftxtfBirthday.getText());
 
         error = ValidationsAndMessages.validateDateInCommonRange(ftxtfFirstVisitDate.getText());
-
         if (!error.isEmpty()) {
-            ValidationsAndMessages.showError(this, String.format(FIRST_VISIT_DATE_FORMAT_ERROR, error));
-            return false;
+            showErrorMessage(String.format(FIRST_VISIT_DATE_FORMAT_ERROR, error));
+            return null;
+        } else {
+            patient.setFirstVisitDate(this.ftxtfFirstVisitDate.getText());
         }
-        patient.setFirstVisitDate(this.ftxtfFirstVisitDate.getText());
 
-        for (int i = 0; i < prePaidHealthInsurances.size(); i++) {
-            if (prePaidHealthInsurances.get(i).getName().compareTo((String) cmbPPHealthInsurance.getSelectedItem()) == 0) {
-                patient.setMedicalCoverage(prePaidHealthInsurances.get(i));
-            }
-        }
         patient.setPrepaidHealthInsuranceNumber(this.txtfInsuranceNumber.getText());
-        patient.setAntecendents(antecedents);
-        return true;
+        generateAntecedents(patient);
+
+        return patient;
     }
 
     /**
      * Generates the patient's antecedents that are going to be saved in the
-     * database
+     * database.
      */
-    private void generateAntecedents() {
-        antecedents = new Antecedents();
+    private void generateAntecedents(Patient patient) {
+        Antecedents antecedents = new Antecedents();
 
         antecedents.setPersonalAntecedents(this.txtaPersonal.getText());
         antecedents.setSurgicalAntecedents(this.txtaSurgical.getText());
         antecedents.setToxicAntecedents(this.txtaToxics.getText());
         antecedents.setFamilyAntecedents(this.txtaFamily.getText());
         antecedents.setPharmacologicalAntecedents(this.txtaPharmacological.getText());
+
+        patient.setAntecendents(antecedents);
     }
 
     /**
      * Validates that mandatory fields are filled(name, last name, phone, dni,
      * birthday, insurance number).
      */
-    private String validateMandatoryFields() {
+    private boolean validateMandatoryFields() {
         String incomplete = "";
 
         if (this.txtfNames.getText().isEmpty()) {
@@ -211,41 +153,12 @@ public class ABMPatientJFrame extends javax.swing.JFrame {
             incomplete += "Nro. de Afiliado \n";
         }
 
-        return incomplete;
-    }
-
-    private void fillFields(Patient patient) {
-        this.txtfNames.setText(patient.getName());
-        this.txtfLastNames.setText(patient.getLastname());
-        this.txtfPhone.setText(patient.getPhone());
-        this.txtfAddress.setText(patient.getAddress());
-        this.txtfCity.setText(patient.getCity());
-        this.txtfDni.setText(patient.getDni() + "");
-        this.ftxtfBirthday.setText(patient.getBirthday());
-        this.cmbPPHealthInsurance.setSelectedItem(patient.getMedicalCoverage().getName());
-        this.txtfInsuranceNumber.setText(patient.getMedicalCoverageNumber());
-        this.ftxtfFirstVisitDate.setText(patient.getFirstVisitDate());
-
-        this.txtaPersonal.setText(patient.getAntecendents().getPersonalAntecedents());
-        this.txtaToxics.setText(patient.getAntecendents().getToxicAntecedents());
-        this.txtaSurgical.setText(patient.getAntecendents().getSurgicalAntecedents());
-        this.txtaFamily.setText(patient.getAntecendents().getFamilyAntecedents());
-        this.txtaPharmacological.setText(patient.getAntecendents().getPharmacologicalAntecedents());
-    }
-
-    /**
-     * Method used to fill all the pre paid health insurances.
-     */
-    private void fillPrePaidHealthInsurances() {
-        prePaidHealthInsurances = new HashMap<>();
-        cmbPPHealthInsurance.removeAllItems();
-        prePaidHealthInsurances.put(0, new MedicalCoverage(0, NO_MEDICAL_COBERTURE_NAME));
-        prePaidHealthInsurances.putAll(daoPrePaidHealthInsurance.getAllPrePaidHealthInsurances());
-        prePaidHealthInsurances.entrySet().stream().forEach((entry) -> {
-            String name = ((MedicalCoverage) entry.getValue()).getName();
-            cmbPPHealthInsurance.addItem(name);
-        });
-        cmbPPHealthInsurance.setSelectedIndex(0);
+        if (!incomplete.isEmpty()) {
+            showErrorMessage(String.format(MANDATORY_FIELDS_ERROR, incomplete));
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -280,37 +193,6 @@ public class ABMPatientJFrame extends javax.swing.JFrame {
         this.btnNewPPHealthInsurance.setEnabled(state);
     }
 
-    /**
-     * Method used to close de windows making all the needed validations.
-     */
-    private void exit() {
-        if (!btnSave.isEnabled()) {
-            this.dispose();
-            if (this.getParent() != null) {
-                this.getParent().setVisible(true);
-            }
-            if (clinicalHistoryFrame != null) {
-                clinicalHistoryFrame.closeChild(this);
-            } else {
-                principalFrame.closeChild(this);
-            }
-        } else {
-            ValidationsAndMessages.validateWindowExit(this);
-        }
-    }
-
-    /**
-     * Returns patient's dni
-     *
-     * @return patient's dni, -1 if it's a new patient not saved yet
-     */
-    public long getPatientDni() {
-        if (patient != null) {
-            return patient.getDni();
-        }
-        return -1;
-    }
-
     private void setupInitialUI() {
         JTextField etf = (JTextField) cmbPPHealthInsurance.getEditor()
                 .getEditorComponent();
@@ -320,93 +202,70 @@ public class ABMPatientJFrame extends javax.swing.JFrame {
         txtfInsuranceNumber.setDisabledTextColor(StyleManager.getTextColor());
 
         Utils.StyleManager.paint(this);
-        fillPrePaidHealthInsurances();
     }
 
-    private void saveNewPatient(Patient patientVerifiedByDni, Patient patientVerifiedByInsuranceNumber) {
-        if (patientVerifiedByDni != null) {
-            ValidationsAndMessages.showError(this, String.format(
-                    PATIENT_ALREADY_REGISTERED_DNI_ERROR, patientVerifiedByDni.getFullName()));
-            this.txtfDni.setText("");
-            this.txtfDni.grabFocus();
-            return;
-        }
+    @Override
+    public void fillMedicalCoverages(java.util.List<MedicalCoverage> medicalCoverages) {
+        cmbPPHealthInsurance.removeAllItems();
+        medicalCoverages.stream().forEach((medicalCoverage) -> {
+            cmbPPHealthInsurance.addItem(medicalCoverage.getName());
+        });
 
-        if (cmbPPHealthInsurance.getSelectedIndex() != 0 && patientVerifiedByInsuranceNumber != null) {
-            ValidationsAndMessages.showError(this, String.format(
-                    PATIENT_ALREADY_REGISTERED_INSURANCE_NUMBER_ERROR, patientVerifiedByInsuranceNumber.getFullName()));
-            this.txtfInsuranceNumber.setText("");
-            this.txtfInsuranceNumber.grabFocus();
-            return;
-        }
+        cmbPPHealthInsurance.setSelectedIndex(0);
+    }
 
-        generateAntecedents();
+    @Override
+    public void fillPatientData(Patient patient) {
+        txtfNames.setText(patient.getName());
+        txtfLastNames.setText(patient.getLastname());
+        txtfPhone.setText(patient.getPhone());
+        txtfAddress.setText(patient.getAddress());
+        txtfCity.setText(patient.getCity());
+        txtfDni.setText(patient.getDni() + "");
+        ftxtfBirthday.setText(patient.getBirthday());
+        cmbPPHealthInsurance.setSelectedItem(patient.getMedicalCoverage().getName());
+        txtfInsuranceNumber.setText(patient.getMedicalCoverageNumber());
+        ftxtfFirstVisitDate.setText(patient.getFirstVisitDate());
 
-        if (!generatePatient()) {
-            return;
-        }
+        txtaPersonal.setText(patient.getAntecendents().getPersonalAntecedents());
+        txtaToxics.setText(patient.getAntecendents().getToxicAntecedents());
+        txtaSurgical.setText(patient.getAntecendents().getSurgicalAntecedents());
+        txtaFamily.setText(patient.getAntecendents().getFamilyAntecedents());
+        txtaPharmacological.setText(patient.getAntecendents().getPharmacologicalAntecedents());
+    }
 
-        if (daoPatient.registerPatient(patient)) {
-            ValidationsAndMessages.showInfo(this, REGISTER_SUCCESSFUL);
-            clinicalHistoryFrame = new ClinicalHistoryJFrame(principalFrame, patient);
-            principalFrame.updatePatientList();
-            this.dispose();
-            clinicalHistoryFrame.setVisible(true);
+    @Override
+    public void showErrorMessage(String error) {
+        ValidationsAndMessages.showError(this, error);
+    }
+
+    @Override
+    public void showInfoMessage(String info) {
+        ValidationsAndMessages.showInfo(this, info);
+    }
+
+    @Override
+    public void exitWindow() {
+        if (!btnSave.isEnabled()) {
+            dispose();
         } else {
-            ValidationsAndMessages.showError(this, REGISTER_FAILED);
+            ValidationsAndMessages.validateWindowExit(this);
         }
     }
 
-    private void updatePatient(long patientDni, MedicalCoverage prePaidHealthInsurance, 
-            Patient patientVerifiedByDni, Patient patientVerifiedByInsuranceNumber) {
-        if (patientDni != dniBeforeModification && patientVerifiedByDni != null) {
-            ValidationsAndMessages.showError(this, String.format(
-                    PATIENT_ALREADY_REGISTERED_MODIFIED_DNI_ERROR, patientVerifiedByDni.getFullName()));
-            this.txtfDni.setText("");
-            return;
-        }
-
-        if (cmbPPHealthInsurance.getSelectedIndex() != 0
-                && (PPHealthInsuranceIdBeforeModification != prePaidHealthInsurance.getId() 
-                    || !insuranceNumberBeforeModification.equals(txtfInsuranceNumber.getText()))
-                && patientVerifiedByInsuranceNumber != null
-                && patientVerifiedByInsuranceNumber.getDni() != dniBeforeModification) {
-            ValidationsAndMessages.showError(this, String.format(
-                    PATIENT_ALREADY_REGISTERED_INSURANCE_NUMBER_ERROR, patientVerifiedByInsuranceNumber.getFullName()));
-            this.txtfInsuranceNumber.setText("");
-            this.txtfInsuranceNumber.grabFocus();
-            return;
-        }
-
-        generateAntecedents();
-
-        if (!generatePatient()) {
-            return;
-        }
-
-        if (daoPatient.updatePatient(patient, dniBeforeModification)) {
-            ValidationsAndMessages.showInfo(this, UPDATE_SUCCESSFUL);
-
-            if (this.origin.equals(CLINICAL_HISTORY)) {
-                clinicalHistoryFrame.setPatient(patient);
-                clinicalHistoryFrame.fillFields();
-                this.dispose();
-                clinicalHistoryFrame.setVisible(true);
-            } else {
-                principalFrame.updatePatientList();
-            }
-        } else {
-            ValidationsAndMessages.showError(this, UPDATE_FAILED);
-        }
-        if (origin.equals(PRINCIPAL_MODIFY)) {
-            changeFieldsState(false);
-            this.btnModify.setEnabled(true);
-            this.btnSave.setEnabled(false);
-        }
+    @Override
+    public void finishUpdatingPatient(int patientId) {
+        patientUpdatedListener.patientUpdated(patientId);
+        changeFieldsState(false);
+        this.btnModify.setEnabled(true);
+        this.btnSave.setEnabled(false);
     }
 
-    public enum Origin {
-        PRINCIPAL_NEW, PRINCIPAL_MODIFY, CLINICAL_HISTORY;
+    @Override
+    public void finishRegisteringPatient(int patientId) {
+        ClinicalHistoryJFrame clinicalHistoryJFrame = new ClinicalHistoryJFrame(parent, new Patient());
+        this.dispose();
+        clinicalHistoryJFrame.setVisible(true);
     }
 
     /**
@@ -469,7 +328,6 @@ public class ABMPatientJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Nuevo Paciente");
         setIconImages(getIconImages());
-        setPreferredSize(new java.awt.Dimension(1009, 750));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -1086,20 +944,9 @@ public class ABMPatientJFrame extends javax.swing.JFrame {
             ValidationsAndMessages.showError(this, PRE_PAID_HEALTH_INSURANCE_NAME_EMPTY);
             return;
         }
+        
         String nuevaObra = this.txtfNewPPHealthInsurance.getText();
-        if (daoPrePaidHealthInsurance.registerPrePaidHealthInsurance(new MedicalCoverage(0, nuevaObra))) {
-            ValidationsAndMessages.showInfo(this, REGISTER_SUCCESSFUL);
-            fillPrePaidHealthInsurances();
-        } else {
-            ValidationsAndMessages.showError(this, REGISTER_FAILED);
-        }
-
-        this.txtfNewPPHealthInsurance.setEnabled(false);
-        this.btnSavePPHealthInsurance.setEnabled(false);
-        this.btnNewPPHealthInsurance.setEnabled(true);
-        this.cmbPPHealthInsurance.setEnabled(true);
-        this.cmbPPHealthInsurance.setSelectedItem(nuevaObra);
-        this.txtfNewPPHealthInsurance.setText("");
+        presenter.registerMedicalCoverage(new MedicalCoverage(0, nuevaObra));
     }//GEN-LAST:event_btnSavePPHealthInsuranceActionPerformed
 
     private void txtfNewPPHealthInsuranceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfNewPPHealthInsuranceKeyTyped
@@ -1133,30 +980,19 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
     }//GEN-LAST:event_btnSaveMouseExited
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        antecedents = new Antecedents();
-        String error = validateMandatoryFields();
-        if (!error.isEmpty()) {
-            ValidationsAndMessages.showError(this, String.format(MANDATORY_FIELDS_ERROR, error));
+        if (validateMandatoryFields()) {
             return;
         }
-        long patientDni = Long.parseLong(this.txtfDni.getText());
 
-        MedicalCoverage prePaidHealthInsuranceSelected = new MedicalCoverage();
-        for (Map.Entry entry : prePaidHealthInsurances.entrySet()) {
-            MedicalCoverage prePaidHealthInsurance = (MedicalCoverage) entry.getValue();
-            String name = prePaidHealthInsurance.getName();
-            if (name.compareTo(cmbPPHealthInsurance.getSelectedItem().toString()) == 0) {
-                prePaidHealthInsuranceSelected = prePaidHealthInsurance;
-            }
+        Patient patient = generatePatient();
+
+        if (patient == null) {
+            return;
         }
-
-        Patient patientVerifiedByInsuranceNumber = daoPatient.validatePatientByInsuranceNumber(prePaidHealthInsuranceSelected.getId(), txtfInsuranceNumber.getText());
-        Patient patientVerifiedByDni = daoPatient.verifyPatient(patientDni);
-
-        if (origin.equals(PRINCIPAL_NEW)) {
-            saveNewPatient(patientVerifiedByDni, patientVerifiedByInsuranceNumber);
-        } else if (origin.equals(PRINCIPAL_MODIFY) || origin.equals(CLINICAL_HISTORY)) {
-            updatePatient(patientDni, prePaidHealthInsuranceSelected, patientVerifiedByDni, patientVerifiedByInsuranceNumber);
+        if (patientUpdatedListener == null) {
+            presenter.registerPatient(patient, cmbPPHealthInsurance.getSelectedIndex());
+        } else {
+            presenter.updatePatient(patient, cmbPPHealthInsurance.getSelectedIndex());
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -1169,7 +1005,7 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
     }//GEN-LAST:event_btnBackMouseExited
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        exit();
+        exitWindow();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnModifyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyMouseEntered
@@ -1187,7 +1023,7 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        exit();
+        exitWindow();
     }//GEN-LAST:event_formWindowClosing
 
     private void txtaPersonalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaPersonalKeyPressed
@@ -1259,4 +1095,23 @@ private void cmbPPHealthInsuranceItemStateChanged(java.awt.event.ItemEvent evt) 
     private javax.swing.JTextField txtfNewPPHealthInsurance;
     private javax.swing.JTextField txtfPhone;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public JRootPane getRootPane() {
+        super.getRootPane().registerKeyboardAction((ActionEvent e) -> {
+            exitWindow();
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                JComponent.WHEN_IN_FOCUSED_WINDOW);
+        return super.getRootPane();
+    }
+
+    @Override
+    public void finishRegisteringMedicalCoverage(String medicalCoverageName) {
+        this.txtfNewPPHealthInsurance.setEnabled(false);
+        this.btnSavePPHealthInsurance.setEnabled(false);
+        this.btnNewPPHealthInsurance.setEnabled(true);
+        this.cmbPPHealthInsurance.setEnabled(true);
+        this.cmbPPHealthInsurance.setSelectedItem(medicalCoverageName);
+        this.txtfNewPPHealthInsurance.setText("");
+    }
 }

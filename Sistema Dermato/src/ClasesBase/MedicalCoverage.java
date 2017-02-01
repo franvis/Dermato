@@ -7,19 +7,19 @@ package ClasesBase;
  *
  * @author Fran
  */
-public class PrePaidHealthInsurance {
-    public static final String NO_PRE_PAID_HEALTH_INSURANCE_NAME = 
+public class MedicalCoverage {
+    public static final String NO_MEDICAL_COBERTURE_NAME = 
             "Sin Obra Social";
     
     private int id;
     private String name;
 
-    public PrePaidHealthInsurance(int id, String name) {
+    public MedicalCoverage(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public PrePaidHealthInsurance() {
+    public MedicalCoverage() {
     }
 
     public int getId() {
@@ -47,8 +47,8 @@ public class PrePaidHealthInsurance {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        PrePaidHealthInsurance otherPrepaidHealthInsurance = (PrePaidHealthInsurance) obj;
-        if (this.id != otherPrepaidHealthInsurance.id) {
+        MedicalCoverage otherMedicalCoberture = (MedicalCoverage) obj;
+        if (this.id != otherMedicalCoberture.id) {
             return false;
         }
         return true;

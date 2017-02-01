@@ -29,9 +29,10 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import mvp.presenter.PrincipalPresenter;
+import mvp.view.PatientUpdatedListener;
 import mvp.view.PrincipalView;
 
-public class Principal extends javax.swing.JFrame implements PrincipalView {
+public class Principal extends javax.swing.JFrame implements PrincipalView, PatientUpdatedListener {
 
     //STATIC VARS
     public static final String PATIENTS_TABLE_LASTNAME_COLUMN_TITLE = "Apellido";
@@ -707,6 +708,10 @@ public class Principal extends javax.swing.JFrame implements PrincipalView {
 
     private void btnNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPatientActionPerformed
         ABMPatientJFrame patientFrame = new ABMPatientJFrame(this, PRINCIPAL_NEW);
+        clearTable(dtmPatients);
+        txtfDni.setText("");
+        txtfLastname.setText("");
+        txtfName.setText("");
         patientFrame.setVisible(true);
     }//GEN-LAST:event_btnNewPatientActionPerformed
 
@@ -780,8 +785,8 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
     }
 
     @Override
-    public void modifyPatientData(Patient patient) {
-        ABMPatientJFrame pacienteInterfaz = new ABMPatientJFrame(this, PRINCIPAL_MODIFY, patient);
+    public void modifyPatientData(int patientId) {
+        PatientABM pacienteInterfaz = new PatientABM(this, this, patientId);
         pacienteInterfaz.setVisible(true);
     }
 
@@ -790,5 +795,10 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
         buttonHighlight(btnSeeCH, state);
         buttonHighlight(btnNewPatient, state);
         buttonHighlight(btnPerformBackup, state);
+    }
+
+    @Override
+    public void patientUpdated(int patientId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

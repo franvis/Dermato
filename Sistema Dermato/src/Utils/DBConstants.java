@@ -52,11 +52,11 @@ public class DBConstants {
     public static final String PATIENT_INSERT = "null,?,?,?,?,?,?,"
             + "str_to_date(?, '%d/%c/%Y'),?,?,str_to_date(?, '%d/%c/%Y'),?";
     
-    public static final String PATIENT_INSERT_WITHOUT_P_P_HEALTH_INSURANCE = 
+    public static final String PATIENT_INSERT_WITHOUT_MEDICAL_COVERAGE = 
             "null,?,?,?,?,?,?,"
             + "str_to_date(?, '%d/%c/%Y'),null,'',str_to_date(?, '%d/%c/%Y')";
     
-    public static final String PRE_PAID_HEALTH_INSURANCE_INSERT = "null,?";
+    public static final String MEDICAL_COVERAGE_INSERT = "null,?";
     
     public static final String VISIT_INSERT = "null,str_to_date(?, '%d/%c/%Y'),?,?,?,?,?,?,?,?";
     
@@ -107,7 +107,7 @@ public class DBConstants {
     public static final String DELETE = "DELETE FROM "+ DB_NAME +".%s WHERE %s";
     
     //TABLES
-    public enum Tables { Patient, Antecedents, PrepaidHealthInsurance, Visit };
+    public enum Tables { Patient, Antecedents, MedicalCoverage, Visit };
     
     // TABLE COLUMNS
     public enum VisitDBColumns{ idVisit, date, reason, treatment, 
@@ -116,9 +116,9 @@ public class DBConstants {
     public enum AntecedentsDBColumns{ personal, surgical, toxic, pharmacological
     , family, patient }
     
-    public enum PrePaidHealthInsuranceDBColumns{ idPrepaidHealthInsurance, name }
+    public enum MedicalCoverageDBColumns{ idMedicalCoverage, name }
     
     public enum PatientDBColumns{ idPatient, dni, name, lastname, phone, address,
-    city, birthday, prepaidHealthInsurance, prePaidHealthInsuranceNumber, 
+    city, birthday, medicalCoverage, medicalCoverageNumber, 
     firstVisitDate }
 }

@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author fran
  */
-public interface PrincipalView {
+public interface PrincipalView extends GeneralView{
     
     /**
      * Method used to fill the patients table
@@ -29,9 +29,5 @@ public interface PrincipalView {
     
     public void showPatientClinicalHistory(Patient patient);
     
-    public void showErrorMessage(String error);
-    
-    public void showInfoMessage(String info);
-    
-    public void modifyPatientData(Patient patient);
+    public void modifyPatientData(int patientId);
 }

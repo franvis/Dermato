@@ -102,8 +102,8 @@ public class ClinicalHistoryJFrame extends javax.swing.JFrame {
         this.lblFirstVisitDate.setText(patient.getFirstVisitDate());
         this.lblAddress.setText(patient.getAddress());
 
-        this.lblPPHealthInsurance.setText(patient.getPrepaidHealthInsurance().getName());
-        this.lblInsuranceNumber.setText(patient.getPrepaidHealthInsuranceNumber());
+        this.lblPPHealthInsurance.setText(patient.getMedicalCoverage().getName());
+        this.lblInsuranceNumber.setText(patient.getMedicalCoverageNumber());
     }
 
     /**
