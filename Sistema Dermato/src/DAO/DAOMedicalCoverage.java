@@ -21,6 +21,7 @@ import java.util.HashMap;
 import static Utils.DBConstants.MedicalCoverageDBColumns.idMedicalCoverage;
 import java.util.ArrayList;
 import java.util.List;
+import static java.lang.Enum.name;
 
 /**
  *

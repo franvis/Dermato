@@ -11,7 +11,7 @@ package GUI;
 
 import Utils.ValidationsAndMessages;
 import ClasesBase.MedicalCoverage;
-import DAO.DAOMedicalCoberture;
+import DAO.DAOMedicalCoverage;
 import static Utils.GeneralUtils.clearTable;
 import java.awt.Frame;
 import java.awt.Image;
@@ -25,11 +25,12 @@ import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 import static Utils.GeneralUtils.setButtonFontForPointerEvent;
 import java.util.HashMap;
+import java.util.List;
 
 public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
 
-    private final DAOMedicalCoberture daoPrePaidHealthInsurance;
-    private HashMap<Integer, MedicalCoverage> prePaidHealthInsurances;
+    private final DAOMedicalCoverage daoPrePaidHealthInsurance;
+    private List<MedicalCoverage> prePaidHealthInsurances;
     private DefaultTableModel dtmPrePaidHealthInsurances;
     private boolean isUpdating;
 
@@ -40,8 +41,8 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
      */
     public ABMPrePaidHealthInsurances(Frame parent) {
         initComponents();
-        daoPrePaidHealthInsurance = new DAOMedicalCoberture();
-        prePaidHealthInsurances = daoPrePaidHealthInsurance.getAllPrePaidHealthInsurances();
+        daoPrePaidHealthInsurance = new DAOMedicalCoverage();
+        prePaidHealthInsurances = daoPrePaidHealthInsurance.getAllMedicalCoverages();
         fillPrePaidHealthInsurances(prePaidHealthInsurances);
         this.setLocationRelativeTo(parent);
         isUpdating = false;

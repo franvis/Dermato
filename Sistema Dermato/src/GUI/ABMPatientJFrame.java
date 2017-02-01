@@ -5,7 +5,7 @@ import ClasesBase.MedicalCoverage;
 import ClasesBase.Patient;
 import Utils.StyleManager;
 import Utils.ValidationsAndMessages;
-import DAO.DAOMedicalCoberture;
+import DAO.DAOMedicalCoverage;
 import DAO.DAOPatient;
 import static GUI.ABMPatientJFrame.Origin.CLINICAL_HISTORY;
 import static GUI.ABMPatientJFrame.Origin.PRINCIPAL_MODIFY;
@@ -40,7 +40,7 @@ public class ABMPatientJFrame extends javax.swing.JFrame {
 
     //DATA
     private final DAOPatient daoPatient;
-    private final DAOMedicalCoberture daoPrePaidHealthInsurance;
+    private final DAOMedicalCoverage daoPrePaidHealthInsurance;
 
     //MODELS
     private Patient patient;
@@ -62,7 +62,7 @@ public class ABMPatientJFrame extends javax.swing.JFrame {
     public ABMPatientJFrame(java.awt.Frame parent, Origin origin) {
         this.origin = origin;
         daoPatient = new DAOPatient();
-        daoPrePaidHealthInsurance = new DAOMedicalCoberture();
+        daoPrePaidHealthInsurance = new DAOMedicalCoverage();
         prePaidHealthInsurances = new HashMap<>();
         principalFrame = (PrincipalJFrame) parent;
 
@@ -83,7 +83,7 @@ public class ABMPatientJFrame extends javax.swing.JFrame {
     public ABMPatientJFrame(java.awt.Frame parent, Origin origin, Patient patient) {
         this.origin = origin;
         daoPatient = new DAOPatient();
-        daoPrePaidHealthInsurance = new DAOMedicalCoberture();
+        daoPrePaidHealthInsurance = new DAOMedicalCoverage();
         prePaidHealthInsurances = new HashMap<>();
         this.patient = patient;
         dniBeforeModification = patient.getDni();
