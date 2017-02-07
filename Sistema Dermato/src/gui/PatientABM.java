@@ -1,13 +1,12 @@
 package gui;
 
-import GUI.*;
 import ClasesBase.Antecedents;
 import ClasesBase.DniType;
 import ClasesBase.MedicalCoverage;
 import ClasesBase.Patient;
+import static Utils.GeneralUtils.handleFocus;
 import Utils.StyleManager;
 import Utils.ValidationsAndMessages;
-import static Utils.GeneralUtils.handleFocus;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
@@ -377,7 +376,7 @@ public class PatientABM extends JDialog implements PatientABMView {
         });
 
         txtfPhone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtfPhone.setNextFocusableComponent(txtfDni);
+        txtfPhone.setNextFocusableComponent(cmbDniType);
         txtfPhone.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtfPhoneKeyTyped(evt);
@@ -399,7 +398,7 @@ public class PatientABM extends JDialog implements PatientABMView {
 
         cmbMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cmbMedicalCoverage.setFocusCycleRoot(true);
-        cmbMedicalCoverage.setNextFocusableComponent(btnNewMedicalCoverage);
+        cmbMedicalCoverage.setNextFocusableComponent(txtfMedicalCoverageNumber.isEnabled() ? txtfMedicalCoverageNumber : ftxtfFirstVisitDate);
         cmbMedicalCoverage.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbMedicalCoverageItemStateChanged(evt);
@@ -523,20 +522,10 @@ public class PatientABM extends JDialog implements PatientABMView {
 
         txtfDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtfDni.setNextFocusableComponent(txtfAddress);
-        txtfDni.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtfDniKeyTyped(evt);
-            }
-        });
 
         cmbDniType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cmbDniType.setFocusCycleRoot(true);
-        cmbDniType.setNextFocusableComponent(btnNewMedicalCoverage);
-        cmbDniType.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbDniTypeItemStateChanged(evt);
-            }
-        });
+        cmbDniType.setNextFocusableComponent(txtfDni);
 
         javax.swing.GroupLayout pnlDatosPersonalesLayout = new javax.swing.GroupLayout(pnlDatosPersonales);
         pnlDatosPersonales.setLayout(pnlDatosPersonalesLayout);
@@ -815,7 +804,7 @@ public class PatientABM extends JDialog implements PatientABMView {
             .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        pnlFamily.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Familiares", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlFamily.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Familiares", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaFamily.setColumns(20);
         txtaFamily.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -823,7 +812,7 @@ public class PatientABM extends JDialog implements PatientABMView {
         txtaFamily.setRows(5);
         txtaFamily.setTabSize(0);
         txtaFamily.setWrapStyleWord(true);
-        txtaFamily.setNextFocusableComponent(btnSave);
+        txtaFamily.setNextFocusableComponent(txtfNames);
         txtaFamily.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtaFamilyKeyPressed(evt);
@@ -842,7 +831,7 @@ public class PatientABM extends JDialog implements PatientABMView {
             .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        pnlPharmacological.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Medicamentosos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlPharmacological.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Medicamentosos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaPharmacological.setColumns(20);
         txtaPharmacological.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -1068,14 +1057,6 @@ private void cmbMedicalCoverageItemStateChanged(java.awt.event.ItemEvent evt) {/
     private void txtaPharmacologicalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaPharmacologicalKeyPressed
         handleFocus(evt);
     }//GEN-LAST:event_txtaPharmacologicalKeyPressed
-
-    private void txtfDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfDniKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtfDniKeyTyped
-
-    private void cmbDniTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbDniTypeItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbDniTypeItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;

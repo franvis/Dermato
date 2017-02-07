@@ -29,7 +29,7 @@ import gui.PatientABM;
 import gui.Principal;
 import mvp.view.listener.PatientUpdatedListener;
 
-public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdatedListener{
+public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdatedListener {
 
     //STATIC VARS
     private static final String TABLE_COLUMN_DATE = "Fecha";
@@ -56,7 +56,7 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
 
     public ClinicalHistory(java.awt.Frame parent, Patient patient) {
         super(parent, true);
-        
+
         patientDao = new DAOPatient();
         visitDao = new DAOVisit();
         antecedentsDao = new DAOAntecedents();
@@ -92,17 +92,37 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
      */
     public void fillFields() {
         this.lblNombrePaciente.setText(String.format(FULLNAME, patient.getLastname(), patient.getName()));
-
-        this.lblBirthday.setText(String.format(BIRTHDAY_WITH_AGE, patient.getBirthday(), calculateAge(patient.getBirthday())));
         this.lblDni.setText(patient.getDniType().getName() + " - " + patient.getDni() + "");
-        this.lblCity.setText(patient.getCity());
 
-        this.lblPhone.setText(patient.getPhone());
-        this.lblFirstVisitDate.setText(patient.getFirstVisitDate());
-        this.lblAddress.setText(patient.getAddress());
-
-        this.lblPPHealthInsurance.setText(patient.getMedicalCoverage().getName());
-        this.lblInsuranceNumber.setText(patient.getMedicalCoverageNumber());
+        if (patient.getBirthday() != null && !patient.getBirthday().isEmpty()) {
+            this.lblBirthday.setText(String.format(BIRTHDAY_WITH_AGE, patient.getBirthday(), calculateAge(patient.getBirthday())));
+        }
+        if (patient.getCity() == null || patient.getCity().isEmpty()) {
+            this.lblCity.setText("-");
+        } else {
+            this.lblCity.setText(patient.getCity());
+        }
+        if (patient.getPhone() == null || patient.getPhone().isEmpty()) {
+            this.lblPhone.setText("-");
+        } else {
+            this.lblPhone.setText(patient.getPhone());
+        }
+        if (patient.getFirstVisitDate()== null || patient.getFirstVisitDate().isEmpty()) {
+            this.lblFirstVisitDate.setText("-");
+        } else {
+            this.lblFirstVisitDate.setText(patient.getFirstVisitDate());
+        }
+        if (patient.getAddress() == null || patient.getAddress().isEmpty()) {
+            this.lblAddress.setText("-");
+        } else {
+            this.lblAddress.setText(patient.getAddress());
+        }
+        this.lblMedicalCoverage.setText(patient.getMedicalCoverage().getName());
+        if (patient.getMedicalCoverageNumber() == null || patient.getMedicalCoverageNumber().isEmpty()) {
+            this.lblMedicalCoverageNumber.setText("-");
+        } else {
+            this.lblMedicalCoverageNumber.setText(patient.getMedicalCoverageNumber());
+        }
     }
 
     /**
@@ -233,8 +253,8 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
         lblstaticBirthday = new javax.swing.JLabel();
         lblDni = new javax.swing.JLabel();
         lblBirthday = new javax.swing.JLabel();
-        lblInsuranceNumber = new javax.swing.JLabel();
-        lblPPHealthInsurance = new javax.swing.JLabel();
+        lblMedicalCoverageNumber = new javax.swing.JLabel();
+        lblMedicalCoverage = new javax.swing.JLabel();
         lblstaticFirstVisitDate = new javax.swing.JLabel();
         btnModifyPatient = new javax.swing.JButton();
         lblPhone = new javax.swing.JLabel();
@@ -341,11 +361,11 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
         lblBirthday.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblBirthday.setText("21/03/1991");
 
-        lblInsuranceNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblInsuranceNumber.setText("3-4534543-2");
+        lblMedicalCoverageNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblMedicalCoverageNumber.setText("3-4534543-2");
 
-        lblPPHealthInsurance.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblPPHealthInsurance.setText("OSPAC");
+        lblMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblMedicalCoverage.setText("OSPAC");
 
         lblstaticFirstVisitDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblstaticFirstVisitDate.setText("Fecha Primera Consulta:");
@@ -480,8 +500,8 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
                                             .addComponent(lblstaticPPHealthInsurance))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblInsuranceNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                                            .addComponent(lblPPHealthInsurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(lblMedicalCoverageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                                            .addComponent(lblMedicalCoverage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addGroup(pnlPatientDataLayout.createSequentialGroup()
                                         .addComponent(lblAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -505,7 +525,7 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPatientDataLayout.createSequentialGroup()
                         .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblPPHealthInsurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblMedicalCoverage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblstaticPPHealthInsurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblstaticPhone)
@@ -519,7 +539,7 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
                         .addComponent(lblstaticFirstVisitDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblFirstVisitDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblInsuranceNumber)
+                        .addComponent(lblMedicalCoverageNumber)
                         .addComponent(lblstaticInsuranceNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -676,7 +696,7 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
             patient.setAntecendents(antecedentsDao.getAntecedent(patient));
             antecedentsModified = true;
         }
-        PatientABM pacienteInterfaz = new PatientABM((java.awt.Frame)getParent(), this, patient);
+        PatientABM pacienteInterfaz = new PatientABM((java.awt.Frame) getParent(), this, patient);
         pacienteInterfaz.setVisible(true);
     }//GEN-LAST:event_btnModifyPatientActionPerformed
 
@@ -714,9 +734,9 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
     private javax.swing.JLabel lblCity;
     private javax.swing.JLabel lblDni;
     private javax.swing.JLabel lblFirstVisitDate;
-    private javax.swing.JLabel lblInsuranceNumber;
+    private javax.swing.JLabel lblMedicalCoverage;
+    private javax.swing.JLabel lblMedicalCoverageNumber;
     private javax.swing.JLabel lblNombrePaciente;
-    private javax.swing.JLabel lblPPHealthInsurance;
     private javax.swing.JLabel lblPhone;
     private javax.swing.JLabel lblstaticAddress;
     private javax.swing.JLabel lblstaticBirthday;

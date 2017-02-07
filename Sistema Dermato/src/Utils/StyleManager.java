@@ -1,12 +1,7 @@
 package Utils;
 
-import GUI.ChooseColor;
-import GUI.ClinicalHistoryJFrame;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Container;
-import javax.swing.*;
-import javax.swing.border.TitledBorder;
 
 /**
  * Class that handle styles along the application

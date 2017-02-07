@@ -237,7 +237,7 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="txtfDni"/>
+              <ComponentRef name="cmbDniType"/>
             </Property>
           </Properties>
           <Events>
@@ -345,8 +345,8 @@
                   <StringArray count="0"/>
                 </Property>
                 <Property name="focusCycleRoot" type="boolean" value="true"/>
-                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="btnNewMedicalCoverage"/>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="txtfMedicalCoverageNumber.isEnabled() ? txtfMedicalCoverageNumber : ftxtfFirstVisitDate" type="code"/>
                 </Property>
               </Properties>
               <Events>
@@ -495,9 +495,6 @@
               <ComponentRef name="txtfAddress"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtfDniKeyTyped"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbDniType">
           <Properties>
@@ -509,12 +506,9 @@
             </Property>
             <Property name="focusCycleRoot" type="boolean" value="true"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="btnNewMedicalCoverage"/>
+              <ComponentRef name="txtfDni"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cmbDniTypeItemStateChanged"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -938,7 +932,7 @@
                       <Color PropertyName="color" blue="99" green="99" red="99" type="rgb"/>
                     </LineBorder>
                   </Border>
-                  <Font PropertyName="font" name="Tahoma" size="14" style="0"/>
+                  <Font PropertyName="font" name="Tahoma" size="13" style="0"/>
                   <Color PropertyName="color" blue="66" green="33" red="0" type="rgb"/>
                 </TitledBorder>
               </Border>
@@ -976,7 +970,7 @@
                     <Property name="tabSize" type="int" value="0"/>
                     <Property name="wrapStyleWord" type="boolean" value="true"/>
                     <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                      <ComponentRef name="btnSave"/>
+                      <ComponentRef name="txtfNames"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -997,7 +991,7 @@
                       <Color PropertyName="color" blue="99" green="99" red="99" type="rgb"/>
                     </LineBorder>
                   </Border>
-                  <Font PropertyName="font" name="Tahoma" size="14" style="0"/>
+                  <Font PropertyName="font" name="Tahoma" size="13" style="0"/>
                   <Color PropertyName="color" blue="66" green="33" red="0" type="rgb"/>
                 </TitledBorder>
               </Border>

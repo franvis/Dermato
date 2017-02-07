@@ -203,8 +203,8 @@
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="lblInsuranceNumber" pref="118" max="32767" attributes="0"/>
-                                              <Component id="lblPPHealthInsurance" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="lblMedicalCoverageNumber" pref="118" max="32767" attributes="0"/>
+                                              <Component id="lblMedicalCoverage" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" attributes="0">
@@ -241,7 +241,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="lblPPHealthInsurance" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="lblMedicalCoverage" alignment="3" max="32767" attributes="0"/>
                                   <Component id="lblstaticPPHealthInsurance" alignment="3" max="32767" attributes="0"/>
                               </Group>
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
@@ -261,7 +261,7 @@
                           <Component id="lblFirstVisitDate" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblInsuranceNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMedicalCoverageNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblstaticInsuranceNumber" alignment="3" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -340,7 +340,7 @@
             <Property name="text" type="java.lang.String" value="21/03/1991"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblInsuranceNumber">
+        <Component class="javax.swing.JLabel" name="lblMedicalCoverageNumber">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -348,7 +348,7 @@
             <Property name="text" type="java.lang.String" value="3-4534543-2"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblPPHealthInsurance">
+        <Component class="javax.swing.JLabel" name="lblMedicalCoverage">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>

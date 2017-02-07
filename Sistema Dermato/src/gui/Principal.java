@@ -230,6 +230,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
 
         txtfLastname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtfLastname.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtfLastname.setNextFocusableComponent(txtfName);
         txtfLastname.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtfLastnameKeyReleased(evt);
@@ -243,6 +244,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
         lblstaticDni.setText("Nro. Doc.:");
 
         txtfDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfDni.setNextFocusableComponent(txtfLastname);
         txtfDni.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtfDniKeyReleased(evt);
@@ -250,6 +252,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
         });
 
         txtfName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfName.setNextFocusableComponent(cmbDniType);
         txtfName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtfNameKeyReleased(evt);
@@ -264,6 +267,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
 
         cmbDniType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cmbDniType.setFocusCycleRoot(true);
+        cmbDniType.setNextFocusableComponent(txtfDni);
         cmbDniType.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbDniTypeItemStateChanged(evt);

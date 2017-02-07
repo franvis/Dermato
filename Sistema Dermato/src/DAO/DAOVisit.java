@@ -5,6 +5,8 @@ package DAO;
 
 import ClasesBase.Patient;
 import ClasesBase.Visit;
+import static DAO.DAOAntecedents.PATIENT_DNI;
+import static DAO.DAOAntecedents.PATIENT_DNI_TYPE;
 import Utils.DBConstants;
 import static Utils.DBConstants.MAX_WITH_ALIAS;
 import static Utils.DBConstants.SIMPLE_WHERE_CONDITION;
@@ -23,7 +25,7 @@ import java.util.logging.Logger;
  */
 public class DAOVisit extends DAOBasics{
 
-    private static final String VISIT_INSERT = "null,str_to_date(?, '%d/%c/%Y'),?,?,?,?,?,?,?,?";
+    private static final String VISIT_INSERT = "null,str_to_date(?, '%d/%c/%Y'),?,?,?,?,?,?,?,?,?";
     
     // TABLE COLUMNS
     public static final String VISIT_ID = "idVisit";
@@ -35,7 +37,8 @@ public class DAOVisit extends DAOBasics{
     public static final String DIAGNOSIS = "diagnosis";
     public static final String PHYSICAL_EXAM = "physicalExamen";
     public static final String BIOPSY = "biopsy";
-    public static final String PATIENT = "patient";
+    public static final String PATIENT_DNI = "patientDni";
+    public static final String PATIENT_DNI_TYPE = "patientDniType";
     
     private Visit visit;
 
@@ -47,11 +50,11 @@ public class DAOVisit extends DAOBasics{
      * Method used to register a new visit
      *
      * @param visit
-     * @param dni
+     * @param patient
      *
      * @return true if registered, false otherwise
      */
-    public boolean registerVisit(Visit visit, long dni) {
+    public boolean registerVisit(Visit visit, Patient patient) {
         boolean result = false;
         try {
             connection = daoConnection.openDBConnection();
@@ -66,7 +69,8 @@ public class DAOVisit extends DAOBasics{
             preparedStatement.setString(6, visit.getDiagnosis());
             preparedStatement.setString(7, visit.getPhysicalExam());
             preparedStatement.setString(8, visit.getBiopsy());
-            preparedStatement.setLong(9, dni);
+            preparedStatement.setString(9, patient.getDni());
+            preparedStatement.setInt(9, patient.getDniType().getId());
             preparedStatement.executeUpdate();
 
             connection.commit();
@@ -89,13 +93,13 @@ public class DAOVisit extends DAOBasics{
     /**
      * Method used to retrieve the last consult id for a certain patient
      *
-     * @param dni patient's dni
+     * @param patient
      *
      * @return id last visit id
      */
-    public long getLastVisitId(long dni) {
+    public long getLastVisitId(Patient patient) {
         connection = daoConnection.openDBConnection();
-        return getLastVisitId(connection, dni);
+        return getLastVisitId(connection, patient);
     }
 
     /**
@@ -103,14 +107,17 @@ public class DAOVisit extends DAOBasics{
      * certain connection
      *
      * @param connection Connection used to perform the query
-     * @param dni patient's dni
+     * @param patient patient's dni
      *
      * @return id last visit id
      */
-    public long getLastVisitId(Connection connection, long dni) {
+    public long getLastVisitId(Connection connection, Patient patient) {
         columns = String.format(MAX_WITH_ALIAS, VISIT_ID,
                 VISIT_ID);
-        where = String.format(SIMPLE_WHERE_CONDITION, PATIENT);
+        
+        where = DBUtils.getWhereConditions(
+                DBUtils.getSimpleWhereCondition(PATIENT_DNI),
+                DBUtils.getSimpleWhereCondition(PATIENT_DNI_TYPE));
 
         query = DBUtils.getSelectColumnsStatementWithWhere(Tables.Visit,
                 columns, where);
@@ -119,7 +126,8 @@ public class DAOVisit extends DAOBasics{
         try {
             connection = daoConnection.openDBConnection();
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, dni);
+            preparedStatement.setString(1, patient.getDni());
+            preparedStatement.setInt(2, patient.getDniType().getId());
             preparedStatement.executeQuery();
             resultSet = preparedStatement.getResultSet();
             if (resultSet.next()) {
@@ -137,7 +145,7 @@ public class DAOVisit extends DAOBasics{
     /**
      * Method used to retrieve all the patient's visits
      *
-     * @param dni patient
+     * @param patient patient
      * @return List of patient's visits
      */
     public LinkedList<Visit> getAllPatientVisits(Patient patient) {
@@ -145,7 +153,9 @@ public class DAOVisit extends DAOBasics{
 
         columns = DBUtils.getStringWithValuesSeparatedWithCommas(
                 VISIT_ID, DATE, REASON, DIAGNOSIS);
-        where = getSimpleWhereCondition(PATIENT);
+        where = DBUtils.getWhereConditions(
+                DBUtils.getSimpleWhereCondition(PATIENT_DNI),
+                DBUtils.getSimpleWhereCondition(PATIENT_DNI_TYPE));
         orderBy = DBUtils.getStringWithValuesSeparatedWithCommas(
                 DBUtils.getOrderByCondition(DATE, false),
                 DBUtils.getOrderByCondition(VISIT_ID, false));
@@ -155,7 +165,8 @@ public class DAOVisit extends DAOBasics{
         try {
             connection = daoConnection.openDBConnection();
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, dni);
+            preparedStatement.setString(1, patient.getDni());
+            preparedStatement.setInt(2, patient.getDniType().getId());
             preparedStatement.executeQuery();
             resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
@@ -179,13 +190,14 @@ public class DAOVisit extends DAOBasics{
      * Method used to retrieve a patient's full visit
      *
      * @param visitId visit
-     * @param dni patient
+     * @param patient patient
      * @return Full patient's visit
      */
     public Visit getFullVisit(int visitId, Patient patient) {
 
         where = getWhereConditions(
-                getSimpleWhereCondition(PATIENT),
+                DBUtils.getSimpleWhereCondition(PATIENT_DNI),
+                DBUtils.getSimpleWhereCondition(PATIENT_DNI_TYPE),
                 getSimpleWhereCondition(VISIT_ID));
         
         query = DBUtils.getSelectAllStatementWithWhere(Tables.Visit, 
@@ -195,7 +207,8 @@ public class DAOVisit extends DAOBasics{
             connection = daoConnection.openDBConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, patient.getDni());
-            preparedStatement.setInt(2, visitId);
+            preparedStatement.setInt(2, patient.getDniType().getId());
+            preparedStatement.setInt(3, visitId);
             preparedStatement.executeQuery();
             resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {

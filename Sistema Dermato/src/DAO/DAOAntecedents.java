@@ -5,8 +5,6 @@ package DAO;
 
 import ClasesBase.Antecedents;
 import ClasesBase.Patient;
-import static DAO.DAOPatient.DNI;
-import static DAO.DAOPatient.DNI_TYPE;
 import Utils.DBConstants;
 import Utils.DBConstants.Tables;
 import Utils.DBUtils;
@@ -40,6 +38,8 @@ public class DAOAntecedents extends DAOBasics {
      *
      * @param antecedents Antecedents
      * @param dni patient dni
+     * @param dniType patient dni type
+     * 
      * @return true if registered, false otherwise
      */
     public boolean registerAntecedents(Antecedents antecedents, String dni, int dniType) {
@@ -53,7 +53,7 @@ public class DAOAntecedents extends DAOBasics {
             preparedStatement.setString(4, antecedents.getPharmacologicalAntecedents());
             preparedStatement.setString(5, antecedents.getFamilyAntecedents());
             preparedStatement.setString(6, dni);
-            preparedStatement.setLong(7, dniType);
+            preparedStatement.setInt(7, dniType);
             return (preparedStatement.executeUpdate() > 0);
         } catch (SQLException ex) {
             Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
@@ -75,6 +75,8 @@ public class DAOAntecedents extends DAOBasics {
      * @param antecedents Antecedents
      * @param dni patient dni
      * @param connection connection
+     * @param dniType dni type
+     * 
      * @return true if registered, false otherwise
      */
     public boolean registerAntecedents(Antecedents antecedents, String dni, int dniType, Connection connection) {
@@ -119,8 +121,8 @@ public class DAOAntecedents extends DAOBasics {
         antecedents = null;
 
         where = DBUtils.getWhereConditions(
-                DBUtils.getSimpleWhereCondition(DNI),
-                DBUtils.getSimpleWhereCondition(DNI_TYPE));
+                DBUtils.getSimpleWhereCondition(PATIENT_DNI),
+                DBUtils.getSimpleWhereCondition(PATIENT_DNI_TYPE));
         
         query = DBUtils.getSelectAllStatementWithWhere(Tables.Antecedents, where);
 
@@ -166,8 +168,8 @@ public class DAOAntecedents extends DAOBasics {
             columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
                     PERSONAL, SURGICAL, TOXIC, PHARMACOLOGICAL, FAMILY);
             where = DBUtils.getWhereConditions(
-                DBUtils.getSimpleWhereCondition(DNI),
-                DBUtils.getSimpleWhereCondition(DNI_TYPE));
+                DBUtils.getSimpleWhereCondition(PATIENT_DNI),
+                DBUtils.getSimpleWhereCondition(PATIENT_DNI_TYPE));
             
             query = DBUtils.getUpdateStatement(Tables.Antecedents, columns, where);
 

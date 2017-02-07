@@ -8,7 +8,6 @@ import ClasesBase.DniType;
 import ClasesBase.MedicalCoverage;
 import ClasesBase.Patient;
 import Utils.DBConstants;
-import static Utils.DBConstants.LEFT_JOIN;
 import Utils.DBConstants.Tables;
 import Utils.DBUtils;
 import java.sql.*;
@@ -383,13 +382,15 @@ public class DAOPatient extends DAOBasics {
      *
      * @param patient updated patient
      * @param oldPatient old patient
-     * 
+     *
      * @return true if updated correctly, false otherwise
      */
     public boolean updatePatient(Patient patient, Patient oldPatient) {
         try {
             connection = daoConnection.openDBConnection();
             connection.setAutoCommit(false);
+            
+            //UPDATE PATIENT
             columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
                     DNI_TYPE, DNI, NAME, LASTNAME, PHONE,
                     MEDICAL_COVERAGE, MEDICAL_COVERAGE_NUMBER,
@@ -397,8 +398,8 @@ public class DAOPatient extends DAOBasics {
             columns = DBUtils.getStringWithValuesSeparatedWithCommas(columns,
                     String.format(DBConstants.STR_TO_DATE_UPDATE_COLUMN, BIRTHDAY));
             where = DBUtils.getWhereConditions(
-                DBUtils.getSimpleWhereCondition(DNI),
-                DBUtils.getSimpleWhereCondition(DNI_TYPE));
+                    DBUtils.getSimpleWhereCondition(DNI),
+                    DBUtils.getSimpleWhereCondition(DNI_TYPE));
             query = DBUtils.getUpdateStatement(Tables.Patient, columns, where);
             preparedStatement = connection.prepareStatement(query);
             if (patient.getMedicalCoverage().getId() != 0) {
@@ -418,25 +419,28 @@ public class DAOPatient extends DAOBasics {
             preparedStatement.setString(8, patient.getCity());
             preparedStatement.setString(9, patient.getAddress());
             preparedStatement.setString(10, patient.getBirthday());
-            if (preparedStatement.executeUpdate() != 0) {
-                columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
-                    DAOAntecedents.FAMILY, DAOAntecedents.PERSONAL, 
-                        DAOAntecedents.PHARMACOLOGICAL, DAOAntecedents.SURGICAL, DAOAntecedents.TOXIC);
-                where = DBUtils.getWhereConditions(
-                DBUtils.getSimpleWhereCondition(DAOAntecedents.PATIENT_DNI),
-                DBUtils.getSimpleWhereCondition(DAOAntecedents.PATIENT_DNI_TYPE));
-                query = DBUtils.getUpdateStatement(Tables.Antecedents, columns, where);
-                Antecedents antecedents = patient.getAntecendents();
-                preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setString(1, antecedents.getPersonalAntecedents());
-                preparedStatement.setString(2, antecedents.getSurgicalAntecedents());
-                preparedStatement.setString(3, antecedents.getToxicAntecedents());
-                preparedStatement.setString(4, antecedents.getPharmacologicalAntecedents());
-                preparedStatement.setString(5, antecedents.getFamilyAntecedents());
-                preparedStatement.setString(6, patient.getDni());
-                preparedStatement.setInt(7, patient.getDniType().getId());
-                preparedStatement.executeUpdate();
-            }
+            preparedStatement.executeUpdate();
+            
+            //UPDATE ANTECEDENTS
+            columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
+                    DAOAntecedents.PERSONAL, DAOAntecedents.SURGICAL,
+                    DAOAntecedents.TOXIC, DAOAntecedents.PHARMACOLOGICAL, 
+                    DAOAntecedents.FAMILY);
+            where = DBUtils.getWhereConditions(
+                    DBUtils.getSimpleWhereCondition(DAOAntecedents.PATIENT_DNI),
+                    DBUtils.getSimpleWhereCondition(DAOAntecedents.PATIENT_DNI_TYPE));
+            query = DBUtils.getUpdateStatement(Tables.Antecedents, columns, where);
+            Antecedents antecedents = patient.getAntecendents();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, antecedents.getPersonalAntecedents());
+            preparedStatement.setString(2, antecedents.getSurgicalAntecedents());
+            preparedStatement.setString(3, antecedents.getToxicAntecedents());
+            preparedStatement.setString(4, antecedents.getPharmacologicalAntecedents());
+            preparedStatement.setString(5, antecedents.getFamilyAntecedents());
+            preparedStatement.setString(6, patient.getDni());
+            preparedStatement.setInt(7, patient.getDniType().getId());
+            preparedStatement.executeUpdate();
+
             preparedStatement.close();
             connection.commit();
         } catch (Exception ex) {
