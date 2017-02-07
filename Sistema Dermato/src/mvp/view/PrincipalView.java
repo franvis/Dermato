@@ -5,6 +5,7 @@
  */
 package mvp.view;
 
+import ClasesBase.DniType;
 import ClasesBase.Patient;
 import java.util.List;
 
@@ -22,12 +23,28 @@ public interface PrincipalView extends GeneralView{
     public void fillTable(List<Patient> patients);
     
     /**
-     * Method used to set an empty table
-     *
+     * Method used to show patients table as empty.
      */
     public void showEmptyTable();
     
+    /**
+     * Method used to show the clinical history of the selected patient.
+     * 
+     * @param patient selected patient
+     */
     public void showPatientClinicalHistory(Patient patient);
     
-    public void modifyPatientData(int patientId);
+    /**
+     * Method used to modify the personal data of the selected patient.
+     * 
+     * @param patient selected patient
+     */
+    public void modifyPatientData(Patient patient);
+    
+    /**
+     * Method used to fill dni types for the dni patient filter
+     *
+     * @param dniTypes all the dni types
+     */
+    public void displayDniTypes(List<DniType> dniTypes);
 }

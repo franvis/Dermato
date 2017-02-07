@@ -6,22 +6,15 @@ package DAO;
 import ClasesBase.MedicalCoverage;
 import static ClasesBase.MedicalCoverage.NO_MEDICAL_COBERTURE_NAME;
 import Utils.DBConstants;
-import static Utils.DBConstants.PatientDBColumns.medicalCoverageNumber;
-import Utils.DBConstants.MedicalCoverageDBColumns;
-import static Utils.DBConstants.MedicalCoverageDBColumns.name;
 import Utils.DBConstants.Tables;
 import Utils.DBUtils;
 import java.sql.*;
-import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static Utils.DBUtils.getSimpleWhereCondition;
 import static Utils.DBUtils.getWhereConditions;
-import java.util.HashMap;
-import static Utils.DBConstants.MedicalCoverageDBColumns.idMedicalCoverage;
 import java.util.ArrayList;
 import java.util.List;
-import static java.lang.Enum.name;
 
 /**
  *
@@ -29,6 +22,10 @@ import static java.lang.Enum.name;
  */
 public class DAOMedicalCoverage extends DAOBasics{
 
+    public static final String MEDICAL_COVERAGE_INSERT = "null,?";
+    public static final String MEDICAL_COVERAGE_ID = "idMedicalCoverage";
+    public static final String MEDICAL_COVERAGE_NAME = "medicalCoverageName";
+    
     private MedicalCoverage medicalCoverage;
     private ArrayList<MedicalCoverage> medicalCoverages;
 
@@ -46,7 +43,7 @@ public class DAOMedicalCoverage extends DAOBasics{
         medicalCoverages.add(new MedicalCoverage(0, NO_MEDICAL_COBERTURE_NAME));
         connection = daoConnection.openDBConnection();
         query = DBUtils.getSelectAllStatementWithOrder(Tables.MedicalCoverage,
-                DBUtils.getOrderByCondition(name.name(), true));
+                DBUtils.getOrderByCondition(MEDICAL_COVERAGE_NAME, true));
         try {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.executeQuery(query);
@@ -54,9 +51,9 @@ public class DAOMedicalCoverage extends DAOBasics{
             while(resultSet.next())
             {
                 medicalCoverage = new MedicalCoverage();
-                int id = resultSet.getInt(idMedicalCoverage.name());
+                int id = resultSet.getInt(MEDICAL_COVERAGE_ID);
                 medicalCoverage.setId(id);
-                medicalCoverage.setName(resultSet.getString(name.name()));
+                medicalCoverage.setName(resultSet.getString(MEDICAL_COVERAGE_NAME));
                 medicalCoverages.add(medicalCoverage);
             }
             preparedStatement.close();
@@ -77,7 +74,7 @@ public class DAOMedicalCoverage extends DAOBasics{
     public boolean registerMedicalCoverage(MedicalCoverage medicalCoverage) {
         try {
             connection = daoConnection.openDBConnection();
-            query = DBUtils.getInsertStatementWithValuesOnly(Tables.MedicalCoverage);
+            query = getInsertStatement();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, medicalCoverage.getName());
             return (preparedStatement.executeUpdate() > 0);
@@ -98,10 +95,9 @@ public class DAOMedicalCoverage extends DAOBasics{
         try {
             connection = daoConnection.openDBConnection();
             
-            columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
-                    name.name());
+            columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate();
             
-            where = DBUtils.getSimpleWhereCondition(idMedicalCoverage.name());
+            where = DBUtils.getSimpleWhereCondition(MEDICAL_COVERAGE_ID);
             
             query = DBUtils.getUpdateStatement(Tables.MedicalCoverage, columns, where);
             
@@ -128,7 +124,7 @@ public class DAOMedicalCoverage extends DAOBasics{
         try {
             connection = daoConnection.openDBConnection();
             
-            where = getWhereConditions(getSimpleWhereCondition(idMedicalCoverage.name()));
+            where = getWhereConditions(getSimpleWhereCondition(MEDICAL_COVERAGE_ID));
             
             query = DBUtils.getDeleteStatement(Tables.MedicalCoverage, where);
             
@@ -161,7 +157,7 @@ public class DAOMedicalCoverage extends DAOBasics{
     * @return Pre paid health insurance
     */
     public MedicalCoverage getPPHealthInsurance(int idMedicalCoverage) {
-        where = getWhereConditions(getSimpleWhereCondition(MedicalCoverageDBColumns.idMedicalCoverage.name()));
+        where = getWhereConditions(getSimpleWhereCondition(MEDICAL_COVERAGE_ID));
         
         query = DBUtils.getSelectAllStatementWithWhere(Tables.MedicalCoverage, 
                  where);
@@ -174,9 +170,8 @@ public class DAOMedicalCoverage extends DAOBasics{
             while(resultSet.next())
             {
                 medicalCoverage = new MedicalCoverage();
-                medicalCoverage.setId(resultSet.getInt(DBConstants.
-                        MedicalCoverageDBColumns.idMedicalCoverage.name()));
-                medicalCoverage.setName(resultSet.getString(name.name()));
+                medicalCoverage.setId(resultSet.getInt(MEDICAL_COVERAGE_ID));
+                medicalCoverage.setName(resultSet.getString(MEDICAL_COVERAGE_NAME));
             }
             preparedStatement.close();
         }
@@ -187,5 +182,11 @@ public class DAOMedicalCoverage extends DAOBasics{
             daoConnection.closeDBConnection(connection);
         }
         return medicalCoverage;
+    }
+    
+    @Override
+    String getInsertStatement() {
+        return String.format(DBConstants.INSERT_WITH_VALUES_ONLY,
+                        DBConstants.Tables.MedicalCoverage.name(), MEDICAL_COVERAGE_INSERT);
     }
 }

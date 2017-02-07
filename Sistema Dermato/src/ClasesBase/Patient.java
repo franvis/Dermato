@@ -13,16 +13,16 @@ public class Patient {
 
     private static final String FULLNAME = "%s, %s";
     
-    private int id;
     private String name;
     private String lastname;
     private String phone;
-    private long dni;
+    private DniType dniType;
+    private String dni;
     private String address;
     private String city;
     private String birthday;
-    private MedicalCoverage prepaidHealthInsurance;
-    private String prepaidHealthInsuranceNumber;
+    private MedicalCoverage medicalCoverage;
+    private String medicalCoverageNumber;
     private String firstVisitDate;
     private Antecedents antecendents;
     private String lastVisitDate;
@@ -31,47 +31,41 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(int id, String name, String lastname, String phone, long dni,
+    public Patient(int id, String name, String lastname, String phone, DniType dniType, String dni,
             String address, String city, String birthday, 
             MedicalCoverage prepaidHealthInsurance, String prepaidHealthInsuranceNumber, Antecedents antecendent,
             String firstVisitDate) {
         this.name = name;
         this.lastname = lastname;
         this.phone = phone;
+        this.dniType = dniType;
         this.dni = dni;
         this.address = address;
         this.city = city;
         this.birthday = birthday;
-        this.prepaidHealthInsurance = prepaidHealthInsurance;
-        this.prepaidHealthInsuranceNumber = prepaidHealthInsuranceNumber;
+        this.medicalCoverage = prepaidHealthInsurance;
+        this.medicalCoverageNumber = prepaidHealthInsuranceNumber;
         this.antecendents = antecendent;
         this.firstVisitDate = firstVisitDate;
     }
 
-    public Patient(int id, String name, String lastname, String phone, long dni,
+    public Patient(int id, String name, String lastname, String phone, DniType dniType, String dni,
             String address, String city, String birthday,
             MedicalCoverage prepaidHealthInsurance, String prepaidHealthInsuranceNumber, Antecedents antecendent, 
             String firstVisitDate, LinkedList<Visit> visits) {
         this.name = name;
         this.lastname = lastname;
         this.phone = phone;
+        this.dniType = dniType;
         this.dni = dni;
         this.address = address;
         this.city = city;
         this.birthday = birthday;
-        this.prepaidHealthInsurance = prepaidHealthInsurance;
-        this.prepaidHealthInsuranceNumber = prepaidHealthInsuranceNumber;
+        this.medicalCoverage = prepaidHealthInsurance;
+        this.medicalCoverageNumber = prepaidHealthInsuranceNumber;
         this.antecendents = antecendent;
         this.firstVisitDate = firstVisitDate;
         this.visits = visits;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getLastname() {
@@ -90,11 +84,19 @@ public class Patient {
         this.visits = Visits;
     }
 
-    public long getDni() {
+    public DniType getDniType(){
+        return dniType;
+    }
+    
+    public void setDniType(DniType dniType){
+        this.dniType = dniType;
+    }
+    
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(long dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
@@ -115,19 +117,19 @@ public class Patient {
     }
 
     public String getMedicalCoverageNumber() {
-        return prepaidHealthInsuranceNumber;
+        return medicalCoverageNumber;
     }
 
-    public void setPrepaidHealthInsuranceNumber(String prepaidHealthInsuranceNumber) {
-        this.prepaidHealthInsuranceNumber = prepaidHealthInsuranceNumber;
+    public void setMedicalCoverageNumber(String prepaidHealthInsuranceNumber) {
+        this.medicalCoverageNumber = prepaidHealthInsuranceNumber;
     }
 
     public MedicalCoverage getMedicalCoverage() {
-        return prepaidHealthInsurance;
+        return medicalCoverage;
     }
 
     public void setMedicalCoverage(MedicalCoverage prepaidHealthInsurance) {
-        this.prepaidHealthInsurance = prepaidHealthInsurance;
+        this.medicalCoverage = prepaidHealthInsurance;
     }
 
     public String getPhone() {

@@ -5,6 +5,7 @@
  */
 package mvp.presenter;
 
+import ClasesBase.DniType;
 import ClasesBase.Patient;
 import java.util.List;
 import mvp.model.PrincipalModel;
@@ -17,9 +18,10 @@ import mvp.view.PrincipalView;
 public class PrincipalPresenter {
 
     private PrincipalView view;
-    private PrincipalModel model;
+    private final PrincipalModel model;
 
     private List<Patient> patientsList;
+    private List<DniType> dniTypes;
 
     public PrincipalPresenter(PrincipalView principalView) {
         this.view = principalView;
@@ -37,25 +39,32 @@ public class PrincipalPresenter {
      * @param lastname last name filter
      * @param dni dni filter
      */
-    public void retrievePatientsByFilters(String name, String lastname, String dni) {
+    public void filterPatients(String name, String lastname, String dni, int dniTypeSelected) {
 
         if (view == null) {
             return;
         }
 
-        patientsList = model.getPatientsByFilters(name, lastname, dni);
-        if (patientsList == null || patientsList.isEmpty()) {
-            view.showEmptyTable();
+        if (dniTypes == null || dniTypes.isEmpty()) {
+            view.showErrorMessage("No se pudo recuperar los tipos de dni. Por favor "
+                    + "reinicie el sistema e intente nuevamente."
+                    + "\nSi el error persiste comuniquese con el administrador.");
         } else {
-            view.fillTable(patientsList);
+            DniType dniType = dniTypes.get(dniTypeSelected);
+            patientsList = model.getPatientsByFilters(name, lastname, dni, dniType.getId());
+            if (patientsList == null || patientsList.isEmpty()) {
+                view.showEmptyTable();
+            } else {
+                view.fillTable(patientsList);
+            }
         }
     }
 
     /**
-     * Retrieves full patient to see his Clinical History if patients are 
-     * being showed on patients table.
-     * 
-     * @param selectedPatient 
+     * Retrieves full patient to see his Clinical History if patients are being
+     * showed on patients table.
+     *
+     * @param selectedPatient
      */
     public void seeClinicalHistory(int selectedPatient) {
         if (view == null) {
@@ -69,19 +78,25 @@ public class PrincipalPresenter {
                     + "\nSi el error persiste comuniquese con el administrador.");
         } else {
             Patient patient = patientsList.get(selectedPatient);
-            patient = model.getFullPatient(patient.getId());
-
-            view.showPatientClinicalHistory(patient);
+            patient = model.getFullPatient(patient);
+            
+            if (patient == null) {
+                view.showInfoMessage("No se pudo encontrar el paciente. Por favor "
+                        + "reinicie el sistema e intente nuevamente."
+                        + "\nSi el error persiste comuniquese con el administrador.");
+            } else {
+                view.showPatientClinicalHistory(patient);
+            }
         }
     }
-    
-    public void modifyPatient(int selectedPatient){
+
+    public void modifyPatient(int selectedPatient) {
         if (view == null) {
             view.showErrorMessage("Algo ocurrió mal. Por favor comuniquese con el administrador del sistema.");
             return;
         }
-        
-        if (patientsList == null || patientsList.isEmpty() 
+
+        if (patientsList == null || patientsList.isEmpty()
                 || patientsList.get(selectedPatient) == null) {
             view.showInfoMessage("No se pudo encontrar el paciente. Por favor "
                     + "reinicie el sistema e intente nuevamente."
@@ -89,8 +104,24 @@ public class PrincipalPresenter {
         } else {
             Patient patient = patientsList.get(selectedPatient);
 
-            view.modifyPatientData(patient.getId());
+            view.modifyPatientData(patient);
         }
-        
+
+    }
+
+    public void loadDniTypes() {
+        if (view == null) {
+            return;
+        }
+
+        dniTypes = model.getDniTypes();
+        if (dniTypes.isEmpty() || dniTypes == null) {
+            view.showErrorMessage("No se pudo recuperar los tipos de dni. Por favor "
+                    + "reinicie el sistema e intente nuevamente."
+                    + "\nSi el error persiste comuniquese con el administrador.");
+        } else {
+            view.displayDniTypes(dniTypes);
+        }
+
     }
 }

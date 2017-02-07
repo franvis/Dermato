@@ -1,12 +1,11 @@
 package gui;
 
+import ClasesBase.DniType;
 import GUI.*;
 import Utils.MultiLineCellRenderer;
 import Utils.TextFilter;
 import Utils.StyleManager;
 import ClasesBase.Patient;
-import static GUI.ABMPatientJFrame.Origin.PRINCIPAL_MODIFY;
-import static GUI.ABMPatientJFrame.Origin.PRINCIPAL_NEW;
 import static Utils.Constants.SYSTEM_FONT;
 import static Utils.Constants.SYSTEM_ICON_IMAGE_PATH;
 import static Utils.GeneralUtils.changeTableSize;
@@ -23,13 +22,12 @@ import java.awt.event.KeyEvent;
 import static java.awt.event.KeyEvent.VK_DOWN;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import mvp.presenter.PrincipalPresenter;
-import mvp.view.PatientUpdatedListener;
+import mvp.view.listener.PatientUpdatedListener;
 import mvp.view.PrincipalView;
 
 public class Principal extends javax.swing.JFrame implements PrincipalView, PatientUpdatedListener {
@@ -45,15 +43,15 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
     private ABMPrePaidHealthInsurances abmPrePaidHealthInsurances;
 
     //PRESENTER
-    private final PrincipalPresenter principalPresenter;
+    private final PrincipalPresenter presenter;
 
     /**
      * Creates new form Principal
      */
     public Principal() {
+        presenter = new PrincipalPresenter(this);
         initComponents();
         setupInitialUI();
-        principalPresenter = new PrincipalPresenter(this);
     }
 
     private void setupInitialUI() {
@@ -61,7 +59,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
         txtfDni.setEditable(true);
         txtfLastname.setDocument(new TextFilter(TextFilter.LETTERS));
         txtfName.setDocument(new TextFilter(TextFilter.LETTERS));
-        txtfDni.setDocument(new TextFilter(TextFilter.DIGITS));
+        txtfDni.setDocument(new TextFilter(TextFilter.DIGITS_AND_LETTERS));
 
         //Buttons
         changeSideBarButtonsHighlight(false);
@@ -84,7 +82,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
                 Point p = me.getPoint();
                 int row = table.rowAtPoint(p);
                 if (me.getClickCount() == 2 && row != -1) {
-                    Principal.this.principalPresenter.seeClinicalHistory(
+                    Principal.this.presenter.seeClinicalHistory(
                             tblPatients.getSelectedRow());
                 }
             }
@@ -94,6 +92,9 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
         setLocationRelativeTo(getRootPane());
         StyleManager.paint(this);
         setExtendedState(Principal.MAXIMIZED_BOTH);
+        
+        //Presenter calls
+        presenter.loadDniTypes();
     }
 
     @Override
@@ -187,6 +188,8 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
         txtfDni = new javax.swing.JTextField();
         txtfName = new javax.swing.JTextField();
         lblstaticNombre = new javax.swing.JLabel();
+        lblstaticDniType = new javax.swing.JLabel();
+        cmbDniType = new javax.swing.JComboBox();
         pnlBotones = new javax.swing.JPanel();
         btnNewPatient = new javax.swing.JButton();
         btnSeeCH = new javax.swing.JButton();
@@ -256,6 +259,17 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
         lblstaticNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblstaticNombre.setText("Nombre:");
 
+        lblstaticDniType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblstaticDniType.setText("Tipo Doc:");
+
+        cmbDniType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cmbDniType.setFocusCycleRoot(true);
+        cmbDniType.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbDniTypeItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlBuscarLayout = new javax.swing.GroupLayout(pnlBuscar);
         pnlBuscar.setLayout(pnlBuscarLayout);
         pnlBuscarLayout.setHorizontalGroup(
@@ -265,30 +279,32 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
                 .addComponent(lblstaticApellido)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtfLastname)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblstaticNombre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtfName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblstaticDniType)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmbDniType, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(lblstaticDni)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtfDni)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtfDni, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         pnlBuscarLayout.setVerticalGroup(
             pnlBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBuscarLayout.createSequentialGroup()
-                .addGroup(pnlBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtfLastname)
-                        .addComponent(txtfName)
-                        .addComponent(txtfDni))
-                    .addGroup(pnlBuscarLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(pnlBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblstaticApellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblstaticNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblstaticDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(pnlBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtfLastname)
+                    .addComponent(txtfName)
+                    .addComponent(txtfDni)
+                    .addComponent(lblstaticNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblstaticDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblstaticDniType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmbDniType)
+                    .addComponent(lblstaticApellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -468,7 +484,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
             pnlTablaPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTablaPacientesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPaneTablaPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
+                .addComponent(scrollPaneTablaPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlTablaPacientesLayout.setVerticalGroup(
@@ -566,8 +582,8 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
                 .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlTablaPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlTablaPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -591,7 +607,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
     }//GEN-LAST:event_menuSalirActionPerformed
 
     private void menuNuevoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevoPacienteActionPerformed
-        ABMPatientJFrame patientFrame = new ABMPatientJFrame(this, PRINCIPAL_NEW);
+        PatientABM patientFrame = new PatientABM(this);
         patientFrame.setVisible(true);
     }//GEN-LAST:event_menuNuevoPacienteActionPerformed
 
@@ -622,7 +638,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
         name = txtfName.getText();
         dni = txtfDni.getText();
 
-        principalPresenter.retrievePatientsByFilters(name, lastname, dni);
+        presenter.filterPatients(name, lastname, dni, cmbDniType.getSelectedIndex());
     }//GEN-LAST:event_txtfLastnameKeyReleased
 
     private void txtfNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfNameKeyReleased
@@ -640,7 +656,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
         lastname = txtfLastname.getText();
         dni = txtfDni.getText();
 
-        principalPresenter.retrievePatientsByFilters(name, lastname, dni);
+        presenter.filterPatients(name, lastname, dni, cmbDniType.getSelectedIndex());
     }//GEN-LAST:event_txtfNameKeyReleased
 
     private void txtfDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfDniKeyReleased
@@ -658,7 +674,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
         name = txtfName.getText();
         lastname = txtfLastname.getText();
 
-        principalPresenter.retrievePatientsByFilters(name, lastname, dni);
+        presenter.filterPatients(name, lastname, dni, cmbDniType.getSelectedIndex());
     }//GEN-LAST:event_txtfDniKeyReleased
 
     private void btnPerformBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerformBackupActionPerformed
@@ -682,7 +698,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
     }//GEN-LAST:event_btnModifyPatientMouseExited
 
     private void btnModifyPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyPatientActionPerformed
-        principalPresenter.modifyPatient(tblPatients.getSelectedRow());
+        presenter.modifyPatient(tblPatients.getSelectedRow());
     }//GEN-LAST:event_btnModifyPatientActionPerformed
 
     private void btnSeeCHMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeeCHMouseEntered
@@ -694,7 +710,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
     }//GEN-LAST:event_btnSeeCHMouseExited
 
     private void btnSeeCHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeCHActionPerformed
-        Principal.this.principalPresenter.seeClinicalHistory(
+        presenter.seeClinicalHistory(
                 tblPatients.getSelectedRow());
     }//GEN-LAST:event_btnSeeCHActionPerformed
 
@@ -707,12 +723,12 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
     }//GEN-LAST:event_btnNewPatientMouseExited
 
     private void btnNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPatientActionPerformed
-        ABMPatientJFrame patientFrame = new ABMPatientJFrame(this, PRINCIPAL_NEW);
+        PatientABM patientABM = new PatientABM(this);
         clearTable(dtmPatients);
         txtfDni.setText("");
         txtfLastname.setText("");
         txtfName.setText("");
-        patientFrame.setVisible(true);
+        patientABM.setVisible(true);
     }//GEN-LAST:event_btnNewPatientActionPerformed
 
 private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCambiarColorActionPerformed
@@ -723,15 +739,22 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
         validateExit(this);
     }//GEN-LAST:event_formWindowClosing
 
+    private void cmbDniTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbDniTypeItemStateChanged
+        presenter.filterPatients(txtfName.getText(), txtfLastname.getText(),
+                txtfDni.getText(), cmbDniType.getSelectedIndex());
+    }//GEN-LAST:event_cmbDniTypeItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnModifyPatient;
     private javax.swing.JButton btnNewPatient;
     private javax.swing.JButton btnPerformBackup;
     private javax.swing.JButton btnSeeCH;
+    private javax.swing.JComboBox cmbDniType;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblstaticApellido;
     private javax.swing.JLabel lblstaticDni;
+    private javax.swing.JLabel lblstaticDniType;
     private javax.swing.JLabel lblstaticNombre;
     private javax.swing.JMenuItem menuAcercaDe;
     private javax.swing.JMenu menuArchivo;
@@ -770,7 +793,7 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
 
     @Override
     public void showPatientClinicalHistory(Patient patient) {
-        ClinicalHistoryJFrame clinicalHistory = new ClinicalHistoryJFrame(this, patient);
+        ClinicalHistory clinicalHistory = new ClinicalHistory(this, patient);
         clinicalHistory.setVisible(true);
     }
 
@@ -785,8 +808,8 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
     }
 
     @Override
-    public void modifyPatientData(int patientId) {
-        PatientABM pacienteInterfaz = new PatientABM(this, this, patientId);
+    public void modifyPatientData(Patient patient) {
+        PatientABM pacienteInterfaz = new PatientABM(this, this, patient);
         pacienteInterfaz.setVisible(true);
     }
 
@@ -798,7 +821,18 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
     }
 
     @Override
-    public void patientUpdated(int patientId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void patientUpdated(Patient patient) {
+        presenter.filterPatients(txtfName.getText(), txtfLastname.getText(),
+                txtfDni.getText(), cmbDniType.getSelectedIndex());
+    }
+
+    @Override
+    public void displayDniTypes(java.util.List<DniType> dniTypes) {
+        cmbDniType.removeAllItems();
+        dniTypes.stream().forEach((dniType) -> {
+            cmbDniType.addItem(dniType.getName());
+        });
+
+        cmbDniType.setSelectedIndex(0);
     }
 }

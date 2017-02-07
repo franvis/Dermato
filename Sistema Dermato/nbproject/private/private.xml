@@ -5,6 +5,9 @@
         <group>
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/DAO/DAOMedicalCoverage.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/presenter/PrincipalPresenter.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/gui/ClinicalHistory.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/model/PrincipalModel.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/Utils/GeneralUtils.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/Utils/StyleManager.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/gui/PatientABM.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/gui/Principal.java</file>
@@ -12,13 +15,12 @@
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/presenter/PatientABMPresenter.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/model/PatientABMModel.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/DAO/DAOPatient.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/ClasesBase/MedicalCoverage.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/view/PrincipalView.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/Utils/DBUtils.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/DAO/DAOAntecedents.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/view/GeneralView.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/view/PatientUpdatedListener.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/view/listener/PatientUpdatedListener.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/Utils/DBConstants.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/GUI/ABMPatientJFrame.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/GUI/ClinicalHistoryJFrame.java</file>
         </group>
     </open-files>
 </project-private>

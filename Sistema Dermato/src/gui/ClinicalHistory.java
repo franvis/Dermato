@@ -1,5 +1,6 @@
-package GUI;
+package gui;
 
+import GUI.*;
 import ClasesBase.Visit;
 import Utils.StyleManager;
 import Utils.MultiLineCellRenderer;
@@ -28,7 +29,7 @@ import gui.PatientABM;
 import gui.Principal;
 import mvp.view.listener.PatientUpdatedListener;
 
-public class ClinicalHistoryJFrame extends javax.swing.JFrame implements PatientUpdatedListener{
+public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdatedListener{
 
     //STATIC VARS
     private static final String TABLE_COLUMN_DATE = "Fecha";
@@ -53,7 +54,9 @@ public class ClinicalHistoryJFrame extends javax.swing.JFrame implements Patient
     //OTHER VARS
     private boolean antecedentsModified;
 
-    public ClinicalHistoryJFrame(Component parent, Patient patient) {
+    public ClinicalHistory(java.awt.Frame parent, Patient patient) {
+        super(parent, true);
+        
         patientDao = new DAOPatient();
         visitDao = new DAOVisit();
         antecedentsDao = new DAOAntecedents();
@@ -64,12 +67,6 @@ public class ClinicalHistoryJFrame extends javax.swing.JFrame implements Patient
 
         initComponents();
         setupInitialUI();
-    }
-
-    @Override
-    public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(SYSTEM_ICON_IMAGE_PATH));
-        return retValue;
     }
 
     @Override
@@ -97,7 +94,7 @@ public class ClinicalHistoryJFrame extends javax.swing.JFrame implements Patient
         this.lblNombrePaciente.setText(String.format(FULLNAME, patient.getLastname(), patient.getName()));
 
         this.lblBirthday.setText(String.format(BIRTHDAY_WITH_AGE, patient.getBirthday(), calculateAge(patient.getBirthday())));
-        this.lblDni.setText(patient.getDni() + "");
+        this.lblDni.setText(patient.getDniType().getName() + " - " + patient.getDni() + "");
         this.lblCity.setText(patient.getCity());
 
         this.lblPhone.setText(patient.getPhone());
@@ -113,54 +110,54 @@ public class ClinicalHistoryJFrame extends javax.swing.JFrame implements Patient
      *
      * @param dni patient's dni
      */
-    public void fillTable() {
-        Object[] o;
-        visitsDtm = (DefaultTableModel) this.tblVisits.getModel();
-        clearTable(visitsDtm);
-        visits = new LinkedList<>();
-        visits = visitDao.getAllPatientVisits(dni);
-
-        if (visits.isEmpty()) {
-            changeTableSize(visitsDtm, 8);
-        } else {
-            changeTableSize(visitsDtm, 0);
-        }
-
-        for (int i = 0; i < visits.size(); i++) {
-            o = new Object[3];
-            o[0] = visits.get(i).getDate();
-            o[1] = visits.get(i).getReason();
-            o[2] = visits.get(i).getDiagnosis();
-            visitsDtm.addRow(o);
-        }
-        tblVisits.changeSelection(0, 0, false, false);
-
-        tblVisits.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent me) {
-                JTable table = (JTable) me.getSource();
-                Point p = me.getPoint();
-                int row = table.rowAtPoint(p);
-                if (me.getClickCount() == 2 && row != -1
-                        && ClinicalHistoryJFrame.this.visits.size() > 0
-                        && ClinicalHistoryJFrame.this.visits.get(row) != null) {
-                    for (JFrame aux : openWindows) {
-                        if (aux instanceof ABMVisit) {
-                            ABMVisit auxCons = (ABMVisit) aux;
-                            if (auxCons.getVisitId() == ClinicalHistoryJFrame.this.visits.get(row).getId()) {
-                                aux.setVisible(true);
-                                return;
-                            }
-                        }
-                    }
-                    Visit visit = visitDao.getFullVisit(ClinicalHistoryJFrame.this.visits.get(row).getId(), patient);
-                    ABMVisit abmVisit = new ABMVisit(ClinicalHistoryJFrame.this, patient, visit);
-                    abmVisit.setVisible(true);
-                    abmVisit.requestFocus();
-                    openWindows.add(abmVisit);
-                }
-            }
-        });
+    public void fillTable(long dni) {
+//        Object[] o;
+//        visitsDtm = (DefaultTableModel) this.tblVisits.getModel();
+//        clearTable(visitsDtm);
+//        visits = new LinkedList<>();
+//        visits = visitDao.getAllPatientVisits(dni);
+//
+//        if (visits.isEmpty()) {
+//            changeTableSize(visitsDtm, 8);
+//        } else {
+//            changeTableSize(visitsDtm, 0);
+//        }
+//
+//        for (int i = 0; i < visits.size(); i++) {
+//            o = new Object[3];
+//            o[0] = visits.get(i).getDate();
+//            o[1] = visits.get(i).getReason();
+//            o[2] = visits.get(i).getDiagnosis();
+//            visitsDtm.addRow(o);
+//        }
+//        tblVisits.changeSelection(0, 0, false, false);
+//
+//        tblVisits.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mousePressed(MouseEvent me) {
+//                JTable table = (JTable) me.getSource();
+//                Point p = me.getPoint();
+//                int row = table.rowAtPoint(p);
+//                if (me.getClickCount() == 2 && row != -1
+//                        && ClinicalHistory.this.visits.size() > 0
+//                        && ClinicalHistory.this.visits.get(row) != null) {
+//                    for (JFrame aux : openWindows) {
+//                        if (aux instanceof ABMVisit) {
+//                            ABMVisit auxCons = (ABMVisit) aux;
+//                            if (auxCons.getVisitId() == ClinicalHistory.this.visits.get(row).getId()) {
+//                                aux.setVisible(true);
+//                                return;
+//                            }
+//                        }
+//                    }
+//                    Visit visit = visitDao.getFullVisit(ClinicalHistory.this.visits.get(row).getId(), patient.getDni());
+////                    ABMVisit abmVisit = new ABMVisit(ClinicalHistory.this, patient, visit);
+////                    abmVisit.setVisible(true);
+////                    abmVisit.requestFocus();
+////                    openWindows.add(abmVisit);
+//                }
+//            }
+//        });
     }
 
     /**
@@ -211,11 +208,10 @@ public class ClinicalHistoryJFrame extends javax.swing.JFrame implements Patient
         tblVisits.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 14));
         tblVisits.setDefaultRenderer(String.class, new MultiLineCellRenderer());
         tblVisits.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        fillTable();
+//        fillTable(patient);
         pnlNameLastname.setBackground(StyleManager.getSecondaryColor(StyleManager.actualColor));
         StyleManager.paint(this);
         setLocationRelativeTo(principalParent);
-        setExtendedState(principalParent.getExtendedState());
     }
 
     /**
@@ -258,7 +254,7 @@ public class ClinicalHistoryJFrame extends javax.swing.JFrame implements Patient
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Historia Clínica");
-        setIconImage(getIconImage());
+        setIconImage(null);
         setMinimumSize(new java.awt.Dimension(850, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -638,10 +634,10 @@ public class ClinicalHistoryJFrame extends javax.swing.JFrame implements Patient
                 return;
             }
         }
-        ABMVisit abmVisit = new ABMVisit(this, patient);
-        openWindows.add(abmVisit);
-        abmVisit.setVisible(true);
-        abmVisit.requestFocus();
+//        ABMVisit abmVisit = new ABMVisit(this, patient);
+//        openWindows.add(abmVisit);
+//        abmVisit.setVisible(true);
+//        abmVisit.requestFocus();
     }//GEN-LAST:event_btnNewVisitActionPerformed
 
     private void btnAntecedentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAntecedentsActionPerformed
@@ -649,7 +645,7 @@ public class ClinicalHistoryJFrame extends javax.swing.JFrame implements Patient
             patient.setAntecendents(antecedentsDao.getAntecedent(patient));
             antecedentsModified = true;
         }
-        antecedents = new AntecedentsDialog(this, true, patient);
+//        antecedents = new AntecedentsDialog(this, true, patient);
         antecedents.setVisible(true);
     }//GEN-LAST:event_btnAntecedentsActionPerformed
 
@@ -680,7 +676,7 @@ public class ClinicalHistoryJFrame extends javax.swing.JFrame implements Patient
             patient.setAntecendents(antecedentsDao.getAntecedent(patient));
             antecedentsModified = true;
         }
-        PatientABM pacienteInterfaz = new PatientABM(this, this, patient);
+        PatientABM pacienteInterfaz = new PatientABM((java.awt.Frame)getParent(), this, patient);
         pacienteInterfaz.setVisible(true);
     }//GEN-LAST:event_btnModifyPatientActionPerformed
 

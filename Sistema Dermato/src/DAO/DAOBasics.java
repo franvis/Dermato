@@ -26,4 +26,6 @@ public abstract class DAOBasics {
     protected String orderBy;
     protected String groupBy;
     protected Statement statement;
+    
+    abstract String getInsertStatement();
 }

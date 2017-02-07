@@ -4,12 +4,10 @@
 package DAO;
 
 import ClasesBase.Antecedents;
-import static Utils.DBConstants.AntecedentsDBColumns.family;
-import static Utils.DBConstants.AntecedentsDBColumns.patient;
-import static Utils.DBConstants.AntecedentsDBColumns.personal;
-import static Utils.DBConstants.AntecedentsDBColumns.pharmacological;
-import static Utils.DBConstants.AntecedentsDBColumns.surgical;
-import static Utils.DBConstants.AntecedentsDBColumns.toxic;
+import ClasesBase.Patient;
+import static DAO.DAOPatient.DNI;
+import static DAO.DAOPatient.DNI_TYPE;
+import Utils.DBConstants;
 import Utils.DBConstants.Tables;
 import Utils.DBUtils;
 import java.sql.*;
@@ -22,6 +20,15 @@ import java.util.logging.Logger;
  */
 public class DAOAntecedents extends DAOBasics {
 
+    public static final String ANTECEDENTS_INSERT = "null,?,?,?,?,?,?,?";
+    public static final String PERSONAL = "personal";
+    public static final String SURGICAL = "surgical";
+    public static final String TOXIC = "toxic";
+    public static final String PHARMACOLOGICAL = "pharmacological";
+    public static final String FAMILY = "family";
+    public static final String PATIENT_DNI = "patientDni";
+    public static final String PATIENT_DNI_TYPE = "patientDniType";
+    
     private Antecedents antecedents;
 
     public DAOAntecedents() {
@@ -35,18 +42,18 @@ public class DAOAntecedents extends DAOBasics {
      * @param dni patient dni
      * @return true if registered, false otherwise
      */
-    public boolean registerAntecedents(Antecedents antecedents, long dni) {
+    public boolean registerAntecedents(Antecedents antecedents, String dni, int dniType) {
         try {
             connection = daoConnection.openDBConnection();
-            query = DBUtils.getInsertStatementWithValuesOnly(
-                    Tables.Antecedents);
+            query = getInsertStatement();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, antecedents.getPersonalAntecedents());
             preparedStatement.setString(2, antecedents.getSurgicalAntecedents());
             preparedStatement.setString(3, antecedents.getToxicAntecedents());
             preparedStatement.setString(4, antecedents.getPharmacologicalAntecedents());
             preparedStatement.setString(5, antecedents.getFamilyAntecedents());
-            preparedStatement.setLong(6, dni);
+            preparedStatement.setString(6, dni);
+            preparedStatement.setLong(7, dniType);
             return (preparedStatement.executeUpdate() > 0);
         } catch (SQLException ex) {
             Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
@@ -70,21 +77,22 @@ public class DAOAntecedents extends DAOBasics {
      * @param connection connection
      * @return true if registered, false otherwise
      */
-    public boolean registerAntecedents(Antecedents antecedents, long dni, Connection connection) {
+    public boolean registerAntecedents(Antecedents antecedents, String dni, int dniType, Connection connection) {
         boolean isTransaction = connection != null;
         try {
             if (!isTransaction) {
                 connection = daoConnection.openDBConnection();
             }
-            query = DBUtils.getInsertStatementWithValuesOnly(
-                    Tables.Antecedents);
+            query = getInsertStatement();
+            
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, antecedents.getPersonalAntecedents());
             preparedStatement.setString(2, antecedents.getSurgicalAntecedents());
             preparedStatement.setString(3, antecedents.getToxicAntecedents());
             preparedStatement.setString(4, antecedents.getPharmacologicalAntecedents());
             preparedStatement.setString(5, antecedents.getFamilyAntecedents());
-            preparedStatement.setLong(6, dni);
+            preparedStatement.setString(6, dni);
+            preparedStatement.setInt(7, dniType);
             return (preparedStatement.executeUpdate() > 0);
         } catch (SQLException ex) {
             Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
@@ -104,28 +112,32 @@ public class DAOAntecedents extends DAOBasics {
     /**
      * Method used to retrieve some patient antecedents
      *
-     * @param patientId dni of the patient
+     * @param patient patient
      * @return Antecedent
      */
-    public Antecedents getAntecedent(long patientId) {
+    public Antecedents getAntecedent(Patient patient) {
         antecedents = null;
 
-        String whereCondition = DBUtils.getSimpleWhereCondition(patient.name());
-        query = DBUtils.getSelectAllStatementWithWhere(Tables.Antecedents, whereCondition);
+        where = DBUtils.getWhereConditions(
+                DBUtils.getSimpleWhereCondition(DNI),
+                DBUtils.getSimpleWhereCondition(DNI_TYPE));
+        
+        query = DBUtils.getSelectAllStatementWithWhere(Tables.Antecedents, where);
 
         try {
             connection = daoConnection.openDBConnection();
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, patientId);
+            preparedStatement.setString(1, patient.getDni());
+            preparedStatement.setInt(2, patient.getDniType().getId());
             preparedStatement.executeQuery();
             resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
                 antecedents = new Antecedents();
-                antecedents.setPersonalAntecedents(resultSet.getString(personal.name()));
-                antecedents.setSurgicalAntecedents(resultSet.getString(surgical.name()));
-                antecedents.setToxicAntecedents(resultSet.getString(toxic.name()));
-                antecedents.setFamilyAntecedents(resultSet.getString(family.name()));
-                antecedents.setPharmacologicalAntecedents(resultSet.getString(pharmacological.name()));
+                antecedents.setPersonalAntecedents(resultSet.getString(PERSONAL));
+                antecedents.setSurgicalAntecedents(resultSet.getString(SURGICAL));
+                antecedents.setToxicAntecedents(resultSet.getString(TOXIC));
+                antecedents.setFamilyAntecedents(resultSet.getString(FAMILY));
+                antecedents.setPharmacologicalAntecedents(resultSet.getString(PHARMACOLOGICAL));
             }
             preparedStatement.close();
         } catch (SQLException ex) {
@@ -144,14 +156,19 @@ public class DAOAntecedents extends DAOBasics {
      * @param dni patient's dni
      * @return true if updated correctly, false otherwise
      */
-    public boolean updateAntecedents(Antecedents antecedents, long dni) {
+    public boolean updateAntecedents(Antecedents antecedents, String dni, int dniType) {
+        boolean withConnection = true;
         try {
             if (connection == null || connection.isClosed()) {
                 connection = daoConnection.openDBConnection();
+                withConnection = false;
             }
             columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
-                    personal.name(), surgical.name(), toxic.name(), pharmacological.name(), family.name());
-            where = DBUtils.getSimpleWhereCondition(patient.name());
+                    PERSONAL, SURGICAL, TOXIC, PHARMACOLOGICAL, FAMILY);
+            where = DBUtils.getWhereConditions(
+                DBUtils.getSimpleWhereCondition(DNI),
+                DBUtils.getSimpleWhereCondition(DNI_TYPE));
+            
             query = DBUtils.getUpdateStatement(Tables.Antecedents, columns, where);
 
             preparedStatement = connection.prepareStatement(query);
@@ -160,7 +177,8 @@ public class DAOAntecedents extends DAOBasics {
             preparedStatement.setString(3, antecedents.getToxicAntecedents());
             preparedStatement.setString(4, antecedents.getPharmacologicalAntecedents());
             preparedStatement.setString(5, antecedents.getFamilyAntecedents());
-            preparedStatement.setLong(6, dni);
+            preparedStatement.setString(6, dni);
+            preparedStatement.setInt(7, dniType);
 
             return (preparedStatement.executeUpdate() > 0);
         } catch (SQLException ex) {
@@ -172,12 +190,20 @@ public class DAOAntecedents extends DAOBasics {
             } catch (SQLException ex) {
                 Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
             }
-            daoConnection.closeDBConnection(connection);
+            if (!withConnection) {
+                daoConnection.closeDBConnection(connection);
+            }
         }
     }
 
     public DAOAntecedents withConnection(Connection connection) {
         this.connection = connection;
         return this;
+    }
+    
+    @Override
+    String getInsertStatement() {
+        return String.format(DBConstants.INSERT_WITH_VALUES_ONLY,
+                        DBConstants.Tables.Antecedents.name(), ANTECEDENTS_INSERT);
     }
 }

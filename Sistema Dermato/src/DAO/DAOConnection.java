@@ -80,4 +80,9 @@ public class DAOConnection extends DAOBasics {
         closeDBConnection(c);
         return false;
     }
+
+    @Override
+    String getInsertStatement() {
+        throw new UnsupportedOperationException("Not supported in DAOConnection."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

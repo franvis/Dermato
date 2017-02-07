@@ -5,16 +5,13 @@
  */
 package Utils;
 
+import DAO.DAOPatient;
 import static Utils.DBConstants.COLUMN_WITH_TABLE_PREFIX;
 import static Utils.DBConstants.INNER_JOIN;
 import static Utils.DBConstants.LEFT_JOIN;
 import static Utils.DBConstants.MAX_COLUMN_AS;
-import static Utils.DBConstants.PatientDBColumns.dni;
-import static Utils.DBConstants.PatientDBColumns.name;
 import static Utils.DBConstants.RIGHT_JOIN;
 import Utils.DBConstants.Tables;
-import static Utils.DBConstants.PatientDBColumns.lastname;
-import static Utils.DBConstants.Tables.Patient;
 
 /**
  *
@@ -23,24 +20,6 @@ import static Utils.DBConstants.Tables.Patient;
 public class DBUtils {
 
     //INSERT STATEMENTS
-    public static String getInsertStatementWithValuesOnly(Tables table) {
-        switch (table) {
-            case Antecedents:
-                return String.format(DBConstants.INSERT_WITH_VALUES_ONLY,
-                        table.name(), DBConstants.ANTECEDENTS_INSERT);
-            case Patient:
-                return String.format(DBConstants.INSERT_WITH_VALUES_ONLY,
-                        table.name(), DBConstants.PATIENT_INSERT);
-            case MedicalCoverage:
-                return String.format(DBConstants.INSERT_WITH_VALUES_ONLY,
-                        table.name(), DBConstants.MEDICAL_COVERAGE_INSERT);
-            case Visit:
-                return String.format(DBConstants.INSERT_WITH_VALUES_ONLY,
-                        table.name(), DBConstants.VISIT_INSERT);
-        }
-        throw new NoClassDefFoundError("Table: " + table.name() + "not supported yet.");
-    }
-
     public static String getInsertStatementWithColumns(Tables table,
             String columns, String values) {
         return String.format(DBConstants.INSERT_WITH_COLUMNS, table.name(), columns,
@@ -152,10 +131,10 @@ public class DBUtils {
         return String.format(DBConstants.JOIN, firstTable.name(), getJoinType(joinType), secondTable.name(),
                 firstTableColumn, secondTableColumn);
     }
-    
+
     public static String appendTableJoin(int joinType, String currentFrom, Tables tableToJoin,
-            String currentFormColumn, String tableToJoinColumn){
-        return String.format(DBConstants.APPEND_JOIN, currentFrom, getJoinType(joinType), tableToJoin, 
+            String currentFormColumn, String tableToJoinColumn) {
+        return String.format(DBConstants.APPEND_JOIN, currentFrom, getJoinType(joinType), tableToJoin,
                 currentFormColumn, tableToJoinColumn);
     }
 
@@ -178,7 +157,7 @@ public class DBUtils {
     public static String getStringWithValuesSeparatedWithCommasForUpdate(String... values) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < values.length; i++) {
-            if (i == 0 || i == values.length - 1) {
+            if (i == 0 || i == values.length) {
                 builder.append(values[i]).append(" = ?");
             } else {
                 builder.append(", ").append(values[i]).append(" = ?");
@@ -190,7 +169,7 @@ public class DBUtils {
     public static String getWhereConditions(String... values) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < values.length; i++) {
-            if (i == 0 || i == values.length - 1) {
+            if (i == 0 || i == values.length) {
                 builder.append(values[i]);
             } else {
                 builder.append(" AND ").append(values[i]);
@@ -212,51 +191,54 @@ public class DBUtils {
         }
     }
 
-    public static String getWhereForFilters(String filterName, String filterLastName, String filterDni) {
+    public static String getWhereForFilters(String filterName, String filterLastName,
+            String filterDni, int filterDniType) {
         StringBuilder where = new StringBuilder();
         if (!filterDni.isEmpty()) {
-            where.append(getSimpleWhereCondition("CONVERT(" + dni.name() + ", CHAR)"));
+            where.append(getSimpleWhereCondition(DAOPatient.DNI))
+                 .append(" AND ").append(getSimpleWhereCondition(DAOPatient.DNI_TYPE));
         }
 
         if (!filterLastName.isEmpty()) {
             if (!where.toString().isEmpty()) {
                 where.append(" AND ");
             }
-            where.append(getSimpleWhereCondition(lastname.name()));
+            where.append(getSimpleWhereCondition(DAOPatient.LASTNAME));
         }
 
         if (!filterName.isEmpty()) {
             if (!where.toString().isEmpty()) {
                 where.append(" AND ");
             }
-            where.append(getSimpleWhereCondition(name.name()));
+            where.append(getSimpleWhereCondition(DAOPatient.NAME));
         }
 
         return where.toString();
     }
-    
-    public static String getColumnWithTablePrefix(Tables table, String column){
+
+    public static String getColumnWithTablePrefix(Tables table, String column) {
         return String.format(COLUMN_WITH_TABLE_PREFIX, table.name(), column);
     }
 
     public static String getOrderByForFilters(String filterName, String filterLastName, String filterDni) {
         StringBuilder orderBy = new StringBuilder();
         if (!filterDni.isEmpty()) {
-            orderBy.append(getOrderByCondition(dni.name(), true));
+            orderBy.append(getOrderByCondition(DAOPatient.DNI, true)).append(" , ")
+            .append(getOrderByCondition(DAOPatient.DNI_TYPE, true));
         }
 
         if (!filterLastName.isEmpty()) {
             if (!orderBy.toString().isEmpty()) {
                 orderBy.append(" , ");
             }
-            orderBy.append(getOrderByCondition(lastname.name(), true));
+            orderBy.append(getOrderByCondition(DAOPatient.LASTNAME, true));
         }
 
         if (!filterName.isEmpty()) {
             if (!orderBy.toString().isEmpty()) {
                 orderBy.append(" , ");
             }
-            orderBy.append(getOrderByCondition(name.name(), true));
+            orderBy.append(getOrderByCondition(DAOPatient.NAME, true));
         }
         return orderBy.toString();
     }
