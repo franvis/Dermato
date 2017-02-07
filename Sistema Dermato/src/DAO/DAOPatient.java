@@ -377,53 +377,76 @@ public class DAOPatient extends DAOBasics {
 
         return patient;
     }
-//
-//    /**
-//     * Method used to update a patient
-//     *
-//     * @param patient Updated patient
-//     * @return true if updated correctly, false otherwise
-//     */
-//    public boolean updatePatient(Patient patient) {
-//        try {
-//            connection = daoConnection.openDBConnection();
-//            connection.setAutoCommit(false);
-//            columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
-//                    DNI, NAME, LASTNAME, PHONE,
-//                    MEDICAL_COVERAGE, MEDICAL_COVERAGE_NUMBER,
-//                    CITY, ADDRESS);
-//            columns = DBUtils.getStringWithValuesSeparatedWithCommas(columns,
-//                    String.format(DBConstants.STR_TO_DATE_UPDATE_COLUMN, BIRTHDAY));
-//            query = DBUtils.getUpdateStatement(Tables.Patient, columns, DBUtils.getSimpleWhereCondition(idPatient.name()));
-//            preparedStatement = connection.prepareStatement(query);
-//            if (patient.getMedicalCoverage().getId() != 0) {
-//                preparedStatement.setInt(5, patient.getMedicalCoverage().getId());
-//                preparedStatement.setString(6, patient.getMedicalCoverageNumber());
-//            } else {
-//                preparedStatement.setNull(5, Types.INTEGER);
-//                preparedStatement.setNull(6, Types.VARCHAR);
-//            }
-//            preparedStatement.setLong(10, patient.getId());
-//            preparedStatement.setString(1, patient.getDni());
-//            preparedStatement.setString(2, patient.getName());
-//            preparedStatement.setString(3, patient.getLastname());
-//            preparedStatement.setString(4, patient.getPhone());
-//            preparedStatement.setString(7, patient.getCity());
-//            preparedStatement.setString(8, patient.getAddress());
-//            preparedStatement.setString(9, patient.getBirthday());
-//            preparedStatement.executeUpdate();
-//            daoAntecedents.withConnection(connection)
-//                    .updateAntecedents(patient.getAntecendents(), patient.getDni());
-//            preparedStatement.close();
-//            connection.commit();
-//        } catch (Exception ex) {
-//            System.out.println(ex.getMessage());
-//            return false;
-//        } finally {
-//            daoConnection.closeDBConnection(connection);
-//        }
-//        return true;
-//    }
+
+    /**
+     * Method used to update a patient
+     *
+     * @param patient updated patient
+     * @param oldPatient old patient
+     * 
+     * @return true if updated correctly, false otherwise
+     */
+    public boolean updatePatient(Patient patient, Patient oldPatient) {
+        try {
+            connection = daoConnection.openDBConnection();
+            connection.setAutoCommit(false);
+            columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
+                    DNI_TYPE, DNI, NAME, LASTNAME, PHONE,
+                    MEDICAL_COVERAGE, MEDICAL_COVERAGE_NUMBER,
+                    CITY, ADDRESS);
+            columns = DBUtils.getStringWithValuesSeparatedWithCommas(columns,
+                    String.format(DBConstants.STR_TO_DATE_UPDATE_COLUMN, BIRTHDAY));
+            where = DBUtils.getWhereConditions(
+                DBUtils.getSimpleWhereCondition(DNI),
+                DBUtils.getSimpleWhereCondition(DNI_TYPE));
+            query = DBUtils.getUpdateStatement(Tables.Patient, columns, where);
+            preparedStatement = connection.prepareStatement(query);
+            if (patient.getMedicalCoverage().getId() != 0) {
+                preparedStatement.setInt(6, patient.getMedicalCoverage().getId());
+                preparedStatement.setString(7, patient.getMedicalCoverageNumber());
+            } else {
+                preparedStatement.setNull(6, Types.INTEGER);
+                preparedStatement.setNull(7, Types.VARCHAR);
+            }
+            preparedStatement.setString(11, oldPatient.getDni());
+            preparedStatement.setInt(12, oldPatient.getDniType().getId());
+            preparedStatement.setInt(1, patient.getDniType().getId());
+            preparedStatement.setString(2, patient.getDni());
+            preparedStatement.setString(3, patient.getName());
+            preparedStatement.setString(4, patient.getLastname());
+            preparedStatement.setString(5, patient.getPhone());
+            preparedStatement.setString(8, patient.getCity());
+            preparedStatement.setString(9, patient.getAddress());
+            preparedStatement.setString(10, patient.getBirthday());
+            if (preparedStatement.executeUpdate() != 0) {
+                columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
+                    DAOAntecedents.FAMILY, DAOAntecedents.PERSONAL, 
+                        DAOAntecedents.PHARMACOLOGICAL, DAOAntecedents.SURGICAL, DAOAntecedents.TOXIC);
+                where = DBUtils.getWhereConditions(
+                DBUtils.getSimpleWhereCondition(DAOAntecedents.PATIENT_DNI),
+                DBUtils.getSimpleWhereCondition(DAOAntecedents.PATIENT_DNI_TYPE));
+                query = DBUtils.getUpdateStatement(Tables.Antecedents, columns, where);
+                Antecedents antecedents = patient.getAntecendents();
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, antecedents.getPersonalAntecedents());
+                preparedStatement.setString(2, antecedents.getSurgicalAntecedents());
+                preparedStatement.setString(3, antecedents.getToxicAntecedents());
+                preparedStatement.setString(4, antecedents.getPharmacologicalAntecedents());
+                preparedStatement.setString(5, antecedents.getFamilyAntecedents());
+                preparedStatement.setString(6, patient.getDni());
+                preparedStatement.setInt(7, patient.getDniType().getId());
+                preparedStatement.executeUpdate();
+            }
+            preparedStatement.close();
+            connection.commit();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        } finally {
+            daoConnection.closeDBConnection(connection);
+        }
+        return true;
+    }
 //
 //    /**
 //     * Method used to delete a patient
