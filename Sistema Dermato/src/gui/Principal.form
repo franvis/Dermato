@@ -14,7 +14,7 @@
         </Property>
       </Properties>
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="menuArchivo">
+        <Menu class="javax.swing.JMenu" name="menuFile">
           <Properties>
             <Property name="text" type="java.lang.String" value="Archivo"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -22,7 +22,7 @@
             </Property>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuNuevoPaciente">
+            <MenuItem class="javax.swing.JMenuItem" name="menuNewPatient">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+N"/>
@@ -33,10 +33,10 @@
                 <Property name="text" type="java.lang.String" value="Nuevo Paciente"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuNuevoPacienteActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuNewPatientActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuRealizarBackUp">
+            <MenuItem class="javax.swing.JMenuItem" name="menuPerformBackUp">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+B"/>
@@ -47,10 +47,10 @@
                 <Property name="text" type="java.lang.String" value="Realizar Back Up"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuRealizarBackUpActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuPerformBackUpActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuObrasSociales">
+            <MenuItem class="javax.swing.JMenuItem" name="menuMedicalCoverage">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+O"/>
@@ -61,12 +61,10 @@
                 <Property name="text" type="java.lang.String" value="Gestion de Obras Sociales"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuObrasSocialesActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuMedicalCoverageActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuSalir">
+            <MenuItem class="javax.swing.JMenuItem" name="menuExit">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -77,12 +75,12 @@
                 <Property name="text" type="java.lang.String" value="Salir"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuSalirActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuExitActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menuVentana">
+        <Menu class="javax.swing.JMenu" name="menuWindow">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ventana"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -90,7 +88,7 @@
             </Property>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuCambiarColor">
+            <MenuItem class="javax.swing.JMenuItem" name="menuChangeColor">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -98,20 +96,20 @@
                 <Property name="text" type="java.lang.String" value="Cambiar Color"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCambiarColorActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuChangeColorActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menuVer">
+        <Menu class="javax.swing.JMenu" name="menuHelp">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ver"/>
+            <Property name="text" type="java.lang.String" value="Ayuda"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuAcercaDe">
+            <MenuItem class="javax.swing.JMenuItem" name="menuAbout">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -119,7 +117,7 @@
                 <Property name="text" type="java.lang.String" value="Acerca De..."/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuAcercaDeActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuAboutActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -166,11 +164,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="pnlBotones" min="-2" max="-2" attributes="0"/>
+              <Component id="pnlButtons" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="pnlTablaPacientes" max="32767" attributes="0"/>
-                  <Component id="pnlBuscar" max="32767" attributes="0"/>
+                  <Component id="pnlPatientsTable" max="32767" attributes="0"/>
+                  <Component id="pnlSearchPatient" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -181,11 +179,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="pnlBotones" max="32767" attributes="0"/>
+                  <Component id="pnlButtons" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="pnlBuscar" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlSearchPatient" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="pnlTablaPacientes" max="32767" attributes="0"/>
+                      <Component id="pnlPatientsTable" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -194,7 +192,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="pnlBuscar">
+    <Container class="javax.swing.JPanel" name="pnlSearchPatient">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -219,19 +217,19 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="lblstaticApellido" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblsLastName" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="txtfLastname" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblstaticNombre" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblsName" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="txtfName" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblstaticDniType" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblsDniType" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="cmbDniType" min="-2" pref="68" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="lblstaticDni" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblsDni" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="txtfDni" min="-2" pref="183" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -245,11 +243,11 @@
                       <Component id="txtfLastname" alignment="3" max="32767" attributes="0"/>
                       <Component id="txtfName" alignment="3" max="32767" attributes="0"/>
                       <Component id="txtfDni" alignment="3" max="32767" attributes="0"/>
-                      <Component id="lblstaticNombre" alignment="3" max="32767" attributes="0"/>
-                      <Component id="lblstaticDni" alignment="3" max="32767" attributes="0"/>
-                      <Component id="lblstaticDniType" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblsName" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblsDni" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblsDniType" alignment="3" max="32767" attributes="0"/>
                       <Component id="cmbDniType" alignment="3" max="32767" attributes="0"/>
-                      <Component id="lblstaticApellido" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblsLastName" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
@@ -273,7 +271,7 @@
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtfLastnameKeyReleased"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticApellido">
+        <Component class="javax.swing.JLabel" name="lblsLastName">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -281,7 +279,7 @@
             <Property name="text" type="java.lang.String" value="Apellido:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticDni">
+        <Component class="javax.swing.JLabel" name="lblsDni">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -315,7 +313,7 @@
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtfNameKeyReleased"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticNombre">
+        <Component class="javax.swing.JLabel" name="lblsName">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -323,7 +321,7 @@
             <Property name="text" type="java.lang.String" value="Nombre:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticDniType">
+        <Component class="javax.swing.JLabel" name="lblsDniType">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -350,7 +348,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="pnlBotones">
+    <Container class="javax.swing.JPanel" name="pnlButtons">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f5" green="f5" red="f5" type="rgb"/>
@@ -525,7 +523,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="pnlTablaPacientes">
+    <Container class="javax.swing.JPanel" name="pnlPatientsTable">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -544,7 +542,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="scrollPaneTablaPacientes" pref="984" max="32767" attributes="0"/>
+                  <Component id="scrollPanePatientsTable" pref="984" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -553,14 +551,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="scrollPaneTablaPacientes" pref="0" max="32767" attributes="0"/>
+                  <Component id="scrollPanePatientsTable" pref="0" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="scrollPaneTablaPacientes">
+        <Container class="javax.swing.JScrollPane" name="scrollPanePatientsTable">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>

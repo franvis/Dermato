@@ -287,29 +287,29 @@ public class PatientABM extends JDialog implements PatientABMView {
     private void initComponents() {
 
         btngrpSangre = new javax.swing.ButtonGroup();
-        pnlDatosPersonales = new javax.swing.JPanel();
-        lblstaticNames = new javax.swing.JLabel();
-        lblstaticLastNames = new javax.swing.JLabel();
-        lblstaticPhone = new javax.swing.JLabel();
-        lblstaticBirthday = new javax.swing.JLabel();
+        pnlPersonalData = new javax.swing.JPanel();
+        lblsNames = new javax.swing.JLabel();
+        lblsLastNames = new javax.swing.JLabel();
+        lblsPhone = new javax.swing.JLabel();
+        lblsBirthday = new javax.swing.JLabel();
         txtfNames = new javax.swing.JTextField();
         txtfLastNames = new javax.swing.JTextField();
         txtfPhone = new javax.swing.JTextField();
-        lblstaticDniType = new javax.swing.JLabel();
+        lblsDniType = new javax.swing.JLabel();
         ftxtfBirthday = new javax.swing.JFormattedTextField();
-        pnlPPHealthInsurance = new javax.swing.JPanel();
+        pnlMedicalCoverage = new javax.swing.JPanel();
         cmbMedicalCoverage = new javax.swing.JComboBox();
         btnNewMedicalCoverage = new javax.swing.JButton();
-        lblstaticInsuranceNumber = new javax.swing.JLabel();
+        lblsMedicalCoverageNumber = new javax.swing.JLabel();
         txtfMedicalCoverageNumber = new javax.swing.JTextField();
-        btnSavePPHealthInsurance = new javax.swing.JButton();
-        txtfNewPPHealthInsurance = new javax.swing.JTextField();
-        btnCancelPPHealthInsurance = new javax.swing.JButton();
-        lblstaticAddress = new javax.swing.JLabel();
+        btnSaveMedicalCoverage = new javax.swing.JButton();
+        txtfNewMedicalCoverage = new javax.swing.JTextField();
+        btnCancelMedicalCoverage = new javax.swing.JButton();
+        lblsAddress = new javax.swing.JLabel();
         txtfAddress = new javax.swing.JTextField();
-        lblstaticCity = new javax.swing.JLabel();
+        lblsCity = new javax.swing.JLabel();
         txtfCity = new javax.swing.JTextField();
-        lblstaticDni = new javax.swing.JLabel();
+        lblsDni = new javax.swing.JLabel();
         txtfDni = new javax.swing.JTextField();
         cmbDniType = new javax.swing.JComboBox();
         pnlButtons = new javax.swing.JPanel();
@@ -317,23 +317,23 @@ public class PatientABM extends JDialog implements PatientABMView {
         btnSave = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         pnlOtherData = new javax.swing.JPanel();
-        lblstaticFirstVisitDate = new javax.swing.JLabel();
+        lblsFirstVisitDate = new javax.swing.JLabel();
         ftxtfFirstVisitDate = new javax.swing.JFormattedTextField();
         pnlAntecedents = new javax.swing.JPanel();
         pnlPersonal = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        scrollPanePersonal = new javax.swing.JScrollPane();
         txtaPersonal = new javax.swing.JTextArea();
         pnlSurgical = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
+        scrollPaneSurgical = new javax.swing.JScrollPane();
         txtaSurgical = new javax.swing.JTextArea();
         pnlToxics = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
+        scrollPaneToxics = new javax.swing.JScrollPane();
         txtaToxics = new javax.swing.JTextArea();
         pnlFamily = new javax.swing.JPanel();
-        jScrollPane8 = new javax.swing.JScrollPane();
+        scrollPaneFamily = new javax.swing.JScrollPane();
         txtaFamily = new javax.swing.JTextArea();
         pnlPharmacological = new javax.swing.JPanel();
-        jScrollPane9 = new javax.swing.JScrollPane();
+        scrollPanePharmacological = new javax.swing.JScrollPane();
         txtaPharmacological = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -345,19 +345,19 @@ public class PatientABM extends JDialog implements PatientABMView {
             }
         });
 
-        pnlDatosPersonales.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Datos Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlPersonalData.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Datos Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
-        lblstaticNames.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticNames.setText("Nombres:");
+        lblsNames.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsNames.setText("Nombres:");
 
-        lblstaticLastNames.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticLastNames.setText("Apellidos:");
+        lblsLastNames.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsLastNames.setText("Apellidos:");
 
-        lblstaticPhone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticPhone.setText("Teléfono:");
+        lblsPhone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsPhone.setText("Teléfono:");
 
-        lblstaticBirthday.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticBirthday.setText("Fecha de Nacimiento:");
+        lblsBirthday.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsBirthday.setText("Fecha de Nacimiento:");
 
         txtfNames.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtfNames.setNextFocusableComponent(txtfLastNames);
@@ -383,8 +383,8 @@ public class PatientABM extends JDialog implements PatientABMView {
             }
         });
 
-        lblstaticDniType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticDniType.setText("Tipo Doc:");
+        lblsDniType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsDniType.setText("Tipo Doc:");
 
         try {
             ftxtfBirthday.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -393,8 +393,8 @@ public class PatientABM extends JDialog implements PatientABMView {
         }
         ftxtfBirthday.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        pnlPPHealthInsurance.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Obra Social", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
-        pnlPPHealthInsurance.setOpaque(false);
+        pnlMedicalCoverage.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Obra Social", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlMedicalCoverage.setOpaque(false);
 
         cmbMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cmbMedicalCoverage.setFocusCycleRoot(true);
@@ -417,8 +417,8 @@ public class PatientABM extends JDialog implements PatientABMView {
             }
         });
 
-        lblstaticInsuranceNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticInsuranceNumber.setText("Nro. Afiliado:");
+        lblsMedicalCoverageNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsMedicalCoverageNumber.setText("Nro. Afiliado:");
 
         txtfMedicalCoverageNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtfMedicalCoverageNumber.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -430,95 +430,95 @@ public class PatientABM extends JDialog implements PatientABMView {
             }
         });
 
-        btnSavePPHealthInsurance.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnSavePPHealthInsurance.setText("Guardar");
-        btnSavePPHealthInsurance.setEnabled(false);
-        btnSavePPHealthInsurance.setNextFocusableComponent(btnCancelPPHealthInsurance);
-        btnSavePPHealthInsurance.addActionListener(new java.awt.event.ActionListener() {
+        btnSaveMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnSaveMedicalCoverage.setText("Guardar");
+        btnSaveMedicalCoverage.setEnabled(false);
+        btnSaveMedicalCoverage.setNextFocusableComponent(btnCancelMedicalCoverage);
+        btnSaveMedicalCoverage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSavePPHealthInsuranceActionPerformed(evt);
+                btnSaveMedicalCoverageActionPerformed(evt);
             }
         });
 
-        txtfNewPPHealthInsurance.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtfNewPPHealthInsurance.setEnabled(false);
-        txtfNewPPHealthInsurance.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtfNewMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfNewMedicalCoverage.setEnabled(false);
+        txtfNewMedicalCoverage.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtfNewPPHealthInsuranceKeyTyped(evt);
+                txtfNewMedicalCoverageKeyTyped(evt);
             }
         });
 
-        btnCancelPPHealthInsurance.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnCancelPPHealthInsurance.setText("Cancelar");
-        btnCancelPPHealthInsurance.setEnabled(false);
-        btnCancelPPHealthInsurance.setNextFocusableComponent(cmbMedicalCoverage);
-        btnCancelPPHealthInsurance.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnCancelMedicalCoverage.setText("Cancelar");
+        btnCancelMedicalCoverage.setEnabled(false);
+        btnCancelMedicalCoverage.setNextFocusableComponent(cmbMedicalCoverage);
+        btnCancelMedicalCoverage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelPPHealthInsuranceActionPerformed(evt);
+                btnCancelMedicalCoverageActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout pnlPPHealthInsuranceLayout = new javax.swing.GroupLayout(pnlPPHealthInsurance);
-        pnlPPHealthInsurance.setLayout(pnlPPHealthInsuranceLayout);
-        pnlPPHealthInsuranceLayout.setHorizontalGroup(
-            pnlPPHealthInsuranceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPPHealthInsuranceLayout.createSequentialGroup()
-                .addGroup(pnlPPHealthInsuranceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlPPHealthInsuranceLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlMedicalCoverageLayout = new javax.swing.GroupLayout(pnlMedicalCoverage);
+        pnlMedicalCoverage.setLayout(pnlMedicalCoverageLayout);
+        pnlMedicalCoverageLayout.setHorizontalGroup(
+            pnlMedicalCoverageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMedicalCoverageLayout.createSequentialGroup()
+                .addGroup(pnlMedicalCoverageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlMedicalCoverageLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addGroup(pnlPPHealthInsuranceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlPPHealthInsuranceLayout.createSequentialGroup()
-                                .addComponent(lblstaticInsuranceNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlMedicalCoverageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlMedicalCoverageLayout.createSequentialGroup()
+                                .addComponent(lblsMedicalCoverageNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtfMedicalCoverageNumber))
-                            .addGroup(pnlPPHealthInsuranceLayout.createSequentialGroup()
+                            .addGroup(pnlMedicalCoverageLayout.createSequentialGroup()
                                 .addComponent(cmbMedicalCoverage, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnNewMedicalCoverage, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(pnlPPHealthInsuranceLayout.createSequentialGroup()
+                    .addGroup(pnlMedicalCoverageLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(txtfNewPPHealthInsurance))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPPHealthInsuranceLayout.createSequentialGroup()
+                        .addComponent(txtfNewMedicalCoverage))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMedicalCoverageLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCancelPPHealthInsurance, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelMedicalCoverage, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSavePPHealthInsurance, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSaveMedicalCoverage, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        pnlPPHealthInsuranceLayout.setVerticalGroup(
-            pnlPPHealthInsuranceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPPHealthInsuranceLayout.createSequentialGroup()
+        pnlMedicalCoverageLayout.setVerticalGroup(
+            pnlMedicalCoverageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMedicalCoverageLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addGroup(pnlPPHealthInsuranceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlMedicalCoverageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbMedicalCoverage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNewMedicalCoverage))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtfNewPPHealthInsurance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtfNewMedicalCoverage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlPPHealthInsuranceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelPPHealthInsurance)
-                    .addComponent(btnSavePPHealthInsurance))
+                .addGroup(pnlMedicalCoverageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelMedicalCoverage)
+                    .addComponent(btnSaveMedicalCoverage))
                 .addGap(13, 13, 13)
-                .addGroup(pnlPPHealthInsuranceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlMedicalCoverageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtfMedicalCoverageNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblstaticInsuranceNumber))
+                    .addComponent(lblsMedicalCoverageNumber))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        lblstaticAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticAddress.setText("Domicilio:");
+        lblsAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsAddress.setText("Domicilio:");
 
         txtfAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtfAddress.setNextFocusableComponent(txtfCity);
 
-        lblstaticCity.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticCity.setText("Localidad:");
+        lblsCity.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsCity.setText("Localidad:");
 
         txtfCity.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtfCity.setNextFocusableComponent(ftxtfBirthday);
 
-        lblstaticDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticDni.setText("Nro. Doc.:");
+        lblsDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsDni.setText("Nro. Doc.:");
 
         txtfDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtfDni.setNextFocusableComponent(txtfAddress);
@@ -527,34 +527,34 @@ public class PatientABM extends JDialog implements PatientABMView {
         cmbDniType.setFocusCycleRoot(true);
         cmbDniType.setNextFocusableComponent(txtfDni);
 
-        javax.swing.GroupLayout pnlDatosPersonalesLayout = new javax.swing.GroupLayout(pnlDatosPersonales);
-        pnlDatosPersonales.setLayout(pnlDatosPersonalesLayout);
-        pnlDatosPersonalesLayout.setHorizontalGroup(
-            pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlPPHealthInsurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlPersonalDataLayout = new javax.swing.GroupLayout(pnlPersonalData);
+        pnlPersonalData.setLayout(pnlPersonalDataLayout);
+        pnlPersonalDataLayout.setHorizontalGroup(
+            pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlMedicalCoverage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pnlPersonalDataLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
-                        .addComponent(lblstaticBirthday)
+                .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlPersonalDataLayout.createSequentialGroup()
+                        .addComponent(lblsBirthday)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ftxtfBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
-                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblstaticCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblstaticAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblstaticNames, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblstaticPhone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblstaticLastNames, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblstaticDniType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlPersonalDataLayout.createSequentialGroup()
+                        .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblsCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblsAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblsNames, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblsPhone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblsLastNames, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblsDniType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtfLastNames, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtfPhone, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosPersonalesLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPersonalDataLayout.createSequentialGroup()
                                 .addComponent(cmbDniType, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblstaticDni)
+                                .addComponent(lblsDni)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtfDni))
                             .addComponent(txtfAddress)
@@ -562,41 +562,41 @@ public class PatientABM extends JDialog implements PatientABMView {
                             .addComponent(txtfNames))))
                 .addContainerGap())
         );
-        pnlDatosPersonalesLayout.setVerticalGroup(
-            pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDatosPersonalesLayout.createSequentialGroup()
+        pnlPersonalDataLayout.setVerticalGroup(
+            pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPersonalDataLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtfNames)
-                    .addComponent(lblstaticNames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblsNames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtfLastNames)
-                    .addComponent(lblstaticLastNames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblsLastNames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtfPhone)
-                    .addComponent(lblstaticPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblsPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10)
-                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblstaticDniType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblsDniType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtfDni)
-                    .addComponent(lblstaticDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblsDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cmbDniType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
-                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtfAddress)
-                    .addComponent(lblstaticAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblsAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtfCity)
-                    .addComponent(lblstaticCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblsCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ftxtfBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblstaticBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblsBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlPPHealthInsurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlMedicalCoverage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnModify.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -691,8 +691,8 @@ public class PatientABM extends JDialog implements PatientABMView {
 
         pnlOtherData.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Otros Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
-        lblstaticFirstVisitDate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticFirstVisitDate.setText("Fecha de Primera Consulta:");
+        lblsFirstVisitDate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsFirstVisitDate.setText("Fecha de Primera Consulta:");
 
         try {
             ftxtfFirstVisitDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -708,7 +708,7 @@ public class PatientABM extends JDialog implements PatientABMView {
             pnlOtherDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOtherDataLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblstaticFirstVisitDate)
+                .addComponent(lblsFirstVisitDate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ftxtfFirstVisitDate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(105, Short.MAX_VALUE))
@@ -717,7 +717,7 @@ public class PatientABM extends JDialog implements PatientABMView {
             pnlOtherDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOtherDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(ftxtfFirstVisitDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(lblstaticFirstVisitDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblsFirstVisitDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlAntecedents.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Antecedentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 102))); // NOI18N
@@ -737,17 +737,17 @@ public class PatientABM extends JDialog implements PatientABMView {
                 txtaPersonalKeyPressed(evt);
             }
         });
-        jScrollPane3.setViewportView(txtaPersonal);
+        scrollPanePersonal.setViewportView(txtaPersonal);
 
         javax.swing.GroupLayout pnlPersonalLayout = new javax.swing.GroupLayout(pnlPersonal);
         pnlPersonal.setLayout(pnlPersonalLayout);
         pnlPersonalLayout.setHorizontalGroup(
             pnlPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+            .addComponent(scrollPanePersonal, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
         );
         pnlPersonalLayout.setVerticalGroup(
             pnlPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3)
+            .addComponent(scrollPanePersonal)
         );
 
         pnlSurgical.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Quirúrgicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
@@ -764,17 +764,17 @@ public class PatientABM extends JDialog implements PatientABMView {
                 txtaSurgicalKeyPressed(evt);
             }
         });
-        jScrollPane6.setViewportView(txtaSurgical);
+        scrollPaneSurgical.setViewportView(txtaSurgical);
 
         javax.swing.GroupLayout pnlSurgicalLayout = new javax.swing.GroupLayout(pnlSurgical);
         pnlSurgical.setLayout(pnlSurgicalLayout);
         pnlSurgicalLayout.setHorizontalGroup(
             pnlSurgicalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6)
+            .addComponent(scrollPaneSurgical)
         );
         pnlSurgicalLayout.setVerticalGroup(
             pnlSurgicalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6)
+            .addComponent(scrollPaneSurgical)
         );
 
         pnlToxics.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Tóxicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
@@ -791,17 +791,17 @@ public class PatientABM extends JDialog implements PatientABMView {
                 txtaToxicsKeyPressed(evt);
             }
         });
-        jScrollPane7.setViewportView(txtaToxics);
+        scrollPaneToxics.setViewportView(txtaToxics);
 
         javax.swing.GroupLayout pnlToxicsLayout = new javax.swing.GroupLayout(pnlToxics);
         pnlToxics.setLayout(pnlToxicsLayout);
         pnlToxicsLayout.setHorizontalGroup(
             pnlToxicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7)
+            .addComponent(scrollPaneToxics)
         );
         pnlToxicsLayout.setVerticalGroup(
             pnlToxicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(scrollPaneToxics, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pnlFamily.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Familiares", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
@@ -818,17 +818,17 @@ public class PatientABM extends JDialog implements PatientABMView {
                 txtaFamilyKeyPressed(evt);
             }
         });
-        jScrollPane8.setViewportView(txtaFamily);
+        scrollPaneFamily.setViewportView(txtaFamily);
 
         javax.swing.GroupLayout pnlFamilyLayout = new javax.swing.GroupLayout(pnlFamily);
         pnlFamily.setLayout(pnlFamilyLayout);
         pnlFamilyLayout.setHorizontalGroup(
             pnlFamilyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane8)
+            .addComponent(scrollPaneFamily)
         );
         pnlFamilyLayout.setVerticalGroup(
             pnlFamilyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(scrollPaneFamily, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pnlPharmacological.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Medicamentosos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
@@ -845,17 +845,17 @@ public class PatientABM extends JDialog implements PatientABMView {
                 txtaPharmacologicalKeyPressed(evt);
             }
         });
-        jScrollPane9.setViewportView(txtaPharmacological);
+        scrollPanePharmacological.setViewportView(txtaPharmacological);
 
         javax.swing.GroupLayout pnlPharmacologicalLayout = new javax.swing.GroupLayout(pnlPharmacological);
         pnlPharmacological.setLayout(pnlPharmacologicalLayout);
         pnlPharmacologicalLayout.setHorizontalGroup(
             pnlPharmacologicalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane9)
+            .addComponent(scrollPanePharmacological)
         );
         pnlPharmacologicalLayout.setVerticalGroup(
             pnlPharmacologicalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(scrollPanePharmacological, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         javax.swing.GroupLayout pnlAntecedentsLayout = new javax.swing.GroupLayout(pnlAntecedents);
@@ -896,7 +896,7 @@ public class PatientABM extends JDialog implements PatientABMView {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pnlOtherData, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlDatosPersonales, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlPersonalData, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(pnlAntecedents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -907,7 +907,7 @@ public class PatientABM extends JDialog implements PatientABMView {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnlDatosPersonales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlPersonalData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlOtherData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -937,9 +937,9 @@ public class PatientABM extends JDialog implements PatientABMView {
     }//GEN-LAST:event_txtfLastNamesKeyTyped
 
     private void btnNewMedicalCoverageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewMedicalCoverageActionPerformed
-        this.txtfNewPPHealthInsurance.setEnabled(true);
-        this.btnSavePPHealthInsurance.setEnabled(true);
-        this.btnCancelPPHealthInsurance.setEnabled(true);
+        this.txtfNewMedicalCoverage.setEnabled(true);
+        this.btnSaveMedicalCoverage.setEnabled(true);
+        this.btnCancelMedicalCoverage.setEnabled(true);
         this.btnNewMedicalCoverage.setEnabled(false);
         this.cmbMedicalCoverage.setEnabled(false);
     }//GEN-LAST:event_btnNewMedicalCoverageActionPerformed
@@ -949,28 +949,28 @@ public class PatientABM extends JDialog implements PatientABMView {
         ValidationsAndMessages.validateHealthInsuranceNumberCharacter(evt, this);
     }//GEN-LAST:event_txtfMedicalCoverageNumberKeyTyped
 
-    private void btnSavePPHealthInsuranceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavePPHealthInsuranceActionPerformed
-        if (this.txtfNewPPHealthInsurance.getText().isEmpty()) {
+    private void btnSaveMedicalCoverageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveMedicalCoverageActionPerformed
+        if (this.txtfNewMedicalCoverage.getText().isEmpty()) {
             ValidationsAndMessages.showError(this, PRE_PAID_HEALTH_INSURANCE_NAME_EMPTY);
             return;
         }
 
-        String nuevaObra = this.txtfNewPPHealthInsurance.getText();
+        String nuevaObra = this.txtfNewMedicalCoverage.getText();
         presenter.registerMedicalCoverage(new MedicalCoverage(0, nuevaObra));
-    }//GEN-LAST:event_btnSavePPHealthInsuranceActionPerformed
+    }//GEN-LAST:event_btnSaveMedicalCoverageActionPerformed
 
-    private void txtfNewPPHealthInsuranceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfNewPPHealthInsuranceKeyTyped
-        ValidationsAndMessages.validateTextLength(this.txtfNewPPHealthInsurance, evt, 80, this);
-    }//GEN-LAST:event_txtfNewPPHealthInsuranceKeyTyped
+    private void txtfNewMedicalCoverageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfNewMedicalCoverageKeyTyped
+        ValidationsAndMessages.validateTextLength(this.txtfNewMedicalCoverage, evt, 80, this);
+    }//GEN-LAST:event_txtfNewMedicalCoverageKeyTyped
 
-    private void btnCancelPPHealthInsuranceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelPPHealthInsuranceActionPerformed
-        this.txtfNewPPHealthInsurance.setText("");
-        this.txtfNewPPHealthInsurance.setEnabled(false);
-        this.btnSavePPHealthInsurance.setEnabled(false);
-        this.btnCancelPPHealthInsurance.setEnabled(false);
+    private void btnCancelMedicalCoverageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelMedicalCoverageActionPerformed
+        this.txtfNewMedicalCoverage.setText("");
+        this.txtfNewMedicalCoverage.setEnabled(false);
+        this.btnSaveMedicalCoverage.setEnabled(false);
+        this.btnCancelMedicalCoverage.setEnabled(false);
         this.btnNewMedicalCoverage.setEnabled(true);
         this.cmbMedicalCoverage.setEnabled(true);
-    }//GEN-LAST:event_btnCancelPPHealthInsuranceActionPerformed
+    }//GEN-LAST:event_btnCancelMedicalCoverageActionPerformed
 
 private void cmbMedicalCoverageItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbMedicalCoverageItemStateChanged
     if (cmbMedicalCoverage.getSelectedIndex() == 0) {
@@ -1060,41 +1060,41 @@ private void cmbMedicalCoverageItemStateChanged(java.awt.event.ItemEvent evt) {/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnCancelPPHealthInsurance;
+    private javax.swing.JButton btnCancelMedicalCoverage;
     private javax.swing.JButton btnModify;
     private javax.swing.JButton btnNewMedicalCoverage;
     private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnSavePPHealthInsurance;
+    private javax.swing.JButton btnSaveMedicalCoverage;
     private javax.swing.ButtonGroup btngrpSangre;
     private javax.swing.JComboBox cmbDniType;
     private javax.swing.JComboBox cmbMedicalCoverage;
     private javax.swing.JFormattedTextField ftxtfBirthday;
     private javax.swing.JFormattedTextField ftxtfFirstVisitDate;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JLabel lblstaticAddress;
-    private javax.swing.JLabel lblstaticBirthday;
-    private javax.swing.JLabel lblstaticCity;
-    private javax.swing.JLabel lblstaticDni;
-    private javax.swing.JLabel lblstaticDniType;
-    private javax.swing.JLabel lblstaticFirstVisitDate;
-    private javax.swing.JLabel lblstaticInsuranceNumber;
-    private javax.swing.JLabel lblstaticLastNames;
-    private javax.swing.JLabel lblstaticNames;
-    private javax.swing.JLabel lblstaticPhone;
+    private javax.swing.JLabel lblsAddress;
+    private javax.swing.JLabel lblsBirthday;
+    private javax.swing.JLabel lblsCity;
+    private javax.swing.JLabel lblsDni;
+    private javax.swing.JLabel lblsDniType;
+    private javax.swing.JLabel lblsFirstVisitDate;
+    private javax.swing.JLabel lblsLastNames;
+    private javax.swing.JLabel lblsMedicalCoverageNumber;
+    private javax.swing.JLabel lblsNames;
+    private javax.swing.JLabel lblsPhone;
     private javax.swing.JPanel pnlAntecedents;
     private javax.swing.JPanel pnlButtons;
-    private javax.swing.JPanel pnlDatosPersonales;
     private javax.swing.JPanel pnlFamily;
+    private javax.swing.JPanel pnlMedicalCoverage;
     private javax.swing.JPanel pnlOtherData;
-    private javax.swing.JPanel pnlPPHealthInsurance;
     private javax.swing.JPanel pnlPersonal;
+    private javax.swing.JPanel pnlPersonalData;
     private javax.swing.JPanel pnlPharmacological;
     private javax.swing.JPanel pnlSurgical;
     private javax.swing.JPanel pnlToxics;
+    private javax.swing.JScrollPane scrollPaneFamily;
+    private javax.swing.JScrollPane scrollPanePersonal;
+    private javax.swing.JScrollPane scrollPanePharmacological;
+    private javax.swing.JScrollPane scrollPaneSurgical;
+    private javax.swing.JScrollPane scrollPaneToxics;
     private javax.swing.JTextArea txtaFamily;
     private javax.swing.JTextArea txtaPersonal;
     private javax.swing.JTextArea txtaPharmacological;
@@ -1106,7 +1106,7 @@ private void cmbMedicalCoverageItemStateChanged(java.awt.event.ItemEvent evt) {/
     private javax.swing.JTextField txtfLastNames;
     private javax.swing.JTextField txtfMedicalCoverageNumber;
     private javax.swing.JTextField txtfNames;
-    private javax.swing.JTextField txtfNewPPHealthInsurance;
+    private javax.swing.JTextField txtfNewMedicalCoverage;
     private javax.swing.JTextField txtfPhone;
     // End of variables declaration//GEN-END:variables
 
@@ -1121,12 +1121,12 @@ private void cmbMedicalCoverageItemStateChanged(java.awt.event.ItemEvent evt) {/
 
     @Override
     public void finishRegisteringMedicalCoverage(String medicalCoverageName) {
-        this.txtfNewPPHealthInsurance.setEnabled(false);
-        this.btnSavePPHealthInsurance.setEnabled(false);
+        this.txtfNewMedicalCoverage.setEnabled(false);
+        this.btnSaveMedicalCoverage.setEnabled(false);
         this.btnNewMedicalCoverage.setEnabled(true);
         this.cmbMedicalCoverage.setEnabled(true);
         this.cmbMedicalCoverage.setSelectedItem(medicalCoverageName);
-        this.txtfNewPPHealthInsurance.setText("");
+        this.txtfNewMedicalCoverage.setText("");
     }
 
     @Override

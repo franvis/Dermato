@@ -160,7 +160,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
 
     private void scrollInTable(int eventKeyCode, JTextField textField) {
         try {
-            textField.setNextFocusableComponent(scrollPaneTablaPacientes);
+            textField.setNextFocusableComponent(scrollPanePatientsTable);
             textField.transferFocus();
             Robot r = new Robot();
             System.out.println(eventKeyCode);
@@ -181,34 +181,33 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
-        pnlBuscar = new javax.swing.JPanel();
+        pnlSearchPatient = new javax.swing.JPanel();
         txtfLastname = new javax.swing.JTextField();
-        lblstaticApellido = new javax.swing.JLabel();
-        lblstaticDni = new javax.swing.JLabel();
+        lblsLastName = new javax.swing.JLabel();
+        lblsDni = new javax.swing.JLabel();
         txtfDni = new javax.swing.JTextField();
         txtfName = new javax.swing.JTextField();
-        lblstaticNombre = new javax.swing.JLabel();
-        lblstaticDniType = new javax.swing.JLabel();
+        lblsName = new javax.swing.JLabel();
+        lblsDniType = new javax.swing.JLabel();
         cmbDniType = new javax.swing.JComboBox();
-        pnlBotones = new javax.swing.JPanel();
+        pnlButtons = new javax.swing.JPanel();
         btnNewPatient = new javax.swing.JButton();
         btnSeeCH = new javax.swing.JButton();
         btnModifyPatient = new javax.swing.JButton();
         btnPerformBackup = new javax.swing.JButton();
-        pnlTablaPacientes = new javax.swing.JPanel();
-        scrollPaneTablaPacientes = new javax.swing.JScrollPane();
+        pnlPatientsTable = new javax.swing.JPanel();
+        scrollPanePatientsTable = new javax.swing.JScrollPane();
         tblPatients = new javax.swing.JTable();
         menuBar = new javax.swing.JMenuBar();
-        menuArchivo = new javax.swing.JMenu();
-        menuNuevoPaciente = new javax.swing.JMenuItem();
-        menuRealizarBackUp = new javax.swing.JMenuItem();
-        menuObrasSociales = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        menuSalir = new javax.swing.JMenuItem();
-        menuVentana = new javax.swing.JMenu();
-        menuCambiarColor = new javax.swing.JMenuItem();
-        menuVer = new javax.swing.JMenu();
-        menuAcercaDe = new javax.swing.JMenuItem();
+        menuFile = new javax.swing.JMenu();
+        menuNewPatient = new javax.swing.JMenuItem();
+        menuPerformBackUp = new javax.swing.JMenuItem();
+        menuMedicalCoverage = new javax.swing.JMenuItem();
+        menuExit = new javax.swing.JMenuItem();
+        menuWindow = new javax.swing.JMenu();
+        menuChangeColor = new javax.swing.JMenuItem();
+        menuHelp = new javax.swing.JMenu();
+        menuAbout = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -224,9 +223,9 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
             }
         });
 
-        pnlBuscar.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)), "Buscar por", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
-        pnlBuscar.setToolTipText("");
-        pnlBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        pnlSearchPatient.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)), "Buscar por", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        pnlSearchPatient.setToolTipText("");
+        pnlSearchPatient.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         txtfLastname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtfLastname.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -237,11 +236,11 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
             }
         });
 
-        lblstaticApellido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticApellido.setText("Apellido:");
+        lblsLastName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsLastName.setText("Apellido:");
 
-        lblstaticDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticDni.setText("Nro. Doc.:");
+        lblsDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsDni.setText("Nro. Doc.:");
 
         txtfDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtfDni.setNextFocusableComponent(txtfLastname);
@@ -259,11 +258,11 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
             }
         });
 
-        lblstaticNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticNombre.setText("Nombre:");
+        lblsName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsName.setText("Nombre:");
 
-        lblstaticDniType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblstaticDniType.setText("Tipo Doc:");
+        lblsDniType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsDniType.setText("Tipo Doc:");
 
         cmbDniType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cmbDniType.setFocusCycleRoot(true);
@@ -274,48 +273,48 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
             }
         });
 
-        javax.swing.GroupLayout pnlBuscarLayout = new javax.swing.GroupLayout(pnlBuscar);
-        pnlBuscar.setLayout(pnlBuscarLayout);
-        pnlBuscarLayout.setHorizontalGroup(
-            pnlBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBuscarLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlSearchPatientLayout = new javax.swing.GroupLayout(pnlSearchPatient);
+        pnlSearchPatient.setLayout(pnlSearchPatientLayout);
+        pnlSearchPatientLayout.setHorizontalGroup(
+            pnlSearchPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSearchPatientLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblstaticApellido)
+                .addComponent(lblsLastName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtfLastname)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblstaticNombre)
+                .addComponent(lblsName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtfName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblstaticDniType)
+                .addComponent(lblsDniType)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbDniType, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblstaticDni)
+                .addComponent(lblsDni)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtfDni, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        pnlBuscarLayout.setVerticalGroup(
-            pnlBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBuscarLayout.createSequentialGroup()
-                .addGroup(pnlBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        pnlSearchPatientLayout.setVerticalGroup(
+            pnlSearchPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSearchPatientLayout.createSequentialGroup()
+                .addGroup(pnlSearchPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtfLastname)
                     .addComponent(txtfName)
                     .addComponent(txtfDni)
-                    .addComponent(lblstaticNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblstaticDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblstaticDniType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblsName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblsDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblsDniType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cmbDniType)
-                    .addComponent(lblstaticApellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblsLastName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        pnlBotones.setBackground(new java.awt.Color(245, 245, 245));
-        pnlBotones.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        pnlBotones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        pnlBotones.setOpaque(false);
+        pnlButtons.setBackground(new java.awt.Color(245, 245, 245));
+        pnlButtons.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        pnlButtons.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnlButtons.setOpaque(false);
 
         btnNewPatient.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnNewPatient.setForeground(new java.awt.Color(153, 153, 153));
@@ -421,18 +420,18 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
             }
         });
 
-        javax.swing.GroupLayout pnlBotonesLayout = new javax.swing.GroupLayout(pnlBotones);
-        pnlBotones.setLayout(pnlBotonesLayout);
-        pnlBotonesLayout.setHorizontalGroup(
-            pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlButtonsLayout = new javax.swing.GroupLayout(pnlButtons);
+        pnlButtons.setLayout(pnlButtonsLayout);
+        pnlButtonsLayout.setHorizontalGroup(
+            pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnNewPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnSeeCH, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
             .addComponent(btnModifyPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnPerformBackup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        pnlBotonesLayout.setVerticalGroup(
-            pnlBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBotonesLayout.createSequentialGroup()
+        pnlButtonsLayout.setVerticalGroup(
+            pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlButtonsLayout.createSequentialGroup()
                 .addComponent(btnNewPatient, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSeeCH, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
@@ -443,8 +442,8 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
                 .addGap(0, 0, 0))
         );
 
-        pnlTablaPacientes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tabla de Pacientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
-        pnlTablaPacientes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        pnlPatientsTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tabla de Pacientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        pnlPatientsTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         tblPatients.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tblPatients.setModel(new javax.swing.table.DefaultTableModel(
@@ -480,100 +479,99 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
         tblPatients.setMaximumSize(new java.awt.Dimension(788, 443));
         tblPatients.setOpaque(false);
         tblPatients.getTableHeader().setReorderingAllowed(false);
-        scrollPaneTablaPacientes.setViewportView(tblPatients);
+        scrollPanePatientsTable.setViewportView(tblPatients);
 
-        javax.swing.GroupLayout pnlTablaPacientesLayout = new javax.swing.GroupLayout(pnlTablaPacientes);
-        pnlTablaPacientes.setLayout(pnlTablaPacientesLayout);
-        pnlTablaPacientesLayout.setHorizontalGroup(
-            pnlTablaPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTablaPacientesLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlPatientsTableLayout = new javax.swing.GroupLayout(pnlPatientsTable);
+        pnlPatientsTable.setLayout(pnlPatientsTableLayout);
+        pnlPatientsTableLayout.setHorizontalGroup(
+            pnlPatientsTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPatientsTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPaneTablaPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(scrollPanePatientsTable, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        pnlTablaPacientesLayout.setVerticalGroup(
-            pnlTablaPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTablaPacientesLayout.createSequentialGroup()
+        pnlPatientsTableLayout.setVerticalGroup(
+            pnlPatientsTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPatientsTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPaneTablaPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(scrollPanePatientsTable, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         menuBar.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
-        menuArchivo.setText("Archivo");
-        menuArchivo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuFile.setText("Archivo");
+        menuFile.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        menuNuevoPaciente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        menuNuevoPaciente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menuNuevoPaciente.setText("Nuevo Paciente");
-        menuNuevoPaciente.addActionListener(new java.awt.event.ActionListener() {
+        menuNewPatient.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        menuNewPatient.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuNewPatient.setText("Nuevo Paciente");
+        menuNewPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuNuevoPacienteActionPerformed(evt);
+                menuNewPatientActionPerformed(evt);
             }
         });
-        menuArchivo.add(menuNuevoPaciente);
+        menuFile.add(menuNewPatient);
 
-        menuRealizarBackUp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
-        menuRealizarBackUp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menuRealizarBackUp.setText("Realizar Back Up");
-        menuRealizarBackUp.addActionListener(new java.awt.event.ActionListener() {
+        menuPerformBackUp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
+        menuPerformBackUp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuPerformBackUp.setText("Realizar Back Up");
+        menuPerformBackUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuRealizarBackUpActionPerformed(evt);
+                menuPerformBackUpActionPerformed(evt);
             }
         });
-        menuArchivo.add(menuRealizarBackUp);
+        menuFile.add(menuPerformBackUp);
 
-        menuObrasSociales.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        menuObrasSociales.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menuObrasSociales.setText("Gestion de Obras Sociales");
-        menuObrasSociales.addActionListener(new java.awt.event.ActionListener() {
+        menuMedicalCoverage.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        menuMedicalCoverage.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuMedicalCoverage.setText("Gestion de Obras Sociales");
+        menuMedicalCoverage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuObrasSocialesActionPerformed(evt);
+                menuMedicalCoverageActionPerformed(evt);
             }
         });
-        menuArchivo.add(menuObrasSociales);
-        menuArchivo.add(jSeparator1);
+        menuFile.add(menuMedicalCoverage);
 
-        menuSalir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
-        menuSalir.setText("Salir");
-        menuSalir.addActionListener(new java.awt.event.ActionListener() {
+        menuExit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
+        menuExit.setText("Salir");
+        menuExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuSalirActionPerformed(evt);
+                menuExitActionPerformed(evt);
             }
         });
-        menuArchivo.add(menuSalir);
+        menuFile.add(menuExit);
 
-        menuBar.add(menuArchivo);
+        menuBar.add(menuFile);
 
-        menuVentana.setText("Ventana");
-        menuVentana.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuWindow.setText("Ventana");
+        menuWindow.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        menuCambiarColor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menuCambiarColor.setText("Cambiar Color");
-        menuCambiarColor.addActionListener(new java.awt.event.ActionListener() {
+        menuChangeColor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuChangeColor.setText("Cambiar Color");
+        menuChangeColor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuCambiarColorActionPerformed(evt);
+                menuChangeColorActionPerformed(evt);
             }
         });
-        menuVentana.add(menuCambiarColor);
+        menuWindow.add(menuChangeColor);
 
-        menuBar.add(menuVentana);
+        menuBar.add(menuWindow);
 
-        menuVer.setText("Ver");
-        menuVer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuHelp.setText("Ayuda");
+        menuHelp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        menuAcercaDe.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menuAcercaDe.setText("Acerca De...");
-        menuAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+        menuAbout.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuAbout.setText("Acerca De...");
+        menuAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuAcercaDeActionPerformed(evt);
+                menuAboutActionPerformed(evt);
             }
         });
-        menuVer.add(menuAcercaDe);
+        menuHelp.add(menuAbout);
 
-        menuBar.add(menuVer);
+        menuBar.add(menuHelp);
 
         setJMenuBar(menuBar);
 
@@ -583,11 +581,11 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlTablaPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlPatientsTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlSearchPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -595,38 +593,38 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnlBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnlSearchPatient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlTablaPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(pnlPatientsTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalirActionPerformed
+    private void menuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuExitActionPerformed
         validateExit(this);
-    }//GEN-LAST:event_menuSalirActionPerformed
+    }//GEN-LAST:event_menuExitActionPerformed
 
-    private void menuNuevoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevoPacienteActionPerformed
+    private void menuNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNewPatientActionPerformed
         PatientABM patientFrame = new PatientABM(this);
         patientFrame.setVisible(true);
-    }//GEN-LAST:event_menuNuevoPacienteActionPerformed
+    }//GEN-LAST:event_menuNewPatientActionPerformed
 
-    private void menuRealizarBackUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRealizarBackUpActionPerformed
+    private void menuPerformBackUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPerformBackUpActionPerformed
         performBackup(this);
-    }//GEN-LAST:event_menuRealizarBackUpActionPerformed
+    }//GEN-LAST:event_menuPerformBackUpActionPerformed
 
-    private void menuAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAcercaDeActionPerformed
+    private void menuAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAboutActionPerformed
         showAbout(this);
-    }//GEN-LAST:event_menuAcercaDeActionPerformed
+    }//GEN-LAST:event_menuAboutActionPerformed
 
-    private void menuObrasSocialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuObrasSocialesActionPerformed
+    private void menuMedicalCoverageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMedicalCoverageActionPerformed
         abmPrePaidHealthInsurances = new ABMPrePaidHealthInsurances(this);
         abmPrePaidHealthInsurances.setVisible(true);
-    }//GEN-LAST:event_menuObrasSocialesActionPerformed
+    }//GEN-LAST:event_menuMedicalCoverageActionPerformed
 
     private void txtfLastnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfLastnameKeyReleased
         String lastname, name, dni;
@@ -735,9 +733,9 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
         patientABM.setVisible(true);
     }//GEN-LAST:event_btnNewPatientActionPerformed
 
-private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCambiarColorActionPerformed
+private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuChangeColorActionPerformed
     new ChooseColor(this, true).setVisible(true);
-}//GEN-LAST:event_menuCambiarColorActionPerformed
+}//GEN-LAST:event_menuChangeColorActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         validateExit(this);
@@ -755,25 +753,24 @@ private void menuCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//
     private javax.swing.JButton btnSeeCH;
     private javax.swing.JComboBox cmbDniType;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JLabel lblstaticApellido;
-    private javax.swing.JLabel lblstaticDni;
-    private javax.swing.JLabel lblstaticDniType;
-    private javax.swing.JLabel lblstaticNombre;
-    private javax.swing.JMenuItem menuAcercaDe;
-    private javax.swing.JMenu menuArchivo;
+    private javax.swing.JLabel lblsDni;
+    private javax.swing.JLabel lblsDniType;
+    private javax.swing.JLabel lblsLastName;
+    private javax.swing.JLabel lblsName;
+    private javax.swing.JMenuItem menuAbout;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem menuCambiarColor;
-    private javax.swing.JMenuItem menuNuevoPaciente;
-    private javax.swing.JMenuItem menuObrasSociales;
-    private javax.swing.JMenuItem menuRealizarBackUp;
-    private javax.swing.JMenuItem menuSalir;
-    private javax.swing.JMenu menuVentana;
-    private javax.swing.JMenu menuVer;
-    private javax.swing.JPanel pnlBotones;
-    private javax.swing.JPanel pnlBuscar;
-    private javax.swing.JPanel pnlTablaPacientes;
-    private javax.swing.JScrollPane scrollPaneTablaPacientes;
+    private javax.swing.JMenuItem menuChangeColor;
+    private javax.swing.JMenuItem menuExit;
+    private javax.swing.JMenu menuFile;
+    private javax.swing.JMenu menuHelp;
+    private javax.swing.JMenuItem menuMedicalCoverage;
+    private javax.swing.JMenuItem menuNewPatient;
+    private javax.swing.JMenuItem menuPerformBackUp;
+    private javax.swing.JMenu menuWindow;
+    private javax.swing.JPanel pnlButtons;
+    private javax.swing.JPanel pnlPatientsTable;
+    private javax.swing.JPanel pnlSearchPatient;
+    private javax.swing.JScrollPane scrollPanePatientsTable;
     private javax.swing.JTable tblPatients;
     private javax.swing.JTextField txtfDni;
     private javax.swing.JTextField txtfLastname;

@@ -38,7 +38,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="pnlPatientData" max="32767" attributes="0"/>
                   <Component id="pnlVisits" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="pnlButtons" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -51,7 +51,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="pnlVisits" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <Component id="pnlButtons" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -79,7 +79,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="870" max="32767" attributes="0"/>
+                  <Component id="scrollPaneVisits" pref="870" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -88,14 +88,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="318" max="32767" attributes="0"/>
+                  <Component id="scrollPaneVisits" pref="318" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+        <Container class="javax.swing.JScrollPane" name="scrollPaneVisits">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
@@ -170,9 +170,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="lblstaticCity" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblstaticBirthday" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblstaticDni" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblsCity" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblsBirthday" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblsDni" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="btnModifyPatient" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -185,9 +185,9 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lblstaticFirstVisitDate" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblstaticPhone" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblstaticAddress" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblsFirstVisitDate" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblsPhone" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblsAddress" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -198,8 +198,8 @@
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="lblstaticInsuranceNumber" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblstaticPPHealthInsurance" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblsInsuranceNumber" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblsPPHealthInsurance" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -234,7 +234,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="1" pref="1" max="1" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblstaticBirthday" alignment="3" pref="22" max="32767" attributes="0"/>
+                              <Component id="lblsBirthday" alignment="3" pref="22" max="32767" attributes="0"/>
                               <Component id="lblBirthday" alignment="3" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -242,10 +242,10 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="lblMedicalCoverage" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="lblstaticPPHealthInsurance" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="lblsPPHealthInsurance" alignment="3" max="32767" attributes="0"/>
                               </Group>
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="lblstaticPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblsPhone" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblPhone" alignment="3" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -255,28 +255,28 @@
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblstaticDni" alignment="3" max="32767" attributes="0"/>
+                          <Component id="lblsDni" alignment="3" max="32767" attributes="0"/>
                           <Component id="lblDni" alignment="3" max="32767" attributes="0"/>
-                          <Component id="lblstaticFirstVisitDate" alignment="3" max="32767" attributes="0"/>
+                          <Component id="lblsFirstVisitDate" alignment="3" max="32767" attributes="0"/>
                           <Component id="lblFirstVisitDate" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblMedicalCoverageNumber" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblstaticInsuranceNumber" alignment="3" max="32767" attributes="0"/>
+                          <Component id="lblsInsuranceNumber" alignment="3" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblstaticCity" alignment="3" pref="22" max="32767" attributes="0"/>
+                              <Component id="lblsCity" alignment="3" pref="22" max="32767" attributes="0"/>
                               <Component id="lblCity" alignment="3" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblstaticAddress" alignment="3" max="32767" attributes="0"/>
+                              <Component id="lblsAddress" alignment="3" max="32767" attributes="0"/>
                               <Component id="lblAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -292,7 +292,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lblstaticDni">
+        <Component class="javax.swing.JLabel" name="lblsDni">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -300,7 +300,7 @@
             <Property name="text" type="java.lang.String" value="Nro. Documento:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticInsuranceNumber">
+        <Component class="javax.swing.JLabel" name="lblsInsuranceNumber">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -308,7 +308,7 @@
             <Property name="text" type="java.lang.String" value="Nro. Afiliado:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticPPHealthInsurance">
+        <Component class="javax.swing.JLabel" name="lblsPPHealthInsurance">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -316,7 +316,7 @@
             <Property name="text" type="java.lang.String" value="Obra Social:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticBirthday">
+        <Component class="javax.swing.JLabel" name="lblsBirthday">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -356,7 +356,7 @@
             <Property name="text" type="java.lang.String" value="OSPAC"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticFirstVisitDate">
+        <Component class="javax.swing.JLabel" name="lblsFirstVisitDate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -401,7 +401,7 @@
             <Property name="text" type="java.lang.String" value="423654"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticPhone">
+        <Component class="javax.swing.JLabel" name="lblsPhone">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -429,23 +429,23 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblstaticNombre" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblsPatientName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblNombrePaciente" max="32767" attributes="0"/>
+                      <Component id="lblPatientName" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="lblNombrePaciente" alignment="3" max="32767" attributes="0"/>
-                      <Component id="lblstaticNombre" alignment="3" pref="22" max="32767" attributes="0"/>
+                      <Component id="lblPatientName" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblsPatientName" alignment="3" pref="22" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lblNombrePaciente">
+            <Component class="javax.swing.JLabel" name="lblPatientName">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="15" style="3"/>
@@ -458,7 +458,7 @@
                 <Property name="horizontalTextPosition" type="int" value="2"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblstaticNombre">
+            <Component class="javax.swing.JLabel" name="lblsPatientName">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="1"/>
@@ -468,7 +468,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="lblstaticCity">
+        <Component class="javax.swing.JLabel" name="lblsCity">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -526,7 +526,7 @@
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticAddress">
+        <Component class="javax.swing.JLabel" name="lblsAddress">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -536,7 +536,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="pnlButtons">
 
       <Layout>
         <DimensionLayout dim="0">

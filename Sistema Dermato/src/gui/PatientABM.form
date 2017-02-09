@@ -39,7 +39,7 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="pnlOtherData" alignment="0" max="32767" attributes="0"/>
                   <Component id="pnlButtons" max="32767" attributes="0"/>
-                  <Component id="pnlDatosPersonales" alignment="0" max="32767" attributes="0"/>
+                  <Component id="pnlPersonalData" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="pnlAntecedents" max="32767" attributes="0"/>
@@ -53,7 +53,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="pnlDatosPersonales" max="32767" attributes="0"/>
+                      <Component id="pnlPersonalData" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="pnlOtherData" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -67,7 +67,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="pnlDatosPersonales">
+    <Container class="javax.swing.JPanel" name="pnlPersonalData">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -87,23 +87,23 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="pnlPPHealthInsurance" alignment="0" max="32767" attributes="0"/>
+              <Component id="pnlMedicalCoverage" alignment="0" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="lblstaticBirthday" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblsBirthday" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="ftxtfBirthday" min="-2" pref="106" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="lblstaticCity" max="32767" attributes="0"/>
-                              <Component id="lblstaticAddress" max="32767" attributes="0"/>
-                              <Component id="lblstaticNames" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblstaticPhone" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblstaticLastNames" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblstaticDniType" alignment="1" max="32767" attributes="0"/>
+                              <Component id="lblsCity" max="32767" attributes="0"/>
+                              <Component id="lblsAddress" max="32767" attributes="0"/>
+                              <Component id="lblsNames" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblsPhone" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblsLastNames" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblsDniType" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -112,7 +112,7 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="cmbDniType" min="-2" pref="77" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lblstaticDni" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblsDni" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="txtfDni" max="32767" attributes="0"/>
                               </Group>
@@ -132,48 +132,48 @@
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtfNames" alignment="3" max="32767" attributes="0"/>
-                      <Component id="lblstaticNames" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblsNames" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtfLastNames" alignment="3" max="32767" attributes="0"/>
-                      <Component id="lblstaticLastNames" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblsLastNames" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtfPhone" alignment="3" max="32767" attributes="0"/>
-                      <Component id="lblstaticPhone" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblsPhone" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblstaticDniType" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblsDniType" alignment="3" max="32767" attributes="0"/>
                       <Component id="txtfDni" alignment="3" max="32767" attributes="0"/>
-                      <Component id="lblstaticDni" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblsDni" alignment="3" max="32767" attributes="0"/>
                       <Component id="cmbDniType" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtfAddress" alignment="3" max="32767" attributes="0"/>
-                      <Component id="lblstaticAddress" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblsAddress" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtfCity" alignment="3" max="32767" attributes="0"/>
-                      <Component id="lblstaticCity" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblsCity" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="ftxtfBirthday" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblstaticBirthday" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblsBirthday" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="pnlPPHealthInsurance" max="32767" attributes="0"/>
+                  <Component id="pnlMedicalCoverage" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lblstaticNames">
+        <Component class="javax.swing.JLabel" name="lblsNames">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -181,7 +181,7 @@
             <Property name="text" type="java.lang.String" value="Nombres:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticLastNames">
+        <Component class="javax.swing.JLabel" name="lblsLastNames">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -189,7 +189,7 @@
             <Property name="text" type="java.lang.String" value="Apellidos:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticPhone">
+        <Component class="javax.swing.JLabel" name="lblsPhone">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -197,7 +197,7 @@
             <Property name="text" type="java.lang.String" value="Tel&#xe9;fono:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticBirthday">
+        <Component class="javax.swing.JLabel" name="lblsBirthday">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -244,7 +244,7 @@
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtfPhoneKeyTyped"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticDniType">
+        <Component class="javax.swing.JLabel" name="lblsDniType">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -262,7 +262,7 @@
             </Property>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="pnlPPHealthInsurance">
+        <Container class="javax.swing.JPanel" name="pnlMedicalCoverage">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -284,7 +284,7 @@
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="lblstaticInsuranceNumber" min="-2" pref="89" max="-2" attributes="0"/>
+                                      <Component id="lblsMedicalCoverageNumber" min="-2" pref="89" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="txtfMedicalCoverageNumber" max="32767" attributes="0"/>
                                   </Group>
@@ -297,13 +297,13 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtfNewPPHealthInsurance" max="32767" attributes="0"/>
+                              <Component id="txtfNewMedicalCoverage" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnCancelPPHealthInsurance" min="-2" pref="91" max="-2" attributes="0"/>
+                              <Component id="btnCancelMedicalCoverage" min="-2" pref="91" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnSavePPHealthInsurance" min="-2" pref="91" max="-2" attributes="0"/>
+                              <Component id="btnSaveMedicalCoverage" min="-2" pref="91" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -319,16 +319,16 @@
                           <Component id="btnNewMedicalCoverage" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txtfNewPPHealthInsurance" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtfNewMedicalCoverage" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnCancelPPHealthInsurance" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnSavePPHealthInsurance" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCancelMedicalCoverage" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSaveMedicalCoverage" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtfMedicalCoverageNumber" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblstaticInsuranceNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblsMedicalCoverageNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="28" max="32767" attributes="0"/>
                   </Group>
@@ -374,7 +374,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNewMedicalCoverageActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblstaticInsuranceNumber">
+            <Component class="javax.swing.JLabel" name="lblsMedicalCoverageNumber">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -399,7 +399,7 @@
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtfMedicalCoverageNumberKeyTyped"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnSavePPHealthInsurance">
+            <Component class="javax.swing.JButton" name="btnSaveMedicalCoverage">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -407,14 +407,14 @@
                 <Property name="text" type="java.lang.String" value="Guardar"/>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="btnCancelPPHealthInsurance"/>
+                  <ComponentRef name="btnCancelMedicalCoverage"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSavePPHealthInsuranceActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveMedicalCoverageActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtfNewPPHealthInsurance">
+            <Component class="javax.swing.JTextField" name="txtfNewMedicalCoverage">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -422,10 +422,10 @@
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtfNewPPHealthInsuranceKeyTyped"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtfNewMedicalCoverageKeyTyped"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnCancelPPHealthInsurance">
+            <Component class="javax.swing.JButton" name="btnCancelMedicalCoverage">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -437,12 +437,12 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelPPHealthInsuranceActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelMedicalCoverageActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="lblstaticAddress">
+        <Component class="javax.swing.JLabel" name="lblsAddress">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -460,7 +460,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticCity">
+        <Component class="javax.swing.JLabel" name="lblsCity">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -478,7 +478,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticDni">
+        <Component class="javax.swing.JLabel" name="lblsDni">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -656,7 +656,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblstaticFirstVisitDate" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblsFirstVisitDate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="ftxtfFirstVisitDate" min="-2" pref="106" max="-2" attributes="0"/>
                   <EmptySpace pref="105" max="32767" attributes="0"/>
@@ -667,13 +667,13 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                   <Component id="ftxtfFirstVisitDate" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblstaticFirstVisitDate" alignment="3" max="32767" attributes="0"/>
+                  <Component id="lblsFirstVisitDate" alignment="3" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lblstaticFirstVisitDate">
+        <Component class="javax.swing.JLabel" name="lblsFirstVisitDate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -765,17 +765,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane3" alignment="0" pref="484" max="32767" attributes="0"/>
+                  <Component id="scrollPanePersonal" alignment="0" pref="484" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
+                  <Component id="scrollPanePersonal" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+            <Container class="javax.swing.JScrollPane" name="scrollPanePersonal">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
@@ -824,17 +824,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane6" alignment="0" max="32767" attributes="0"/>
+                  <Component id="scrollPaneSurgical" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane6" alignment="0" max="32767" attributes="0"/>
+                  <Component id="scrollPaneSurgical" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+            <Container class="javax.swing.JScrollPane" name="scrollPaneSurgical">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
@@ -883,17 +883,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
+                  <Component id="scrollPaneToxics" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane7" alignment="1" max="32767" attributes="0"/>
+                  <Component id="scrollPaneToxics" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane7">
+            <Container class="javax.swing.JScrollPane" name="scrollPaneToxics">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
@@ -942,17 +942,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane8" alignment="0" max="32767" attributes="0"/>
+                  <Component id="scrollPaneFamily" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane8" alignment="1" max="32767" attributes="0"/>
+                  <Component id="scrollPaneFamily" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane8">
+            <Container class="javax.swing.JScrollPane" name="scrollPaneFamily">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
@@ -1001,17 +1001,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane9" alignment="0" max="32767" attributes="0"/>
+                  <Component id="scrollPanePharmacological" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane9" alignment="1" max="32767" attributes="0"/>
+                  <Component id="scrollPanePharmacological" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane9">
+            <Container class="javax.swing.JScrollPane" name="scrollPanePharmacological">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
