@@ -1,14 +1,14 @@
 /*
  * Interfaz donde se registran y modifican las consultas
  */
-package GUI;
+package gui;
 
 import Utils.ValidationsAndMessages;
 import Utils.StyleManager;
-import ClasesBase.Visit;
 import ClasesBase.Patient;
-import DAO.DAOVisit;
+import ClasesBase.Visit;
 import Utils.Constants;
+import static Utils.Constants.BIRTHDAY_WITH_AGE;
 import static Utils.GeneralUtils.calculateAge;
 import static Utils.GeneralUtils.handleFocus;
 import java.awt.*;
@@ -20,64 +20,48 @@ import javax.swing.JComponent;
 import javax.swing.JRootPane;
 import javax.swing.KeyStroke;
 import static Utils.GeneralUtils.setButtonFontForPointerEvent;
+import mvp.presenter.VisitPresenter;
+import mvp.view.VisitView;
+import mvp.view.listener.VisitUpdatedListener;
 
-public class ABMVisit extends javax.swing.JFrame {
+public class VisitJDialog extends javax.swing.JDialog implements VisitView {
 
-    private final ClinicalHistoryJFrame clinicalHistoryFrame;
-    private final DAOVisit daoVisit;
-    private Visit visit;
-    private int idVisit;
-    private Patient patient;
-    private boolean origin;//true if comes from "see" false otherwise
+    private final VisitPresenter presenter;
+    private VisitUpdatedListener visitUpdatedListener;
 
     /**
      * Creates new form ABMConsultaCompleta
      *
      * @param parent
-     * @param dni
      * @param patient
      */
-    public ABMVisit(java.awt.Frame parent, Patient patient) {
-        this.origin = false;
-        daoVisit = new DAOVisit();
-        clinicalHistoryFrame = (ClinicalHistoryJFrame) parent;
-        this.patient = patient;
-        
+    public VisitJDialog(java.awt.Frame parent, Patient patient) {
+        presenter = new VisitPresenter(this, patient);
         initComponents();
-        setDateLabel();
-        fillPatientFields(this.patient);
-        StyleManager.paint(this);
-        txtaReason.grabFocus();
-        pnlDate.setBackground(StyleManager.getSecondaryColor(StyleManager.actualColor));
-        pnlFullName.setBackground(StyleManager.getSecondaryColor(StyleManager.actualColor));
-        setExtendedState(clinicalHistoryFrame.getExtendedState());
-        setLocationRelativeTo(clinicalHistoryFrame);
+        setupInitialUI();
+        fillPatientFields(patient);
     }
 
     /**
      * Creates new form ABMConsultaCompleta
-     * 
+     *
      * @param parent
      * @param patient
      * @param visit
+     * @param visitUdpatedListener
      */
-    public ABMVisit(java.awt.Frame parent, Patient patient, Visit visit) {
-        this.visit = visit;
-        daoVisit = new DAOVisit();
-        clinicalHistoryFrame = (ClinicalHistoryJFrame) parent;
-        origin = true;
-        this.patient = patient;
-        
+    public VisitJDialog(java.awt.Frame parent, Patient patient, Visit visit, VisitUpdatedListener visitUdpatedListener) {
+        //VARS INITIATION
+        presenter = new VisitPresenter(this, patient);
+        this.visitUpdatedListener = visitUdpatedListener;
+
+        //UI
         initComponents();
-        setDateLabel();
-        fillVisitFields(this.visit);
-        fillPatientFields(this.patient);
+        setupInitialUI();
+        fillPatientFields(patient);
+        presenter.loadVisitData(visit);
         setButtonsState(false);
-        setFieldsState(!origin);
-        StyleManager.paint(this);
-        txtaReason.grabFocus();
-        pnlDate.setBackground(StyleManager.getSecondaryColor(StyleManager.actualColor));
-        pnlFullName.setBackground(StyleManager.getSecondaryColor(StyleManager.actualColor));
+        setFieldsState(false);
     }
 
     /**
@@ -119,8 +103,8 @@ public class ABMVisit extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         pnlPatientsData = new javax.swing.JPanel();
         lblstaticDni = new javax.swing.JLabel();
-        lblstaticInsuranceNumber = new javax.swing.JLabel();
-        lblstaticPPHealthInsurance = new javax.swing.JLabel();
+        lblsMedicalCoverageNumber = new javax.swing.JLabel();
+        lblsMedicalCoverage = new javax.swing.JLabel();
         lblstaticBirthday = new javax.swing.JLabel();
         lblDni = new javax.swing.JLabel();
         lblBirthday = new javax.swing.JLabel();
@@ -131,7 +115,7 @@ public class ABMVisit extends javax.swing.JFrame {
         lblCity = new javax.swing.JLabel();
         lblstaticCity = new javax.swing.JLabel();
         pnlFullName = new javax.swing.JPanel();
-        lblNombrePaciente = new javax.swing.JLabel();
+        lblPatientName = new javax.swing.JLabel();
         lblstaticNombre = new javax.swing.JLabel();
         lblstaticAge = new javax.swing.JLabel();
         lblAge = new javax.swing.JLabel();
@@ -476,11 +460,11 @@ public class ABMVisit extends javax.swing.JFrame {
         lblstaticDni.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblstaticDni.setText("Nro. Documento:");
 
-        lblstaticInsuranceNumber.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblstaticInsuranceNumber.setText("Nro. Afiliado:");
+        lblsMedicalCoverageNumber.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblsMedicalCoverageNumber.setText("Nro. Afiliado:");
 
-        lblstaticPPHealthInsurance.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblstaticPPHealthInsurance.setText("Obra Social:");
+        lblsMedicalCoverage.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblsMedicalCoverage.setText("Obra Social:");
 
         lblstaticBirthday.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblstaticBirthday.setText("Fecha de Nacimiento:");
@@ -512,11 +496,11 @@ public class ABMVisit extends javax.swing.JFrame {
         pnlFullName.setBackground(new java.awt.Color(228, 228, 241));
         pnlFullName.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(153, 153, 153), new java.awt.Color(255, 255, 255), null));
 
-        lblNombrePaciente.setFont(new java.awt.Font("Tahoma", 3, 15)); // NOI18N
-        lblNombrePaciente.setForeground(new java.awt.Color(0, 51, 102));
-        lblNombrePaciente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblNombrePaciente.setText("Lopez, Juan Carlos");
-        lblNombrePaciente.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        lblPatientName.setFont(new java.awt.Font("Tahoma", 3, 15)); // NOI18N
+        lblPatientName.setForeground(new java.awt.Color(0, 51, 102));
+        lblPatientName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblPatientName.setText("Lopez, Juan Carlos");
+        lblPatientName.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         lblstaticNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblstaticNombre.setText("Apellido y Nombre:");
@@ -529,13 +513,13 @@ public class ABMVisit extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblstaticNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblPatientName, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
         pnlFullNameLayout.setVerticalGroup(
             pnlFullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(lblNombrePaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblPatientName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblstaticNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
         );
 
@@ -569,13 +553,14 @@ public class ABMVisit extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(pnlPatientsDataLayout.createSequentialGroup()
                         .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlPatientsDataLayout.createSequentialGroup()
+                            .addComponent(lblstaticBirthday, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPatientsDataLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblstaticCity, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblstaticAge, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblstaticDni, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addComponent(lblstaticBirthday, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lblstaticDni, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblstaticAddress, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlPatientsDataLayout.createSequentialGroup()
@@ -584,22 +569,21 @@ public class ABMVisit extends javax.swing.JFrame {
                             .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(lblCity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblBirthday, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-                                .addComponent(lblDni, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(lblDni, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblstaticFirstVisitDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(pnlPatientsDataLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblstaticInsuranceNumber)
-                                    .addComponent(lblstaticPPHealthInsurance)
-                                    .addComponent(lblstaticPhone)
-                                    .addComponent(lblstaticAddress))))
+                                    .addComponent(lblsMedicalCoverageNumber)
+                                    .addComponent(lblsMedicalCoverage)
+                                    .addComponent(lblstaticPhone))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(lblInsuranceNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                                 .addComponent(lblPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblPPHealthInsurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(lblFirstVisitDate, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -618,24 +602,24 @@ public class ABMVisit extends javax.swing.JFrame {
                 .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblstaticDni)
                     .addComponent(lblDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblstaticPPHealthInsurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblsMedicalCoverage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblPPHealthInsurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblstaticAge)
                     .addComponent(lblAge, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblstaticInsuranceNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblsMedicalCoverageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblInsuranceNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblstaticCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblstaticAddress)
-                    .addComponent(lblAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblstaticPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblstaticAddress)
+                    .addComponent(lblAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -736,25 +720,13 @@ public class ABMVisit extends javax.swing.JFrame {
             return;
         }
 
-        generateVisit();
+        Visit visit = generateVisit();
 
-        if (!origin) {
-            if (daoVisit.registerVisit(visit, patient.getId())) {
-                this.idVisit = visit.getId();
-                ValidationsAndMessages.showInfo(this, "Registro Exitoso.");
-            } else {
-                ValidationsAndMessages.showError(this, "Registro Fallido.");
-                return;
-            }
-        } else if (daoVisit.updateVisit(visit)) {
-            ValidationsAndMessages.showInfo(this, "Actualización Exitosa.");
-            setButtonsState(false);
+        if (visitUpdatedListener == null) {
+            presenter.registerVisit(visit);
         } else {
-            ValidationsAndMessages.showError(this, "Actualización Fallida.");
-            return;
+            presenter.updateVisit(visit);
         }
-        this.setFieldsState(false);
-        clinicalHistoryFrame.fillTable(patient.getId());
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnCancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseEntered
@@ -766,10 +738,10 @@ public class ABMVisit extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelMouseExited
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        this.fillVisitFields(visit);
         this.setFieldsState(false);
         this.btnSave.setEnabled(false);
         this.btnModify.setEnabled(true);
+        presenter.cancelVisitModifcation();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
@@ -781,7 +753,7 @@ public class ABMVisit extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackMouseExited
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        this.exit();
+        exitWindow();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnModifyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyMouseEntered
@@ -797,11 +769,10 @@ public class ABMVisit extends javax.swing.JFrame {
         setFieldsState(true);
         this.btnSave.setEnabled(true);
         this.btnModify.setEnabled(false);
-        this.origin = true;
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        this.exit();
+        exitWindow();
     }//GEN-LAST:event_formWindowClosing
 
     private void txtaReasonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaReasonKeyPressed
@@ -852,9 +823,11 @@ public class ABMVisit extends javax.swing.JFrame {
     private javax.swing.JLabel lblDni;
     private javax.swing.JLabel lblFirstVisitDate;
     private javax.swing.JLabel lblInsuranceNumber;
-    private javax.swing.JLabel lblNombrePaciente;
     private javax.swing.JLabel lblPPHealthInsurance;
+    private javax.swing.JLabel lblPatientName;
     private javax.swing.JLabel lblPhone;
+    private javax.swing.JLabel lblsMedicalCoverage;
+    private javax.swing.JLabel lblsMedicalCoverageNumber;
     private javax.swing.JLabel lblstaticAddress;
     private javax.swing.JLabel lblstaticAge;
     private javax.swing.JLabel lblstaticBirthday;
@@ -862,9 +835,7 @@ public class ABMVisit extends javax.swing.JFrame {
     private javax.swing.JLabel lblstaticDate;
     private javax.swing.JLabel lblstaticDni;
     private javax.swing.JLabel lblstaticFirstVisitDate;
-    private javax.swing.JLabel lblstaticInsuranceNumber;
     private javax.swing.JLabel lblstaticNombre;
-    private javax.swing.JLabel lblstaticPPHealthInsurance;
     private javax.swing.JLabel lblstaticPhone;
     private javax.swing.JPanel pnlBiopsy;
     private javax.swing.JPanel pnlButtons;
@@ -913,23 +884,14 @@ public class ABMVisit extends javax.swing.JFrame {
             incompletas += "Motivo \n";
         }
 
-        if (this.txtaTreatment.getText().isEmpty()) {
-            incompletas += "Tratamiento \n";
-        }
-
-        if (this.txtaDiagnosis.getText().isEmpty()) {
-            incompletas += "Diagnóstico \n";
-        }
-
         return incompletas;
     }
 
     /**
      * Generates the visit.
      */
-    private void generateVisit() {
-        visit = new Visit();
-        visit.setId(idVisit);
+    private Visit generateVisit() {
+        Visit visit = new Visit();
         visit.setDate(this.lblDate.getText());
         visit.setReason(this.txtaReason.getText());
         visit.setTreatment(this.txtaTreatment.getText());
@@ -938,6 +900,7 @@ public class ABMVisit extends javax.swing.JFrame {
         visit.setDiagnosis(this.txtaDiagnosis.getText());
         visit.setPhysicalExam(this.txtaPhysicalExam.getText());
         visit.setBiopsy(this.txtaBiopsy.getText());
+        return visit;
     }
 
     /**
@@ -968,19 +931,13 @@ public class ABMVisit extends javax.swing.JFrame {
         this.btnModify.setEnabled(!state);
     }
 
-    @Override
-    public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/sistema.png"));
-        return retValue;
-    }
-
     /**
      * Fills all the patient's data fields.
      *
      * @param patient
      */
     private void fillPatientFields(Patient patient) {
-        lblNombrePaciente.setText(String.format(Constants.FULLNAME, patient.getLastname(), patient.getName()));
+        lblPatientName.setText(String.format(Constants.FULLNAME, patient.getLastname(), patient.getName()));
 
         lblBirthday.setText(patient.getBirthday());
         lblDni.setText(patient.getDni() + "");
@@ -994,31 +951,52 @@ public class ABMVisit extends javax.swing.JFrame {
         lblPhone.setText(patient.getPhone());
     }
 
-    /**
-     * Exits application validating with the user.
-     */
-    private void exit() {
-        if (!btnSave.isEnabled()) {
-            this.dispose();
-            if (this.getParent() != null) {
-                this.getParent().setVisible(true);
-            }
-            clinicalHistoryFrame.closeChild(this);
+    @Override
+    public void displayPatientData(Patient patient) {
+        this.lblPatientName.setText(String.format(Constants.FULLNAME, patient.getLastname(), patient.getName()));
+        this.lblDni.setText(patient.getDniType().getName() + " - " + patient.getDni() + "");
+
+        if (patient.getBirthday() != null && !patient.getBirthday().isEmpty()) {
+            this.lblBirthday.setText(String.format(BIRTHDAY_WITH_AGE, patient.getBirthday(), calculateAge(patient.getBirthday())));
+        }
+        if (patient.getCity() == null || patient.getCity().isEmpty()) {
+            this.lblCity.setText("-");
         } else {
-            ValidationsAndMessages.validateWindowExit(this);
+            this.lblCity.setText(patient.getCity());
+        }
+        if (patient.getPhone() == null || patient.getPhone().isEmpty()) {
+            this.lblPhone.setText("-");
+        } else {
+            this.lblPhone.setText(patient.getPhone());
+        }
+        if (patient.getFirstVisitDate() == null || patient.getFirstVisitDate().isEmpty()) {
+            this.lblFirstVisitDate.setText("-");
+        } else {
+            this.lblFirstVisitDate.setText(patient.getFirstVisitDate());
+        }
+        if (patient.getAddress() == null || patient.getAddress().isEmpty()) {
+            this.lblAddress.setText("-");
+        } else {
+            this.lblAddress.setText(patient.getAddress());
+        }
+        this.lblsMedicalCoverage.setText(patient.getMedicalCoverage().getName());
+        if (patient.getMedicalCoverageNumber() == null || patient.getMedicalCoverageNumber().isEmpty()) {
+            this.lblsMedicalCoverageNumber.setText("-");
+        } else {
+            this.lblsMedicalCoverageNumber.setText(patient.getMedicalCoverageNumber());
         }
     }
 
     /**
-     * Returns the current visit id.
-     *
-     * @return -1 if the visit is not saved yet, visit id otherwise
+     * Exits application validating with the user.
      */
-    public int getVisitId() {
-        if (visit != null) {
-            return visit.getId();
+    @Override
+    public void exitWindow() {
+        if (!btnSave.isEnabled()) {
+            dispose();
+        } else {
+            ValidationsAndMessages.validateWindowExit(this);
         }
-        return -1;
     }
 
     @Override
@@ -1026,7 +1004,7 @@ public class ABMVisit extends javax.swing.JFrame {
         super.getRootPane().registerKeyboardAction(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exit();
+                exitWindow();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
                 JComponent.WHEN_IN_FOCUSED_WINDOW);
@@ -1046,5 +1024,41 @@ public class ABMVisit extends javax.swing.JFrame {
         String month = calendar.get(Calendar.MONTH) + 1 + "";
         String year = calendar.get(Calendar.YEAR) + "";
         this.lblDate.setText(day + "/" + month + "/" + year);
+    }
+
+    private void setupInitialUI() {
+        setDateLabel();
+        txtaReason.grabFocus();
+        pnlDate.setBackground(StyleManager.getSecondaryColor(StyleManager.actualColor));
+        pnlFullName.setBackground(StyleManager.getSecondaryColor(StyleManager.actualColor));
+        setLocationRelativeTo(getParent());
+    }
+
+    @Override
+    public void displayVisitData(Visit visit) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void showErrorMessage(String error) {
+        ValidationsAndMessages.showError(this, error);
+    }
+
+    @Override
+    public void showInfoMessage(String info) {
+        ValidationsAndMessages.showInfo(this, info);
+    }
+
+    @Override
+    public void finishRegisteringVisit() {
+        this.setFieldsState(false);
+    }
+
+    @Override
+    public void finishUpdatingVisit() {
+        setButtonsState(false);
+        this.setFieldsState(false);
+        showInfoMessage("Actualización exitosa.");
+        visitUpdatedListener.visitUpdated();
     }
 }

@@ -3,11 +3,27 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/DAO/DAOPatient.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/model/ClinicalHistoryModel.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/Utils/ValidationsAndMessages.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/presenter/PrincipalPresenter.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/gui/ClinicalHistory.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/Utils/GeneralUtils.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/gui/PatientABM.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/gui/Principal.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/view/PatientABMView.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/presenter/PatientABMPresenter.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/model/PatientABMModel.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/DAO/DAOPatient.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/GUI/ABMVisit.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/gui/Visit.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/view/PrincipalView.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/model/VisitModel.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/view/VisitView.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/view/GeneralView.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/presenter/VisitPresenter.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/start/Start.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/presenter/ClinicalHistoryPresenter.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/view/ClinicalHistoryView.java</file>
         </group>
     </open-files>
 </project-private>

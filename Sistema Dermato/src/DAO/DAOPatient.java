@@ -85,7 +85,7 @@ public class DAOPatient extends DAOBasics {
             preparedStatement.setNull(12, java.sql.Types.VARCHAR);
             if (preparedStatement.executeUpdate() != 0) {
                 query = daoAntecedents.getInsertStatement();
-                Antecedents antecedents = patient.getAntecendents();
+                Antecedents antecedents = patient.getAntecedents();
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1, antecedents.getPersonalAntecedents());
                 preparedStatement.setString(2, antecedents.getSurgicalAntecedents());
@@ -361,7 +361,7 @@ public class DAOPatient extends DAOBasics {
                 antecedents.setToxicAntecedents(resultSet.getString(DAOAntecedents.TOXIC));
                 antecedents.setFamilyAntecedents(resultSet.getString(DAOAntecedents.FAMILY));
                 antecedents.setPharmacologicalAntecedents(resultSet.getString(DAOAntecedents.PHARMACOLOGICAL));
-                patient.setAntecendents(antecedents);
+                patient.setAntecedents(antecedents);
             }
 
             preparedStatement.close();
@@ -430,7 +430,7 @@ public class DAOPatient extends DAOBasics {
                     DBUtils.getSimpleWhereCondition(DAOAntecedents.PATIENT_DNI),
                     DBUtils.getSimpleWhereCondition(DAOAntecedents.PATIENT_DNI_TYPE));
             query = DBUtils.getUpdateStatement(Tables.Antecedents, columns, where);
-            Antecedents antecedents = patient.getAntecendents();
+            Antecedents antecedents = patient.getAntecedents();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, antecedents.getPersonalAntecedents());
             preparedStatement.setString(2, antecedents.getSurgicalAntecedents());

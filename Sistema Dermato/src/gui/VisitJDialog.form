@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="btngrpMAF">
     </Component>
@@ -740,15 +740,16 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
+                              <Component id="lblstaticBirthday" alignment="1" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="lblstaticCity" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblstaticAge" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblstaticDni" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblstaticAddress" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="lblstaticBirthday" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -760,6 +761,7 @@
                                   <Component id="lblCity" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lblBirthday" alignment="0" pref="89" max="32767" attributes="0"/>
                                   <Component id="lblDni" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lblAddress" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="1" attributes="0">
@@ -767,10 +769,9 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lblstaticInsuranceNumber" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblstaticPPHealthInsurance" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblsMedicalCoverageNumber" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblsMedicalCoverage" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblstaticPhone" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblstaticAddress" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -779,7 +780,6 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="lblInsuranceNumber" alignment="0" pref="212" max="32767" attributes="0"/>
                                   <Component id="lblPhone" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                                  <Component id="lblAddress" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lblPPHealthInsurance" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <Component id="lblFirstVisitDate" min="-2" pref="90" max="-2" attributes="0"/>
@@ -805,27 +805,27 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblstaticDni" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblDni" alignment="3" max="32767" attributes="0"/>
-                      <Component id="lblstaticPPHealthInsurance" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblsMedicalCoverage" alignment="3" max="32767" attributes="0"/>
                       <Component id="lblPPHealthInsurance" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblstaticAge" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblAge" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="lblstaticInsuranceNumber" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblsMedicalCoverageNumber" alignment="3" max="32767" attributes="0"/>
                       <Component id="lblInsuranceNumber" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblstaticCity" alignment="3" max="32767" attributes="0"/>
                       <Component id="lblCity" alignment="3" max="32767" attributes="0"/>
-                      <Component id="lblstaticAddress" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAddress" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblstaticPhone" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblPhone" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblstaticPhone" alignment="3" max="32767" attributes="0"/>
-                      <Component id="lblPhone" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblstaticAddress" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAddress" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
@@ -841,7 +841,7 @@
             <Property name="text" type="java.lang.String" value="Nro. Documento:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticInsuranceNumber">
+        <Component class="javax.swing.JLabel" name="lblsMedicalCoverageNumber">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -849,7 +849,7 @@
             <Property name="text" type="java.lang.String" value="Nro. Afiliado:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblstaticPPHealthInsurance">
+        <Component class="javax.swing.JLabel" name="lblsMedicalCoverage">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -951,7 +951,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="lblstaticNombre" min="-2" pref="155" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblNombrePaciente" min="-2" pref="474" max="-2" attributes="0"/>
+                      <Component id="lblPatientName" min="-2" pref="474" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -959,14 +959,14 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="lblNombrePaciente" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblPatientName" alignment="3" max="32767" attributes="0"/>
                       <Component id="lblstaticNombre" alignment="3" pref="22" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lblNombrePaciente">
+            <Component class="javax.swing.JLabel" name="lblPatientName">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="15" style="3"/>

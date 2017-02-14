@@ -119,6 +119,8 @@ public class ValidationsAndMessages {
      * @param windowToExit message component
      */
     public static void validateExit(Component windowToExit) {
+        
+        
         int ans = JOptionPane.showOptionDialog(windowToExit,
                 EXIT_SYSTEM_MESSAGE,
                 EXIT_WINDOW_MESSAGE_TITLE,

@@ -17,19 +17,15 @@ import mvp.view.PrincipalView;
  */
 public class PrincipalPresenter {
 
-    private PrincipalView view;
+    private final PrincipalView view;
     private final PrincipalModel model;
 
     private List<Patient> patientsList;
     private List<DniType> dniTypes;
 
-    public PrincipalPresenter(PrincipalView principalView) {
-        this.view = principalView;
+    public PrincipalPresenter(PrincipalView view) {
+        this.view = view;
         model = new PrincipalModel();
-    }
-
-    public void setView(PrincipalView principalView) {
-        this.view = principalView;
     }
 
     /**

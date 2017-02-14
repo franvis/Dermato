@@ -1,7 +1,6 @@
 package gui;
 
 import ClasesBase.DniType;
-import GUI.*;
 import Utils.MultiLineCellRenderer;
 import Utils.TextFilter;
 import Utils.StyleManager;
@@ -30,7 +29,7 @@ import mvp.presenter.PrincipalPresenter;
 import mvp.view.listener.PatientUpdatedListener;
 import mvp.view.PrincipalView;
 
-public class Principal extends javax.swing.JFrame implements PrincipalView, PatientUpdatedListener {
+public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView, PatientUpdatedListener {
 
     //STATIC VARS
     public static final String PATIENTS_TABLE_LASTNAME_COLUMN_TITLE = "Apellido";
@@ -40,7 +39,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
 
     //UI
     private DefaultTableModel dtmPatients;
-    private ABMPrePaidHealthInsurances abmPrePaidHealthInsurances;
+    private MedicalCoverageJDialog abmPrePaidHealthInsurances;
 
     //PRESENTER
     private final PrincipalPresenter presenter;
@@ -48,7 +47,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
     /**
      * Creates new form Principal
      */
-    public Principal() {
+    public PrincipalJFrame() {
         presenter = new PrincipalPresenter(this);
         initComponents();
         setupInitialUI();
@@ -82,7 +81,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
                 Point p = me.getPoint();
                 int row = table.rowAtPoint(p);
                 if (me.getClickCount() == 2 && row != -1) {
-                    Principal.this.presenter.seeClinicalHistory(
+                    PrincipalJFrame.this.presenter.seeClinicalHistory(
                             tblPatients.getSelectedRow());
                 }
             }
@@ -91,7 +90,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
         //Window
         setLocationRelativeTo(getRootPane());
         StyleManager.paint(this);
-        setExtendedState(Principal.MAXIMIZED_BOTH);
+        setExtendedState(PrincipalJFrame.MAXIMIZED_BOTH);
         
         //Presenter calls
         presenter.loadDniTypes();
@@ -167,7 +166,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
             r.keyPress(VK_DOWN);
             r.keyRelease(VK_DOWN);
         } catch (AWTException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PrincipalJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -609,7 +608,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
     }//GEN-LAST:event_menuExitActionPerformed
 
     private void menuNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNewPatientActionPerformed
-        PatientABM patientFrame = new PatientABM(this);
+        PatientJDialog patientFrame = new PatientJDialog(this);
         patientFrame.setVisible(true);
     }//GEN-LAST:event_menuNewPatientActionPerformed
 
@@ -622,7 +621,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
     }//GEN-LAST:event_menuAboutActionPerformed
 
     private void menuMedicalCoverageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMedicalCoverageActionPerformed
-        abmPrePaidHealthInsurances = new ABMPrePaidHealthInsurances(this);
+        abmPrePaidHealthInsurances = new MedicalCoverageJDialog(this);
         abmPrePaidHealthInsurances.setVisible(true);
     }//GEN-LAST:event_menuMedicalCoverageActionPerformed
 
@@ -725,7 +724,7 @@ public class Principal extends javax.swing.JFrame implements PrincipalView, Pati
     }//GEN-LAST:event_btnNewPatientMouseExited
 
     private void btnNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPatientActionPerformed
-        PatientABM patientABM = new PatientABM(this);
+        PatientJDialog patientABM = new PatientJDialog(this);
         clearTable(dtmPatients);
         txtfDni.setText("");
         txtfLastname.setText("");
@@ -794,7 +793,7 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     @Override
     public void showPatientClinicalHistory(Patient patient) {
-        ClinicalHistory clinicalHistory = new ClinicalHistory(this, patient);
+        ClinicalHistoryJDialog clinicalHistory = new ClinicalHistoryJDialog(this, patient);
         clinicalHistory.setVisible(true);
     }
 
@@ -810,7 +809,7 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     @Override
     public void modifyPatientData(Patient patient) {
-        PatientABM pacienteInterfaz = new PatientABM(this, this, patient);
+        PatientJDialog pacienteInterfaz = new PatientJDialog(this, this, patient);
         pacienteInterfaz.setVisible(true);
     }
 

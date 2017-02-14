@@ -136,6 +136,10 @@ public class PatientABMPresenter {
     }
 
     public void registerMedicalCoverage(MedicalCoverage medicalCoverage) {
+        if (view == null) {
+            return;
+        }
+        
         if (model.registerMedicalCoverage(medicalCoverage)) {
 
             medicalCoverages = model.getAllMedicalCoverages();

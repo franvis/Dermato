@@ -1,13 +1,4 @@
-/*
- * Clase dedicada a la alta, baja y modificacion de obras sociales
- */
-
- /*
- * ABMObrasSociales.java
- *
- * Created on 14-ago-2012, 17:36:11
- */
-package GUI;
+package gui;
 
 import Utils.ValidationsAndMessages;
 import ClasesBase.MedicalCoverage;
@@ -19,43 +10,38 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.util.LinkedList;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 import static Utils.GeneralUtils.setButtonFontForPointerEvent;
 import java.util.HashMap;
 import java.util.List;
+import javax.swing.JRootPane;
+import mvp.presenter.MedicalCoveragePresenter;
+import mvp.view.MedicalCoverageView;
 
-public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
+public class MedicalCoverageJDialog extends javax.swing.JFrame implements MedicalCoverageView{
 
-    private final DAOMedicalCoverage daoPrePaidHealthInsurance;
-    private List<MedicalCoverage> prePaidHealthInsurances;
-    private DefaultTableModel dtmPrePaidHealthInsurances;
-    private boolean isUpdating;
-
+private MedicalCoveragePresenter presenter;
     /**
      * Creates new form ABMObrasSociales
      *
      * @param parent
      */
-    public ABMPrePaidHealthInsurances(Frame parent) {
+    public MedicalCoverageJDialog(Frame parent) {
+        presenter = new MedicalCoveragePresenter(this);
         initComponents();
-        daoPrePaidHealthInsurance = new DAOMedicalCoverage();
-        prePaidHealthInsurances = daoPrePaidHealthInsurance.getAllMedicalCoverages();
-        fillPrePaidHealthInsurances(prePaidHealthInsurances);
-        this.setLocationRelativeTo(parent);
-        isUpdating = false;
-        Utils.StyleManager.paint(this);
-        KeyStroke strokeEsc = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
-        this.getRootPane().registerKeyboardAction(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                exit();
-            }
-        }, strokeEsc, JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
 
+    @Override
+    public JRootPane getRootPane() {
+        super.getRootPane().registerKeyboardAction((ActionEvent e) -> {
+            exitWindow();
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                JComponent.WHEN_IN_FOCUSED_WINDOW);
+        return super.getRootPane();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -349,7 +335,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackMouseExited
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        this.exit();
+        exitWindow();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseEntered
@@ -445,7 +431,7 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        this.exit();
+        exitWindow();
     }//GEN-LAST:event_formWindowClosing
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -486,14 +472,42 @@ public class ABMPrePaidHealthInsurances extends javax.swing.JFrame {
         return retValue;
     }
 
-    /**
-     * Exits application validating with the user.
-     */
-    private void exit() {
-        if (isUpdating) {
-            ValidationsAndMessages.validateWindowExit(this);
-        } else {
-            this.dispose();
-        }
+    @Override
+    public void displayMedicalCoverages(List<MedicalCoverage> medicalCoverages) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void exitWindow() {
+        this.dispose();
+    }
+
+    @Override
+    public void finishUpdatingMedicalCoverage() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void finishRegisteringMedicalCoverage() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void finishDeletingMedicalCoverage() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void showErrorMessage(String error) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void showInfoMessage(String info) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void setUpInitialUI() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

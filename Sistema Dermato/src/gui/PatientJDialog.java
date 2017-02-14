@@ -22,7 +22,7 @@ import mvp.presenter.PatientABMPresenter;
 import mvp.view.PatientABMView;
 import mvp.view.listener.PatientUpdatedListener;
 
-public class PatientABM extends JDialog implements PatientABMView {
+public class PatientJDialog extends JDialog implements PatientABMView {
 
     private static final String DATE_MASK = "  /  /    ";
 
@@ -34,7 +34,7 @@ public class PatientABM extends JDialog implements PatientABMView {
      *
      * @param parent parent frame where the new creation call is being made
      */
-    public PatientABM(Frame parent) {
+    public PatientJDialog(Frame parent) {
         super(parent, true);
         presenter = new PatientABMPresenter(this);
 
@@ -50,7 +50,7 @@ public class PatientABM extends JDialog implements PatientABMView {
      * @param patientUpdatedListener listener for the patient update.
      * @param patient patient to modify.
      */
-    public PatientABM(Frame parent,
+    public PatientJDialog(Frame parent,
             PatientUpdatedListener patientUpdatedListener, Patient patient) {
         super(parent, true);
         this.patientUpdatedListener = patientUpdatedListener;
@@ -122,7 +122,7 @@ public class PatientABM extends JDialog implements PatientABMView {
         antecedents.setFamilyAntecedents(this.txtaFamily.getText());
         antecedents.setPharmacologicalAntecedents(this.txtaPharmacological.getText());
 
-        patient.setAntecendents(antecedents);
+        patient.setAntecedents(antecedents);
     }
 
     /**
@@ -236,11 +236,11 @@ public class PatientABM extends JDialog implements PatientABMView {
         txtfMedicalCoverageNumber.setText(patient.getMedicalCoverageNumber());
         ftxtfFirstVisitDate.setText(patient.getFirstVisitDate());
 
-        txtaPersonal.setText(patient.getAntecendents().getPersonalAntecedents());
-        txtaToxics.setText(patient.getAntecendents().getToxicAntecedents());
-        txtaSurgical.setText(patient.getAntecendents().getSurgicalAntecedents());
-        txtaFamily.setText(patient.getAntecendents().getFamilyAntecedents());
-        txtaPharmacological.setText(patient.getAntecendents().getPharmacologicalAntecedents());
+        txtaPersonal.setText(patient.getAntecedents().getPersonalAntecedents());
+        txtaToxics.setText(patient.getAntecedents().getToxicAntecedents());
+        txtaSurgical.setText(patient.getAntecedents().getSurgicalAntecedents());
+        txtaFamily.setText(patient.getAntecedents().getFamilyAntecedents());
+        txtaPharmacological.setText(patient.getAntecedents().getPharmacologicalAntecedents());
     }
 
     @Override
@@ -264,15 +264,15 @@ public class PatientABM extends JDialog implements PatientABMView {
 
     @Override
     public void finishUpdatingPatient(Patient patient) {
-        patientUpdatedListener.patientUpdated(patient);
         changeFieldsState(false);
         this.btnModify.setEnabled(true);
         this.btnSave.setEnabled(false);
+        patientUpdatedListener.patientUpdated(patient);
     }
 
     @Override
     public void finishRegisteringPatient(Patient patient) {
-        ClinicalHistory clinicalHistory = new ClinicalHistory((java.awt.Frame) getParent(), patient);
+        ClinicalHistoryJDialog clinicalHistory = new ClinicalHistoryJDialog((java.awt.Frame) getParent(), patient);
         this.dispose();
         clinicalHistory.setVisible(true);
     }

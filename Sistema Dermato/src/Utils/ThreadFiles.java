@@ -1,6 +1,6 @@
 package Utils;
 
-import GUI.ChooseColor;
+import gui.ChooseColor;
 import java.util.ArrayList;
 
 /**

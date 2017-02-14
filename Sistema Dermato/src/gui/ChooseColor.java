@@ -4,7 +4,7 @@
  * Created on 07-oct-2012, 15:38:54
  */
 //La re concha de tu madre
-package GUI;
+package gui;
 
 import Utils.StyleManager;
 import Utils.FileManager;

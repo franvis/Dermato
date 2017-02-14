@@ -9,7 +9,7 @@ import static Utils.Constants.SYSTEM_FONT;
 import Utils.FileManager;
 import de.javasoft.plaf.synthetica.SyntheticaLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaMauveMetallicLookAndFeel;
-import gui.Principal;
+import gui.PrincipalJFrame;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,15 +32,15 @@ public class Start {
             SyntheticaLookAndFeel.setWindowsDecorated(false);
             SyntheticaLookAndFeel.setUseSystemFileIcons(true);
             SyntheticaLookAndFeel.setFont(new java.awt.Font(SYSTEM_FONT, 0, 13));
-
+            javax.swing.UIManager.put("Button.defaultButtonFollowsFocus", Boolean.TRUE);
         } catch (ParseException | UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PrincipalJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         FileManager.AutomaticBackup();
-        
+
         java.awt.EventQueue.invokeLater(() -> {
-            new Principal().setVisible(true);
+            new PrincipalJFrame().setVisible(true);
         });
     }
 

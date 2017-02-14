@@ -1,237 +1,69 @@
 package gui;
 
-import GUI.*;
 import ClasesBase.Visit;
 import Utils.StyleManager;
 import Utils.MultiLineCellRenderer;
 import ClasesBase.Patient;
-import DAO.*;
+import Utils.Constants;
 import static Utils.Constants.BIRTHDAY_WITH_AGE;
-import java.awt.Component;
 import java.awt.Font;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import static Utils.GeneralUtils.calculateAge;
+import static Utils.Constants.FULLNAME;
 import static Utils.GeneralUtils.changeTableSize;
 import static Utils.GeneralUtils.clearTable;
-import static Utils.Constants.FULLNAME;
-import static Utils.Constants.SYSTEM_ICON_IMAGE_PATH;
-import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import static Utils.GeneralUtils.setButtonFontForPointerEvent;
-import gui.PatientABM;
-import gui.Principal;
+import Utils.ValidationsAndMessages;
+import java.awt.GraphicsEnvironment;
+import javax.swing.table.DefaultTableModel;
+import mvp.presenter.ClinicalHistoryPresenter;
+import mvp.view.ClinicalHistoryView;
 import mvp.view.listener.PatientUpdatedListener;
+import mvp.view.listener.VisitUpdatedListener;
 
-public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdatedListener {
+public class ClinicalHistoryJDialog extends javax.swing.JDialog implements ClinicalHistoryView, PatientUpdatedListener, VisitUpdatedListener {
 
-    //STATIC VARS
     private static final String TABLE_COLUMN_DATE = "Fecha";
     private static final String TABLE_COLUMN_REASON = "Motivo";
     private static final String TABLE_COLUMN_DIAGNOSIS = "Diagnóstico";
 
-    //UI
-    private final LinkedList<JFrame> openWindows;
-    private final Principal principalParent;
-    private DefaultTableModel visitsDtm;
-    private AntecedentsDialog antecedents;
+    private final ClinicalHistoryPresenter presenter;
 
-    //DATA
-    private final DAOPatient patientDao;
-    private final DAOVisit visitDao;
-    private final DAOAntecedents antecedentsDao;
-
-    //MODELS
-    private LinkedList<Visit> visits;
-    private Patient patient;
-
-    //OTHER VARS
-    private boolean antecedentsModified;
-
-    public ClinicalHistory(java.awt.Frame parent, Patient patient) {
+    public ClinicalHistoryJDialog(java.awt.Frame parent, Patient patient) {
         super(parent, true);
-
-        patientDao = new DAOPatient();
-        visitDao = new DAOVisit();
-        antecedentsDao = new DAOAntecedents();
-        openWindows = new LinkedList<>();
-        antecedentsModified = false;
-        this.patient = patient;
-        principalParent = (Principal) parent;
-
+        presenter = new ClinicalHistoryPresenter(this);
         initComponents();
         setupInitialUI();
+        presenter.loadPatientData(patient);
+        presenter.loadPatientVisits();
     }
 
     @Override
     public JRootPane getRootPane() {
         super.getRootPane().registerKeyboardAction((ActionEvent e) -> {
-            exit();
+            dispose();
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
                 JComponent.WHEN_IN_FOCUSED_WINDOW);
         return super.getRootPane();
     }
 
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
-
-    /**
-     * Method used to fill all the fields for the clinical history of a certain
-     * patient.
-     */
-    public void fillFields() {
-        this.lblPatientName.setText(String.format(FULLNAME, patient.getLastname(), patient.getName()));
-        this.lblDni.setText(patient.getDniType().getName() + " - " + patient.getDni() + "");
-
-        if (patient.getBirthday() != null && !patient.getBirthday().isEmpty()) {
-            this.lblBirthday.setText(String.format(BIRTHDAY_WITH_AGE, patient.getBirthday(), calculateAge(patient.getBirthday())));
-        }
-        if (patient.getCity() == null || patient.getCity().isEmpty()) {
-            this.lblCity.setText("-");
-        } else {
-            this.lblCity.setText(patient.getCity());
-        }
-        if (patient.getPhone() == null || patient.getPhone().isEmpty()) {
-            this.lblPhone.setText("-");
-        } else {
-            this.lblPhone.setText(patient.getPhone());
-        }
-        if (patient.getFirstVisitDate()== null || patient.getFirstVisitDate().isEmpty()) {
-            this.lblFirstVisitDate.setText("-");
-        } else {
-            this.lblFirstVisitDate.setText(patient.getFirstVisitDate());
-        }
-        if (patient.getAddress() == null || patient.getAddress().isEmpty()) {
-            this.lblAddress.setText("-");
-        } else {
-            this.lblAddress.setText(patient.getAddress());
-        }
-        this.lblMedicalCoverage.setText(patient.getMedicalCoverage().getName());
-        if (patient.getMedicalCoverageNumber() == null || patient.getMedicalCoverageNumber().isEmpty()) {
-            this.lblMedicalCoverageNumber.setText("-");
-        } else {
-            this.lblMedicalCoverageNumber.setText(patient.getMedicalCoverageNumber());
-        }
-    }
-
-    /**
-     * Method used to fill the visits table
-     *
-     * @param dni patient's dni
-     */
-    public void fillTable(long dni) {
-//        Object[] o;
-//        visitsDtm = (DefaultTableModel) this.tblVisits.getModel();
-//        clearTable(visitsDtm);
-//        visits = new LinkedList<>();
-//        visits = visitDao.getAllPatientVisits(dni);
-//
-//        if (visits.isEmpty()) {
-//            changeTableSize(visitsDtm, 8);
-//        } else {
-//            changeTableSize(visitsDtm, 0);
-//        }
-//
-//        for (int i = 0; i < visits.size(); i++) {
-//            o = new Object[3];
-//            o[0] = visits.get(i).getDate();
-//            o[1] = visits.get(i).getReason();
-//            o[2] = visits.get(i).getDiagnosis();
-//            visitsDtm.addRow(o);
-//        }
-//        tblVisits.changeSelection(0, 0, false, false);
-//
-//        tblVisits.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mousePressed(MouseEvent me) {
-//                JTable table = (JTable) me.getSource();
-//                Point p = me.getPoint();
-//                int row = table.rowAtPoint(p);
-//                if (me.getClickCount() == 2 && row != -1
-//                        && ClinicalHistory.this.visits.size() > 0
-//                        && ClinicalHistory.this.visits.get(row) != null) {
-//                    for (JFrame aux : openWindows) {
-//                        if (aux instanceof ABMVisit) {
-//                            ABMVisit auxCons = (ABMVisit) aux;
-//                            if (auxCons.getVisitId() == ClinicalHistory.this.visits.get(row).getId()) {
-//                                aux.setVisible(true);
-//                                return;
-//                            }
-//                        }
-//                    }
-//                    Visit visit = visitDao.getFullVisit(ClinicalHistory.this.visits.get(row).getId(), patient.getDni());
-////                    ABMVisit abmVisit = new ABMVisit(ClinicalHistory.this, patient, visit);
-////                    abmVisit.setVisible(true);
-////                    abmVisit.requestFocus();
-////                    openWindows.add(abmVisit);
-//                }
-//            }
-//        });
-    }
-
-    /**
-     * Communicates color changes in the GUI to those frames that has this one
-     * as a parent.
-     *
-     * @param color New color
-     */
-    public void paintChilds(int color) {
-        openWindows.stream().forEach((window) -> {
-            Utils.StyleManager.paint(window, color);
-        });
-        if (antecedents != null) {
-            Utils.StyleManager.paint(antecedents, color);
-        }
-    }
-
-    /**
-     * Updates child when some of them is closed
-     *
-     * @param closedWindow
-     */
-    public void closeChild(JFrame closedWindow) {
-        if (closedWindow != null) {
-            openWindows.remove(closedWindow);
-        }
-    }
-
-    private void closeOpenWindows() {
-        for (JFrame window : openWindows) {
-            window.dispose();
-        }
-        openWindows.clear();
-    }
-
-    private void exit() {
-        principalParent.setVisible(true);
-        dispose();
-    }
-
     private void setupInitialUI() {
         btnModifyPatient.grabFocus();
-        fillFields();
+
         tblVisits.getColumn(TABLE_COLUMN_DATE).setMaxWidth(120);
         tblVisits.getColumn(TABLE_COLUMN_DATE).setResizable(false);
         tblVisits.getColumn(TABLE_COLUMN_REASON).setResizable(false);
         tblVisits.getColumn(TABLE_COLUMN_DIAGNOSIS).setResizable(false);
-        tblVisits.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 14));
+        tblVisits.getTableHeader().setFont(new Font(Constants.SYSTEM_FONT, Font.PLAIN, 14));
         tblVisits.setDefaultRenderer(String.class, new MultiLineCellRenderer());
         tblVisits.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//        fillTable(patient);
         pnlNameLastname.setBackground(StyleManager.getSecondaryColor(StyleManager.actualColor));
         StyleManager.paint(this);
-        setLocationRelativeTo(principalParent);
+        setLocationRelativeTo(getParent());
+        setBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds());
     }
 
     /**
@@ -329,14 +161,14 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
             pnlVisitsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlVisitsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPaneVisits, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
+                .addComponent(scrollPaneVisits, javax.swing.GroupLayout.DEFAULT_SIZE, 898, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlVisitsLayout.setVerticalGroup(
             pnlVisitsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlVisitsLayout.createSequentialGroup()
                 .addGap(3, 3, 3)
-                .addComponent(scrollPaneVisits, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addComponent(scrollPaneVisits, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -368,7 +200,7 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
         lblMedicalCoverage.setText("OSPAC");
 
         lblsFirstVisitDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblsFirstVisitDate.setText("Fecha Primera Consulta:");
+        lblsFirstVisitDate.setText("Primera Consulta:");
 
         btnModifyPatient.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnModifyPatient.setForeground(new java.awt.Color(0, 51, 102));
@@ -472,42 +304,45 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
                 .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlPatientDataLayout.createSequentialGroup()
                         .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblsCity)
-                            .addComponent(lblsBirthday)
+                            .addComponent(btnModifyPatient, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblsBirthday, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblsDni)
-                            .addComponent(btnModifyPatient, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblsFirstVisitDate))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlPatientDataLayout.createSequentialGroup()
-                                .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                                    .addComponent(lblCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblsFirstVisitDate)
-                                    .addComponent(lblsPhone)
-                                    .addComponent(lblsAddress))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlPatientDataLayout.createSequentialGroup()
-                                        .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblFirstVisitDate, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblsInsuranceNumber)
-                                            .addComponent(lblsPPHealthInsurance))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblMedicalCoverageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                                            .addComponent(lblMedicalCoverage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addGroup(pnlPatientDataLayout.createSequentialGroup()
-                                        .addComponent(lblAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(pnlPatientDataLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnAntecedents, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnAntecedents, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlPatientDataLayout.createSequentialGroup()
+                                .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(lblFirstVisitDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                                    .addComponent(lblDni, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(11, 11, 11)
+                                .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblsAddress)
+                                    .addComponent(lblsCity)
+                                    .addComponent(lblsPhone))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlPatientDataLayout.createSequentialGroup()
+                                        .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(pnlPatientDataLayout.createSequentialGroup()
+                                                .addComponent(lblPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(39, 39, 39))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPatientDataLayout.createSequentialGroup()
+                                                .addComponent(lblCity, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)))
+                                        .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblsPPHealthInsurance)
+                                            .addComponent(lblsInsuranceNumber))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(pnlPatientDataLayout.createSequentialGroup()
+                                                .addComponent(lblMedicalCoverageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(6, 6, 6))
+                                            .addComponent(lblMedicalCoverage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(lblAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addComponent(pnlNameLastname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -515,48 +350,37 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
             pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPatientDataLayout.createSequentialGroup()
                 .addComponent(pnlNameLastname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPatientDataLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblsBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
-                            .addComponent(lblBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPatientDataLayout.createSequentialGroup()
-                        .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblMedicalCoverage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblsPPHealthInsurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblsPhone)
-                                .addComponent(lblPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(1, 1, 1)))
+                .addGap(8, 8, 8)
+                .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblsBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .addComponent(lblBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblsPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblPhone)
+                    .addComponent(lblsPPHealthInsurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblMedicalCoverage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblsDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblsFirstVisitDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblFirstVisitDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblMedicalCoverageNumber)
-                        .addComponent(lblsInsuranceNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblsDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblsCity, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .addComponent(lblCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblsInsuranceNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblMedicalCoverageNumber))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlPatientDataLayout.createSequentialGroup()
-                        .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblsCity, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
-                            .addComponent(lblCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(17, 17, 17))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAntecedents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnModifyPatient, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(pnlPatientDataLayout.createSequentialGroup()
                         .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblsAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblAddress))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAntecedents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnModifyPatient, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
-                .addContainerGap())
+                            .addComponent(lblAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblsFirstVisitDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblFirstVisitDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblsAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(74, 74, 74))))
         );
 
         btnNewVisit.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -648,12 +472,9 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewVisitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewVisitActionPerformed
-        for (JFrame aux : openWindows) {
-            if (aux instanceof ABMVisit && ((ABMVisit) aux).getVisitId() == -1) {
-                aux.setVisible(true);
-                return;
-            }
-        }
+        //TODO call to new ABMVisit and make the double click
+        
+        
 //        ABMVisit abmVisit = new ABMVisit(this, patient);
 //        openWindows.add(abmVisit);
 //        abmVisit.setVisible(true);
@@ -661,12 +482,13 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
     }//GEN-LAST:event_btnNewVisitActionPerformed
 
     private void btnAntecedentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAntecedentsActionPerformed
-        if (!antecedentsModified) {
-            patient.setAntecendents(antecedentsDao.getAntecedent(patient));
-            antecedentsModified = true;
-        }
-//        antecedents = new AntecedentsDialog(this, true, patient);
-        antecedents.setVisible(true);
+        //TODO call the presenter here
+//        if (!antecedentsModified) {
+//            patient.setAntecedents(antecedentsDao.getAntecedent(patient));
+//            antecedentsModified = true;
+//        }
+////        antecedents = new AntecedentsDialog(this, true, patient);
+//        antecedents.setVisible(true);
     }//GEN-LAST:event_btnAntecedentsActionPerformed
 
     private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
@@ -678,8 +500,7 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
     }//GEN-LAST:event_btnBackMouseExited
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        principalParent.setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnModifyPatientMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyPatientMouseEntered
@@ -691,19 +512,11 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
     }//GEN-LAST:event_btnModifyPatientMouseExited
 
     private void btnModifyPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyPatientActionPerformed
-        patient = patientDao.getFullPatient(patient);
-        if (antecedentsModified == false) {
-            patient.setAntecendents(antecedentsDao.getAntecedent(patient));
-            antecedentsModified = true;
-        }
-        PatientABM pacienteInterfaz = new PatientABM((java.awt.Frame) getParent(), this, patient);
-        pacienteInterfaz.setVisible(true);
+        presenter.modifyPatient();
     }//GEN-LAST:event_btnModifyPatientActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-//        principalParent.closeChild(this);
-        closeOpenWindows();
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_formWindowClosing
 
     private void btnAntecedentsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAntecedentsMouseEntered
@@ -755,6 +568,113 @@ public class ClinicalHistory extends javax.swing.JDialog implements PatientUpdat
 
     @Override
     public void patientUpdated(Patient patient) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        displayPatientData(patient);
+        presenter.setPatient(patient);
+    }
+
+    @Override
+    public void displayPatientData(Patient patient) {
+        this.lblPatientName.setText(String.format(FULLNAME, patient.getLastname(), patient.getName()));
+        this.lblDni.setText(patient.getDniType().getName() + " - " + patient.getDni() + "");
+
+        if (patient.getBirthday() != null && !patient.getBirthday().isEmpty()) {
+            this.lblBirthday.setText(String.format(BIRTHDAY_WITH_AGE, patient.getBirthday(), calculateAge(patient.getBirthday())));
+        }
+        if (patient.getCity() == null || patient.getCity().isEmpty()) {
+            this.lblCity.setText("-");
+        } else {
+            this.lblCity.setText(patient.getCity());
+        }
+        if (patient.getPhone() == null || patient.getPhone().isEmpty()) {
+            this.lblPhone.setText("-");
+        } else {
+            this.lblPhone.setText(patient.getPhone());
+        }
+        if (patient.getFirstVisitDate() == null || patient.getFirstVisitDate().isEmpty()) {
+            this.lblFirstVisitDate.setText("-");
+        } else {
+            this.lblFirstVisitDate.setText(patient.getFirstVisitDate());
+        }
+        if (patient.getAddress() == null || patient.getAddress().isEmpty()) {
+            this.lblAddress.setText("-");
+        } else {
+            this.lblAddress.setText(patient.getAddress());
+        }
+        this.lblMedicalCoverage.setText(patient.getMedicalCoverage().getName());
+        if (patient.getMedicalCoverageNumber() == null || patient.getMedicalCoverageNumber().isEmpty()) {
+            this.lblMedicalCoverageNumber.setText("-");
+        } else {
+            this.lblMedicalCoverageNumber.setText(patient.getMedicalCoverageNumber());
+        }
+    }
+
+    @Override
+    public void displayPatientVisits(List<Visit> visits) {
+                Object[] o;
+        DefaultTableModel visitsDtm = (DefaultTableModel) this.tblVisits.getModel();
+        clearTable(visitsDtm);
+
+        if (visits.isEmpty()) {
+            changeTableSize(visitsDtm, 8);
+        } else {
+            changeTableSize(visitsDtm, 0);
+        }
+
+        for (int i = 0; i < visits.size(); i++) {
+            o = new Object[3];
+            o[0] = visits.get(i).getDate();
+            o[1] = visits.get(i).getReason();
+            o[2] = visits.get(i).getDiagnosis();
+            visitsDtm.addRow(o);
+        }
+        tblVisits.changeSelection(0, 0, false, false);
+
+//        tblVisits.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mousePressed(MouseEvent me) {
+//                JTable table = (JTable) me.getSource();
+//                Point p = me.getPoint();
+//                int row = table.rowAtPoint(p);
+//                if (me.getClickCount() == 2 && row != -1
+//                        && ClinicalHistoryJDialog.this.visits.size() > 0
+//                        && ClinicalHistoryJDialog.this.visits.get(row) != null) {
+//                    for (JFrame aux : openWindows) {
+//                        if (aux instanceof ABMVisit) {
+//                            ABMVisit auxCons = (ABMVisit) aux;
+//                            if (auxCons.getVisitId() == ClinicalHistoryJDialog.this.visits.get(row).getId()) {
+//                                aux.setVisible(true);
+//                                return;
+//                            }
+//                        }
+//                    }
+//                    Visit visit = visitDao.getFullVisit(ClinicalHistoryJDialog.this.visits.get(row).getId(), patient.getDni());
+////                    ABMVisit abmVisit = new ABMVisit(ClinicalHistoryJDialog.this, patient, visit);
+////                    abmVisit.setVisible(true);
+////                    abmVisit.requestFocus();
+////                    openWindows.add(abmVisit);
+//                }
+//            }
+//        });
+    }
+
+    @Override
+    public void showErrorMessage(String error) {
+        ValidationsAndMessages.showError(this, error);
+    }
+
+    @Override
+    public void showInfoMessage(String info) {
+        ValidationsAndMessages.showInfo(this, info);
+    }
+
+    @Override
+    public void modifyPatientData(Patient patient) {
+        PatientJDialog pacienteInterfaz = new PatientJDialog((java.awt.Frame) getParent(), this, patient);
+        pacienteInterfaz.setVisible(true);
+    }
+
+    @Override
+    public void visitUpdated() {
+        presenter.loadPatientVisits();
     }
 }

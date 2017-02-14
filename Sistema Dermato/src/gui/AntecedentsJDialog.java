@@ -2,29 +2,28 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package gui;
 
 import ClasesBase.Antecedents;
 import Utils.ValidationsAndMessages;
 import ClasesBase.Patient;
-import DAO.DAOAntecedents;
 import static Utils.GeneralUtils.handleFocus;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import static Utils.GeneralUtils.setButtonFontForPointerEvent;
+import javax.swing.JRootPane;
+import mvp.presenter.AntecedentsPresenter;
+import mvp.view.AntecedentsView;
 
 /**
  *
  * @author Fran
  */
-public class AntecedentsDialog extends javax.swing.JDialog {
+public class AntecedentsJDialog extends javax.swing.JDialog implements AntecedentsView {
 
-    private Antecedents antecedents;
-    private final DAOAntecedents daoAntecedents;
-    private final Patient patient;
+    private final AntecedentsPresenter presenter;
 
     /**
      * Creates new form AntecGenerales
@@ -33,24 +32,22 @@ public class AntecedentsDialog extends javax.swing.JDialog {
      * @param modal
      * @param patient
      */
-    public AntecedentsDialog(java.awt.Frame parent, boolean modal, Patient patient) {
+    public AntecedentsJDialog(java.awt.Frame parent, boolean modal, Patient patient) {
         super(parent, modal);
+        presenter = new AntecedentsPresenter(this, patient);
+
         initComponents();
-        this.btnModify.grabFocus();
-        this.patient = patient;
-        daoAntecedents = new DAOAntecedents();
-        fillFields(patient);
-        setFieldsState(false);
-        this.setLocationRelativeTo(parent);
-        Utils.StyleManager.paint(this);
-        //eventos de la página
-        KeyStroke strokeEsc = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
-        this.getRootPane().registerKeyboardAction(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                exit();
-            }
-        }, strokeEsc, JComponent.WHEN_IN_FOCUSED_WINDOW);
+        setUpInitialUI();
+        presenter.loadAntecedentsData(patient);
+    }
+
+    @Override
+    public JRootPane getRootPane() {
+        super.getRootPane().registerKeyboardAction((ActionEvent e) -> {
+            exitWindow();
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                JComponent.WHEN_IN_FOCUSED_WINDOW);
+        return super.getRootPane();
     }
 
     /**
@@ -410,20 +407,8 @@ private void txtaToxicKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     }//GEN-LAST:event_btnSaveMouseExited
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        antecedents = new Antecedents();
-        antecedents.setPersonalAntecedents(this.txtaPersonal.getText());
-        antecedents.setSurgicalAntecedents(this.txtaSurgical.getText());
-        antecedents.setToxicAntecedents(this.txtaToxic.getText());
-        patient.setAntecendents(antecedents);
-        if (daoAntecedents.updateAntecedents(antecedents, patient.getDni())) {
-            ValidationsAndMessages.showInfo(this, "Actualización Exitosa.");
-            setFieldsState(false);
-            this.btnSave.setEnabled(false);
-            this.btnModify.setEnabled(true);
-            patient.setAntecendents(antecedents);
-        } else {
-            ValidationsAndMessages.showError(this, "Actualización Fallida.");
-        }
+        Antecedents antecedents = generateAntecedents();
+        presenter.updateAntecedents(antecedents);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnCancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseEntered
@@ -435,10 +420,10 @@ private void txtaToxicKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     }//GEN-LAST:event_btnCancelMouseExited
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        this.fillFields(patient);
-        this.setFieldsState(false);
-        this.btnSave.setEnabled(false);
-        this.btnModify.setEnabled(true);
+        presenter.reloadAntecedentsData();
+        setFieldsState(false);
+        btnSave.setEnabled(false);
+        btnModify.setEnabled(true);
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
@@ -450,7 +435,7 @@ private void txtaToxicKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     }//GEN-LAST:event_btnBackMouseExited
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        this.exit();
+        exitWindow();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnModifyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyMouseEntered
@@ -469,7 +454,7 @@ private void txtaToxicKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        this.exit();
+        exitWindow();
     }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -497,21 +482,6 @@ private void txtaToxicKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     // End of variables declaration//GEN-END:variables
 
     /**
-     * Fills all antecedents fields.
-     *
-     * @param patient Patient with the antecedents
-     */
-    private void fillFields(Patient patient) {
-        if (patient.getAntecendents() != null) {
-            this.txtaPersonal.setText(patient.getAntecendents().getPersonalAntecedents());
-            this.txtaToxic.setText(patient.getAntecendents().getToxicAntecedents());
-            this.txtaSurgical.setText(patient.getAntecendents().getSurgicalAntecedents());
-            this.txtaFamily.setText(patient.getAntecendents().getFamilyAntecedents());
-            this.txtaPharmacological.setText(patient.getAntecendents().getPharmacologicalAntecedents());
-        }
-    }
-
-    /**
      * Sets the state of the fields(enabled,disabled).
      *
      * @param state true (enabled), false (disabled)
@@ -526,15 +496,53 @@ private void txtaToxicKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         this.btnCancel.setEnabled(state);
     }
 
-    /**
-     * Method used to close de windows making all the needed validations.
-     */
-    private void exit() {
+    @Override
+    public void displayAntecedents(Antecedents antecedents) {
+        this.txtaPersonal.setText(antecedents.getPersonalAntecedents());
+        this.txtaToxic.setText(antecedents.getToxicAntecedents());
+        this.txtaSurgical.setText(antecedents.getSurgicalAntecedents());
+        this.txtaFamily.setText(antecedents.getFamilyAntecedents());
+        this.txtaPharmacological.setText(antecedents.getPharmacologicalAntecedents());
+    }
+
+    @Override
+    public void exitWindow() {
         if (!btnSave.isEnabled()) {
             this.dispose();
-            this.getOwner().setVisible(true);
         } else {
             ValidationsAndMessages.validateWindowExit(this);
         }
+    }
+
+    @Override
+    public void finishUpdatingAntecedents() {
+        setFieldsState(false);
+        this.btnSave.setEnabled(false);
+        this.btnModify.setEnabled(true);
+    }
+
+    @Override
+    public void showErrorMessage(String error) {
+        ValidationsAndMessages.showError(this, error);
+    }
+
+    @Override
+    public void showInfoMessage(String info) {
+        ValidationsAndMessages.showInfo(this, info);
+    }
+
+    private void setUpInitialUI() {
+        btnModify.grabFocus();
+        setFieldsState(false);
+    }
+
+    private Antecedents generateAntecedents() {
+        Antecedents antecedents = new Antecedents();
+        antecedents.setPersonalAntecedents(this.txtaPersonal.getText());
+        antecedents.setSurgicalAntecedents(this.txtaSurgical.getText());
+        antecedents.setToxicAntecedents(this.txtaToxic.getText());
+        antecedents.setPharmacologicalAntecedents(this.txtaPharmacological.getText());
+        antecedents.setFamilyAntecedents(this.txtaFamily.getText());
+        return antecedents;
     }
 }

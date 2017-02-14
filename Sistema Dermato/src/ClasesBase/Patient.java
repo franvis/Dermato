@@ -24,7 +24,7 @@ public class Patient {
     private MedicalCoverage medicalCoverage;
     private String medicalCoverageNumber;
     private String firstVisitDate;
-    private Antecedents antecendents;
+    private Antecedents antecedents;
     private String lastVisitDate;
     private LinkedList<Visit> visits = new LinkedList<>();
 
@@ -45,7 +45,7 @@ public class Patient {
         this.birthday = birthday;
         this.medicalCoverage = prepaidHealthInsurance;
         this.medicalCoverageNumber = prepaidHealthInsuranceNumber;
-        this.antecendents = antecendent;
+        this.antecedents = antecendent;
         this.firstVisitDate = firstVisitDate;
     }
 
@@ -63,7 +63,7 @@ public class Patient {
         this.birthday = birthday;
         this.medicalCoverage = prepaidHealthInsurance;
         this.medicalCoverageNumber = prepaidHealthInsuranceNumber;
-        this.antecendents = antecendent;
+        this.antecedents = antecendent;
         this.firstVisitDate = firstVisitDate;
         this.visits = visits;
     }
@@ -156,12 +156,12 @@ public class Patient {
         this.firstVisitDate = firstVisitDate;
     }
 
-    public Antecedents getAntecendents() {
-        return antecendents;
+    public Antecedents getAntecedents() {
+        return antecedents;
     }
 
-    public void setAntecendents(Antecedents antecendents) {
-        this.antecendents = antecendents;
+    public void setAntecedents(Antecedents antecedents) {
+        this.antecedents = antecedents;
     }
 
     public String getAddress() {
