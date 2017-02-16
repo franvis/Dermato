@@ -2,13 +2,11 @@ package gui;
 
 import Utils.ValidationsAndMessages;
 import ClasesBase.MedicalCoverage;
-import DAO.DAOMedicalCoverage;
 import static Utils.GeneralUtils.clearTable;
 import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
@@ -20,9 +18,11 @@ import javax.swing.JRootPane;
 import mvp.presenter.MedicalCoveragePresenter;
 import mvp.view.MedicalCoverageView;
 
-public class MedicalCoverageJDialog extends javax.swing.JFrame implements MedicalCoverageView{
+public class MedicalCoverageJDialog extends javax.swing.JFrame implements MedicalCoverageView {
 
-private MedicalCoveragePresenter presenter;
+    private final MedicalCoveragePresenter presenter;
+    private boolean isUpdating;
+
     /**
      * Creates new form ABMObrasSociales
      *
@@ -31,6 +31,7 @@ private MedicalCoveragePresenter presenter;
     public MedicalCoverageJDialog(Frame parent) {
         presenter = new MedicalCoveragePresenter(this);
         initComponents();
+        presenter.loadMedicalCoverages();
     }
 
     @Override
@@ -41,7 +42,7 @@ private MedicalCoveragePresenter presenter;
                 JComponent.WHEN_IN_FOCUSED_WINDOW);
         return super.getRootPane();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,7 +62,7 @@ private MedicalCoveragePresenter presenter;
         btnCancel = new javax.swing.JButton();
         btnModify = new javax.swing.JButton();
         pnlNewPPHealthInsurance = new javax.swing.JPanel();
-        txtPPHealthInsuranceName = new javax.swing.JTextField();
+        txtMedicalCoverageName = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
@@ -232,7 +233,7 @@ private MedicalCoveragePresenter presenter;
 
         pnlNewPPHealthInsurance.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nueva Obra Social", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
-        txtPPHealthInsuranceName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtMedicalCoverageName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSave.setForeground(new java.awt.Color(0, 51, 102));
@@ -253,7 +254,7 @@ private MedicalCoveragePresenter presenter;
             pnlNewPPHealthInsuranceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNewPPHealthInsuranceLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtPPHealthInsuranceName)
+                .addComponent(txtMedicalCoverageName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSave)
                 .addContainerGap())
@@ -262,7 +263,7 @@ private MedicalCoveragePresenter presenter;
             pnlNewPPHealthInsuranceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNewPPHealthInsuranceLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtPPHealthInsuranceName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMedicalCoverageName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
             .addGroup(pnlNewPPHealthInsuranceLayout.createSequentialGroup()
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -347,15 +348,8 @@ private MedicalCoveragePresenter presenter;
     }//GEN-LAST:event_btnDeleteMouseExited
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        if (!prePaidHealthInsurances.isEmpty()) {
-            int idObraSeleccionada = prePaidHealthInsurances.get(tblPrePaidHealthInsurances.getSelectedRow()).getId();
-            if (daoPrePaidHealthInsurance.deletePrePaidHealthInsurance(new MedicalCoverage(idObraSeleccionada, ""))) {
-                ValidationsAndMessages.showInfo(this, "Borrado Exitoso.");
-                prePaidHealthInsurances = daoPrePaidHealthInsurance.getAllPrePaidHealthInsurances();
-                fillPrePaidHealthInsurances(prePaidHealthInsurances);
-            } else {
-                ValidationsAndMessages.showInfo(this, "Borrado Fallido.");
-            }
+        if (tblPrePaidHealthInsurances.getSelectedRow() != -1) {
+            presenter.deleteMedicalCoverage(tblPrePaidHealthInsurances.getSelectedRow());
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -368,10 +362,11 @@ private MedicalCoveragePresenter presenter;
     }//GEN-LAST:event_btnCancelMouseExited
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        this.btnDelete.setEnabled(true);
-        this.btnCancel.setEnabled(false);
-        this.txtPPHealthInsuranceName.setText("");
-        this.btnModify.setEnabled(true);
+        isUpdating = false;
+        btnDelete.setEnabled(true);
+        btnCancel.setEnabled(false);
+        txtMedicalCoverageName.setText("");
+        btnModify.setEnabled(true);
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnModifyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyMouseEntered
@@ -383,50 +378,28 @@ private MedicalCoveragePresenter presenter;
     }//GEN-LAST:event_btnModifyMouseExited
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
-        if (!prePaidHealthInsurances.isEmpty()) {
-            int idSelectedPPHealthInsurance = prePaidHealthInsurances.get(tblPrePaidHealthInsurances.getSelectedRow()).getId();
-            MedicalCoverage pPHealthInsuranceToModify = daoPrePaidHealthInsurance.getPPHealthInsurance(idSelectedPPHealthInsurance);
-            txtPPHealthInsuranceName.setText(pPHealthInsuranceToModify.getName());
-            txtPPHealthInsuranceName.grabFocus();
+        int selectedMedicalCoverage = tblPrePaidHealthInsurances.getSelectedRow();
+        if (selectedMedicalCoverage != -1) {
+            presenter.loadMedicalCoverageInfo(selectedMedicalCoverage);
+
             isUpdating = true;
             this.btnDelete.setEnabled(false);
             this.btnCancel.setEnabled(true);
             this.btnModify.setEnabled(false);
+        } else {
+            showInfoMessage("Por favor seleccione una obra social.");
         }
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if (this.txtPPHealthInsuranceName.getText().isEmpty()) {
+        if (this.txtMedicalCoverageName.getText().isEmpty()) {
             ValidationsAndMessages.showError(this, "Ingrese un nombre de obra social válido...");
             return;
         }
-        if (!isUpdating) {
-            if (daoPrePaidHealthInsurance.registerPrePaidHealthInsurance(new MedicalCoverage(0, txtPPHealthInsuranceName.getText()))) {
-                ValidationsAndMessages.showInfo(this, "Registro Exitoso.");
-                this.txtPPHealthInsuranceName.setText("");
-                this.prePaidHealthInsurances = new HashMap<>();
-                this.prePaidHealthInsurances = daoPrePaidHealthInsurance.getAllPrePaidHealthInsurances();
-                fillPrePaidHealthInsurances(prePaidHealthInsurances);
-            } else {
-                ValidationsAndMessages.showError(this, "Registro Fallido.");
-            }
+        if (isUpdating) {
+            presenter.updateMedicalCoverage(txtMedicalCoverageName.getText());
         } else {
-            int idSelectedPPHealthInsurance = prePaidHealthInsurances.get(tblPrePaidHealthInsurances.getSelectedRow()).getId();
-            if (daoPrePaidHealthInsurance.updatePrepaidHealthInsurance(new MedicalCoverage(idSelectedPPHealthInsurance, txtPPHealthInsuranceName.getText()))) {
-                ValidationsAndMessages.showInfo(this, "Actualización Exitosa.");
-                this.txtPPHealthInsuranceName.setText("");
-                this.prePaidHealthInsurances = new HashMap<>();
-                this.prePaidHealthInsurances = daoPrePaidHealthInsurance.getAllPrePaidHealthInsurances();
-                fillPrePaidHealthInsurances(prePaidHealthInsurances);
-            } else {
-                ValidationsAndMessages.showError(this, "Actualización Fallida.");
-            }
-            this.txtPPHealthInsuranceName.setText("");
-            isUpdating = false;
-            this.btnDelete.setEnabled(true);
-            this.btnModify.setEnabled(true);
-            this.btnCancel.setEnabled(false);
-            txtPPHealthInsuranceName.grabFocus();
+            presenter.registerMedicalCoverage(txtMedicalCoverageName.getText());
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -446,25 +419,8 @@ private MedicalCoveragePresenter presenter;
     private javax.swing.JPanel pnlNewPPHealthInsurance;
     private javax.swing.JPanel pnlPrePaidHealthInsurances;
     private javax.swing.JTable tblPrePaidHealthInsurances;
-    private javax.swing.JTextField txtPPHealthInsuranceName;
+    private javax.swing.JTextField txtMedicalCoverageName;
     // End of variables declaration//GEN-END:variables
-
-    /**
-     * Fills the table with all existing pre paid health insurances.
-     *
-     * @param prePaidHealthInsurances
-     */
-    private void fillPrePaidHealthInsurances(HashMap<Integer, MedicalCoverage> prePaidHealthInsurances) {
-        Object[] o;
-        this.dtmPrePaidHealthInsurances = (DefaultTableModel) this.tblPrePaidHealthInsurances.getModel();
-        clearTable(dtmPrePaidHealthInsurances);
-        for (int i = 0; i < prePaidHealthInsurances.size(); i++) {
-            o = new Object[1];
-            o[0] = prePaidHealthInsurances.get(i).getName();
-            dtmPrePaidHealthInsurances.addRow(o);
-        }
-        this.tblPrePaidHealthInsurances.changeSelection(0, 0, false, false);
-    }
 
     @Override
     public Image getIconImage() {
@@ -474,7 +430,15 @@ private MedicalCoveragePresenter presenter;
 
     @Override
     public void displayMedicalCoverages(List<MedicalCoverage> medicalCoverages) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Object[] o;
+        DefaultTableModel dtmPrePaidHealthInsurances = (DefaultTableModel) this.tblPrePaidHealthInsurances.getModel();
+        clearTable(dtmPrePaidHealthInsurances);
+        for (int i = 0; i < medicalCoverages.size(); i++) {
+            o = new Object[1];
+            o[0] = medicalCoverages.get(i).getName();
+            dtmPrePaidHealthInsurances.addRow(o);
+        }
+        this.tblPrePaidHealthInsurances.changeSelection(0, 0, false, false);
     }
 
     @Override
@@ -483,31 +447,38 @@ private MedicalCoveragePresenter presenter;
     }
 
     @Override
-    public void finishUpdatingMedicalCoverage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void finishUpdatingMedicalCoverage(int selectedMedicalCoverage) {
+        txtMedicalCoverageName.setText("");
+        isUpdating = false;
+        btnDelete.setEnabled(true);
+        btnModify.setEnabled(true);
+        btnCancel.setEnabled(false);
+        txtMedicalCoverageName.grabFocus();
     }
 
     @Override
     public void finishRegisteringMedicalCoverage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        txtMedicalCoverageName.setText("");
     }
 
     @Override
     public void finishDeletingMedicalCoverage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        presenter.loadMedicalCoverages();
     }
 
     @Override
     public void showErrorMessage(String error) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ValidationsAndMessages.showError(this, error);
     }
 
     @Override
     public void showInfoMessage(String info) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ValidationsAndMessages.showInfo(this, info);
     }
 
-    private void setUpInitialUI() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override
+    public void displayMedicalCoverageInfo(MedicalCoverage medicalCoverage) {
+        txtMedicalCoverageName.setText(medicalCoverage.getName());
+        txtMedicalCoverageName.grabFocus();
     }
 }

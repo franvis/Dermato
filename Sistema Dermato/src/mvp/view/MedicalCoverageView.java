@@ -17,9 +17,11 @@ public interface MedicalCoverageView extends GeneralView{
     
     public void displayMedicalCoverages(List<MedicalCoverage> medicalCoverages);
 
+    public void displayMedicalCoverageInfo(MedicalCoverage medicalCoverage);
+    
     public void exitWindow();
     
-    public void finishUpdatingMedicalCoverage();
+    public void finishUpdatingMedicalCoverage(int selectedMedicalCoverage);
     
     public void finishRegisteringMedicalCoverage();
     
