@@ -20,13 +20,13 @@ import javax.swing.KeyStroke;
  *
  * @author Denise
  */
-public class ChooseColor extends javax.swing.JDialog {
+public class ChooseColorJDialog extends javax.swing.JDialog {
 
     public JFrame padre;
     private int color = StyleManager.actualColor;
     
     /** Creates new form EleccionColor */
-    public ChooseColor(JFrame parent, boolean modal) {
+    public ChooseColorJDialog(JFrame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.padre = parent;

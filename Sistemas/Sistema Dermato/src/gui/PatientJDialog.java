@@ -15,7 +15,6 @@ import static utils.ValidationsAndMessages.BIRTHDAY_DATE_FORMAT_ERROR;
 import static utils.ValidationsAndMessages.FIRST_VISIT_DATE_FORMAT_ERROR;
 import static utils.ValidationsAndMessages.MANDATORY_FIELDS_ERROR;
 import static utils.ValidationsAndMessages.PRE_PAID_HEALTH_INSURANCE_NAME_EMPTY;
-import com.sun.istack.internal.Nullable;
 import java.awt.Frame;
 import java.util.List;
 import mvp.presenter.PatientABMPresenter;
@@ -67,7 +66,6 @@ public class PatientJDialog extends JDialog implements PatientABMView {
      *
      * @return Patient if correctly generated, null if an error occurred
      */
-    @Nullable
     private Patient generatePatient() {
         String error;
         Patient patient = new Patient();

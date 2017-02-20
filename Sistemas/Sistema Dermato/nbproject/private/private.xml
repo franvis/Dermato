@@ -3,24 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/gui/PatientJDialog.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/presenter/PatientABMPresenter.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/gui/MedicalCoverageJDialog.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/model/AntecedentsModel.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/gui/VisitJDialog.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/view/AntecedentsView.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/ClasesBase/Patient.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/DAO/DAOAntecedents.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/view/VisitView.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/model/VisitModel.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/gui/AntecedentsJDialog.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/ClasesBase/Antecedents.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/view/MedicalCoverageView.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/presenter/AntecedentsPresenter.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/gui/PrincipalJFrame.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/presenter/VisitPresenter.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/presenter/MedicalCoveragePresenter.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistema%20Dermato/src/mvp/model/MedicalCoverageModel.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/utils/Constants.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/start/Start.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/gui/PatientJDialog.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/gui/AntecedentsJDialog.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/gui/PrincipalJFrame.java</file>
         </group>
     </open-files>
 </project-private>

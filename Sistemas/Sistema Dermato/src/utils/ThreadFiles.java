@@ -1,6 +1,6 @@
 package utils;
 
-import gui.ChooseColor;
+import gui.ChooseColorJDialog;
 import java.util.ArrayList;
 
 /**
@@ -11,9 +11,9 @@ public class ThreadFiles extends Thread {
     
     private boolean seguir =  false;
     private static ArrayList<Casilla> colores;
-    private ChooseColor parent;
+    private ChooseColorJDialog parent;
 
-    public ThreadFiles(ChooseColor parent) {
+    public ThreadFiles(ChooseColorJDialog parent) {
         colores = new ArrayList<>();
         this.parent = parent;
     }

@@ -214,6 +214,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         setTitle("Gestión de Pacientes");
         setBounds(new java.awt.Rectangle(5, 5, 0, 0));
         setIconImage(getIconImage());
+        setIconImages(null);
         setMinimumSize(new java.awt.Dimension(824, 443));
         setName("principal"); // NOI18N
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -317,12 +318,11 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
 
         btnNewPatient.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnNewPatient.setForeground(new java.awt.Color(153, 153, 153));
-        btnNewPatient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add_user_enabled.png"))); // NOI18N
+        btnNewPatient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add_user_enabled.png"))); // NOI18N
         btnNewPatient.setText("Nuevo Paciente");
         btnNewPatient.setBorder(null);
         btnNewPatient.setContentAreaFilled(false);
         btnNewPatient.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnNewPatient.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add_user_not_enabled.png"))); // NOI18N
         btnNewPatient.setEnabled(false);
         btnNewPatient.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNewPatient.setOpaque(true);
@@ -343,12 +343,11 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
 
         btnSeeCH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSeeCH.setForeground(new java.awt.Color(153, 153, 153));
-        btnSeeCH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/HC_enabled.png"))); // NOI18N
+        btnSeeCH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/HC_enabled.png"))); // NOI18N
         btnSeeCH.setText("Ver Historia Clínica");
         btnSeeCH.setBorder(null);
         btnSeeCH.setContentAreaFilled(false);
         btnSeeCH.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSeeCH.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/HC_not_enabled.png"))); // NOI18N
         btnSeeCH.setEnabled(false);
         btnSeeCH.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSeeCH.setOpaque(true);
@@ -369,12 +368,11 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
 
         btnModifyPatient.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnModifyPatient.setForeground(new java.awt.Color(153, 153, 153));
-        btnModifyPatient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edit_profile_enabled.png"))); // NOI18N
+        btnModifyPatient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit_profile_enabled.png"))); // NOI18N
         btnModifyPatient.setText("Modificar Paciente");
         btnModifyPatient.setBorder(null);
         btnModifyPatient.setContentAreaFilled(false);
         btnModifyPatient.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnModifyPatient.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edit_profile_not_enabled.png"))); // NOI18N
         btnModifyPatient.setEnabled(false);
         btnModifyPatient.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnModifyPatient.setOpaque(true);
@@ -395,12 +393,11 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
 
         btnPerformBackup.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnPerformBackup.setForeground(new java.awt.Color(153, 153, 153));
-        btnPerformBackup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/backup_enabled.png"))); // NOI18N
+        btnPerformBackup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backup_enabled.png"))); // NOI18N
         btnPerformBackup.setText("Realizar Back Up");
         btnPerformBackup.setBorder(null);
         btnPerformBackup.setContentAreaFilled(false);
         btnPerformBackup.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnPerformBackup.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/backup_not_enabled.png"))); // NOI18N
         btnPerformBackup.setEnabled(false);
         btnPerformBackup.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnPerformBackup.setOpaque(true);
@@ -533,7 +530,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         menuFile.add(menuMedicalCoverage);
 
         menuExit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menuExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
+        menuExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salir.png"))); // NOI18N
         menuExit.setText("Salir");
         menuExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -733,7 +730,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
     }//GEN-LAST:event_btnNewPatientActionPerformed
 
 private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuChangeColorActionPerformed
-    new ChooseColor(this, true).setVisible(true);
+    new ChooseColorJDialog(this, true).setVisible(true);
 }//GEN-LAST:event_menuChangeColorActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
