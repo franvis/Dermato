@@ -3,14 +3,14 @@
  */
 package gui;
 
-import Utils.ValidationsAndMessages;
-import Utils.StyleManager;
-import ClasesBase.Patient;
-import ClasesBase.Visit;
-import Utils.Constants;
-import static Utils.Constants.BIRTHDAY_WITH_AGE;
-import static Utils.GeneralUtils.calculateAge;
-import static Utils.GeneralUtils.handleFocus;
+import utils.ValidationsAndMessages;
+import utils.StyleManager;
+import bussines.Patient;
+import bussines.Visit;
+import utils.Constants;
+import static utils.Constants.BIRTHDAY_WITH_AGE;
+import static utils.GeneralUtils.calculateAge;
+import static utils.GeneralUtils.handleFocus;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +19,7 @@ import java.util.Calendar;
 import javax.swing.JComponent;
 import javax.swing.JRootPane;
 import javax.swing.KeyStroke;
-import static Utils.GeneralUtils.setButtonFontForPointerEvent;
+import static utils.GeneralUtils.setButtonFontForPointerEvent;
 import mvp.presenter.VisitPresenter;
 import mvp.view.VisitView;
 import mvp.view.listener.VisitUpdatedListener;

@@ -1,8 +1,8 @@
 package gui;
 
-import Utils.ValidationsAndMessages;
-import ClasesBase.MedicalCoverage;
-import static Utils.GeneralUtils.clearTable;
+import utils.ValidationsAndMessages;
+import bussines.MedicalCoverage;
+import static utils.GeneralUtils.clearTable;
 import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -11,7 +11,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
-import static Utils.GeneralUtils.setButtonFontForPointerEvent;
+import static utils.GeneralUtils.setButtonFontForPointerEvent;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.JRootPane;

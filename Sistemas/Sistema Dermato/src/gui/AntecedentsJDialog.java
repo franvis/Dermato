@@ -4,15 +4,15 @@
  */
 package gui;
 
-import ClasesBase.Antecedents;
-import Utils.ValidationsAndMessages;
-import ClasesBase.Patient;
-import static Utils.GeneralUtils.handleFocus;
+import bussines.Antecedents;
+import utils.ValidationsAndMessages;
+import bussines.Patient;
+import static utils.GeneralUtils.handleFocus;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
-import static Utils.GeneralUtils.setButtonFontForPointerEvent;
+import static utils.GeneralUtils.setButtonFontForPointerEvent;
 import javax.swing.JRootPane;
 import mvp.presenter.AntecedentsPresenter;
 import mvp.view.AntecedentsView;

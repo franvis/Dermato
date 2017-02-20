@@ -1,11 +1,11 @@
 package mvp.model;
 
-import ClasesBase.DniType;
-import ClasesBase.MedicalCoverage;
-import ClasesBase.Patient;
-import DAO.DAODniType;
-import DAO.DAOPatient;
-import DAO.DAOMedicalCoverage;
+import bussines.DniType;
+import bussines.MedicalCoverage;
+import bussines.Patient;
+import dao.DAODniType;
+import dao.DAOPatient;
+import dao.DAOMedicalCoverage;
 import java.util.List;
 
 /**

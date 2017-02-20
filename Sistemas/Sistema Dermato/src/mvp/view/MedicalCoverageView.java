@@ -5,8 +5,8 @@
  */
 package mvp.view;
 
-import ClasesBase.Antecedents;
-import ClasesBase.MedicalCoverage;
+import bussines.Antecedents;
+import bussines.MedicalCoverage;
 import java.util.List;
 
 /**

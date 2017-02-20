@@ -6,8 +6,8 @@
 //La re concha de tu madre
 package gui;
 
-import Utils.StyleManager;
-import Utils.FileManager;
+import utils.StyleManager;
+import utils.FileManager;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -199,7 +199,7 @@ private void btnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
 
 private void salir (){
-    Utils.StyleManager.paint(this);
+    utils.StyleManager.paint(this);
     this.dispose();
 }
 
@@ -231,7 +231,7 @@ private void salir (){
             color = 5;
         if(rbtn6.isSelected())
             color = 6;
-        Utils.StyleManager.paint(this, color);
+        utils.StyleManager.paint(this, color);
     }
 
 }

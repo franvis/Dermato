@@ -5,7 +5,7 @@
  */
 package mvp.view;
 
-import ClasesBase.Antecedents;
+import bussines.Antecedents;
 
 /**
  *

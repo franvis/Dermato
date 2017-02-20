@@ -1,6 +1,6 @@
 package mvp.view.listener;
 
-import ClasesBase.Patient;
+import bussines.Patient;
 
 /**
  *

@@ -1,8 +1,8 @@
 package mvp.model;
 
-import ClasesBase.Antecedents;
-import ClasesBase.Patient;
-import DAO.DAOAntecedents;
+import bussines.Antecedents;
+import bussines.Patient;
+import dao.DAOAntecedents;
 
 /**
  *

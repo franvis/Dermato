@@ -5,8 +5,8 @@
  */
 package mvp.presenter;
 
-import ClasesBase.Patient;
-import ClasesBase.Antecedents;
+import bussines.Patient;
+import bussines.Antecedents;
 import mvp.model.AntecedentsModel;
 import mvp.view.AntecedentsView;
 

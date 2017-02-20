@@ -5,8 +5,8 @@
  */
 package mvp.presenter;
 
-import ClasesBase.DniType;
-import ClasesBase.Patient;
+import bussines.DniType;
+import bussines.Patient;
 import java.util.List;
 import mvp.model.PrincipalModel;
 import mvp.view.PrincipalView;

@@ -1,10 +1,10 @@
 package mvp.model;
 
-import ClasesBase.Patient;
-import ClasesBase.Visit;
-import DAO.DAOAntecedents;
-import DAO.DAOPatient;
-import DAO.DAOVisit;
+import bussines.Patient;
+import bussines.Visit;
+import dao.DAOAntecedents;
+import dao.DAOPatient;
+import dao.DAOVisit;
 import java.util.List;
 
 /**

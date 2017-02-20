@@ -1,8 +1,8 @@
 package mvp.model;
 
-import ClasesBase.Patient;
-import ClasesBase.Visit;
-import DAO.DAOVisit;
+import bussines.Patient;
+import bussines.Visit;
+import dao.DAOVisit;
 
 /**
  *

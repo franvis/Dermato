@@ -1,9 +1,9 @@
 package mvp.model;
 
-import ClasesBase.DniType;
-import ClasesBase.Patient;
-import DAO.DAODniType;
-import DAO.DAOPatient;
+import bussines.DniType;
+import bussines.Patient;
+import dao.DAODniType;
+import dao.DAOPatient;
 import java.util.List;
 
 /**

@@ -5,8 +5,8 @@
  */
 package mvp.presenter;
 
-import ClasesBase.Patient;
-import ClasesBase.Visit;
+import bussines.Patient;
+import bussines.Visit;
 import mvp.model.VisitModel;
 import mvp.view.VisitView;
 

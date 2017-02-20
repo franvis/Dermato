@@ -5,8 +5,8 @@
  */
 package mvp.view;
 
-import ClasesBase.DniType;
-import ClasesBase.Patient;
+import bussines.DniType;
+import bussines.Patient;
 import java.util.List;
 
 /**

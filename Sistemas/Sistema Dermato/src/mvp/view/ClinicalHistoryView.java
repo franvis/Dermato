@@ -1,7 +1,7 @@
 package mvp.view;
 
-import ClasesBase.Patient;
-import ClasesBase.Visit;
+import bussines.Patient;
+import bussines.Visit;
 import java.util.List;
 
 /**

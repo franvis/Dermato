@@ -1,8 +1,8 @@
 package mvp.view;
 
-import ClasesBase.DniType;
-import ClasesBase.MedicalCoverage;
-import ClasesBase.Patient;
+import bussines.DniType;
+import bussines.MedicalCoverage;
+import bussines.Patient;
 import java.util.List;
 
 /**

@@ -5,7 +5,7 @@
  */
 package mvp.presenter;
 
-import ClasesBase.MedicalCoverage;
+import bussines.MedicalCoverage;
 import java.util.List;
 import mvp.model.MedicalCoverageModel;
 import mvp.view.MedicalCoverageView;

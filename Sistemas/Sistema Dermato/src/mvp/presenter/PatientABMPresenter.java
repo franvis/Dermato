@@ -5,9 +5,9 @@
  */
 package mvp.presenter;
 
-import ClasesBase.DniType;
-import ClasesBase.Patient;
-import ClasesBase.MedicalCoverage;
+import bussines.DniType;
+import bussines.Patient;
+import bussines.MedicalCoverage;
 import java.util.List;
 import mvp.model.PatientABMModel;
 import mvp.view.PatientABMView;

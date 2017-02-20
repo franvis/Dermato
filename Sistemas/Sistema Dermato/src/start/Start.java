@@ -5,8 +5,8 @@
  */
 package start;
 
-import static Utils.Constants.SYSTEM_FONT;
-import Utils.FileManager;
+import static utils.Constants.SYSTEM_FONT;
+import utils.FileManager;
 import de.javasoft.plaf.synthetica.SyntheticaLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaMauveMetallicLookAndFeel;
 import gui.PrincipalJFrame;

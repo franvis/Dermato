@@ -1,9 +1,7 @@
 package mvp.model;
 
-import ClasesBase.Antecedents;
-import ClasesBase.MedicalCoverage;
-import ClasesBase.Patient;
-import DAO.DAOMedicalCoverage;
+import bussines.MedicalCoverage;
+import dao.DAOMedicalCoverage;
 import java.util.List;
 
 /**

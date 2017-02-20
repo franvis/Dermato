@@ -5,8 +5,8 @@
  */
 package mvp.view;
 
-import ClasesBase.Patient;
-import ClasesBase.Visit;
+import bussines.Patient;
+import bussines.Visit;
 
 /**
  *

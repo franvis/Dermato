@@ -1,20 +1,20 @@
 package gui;
 
-import ClasesBase.Antecedents;
-import ClasesBase.DniType;
-import ClasesBase.MedicalCoverage;
-import ClasesBase.Patient;
-import static Utils.GeneralUtils.handleFocus;
-import Utils.StyleManager;
-import Utils.ValidationsAndMessages;
+import bussines.Antecedents;
+import bussines.DniType;
+import bussines.MedicalCoverage;
+import bussines.Patient;
+import static utils.GeneralUtils.handleFocus;
+import utils.StyleManager;
+import utils.ValidationsAndMessages;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
-import static Utils.GeneralUtils.setButtonFontForPointerEvent;
-import static Utils.ValidationsAndMessages.BIRTHDAY_DATE_FORMAT_ERROR;
-import static Utils.ValidationsAndMessages.FIRST_VISIT_DATE_FORMAT_ERROR;
-import static Utils.ValidationsAndMessages.MANDATORY_FIELDS_ERROR;
-import static Utils.ValidationsAndMessages.PRE_PAID_HEALTH_INSURANCE_NAME_EMPTY;
+import static utils.GeneralUtils.setButtonFontForPointerEvent;
+import static utils.ValidationsAndMessages.BIRTHDAY_DATE_FORMAT_ERROR;
+import static utils.ValidationsAndMessages.FIRST_VISIT_DATE_FORMAT_ERROR;
+import static utils.ValidationsAndMessages.MANDATORY_FIELDS_ERROR;
+import static utils.ValidationsAndMessages.PRE_PAID_HEALTH_INSURANCE_NAME_EMPTY;
 import com.sun.istack.internal.Nullable;
 import java.awt.Frame;
 import java.util.List;
@@ -206,7 +206,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
 
         txtfMedicalCoverageNumber.setDisabledTextColor(StyleManager.getTextColor());
 
-        Utils.StyleManager.paint(this);
+        utils.StyleManager.paint(this);
         presenter.loadMedicalCoverages();
         presenter.loadDniTypes();
         setLocationRelativeTo(getParent());
