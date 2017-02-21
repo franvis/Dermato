@@ -776,14 +776,8 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     @Override
     public Image getIconImage() {
-        try {
-            return ImageIO.read(getClass().getResource(SYSTEM_ICON_IMAGE_PATH));
-        } catch (IOException ex) {
-            Logger.getLogger(PrincipalJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-//        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(SYSTEM_ICON_IMAGE_PATH));
-//        return retValue;
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(SYSTEM_ICON_IMAGE_PATH));
+        return retValue;
     }
 
     @Override
