@@ -25,5 +25,5 @@ public class Constants {
     public static final String FULLNAME = "%s, %s";
     public static final String BIRTHDAY_WITH_AGE = "%s(%d años)";
     public static final String SYSTEM_FONT = "Tahoma";
-    public static final String SYSTEM_ICON_IMAGE_PATH = "images/sistema.png";
+    public static final String SYSTEM_ICON_IMAGE_PATH = "images/system_icon.png";
 }

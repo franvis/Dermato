@@ -213,8 +213,6 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestión de Pacientes");
         setBounds(new java.awt.Rectangle(5, 5, 0, 0));
-        setIconImage(getIconImage());
-        setIconImages(null);
         setMinimumSize(new java.awt.Dimension(824, 443));
         setName("principal"); // NOI18N
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -773,11 +771,11 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JTextField txtfName;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(SYSTEM_ICON_IMAGE_PATH));
-        return retValue;
-    }
+//    @Override
+//    public Image getIconImage() {
+//        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(SYSTEM_ICON_IMAGE_PATH));
+//        return retValue;
+//    }
 
     @Override
     public JRootPane getRootPane() {

@@ -423,12 +423,6 @@ public class MedicalCoverageJDialog extends javax.swing.JFrame implements Medica
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/sistema.png"));
-        return retValue;
-    }
-
-    @Override
     public void displayMedicalCoverages(List<MedicalCoverage> medicalCoverages) {
         Object[] o;
         DefaultTableModel dtmPrePaidHealthInsurances = (DefaultTableModel) this.tblPrePaidHealthInsurances.getModel();
