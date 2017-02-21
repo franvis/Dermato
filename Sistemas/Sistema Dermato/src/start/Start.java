@@ -36,8 +36,8 @@ public class Start {
         } catch (ParseException | UnsupportedLookAndFeelException ex) {
             Logger.getLogger(PrincipalJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        FileManager.AutomaticBackup();
+//
+//        FileManager.AutomaticBackup();
 
         java.awt.EventQueue.invokeLater(() -> {
             new PrincipalJFrame().setVisible(true);

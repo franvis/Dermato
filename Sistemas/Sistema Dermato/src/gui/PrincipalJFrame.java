@@ -21,8 +21,11 @@ import java.awt.event.KeyEvent;
 import static java.awt.event.KeyEvent.VK_DOWN;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.security.Principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import mvp.presenter.PrincipalPresenter;
@@ -48,9 +51,9 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
      * Creates new form Principal
      */
     public PrincipalJFrame() {
-        presenter = new PrincipalPresenter(this);
-        initComponents();
-        setupInitialUI();
+            presenter = new PrincipalPresenter(this);
+            initComponents();
+            setupInitialUI();
     }
 
     private void setupInitialUI() {
@@ -771,11 +774,17 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JTextField txtfName;
     // End of variables declaration//GEN-END:variables
 
-//    @Override
-//    public Image getIconImage() {
+    @Override
+    public Image getIconImage() {
+        try {
+            return ImageIO.read(getClass().getResource(SYSTEM_ICON_IMAGE_PATH));
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
 //        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(SYSTEM_ICON_IMAGE_PATH));
 //        return retValue;
-//    }
+    }
 
     @Override
     public JRootPane getRootPane() {
