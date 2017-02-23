@@ -8,6 +8,7 @@ package mvp.presenter;
 import bussines.Antecedents;
 import bussines.Patient;
 import bussines.Visit;
+import gui.ClinicalHistoryJDialog;
 import java.util.List;
 import mvp.model.ClinicalHistoryModel;
 import mvp.view.ClinicalHistoryView;
@@ -108,5 +109,26 @@ public class ClinicalHistoryPresenter {
         }
 
         view.newVisit(patient);
+    }
+
+    public void seeVisit(int selectedVisit) {
+        if (view == null) {
+            return;
+        }
+
+        if (visits.size() > 0 && visits.get(selectedVisit) != null) {
+            Visit visit = model.getFullVisit(visits.get(selectedVisit).getId(), patient);
+            if (visit != null) {
+                view.displayVisit(patient, visit);
+            } else {
+                view.showErrorMessage("No se pudo recuperar la consulta. Por favor "
+                        + "reinicie el sistema e intente nuevamente."
+                        + "\nSi el error persiste comuniquese con el administrador.");
+            }
+        } else {
+            view.showErrorMessage("No se pudo encontrar la consulta. Por favor "
+                    + "reinicie el sistema e intente nuevamente."
+                    + "\nSi el error persiste comuniquese con el administrador.");
+        }
     }
 }

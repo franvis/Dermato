@@ -91,6 +91,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         setLocationRelativeTo(getRootPane());
         StyleManager.paint(this);
         setExtendedState(PrincipalJFrame.MAXIMIZED_BOTH);
+        setIconImage(getIconImage());
 
         //Presenter calls
         presenter.loadDniTypes();
@@ -105,11 +106,15 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         changeTableSize(dtmPatients, 0);
 
         for (int i = 0; i < patients.size(); i++) {
+            boolean currentPatientHasBirthday = patients.get(i).getBirthday() != null 
+                    && !patients.get(i).getBirthday().isEmpty();
+            boolean currentPatientHasLastVisitDate = patients.get(i).getLastVisitDate() != null 
+                    && !patients.get(i).getLastVisitDate().isEmpty();
             o = new Object[4];
             o[0] = patients.get(i).getLastname();
             o[1] = patients.get(i).getName();
-            o[2] = patients.get(i).getBirthday();
-            o[3] = patients.get(i).getLastVisitDate();
+            o[2] = currentPatientHasBirthday ? patients.get(i).getBirthday() : "-";
+            o[3] = currentPatientHasLastVisitDate ? patients.get(i).getLastVisitDate() : "-";
             dtmPatients.addRow(o);
         }
         tblPatients.changeSelection(0, 0, false, false);
@@ -122,7 +127,6 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
     public void showEmptyTable() {
         tblPatients.clearSelection();
         clearTable(dtmPatients);
-        changeTableSize(dtmPatients, 10);
         changeSideBarButtonsHighlight(false);
     }
 
@@ -136,12 +140,16 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
     private void buttonHighlight(JButton jbtn, boolean entering) {
         if (tblPatients.getSelectedRow() != -1 || (jbtn == btnNewPatient || jbtn == btnPerformBackup)) {
             setButtonFontForPointerEvent(jbtn, entering);
-            jbtn.setEnabled(entering);
-            jbtn.setForeground(entering ? StyleManager.getTextColor(
-                    StyleManager.actualColor) : DEFAULT_TEXT_COLOR);
+            changeButtonState(jbtn, entering);
         }
     }
 
+    public void changeButtonState(JButton jbtn, boolean state){
+        jbtn.setEnabled(state);
+            jbtn.setForeground(state ? StyleManager.getTextColor(
+                    StyleManager.actualColor) : DEFAULT_TEXT_COLOR);
+    }
+    
     private String captureTextWhenDeleting(char eventKeyChar, JTextField textField) {
         String text = "";
         int textFieldLength = textField.getText().length();
@@ -210,7 +218,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
 
         jMenuItem1.setText("jMenuItem1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Gestión de Pacientes");
         setBounds(new java.awt.Rectangle(5, 5, 0, 0));
         setMinimumSize(new java.awt.Dimension(824, 443));
@@ -774,8 +782,7 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     @Override
     public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(SYSTEM_ICON_IMAGE_PATH));
-        return retValue;
+        return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(SYSTEM_ICON_IMAGE_PATH));
     }
 
     @Override
@@ -789,10 +796,7 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     @Override
     public void showPatientClinicalHistory(Patient patient) {
-        clearTable(dtmPatients);
-        clearFilters();
-        txtfDni.requestFocus();
-        changeSideBarButtonsHighlight(false);
+        changeButtonState(btnSeeCH, false);
         ClinicalHistoryJDialog clinicalHistory = new ClinicalHistoryJDialog(this, patient);
         clinicalHistory.setVisible(true);
     }

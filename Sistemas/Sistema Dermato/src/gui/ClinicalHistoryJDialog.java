@@ -19,6 +19,9 @@ import static utils.GeneralUtils.clearTable;
 import static utils.GeneralUtils.setButtonFontForPointerEvent;
 import utils.ValidationsAndMessages;
 import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.table.DefaultTableModel;
 import mvp.presenter.ClinicalHistoryPresenter;
 import mvp.view.ClinicalHistoryView;
@@ -33,8 +36,11 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
 
     private final ClinicalHistoryPresenter presenter;
 
+    private final PatientUpdatedListener patientUpdatedListener;
+
     public ClinicalHistoryJDialog(java.awt.Frame parent, Patient patient) {
         super(parent, true);
+        patientUpdatedListener = (PatientUpdatedListener) parent;
         presenter = new ClinicalHistoryPresenter(this);
         initComponents();
         setupInitialUI();
@@ -61,6 +67,19 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         tblVisits.getTableHeader().setFont(new Font(Constants.SYSTEM_FONT, Font.PLAIN, 14));
         tblVisits.setDefaultRenderer(String.class, new MultiLineCellRenderer());
         tblVisits.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        tblVisits.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent me) {
+                JTable table = (JTable) me.getSource();
+                Point p = me.getPoint();
+                int row = table.rowAtPoint(p);
+                if (me.getClickCount() == 2 && row != -1) {
+                    presenter.seeVisit(row);
+                }
+            }
+        });
+
         pnlNameLastname.setBackground(StyleManager.getSecondaryColor(StyleManager.actualColor));
         StyleManager.paint(this);
         setLocationRelativeTo(getParent());
@@ -559,6 +578,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
     public void patientUpdated(Patient patient) {
         displayPatientData(patient);
         presenter.setPatient(patient);
+        patientUpdatedListener.patientUpdated(patient);
     }
 
     @Override
@@ -617,33 +637,6 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
             visitsDtm.addRow(o);
         }
         tblVisits.changeSelection(0, 0, false, false);
-
-//        tblVisits.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mousePressed(MouseEvent me) {
-//                JTable table = (JTable) me.getSource();
-//                Point p = me.getPoint();
-//                int row = table.rowAtPoint(p);
-//                if (me.getClickCount() == 2 && row != -1
-//                        && ClinicalHistoryJDialog.this.visits.size() > 0
-//                        && ClinicalHistoryJDialog.this.visits.get(row) != null) {
-//                    for (JFrame aux : openWindows) {
-//                        if (aux instanceof ABMVisit) {
-//                            ABMVisit auxCons = (ABMVisit) aux;
-//                            if (auxCons.getVisitId() == ClinicalHistoryJDialog.this.visits.get(row).getId()) {
-//                                aux.setVisible(true);
-//                                return;
-//                            }
-//                        }
-//                    }
-//                    Visit visit = visitDao.getFullVisit(ClinicalHistoryJDialog.this.visits.get(row).getId(), patient.getDni());
-////                    ABMVisit abmVisit = new ABMVisit(ClinicalHistoryJDialog.this, patient, visit);
-////                    abmVisit.setVisible(true);
-////                    abmVisit.requestFocus();
-////                    openWindows.add(abmVisit);
-//                }
-//            }
-//        });
     }
 
     @Override
@@ -675,7 +668,14 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
 
     @Override
     public void newVisit(Patient patient) {
-        VisitJDialog visitDialog = new VisitJDialog((Frame)getParent(), patient);
+        VisitJDialog visitDialog = new VisitJDialog((Frame) getParent(), patient);
         visitDialog.setVisible(true);
+    }
+
+    @Override
+    public void displayVisit(Patient patient, Visit visit) {
+        VisitJDialog abmVisit = new VisitJDialog((Frame) getParent(), patient, visit, this);
+        abmVisit.setVisible(true);
+        abmVisit.requestFocus();
     }
 }

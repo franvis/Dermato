@@ -35,4 +35,6 @@ public interface ClinicalHistoryView extends GeneralView {
     public void showAntecedents(Patient patient);
 
     public void newVisit(Patient patient);
+
+    public void displayVisit(Patient patient, Visit visit);
 }

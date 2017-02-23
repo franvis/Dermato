@@ -70,7 +70,7 @@ public class MultiLineCellRenderer extends JTextArea implements TableCellRendere
         else
             table.setRowHeight(row, altoCaracter);
         
-        setText((value == null) ? "" : value.toString()); 
+        setText((value == null) ? "" : " " + value.toString()); 
         return this;
     }
 }
