@@ -219,7 +219,7 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
 
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnSave.setForeground(new java.awt.Color(0, 51, 102));
-        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save_enabled.png"))); // NOI18N
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save_enabled.png"))); // NOI18N
         btnSave.setText("Guardar");
         btnSave.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnSave.setContentAreaFilled(false);
@@ -243,7 +243,7 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
 
         btnCancel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnCancel.setForeground(new java.awt.Color(0, 51, 102));
-        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cancel_enabled.png"))); // NOI18N
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel_enabled.png"))); // NOI18N
         btnCancel.setText("Cancelar");
         btnCancel.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnCancel.setContentAreaFilled(false);
@@ -267,7 +267,7 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
 
         btnModify.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnModify.setForeground(new java.awt.Color(0, 51, 102));
-        btnModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edit_enabled.png"))); // NOI18N
+        btnModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit_enabled.png"))); // NOI18N
         btnModify.setText("Modificar");
         btnModify.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnModify.setContentAreaFilled(false);
@@ -290,7 +290,7 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnBack.setForeground(new java.awt.Color(0, 51, 102));
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/home_enabled.png"))); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_enabled.png"))); // NOI18N
         btnBack.setText("Volver");
         btnBack.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnBack.setContentAreaFilled(false);
@@ -329,10 +329,10 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
         pnlButtonsLayout.setVerticalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                .addComponent(btnModify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout pnlGeneralLayout = new javax.swing.GroupLayout(pnlGeneral);

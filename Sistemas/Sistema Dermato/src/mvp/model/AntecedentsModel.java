@@ -21,6 +21,6 @@ public class AntecedentsModel {
     }
 
     public Antecedents loadAntecedentsData(Patient patient) {
-        return daoAntecedents.getAntecedent(patient);
+        return daoAntecedents.getAntecedents(patient);
     }
 }

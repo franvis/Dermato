@@ -124,8 +124,8 @@ public class ValidationsAndMessages {
         int ans = JOptionPane.showOptionDialog(windowToExit,
                 EXIT_SYSTEM_MESSAGE,
                 EXIT_WINDOW_MESSAGE_TITLE,
-                JOptionPane.OK_CANCEL_OPTION,
-                JOptionPane.INFORMATION_MESSAGE,
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
                 null,
                 new String[]{OPTION_OK, OPTION_CANCEL},
                 DEFAULT);

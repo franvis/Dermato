@@ -5,6 +5,7 @@
  */
 package mvp.presenter;
 
+import bussines.Antecedents;
 import bussines.Patient;
 import bussines.Visit;
 import java.util.List;
@@ -54,7 +55,7 @@ public class ClinicalHistoryPresenter {
             view.showErrorMessage("Algo ocurrió mal. Por favor comuniquese con el administrador del sistema.");
             return;
         }
-        
+
         if (this.patient == null) {
             view.showErrorMessage("No se pudo encontrar el paciente. Por favor "
                     + "reinicie el sistema e intente nuevamente."
@@ -63,11 +64,11 @@ public class ClinicalHistoryPresenter {
         }
 
         visits = model.getPatientVisits(patient);
-        if(visits == null){
+        if (visits == null) {
             view.showErrorMessage("No se pudieron recuperar las consultas del paciente. Por favor "
                     + "reinicie el sistema e intente nuevamente."
                     + "\nSi el error persiste comuniquese con el administrador.");
-        }else{
+        } else {
             view.displayPatientVisits(visits);
         }
     }
@@ -89,5 +90,23 @@ public class ClinicalHistoryPresenter {
 
     public void setPatient(Patient patient) {
         this.patient = patient;
+    }
+
+    public void seePatientAntecedents() {
+        if (view == null) {
+            return;
+        }
+
+        Antecedents antecedents = model.getPatientAntecedents(patient);
+        patient.setAntecedents(antecedents);
+        view.showAntecedents(patient);
+    }
+
+    public void newVisit() {
+        if (view == null) {
+            return;
+        }
+
+        view.newVisit(patient);
     }
 }

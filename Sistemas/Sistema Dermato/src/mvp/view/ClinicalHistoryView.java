@@ -1,5 +1,6 @@
 package mvp.view;
 
+import bussines.Antecedents;
 import bussines.Patient;
 import bussines.Visit;
 import java.util.List;
@@ -30,4 +31,8 @@ public interface ClinicalHistoryView extends GeneralView {
      * @param patient
      */
     public void modifyPatientData(Patient patient);
+
+    public void showAntecedents(Patient patient);
+
+    public void newVisit(Patient patient);
 }

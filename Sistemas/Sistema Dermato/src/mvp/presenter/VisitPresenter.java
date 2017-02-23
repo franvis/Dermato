@@ -19,7 +19,7 @@ public class VisitPresenter {
     private final VisitView view;
     private final VisitModel model;
     private Visit visit;
-    private final Patient patient;
+    private Patient patient;
 
     public VisitPresenter(VisitView view, Patient patient) {
         this.view = view;
@@ -91,6 +91,28 @@ public class VisitPresenter {
         } else {
             view.showErrorMessage("No se pudo actualizar la consulta."
                     + "\nSi el error persiste comuniquese con el administrador.");
+        }
+    }
+
+    /**
+     * Method used only when user is modifying a patient to load all the
+     * patients data.
+     *
+     * @param patient
+     */
+    public void loadPatientData(Patient patient) {
+        if (view == null) {
+            return;
+        }
+
+        this.patient = model.getFullPatient(patient);
+
+        if (this.patient == null) {
+            view.showErrorMessage("No se pudo encontrar el paciente. Por favor "
+                    + "reinicie el sistema e intente nuevamente."
+                    + "\nSi el error persiste comuniquese con el administrador.");
+        } else {
+            view.displayPatientData(this.patient);
         }
     }
 }

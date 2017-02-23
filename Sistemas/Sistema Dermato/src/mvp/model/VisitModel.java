@@ -2,6 +2,7 @@ package mvp.model;
 
 import bussines.Patient;
 import bussines.Visit;
+import dao.DAOPatient;
 import dao.DAOVisit;
 
 /**
@@ -10,10 +11,12 @@ import dao.DAOVisit;
  */
 public class VisitModel {
 
-    private DAOVisit daoVisit;
+    private final DAOVisit daoVisit;
+    private final DAOPatient daoPatient;
     
     public VisitModel(){
         daoVisit = new DAOVisit();
+        daoPatient = new DAOPatient();
     }
 
     public boolean registerVisit(Visit visit, Patient patient) {
@@ -22,5 +25,9 @@ public class VisitModel {
 
     public boolean updateVisit(Visit visit) {
         return daoVisit.updateVisit(visit);
+    }
+    
+    public Patient getFullPatient(Patient patient) {
+        return daoPatient.getFullPatient(patient);
     }
 }

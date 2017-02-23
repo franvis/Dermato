@@ -21,11 +21,8 @@ import java.awt.event.KeyEvent;
 import static java.awt.event.KeyEvent.VK_DOWN;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.security.Principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import mvp.presenter.PrincipalPresenter;
@@ -51,9 +48,9 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
      * Creates new form Principal
      */
     public PrincipalJFrame() {
-            presenter = new PrincipalPresenter(this);
-            initComponents();
-            setupInitialUI();
+        presenter = new PrincipalPresenter(this);
+        initComponents();
+        setupInitialUI();
     }
 
     private void setupInitialUI() {
@@ -94,7 +91,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         setLocationRelativeTo(getRootPane());
         StyleManager.paint(this);
         setExtendedState(PrincipalJFrame.MAXIMIZED_BOTH);
-        
+
         //Presenter calls
         presenter.loadDniTypes();
     }
@@ -709,8 +706,9 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
     }//GEN-LAST:event_btnSeeCHMouseExited
 
     private void btnSeeCHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeCHActionPerformed
-        presenter.seeClinicalHistory(
-                tblPatients.getSelectedRow());
+        if (tblPatients.getSelectedRow() != -1) {
+            presenter.seeClinicalHistory(tblPatients.getSelectedRow());
+        }
     }//GEN-LAST:event_btnSeeCHActionPerformed
 
     private void btnNewPatientMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewPatientMouseEntered
@@ -791,6 +789,10 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     @Override
     public void showPatientClinicalHistory(Patient patient) {
+        clearTable(dtmPatients);
+        clearFilters();
+        txtfDni.requestFocus();
+        changeSideBarButtonsHighlight(false);
         ClinicalHistoryJDialog clinicalHistory = new ClinicalHistoryJDialog(this, patient);
         clinicalHistory.setVisible(true);
     }
@@ -832,5 +834,11 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
         });
 
         cmbDniType.setSelectedIndex(0);
+    }
+
+    private void clearFilters() {
+        txtfDni.setText("");
+        txtfLastname.setText("");
+        txtfName.setText("");
     }
 }

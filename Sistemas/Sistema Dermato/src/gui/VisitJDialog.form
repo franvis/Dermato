@@ -584,7 +584,7 @@
               <Color blue="66" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/cancel_enabled.png"/>
+              <Image iconType="3" name="/images/cancel_enabled.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -617,7 +617,7 @@
               <Color blue="66" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/save_enabled.png"/>
+              <Image iconType="3" name="/images/save_enabled.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Guardar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -649,7 +649,7 @@
               <Color blue="66" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/edit_enabled.png"/>
+              <Image iconType="3" name="/images/edit_enabled.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Modificar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -682,7 +682,7 @@
               <Color blue="66" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/home_enabled.png"/>
+              <Image iconType="3" name="/images/home_enabled.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Volver"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -778,9 +778,9 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lblInsuranceNumber" alignment="0" pref="212" max="32767" attributes="0"/>
+                                  <Component id="lblMedicalCoverageNumber" alignment="0" pref="212" max="32767" attributes="0"/>
                                   <Component id="lblPhone" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                                  <Component id="lblPPHealthInsurance" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lblMedicalCoverage" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <Component id="lblFirstVisitDate" min="-2" pref="90" max="-2" attributes="0"/>
                           </Group>
@@ -806,14 +806,14 @@
                       <Component id="lblstaticDni" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblDni" alignment="3" max="32767" attributes="0"/>
                       <Component id="lblsMedicalCoverage" alignment="3" max="32767" attributes="0"/>
-                      <Component id="lblPPHealthInsurance" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblMedicalCoverage" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblstaticAge" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblAge" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="lblsMedicalCoverageNumber" alignment="3" max="32767" attributes="0"/>
-                      <Component id="lblInsuranceNumber" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblMedicalCoverageNumber" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -881,7 +881,7 @@
             <Property name="text" type="java.lang.String" value="21/03/1991"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblInsuranceNumber">
+        <Component class="javax.swing.JLabel" name="lblMedicalCoverageNumber">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -889,7 +889,7 @@
             <Property name="text" type="java.lang.String" value="3-4534543-2"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblPPHealthInsurance">
+        <Component class="javax.swing.JLabel" name="lblMedicalCoverage">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>

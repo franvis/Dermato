@@ -36,12 +36,23 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="pnlOtherData" alignment="0" max="32767" attributes="0"/>
-                  <Component id="pnlButtons" max="32767" attributes="0"/>
-                  <Component id="pnlPersonalData" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="pnlButtons" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="pnlPersonalData" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="pnlReferences" max="32767" attributes="0"/>
+                          <Component id="pnlOtherData" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="pnlAntecedents" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -53,9 +64,11 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="pnlPersonalData" max="32767" attributes="0"/>
+                      <Component id="pnlPersonalData" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pnlOtherData" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlOtherData" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="pnlReferences" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="pnlButtons" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -90,21 +103,19 @@
               <Component id="pnlMedicalCoverage" alignment="0" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="lblsBirthday" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="ftxtfBirthday" min="-2" pref="106" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="lblsBirthday" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="lblsNames" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblsLastNames" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblsDniType" alignment="1" max="32767" attributes="0"/>
+                          <Component id="lblsPhone" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblsAddress" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblsCity" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="lblsCity" max="32767" attributes="0"/>
-                              <Component id="lblsAddress" max="32767" attributes="0"/>
-                              <Component id="lblsNames" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblsPhone" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblsLastNames" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblsDniType" alignment="1" max="32767" attributes="0"/>
-                          </Group>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtfLastNames" alignment="1" max="32767" attributes="0"/>
@@ -114,12 +125,16 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lblsDni" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtfDni" max="32767" attributes="0"/>
+                                  <Component id="txtfDni" pref="123" max="32767" attributes="0"/>
                               </Group>
                               <Component id="txtfAddress" max="32767" attributes="0"/>
                               <Component id="txtfCity" max="32767" attributes="0"/>
                               <Component id="txtfNames" max="32767" attributes="0"/>
                           </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          <Component id="ftxtfBirthday" min="-2" pref="106" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -167,7 +182,7 @@
                       <Component id="lblsBirthday" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="pnlMedicalCoverage" max="32767" attributes="0"/>
+                  <Component id="pnlMedicalCoverage" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -178,7 +193,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nombres:"/>
+            <Property name="text" type="java.lang.String" value="(*) Nombres:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblsLastNames">
@@ -186,7 +201,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Apellidos:"/>
+            <Property name="text" type="java.lang.String" value="(*) Apellidos:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblsPhone">
@@ -202,7 +217,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Fecha de Nacimiento:"/>
+            <Property name="text" type="java.lang.String" value="Nacimiento:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtfNames">
@@ -249,7 +264,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Tipo Doc:"/>
+            <Property name="text" type="java.lang.String" value="(*) Tipo Doc:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="ftxtfBirthday">
@@ -330,7 +345,7 @@
                           <Component id="txtfMedicalCoverageNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblsMedicalCoverageNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -483,7 +498,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nro. Doc.:"/>
+            <Property name="text" type="java.lang.String" value="(*) Nro. Doc.:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtfDni">
@@ -519,7 +534,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="btnBack" min="-2" pref="123" max="-2" attributes="0"/>
-                  <EmptySpace pref="50" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="btnModify" min="-2" pref="123" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnSave" min="-2" pref="123" max="-2" attributes="0"/>
@@ -549,7 +564,7 @@
               <Color blue="66" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/edit_enabled.png"/>
+              <Image iconType="3" name="/images/edit_enabled.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Modificar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -578,7 +593,7 @@
               <Color blue="66" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/save_enabled.png"/>
+              <Image iconType="3" name="/images/save_enabled.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Guardar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -610,7 +625,7 @@
               <Color blue="66" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/home_enabled.png"/>
+              <Image iconType="3" name="/images/home_enabled.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Volver"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -636,11 +651,11 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="pnlOtherData">
+    <Container class="javax.swing.JPanel" name="pnlReferences">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Otros Datos">
+            <TitledBorder title="Referencias">
               <Font PropertyName="font" name="Dialog" size="13" style="0"/>
               <Color PropertyName="color" blue="66" green="33" red="0" type="rgb"/>
             </TitledBorder>
@@ -655,43 +670,27 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblsFirstVisitDate" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="ftxtfFirstVisitDate" min="-2" pref="106" max="-2" attributes="0"/>
-                  <EmptySpace pref="105" max="32767" attributes="0"/>
+                  <Component id="lblsMandatoryFieldsReference" min="-2" pref="176" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                  <Component id="ftxtfFirstVisitDate" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblsFirstVisitDate" alignment="3" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Component id="lblsMandatoryFieldsReference" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lblsFirstVisitDate">
+        <Component class="javax.swing.JLabel" name="lblsMandatoryFieldsReference">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Fecha de Primera Consulta:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JFormattedTextField" name="ftxtfFirstVisitDate">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="##/##/####" subtype="-1" type="5"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
-            </Property>
-            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="txtaPersonal"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="(*) = Campo Obligatorio"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -1040,6 +1039,63 @@
             </Container>
           </SubComponents>
         </Container>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="pnlOtherData">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Otros Datos">
+              <Font PropertyName="font" name="Dialog" size="13" style="0"/>
+              <Color PropertyName="color" blue="66" green="33" red="0" type="rgb"/>
+            </TitledBorder>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblsFirstVisitDate" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="ftxtfFirstVisitDate" min="-2" pref="106" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                  <Component id="ftxtfFirstVisitDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblsFirstVisitDate" alignment="3" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="lblsFirstVisitDate">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Fecha de Primera Consulta:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="ftxtfFirstVisitDate">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="##/##/####" subtype="-1" type="5"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtaPersonal"/>
+            </Property>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

@@ -7,6 +7,7 @@ import bussines.Patient;
 import utils.Constants;
 import static utils.Constants.BIRTHDAY_WITH_AGE;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.*;
@@ -204,7 +205,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
 
         btnModifyPatient.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnModifyPatient.setForeground(new java.awt.Color(0, 51, 102));
-        btnModifyPatient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edit_enabled.png"))); // NOI18N
+        btnModifyPatient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit_enabled.png"))); // NOI18N
         btnModifyPatient.setText("Modificar");
         btnModifyPatient.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnModifyPatient.setContentAreaFilled(false);
@@ -406,7 +407,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnBack.setForeground(new java.awt.Color(0, 51, 102));
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/home_enabled.png"))); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_enabled.png"))); // NOI18N
         btnBack.setText("Volver");
         btnBack.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnBack.setContentAreaFilled(false);
@@ -472,23 +473,11 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewVisitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewVisitActionPerformed
-        //TODO call to new ABMVisit and make the double click
-        
-        
-//        ABMVisit abmVisit = new ABMVisit(this, patient);
-//        openWindows.add(abmVisit);
-//        abmVisit.setVisible(true);
-//        abmVisit.requestFocus();
+        presenter.newVisit();
     }//GEN-LAST:event_btnNewVisitActionPerformed
 
     private void btnAntecedentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAntecedentsActionPerformed
-        //TODO call the presenter here
-//        if (!antecedentsModified) {
-//            patient.setAntecedents(antecedentsDao.getAntecedent(patient));
-//            antecedentsModified = true;
-//        }
-////        antecedents = new AntecedentsDialog(this, true, patient);
-//        antecedents.setVisible(true);
+        presenter.seePatientAntecedents();
     }//GEN-LAST:event_btnAntecedentsActionPerformed
 
     private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
@@ -610,7 +599,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
 
     @Override
     public void displayPatientVisits(List<Visit> visits) {
-                Object[] o;
+        Object[] o;
         DefaultTableModel visitsDtm = (DefaultTableModel) this.tblVisits.getModel();
         clearTable(visitsDtm);
 
@@ -676,5 +665,17 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
     @Override
     public void visitUpdated() {
         presenter.loadPatientVisits();
+    }
+
+    @Override
+    public void showAntecedents(Patient patient) {
+        AntecedentsJDialog antecedentsDialog = new AntecedentsJDialog((Frame) getParent(), true, patient);
+        antecedentsDialog.setVisible(true);
+    }
+
+    @Override
+    public void newVisit(Patient patient) {
+        VisitJDialog visitDialog = new VisitJDialog((Frame)getParent(), patient);
+        visitDialog.setVisible(true);
     }
 }

@@ -1,5 +1,6 @@
 package mvp.model;
 
+import bussines.Antecedents;
 import bussines.Patient;
 import bussines.Visit;
 import dao.DAOAntecedents;
@@ -29,5 +30,9 @@ public class ClinicalHistoryModel {
 
     public List<Visit> getPatientVisits(Patient patient) {
         return visitDao.getAllPatientVisits(patient);
+    }
+
+    public Antecedents getPatientAntecedents(Patient patient) {
+        return antecedentsDao.getAntecedents(patient);
     }
 }

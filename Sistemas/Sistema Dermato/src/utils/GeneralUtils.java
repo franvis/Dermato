@@ -32,7 +32,7 @@ public class GeneralUtils {
         for (int i = 0; i < dtm.getRowCount();) {
             dtm.removeRow(0);
         }
-        changeTableSize(dtm, 10);
+        changeTableSize(dtm, 0);
     }
 
     /**

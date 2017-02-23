@@ -117,7 +117,7 @@ public class DAOAntecedents extends DAOBasics {
      * @param patient patient
      * @return Antecedent
      */
-    public Antecedents getAntecedent(Patient patient) {
+    public Antecedents getAntecedents(Patient patient) {
         antecedents = null;
 
         where = DBUtils.getWhereConditions(

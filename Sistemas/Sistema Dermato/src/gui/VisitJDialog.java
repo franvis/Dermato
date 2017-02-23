@@ -23,6 +23,9 @@ import static utils.GeneralUtils.setButtonFontForPointerEvent;
 import mvp.presenter.VisitPresenter;
 import mvp.view.VisitView;
 import mvp.view.listener.VisitUpdatedListener;
+import static utils.Constants.BIRTHDAY_WITH_AGE;
+import static utils.Constants.FULLNAME;
+import static utils.GeneralUtils.calculateAge;
 
 public class VisitJDialog extends javax.swing.JDialog implements VisitView {
 
@@ -39,7 +42,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         presenter = new VisitPresenter(this, patient);
         initComponents();
         setupInitialUI();
-        fillPatientFields(patient);
+        presenter.loadPatientData(patient);
     }
 
     /**
@@ -58,7 +61,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         //UI
         initComponents();
         setupInitialUI();
-        fillPatientFields(patient);
+        presenter.loadPatientData(patient);
         presenter.loadVisitData(visit);
         setButtonsState(false);
         setFieldsState(false);
@@ -108,8 +111,8 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         lblstaticBirthday = new javax.swing.JLabel();
         lblDni = new javax.swing.JLabel();
         lblBirthday = new javax.swing.JLabel();
-        lblInsuranceNumber = new javax.swing.JLabel();
-        lblPPHealthInsurance = new javax.swing.JLabel();
+        lblMedicalCoverageNumber = new javax.swing.JLabel();
+        lblMedicalCoverage = new javax.swing.JLabel();
         lblstaticFirstVisitDate = new javax.swing.JLabel();
         lblFirstVisitDate = new javax.swing.JLabel();
         lblCity = new javax.swing.JLabel();
@@ -339,7 +342,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
 
         btnCancel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCancel.setForeground(new java.awt.Color(0, 51, 102));
-        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cancel_enabled.png"))); // NOI18N
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel_enabled.png"))); // NOI18N
         btnCancel.setText("Cancelar");
         btnCancel.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnCancel.setContentAreaFilled(false);
@@ -363,7 +366,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
 
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSave.setForeground(new java.awt.Color(0, 51, 102));
-        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save_enabled.png"))); // NOI18N
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save_enabled.png"))); // NOI18N
         btnSave.setText("Guardar");
         btnSave.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnSave.setContentAreaFilled(false);
@@ -386,7 +389,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
 
         btnModify.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnModify.setForeground(new java.awt.Color(0, 51, 102));
-        btnModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edit_enabled.png"))); // NOI18N
+        btnModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit_enabled.png"))); // NOI18N
         btnModify.setText("Modificar");
         btnModify.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnModify.setContentAreaFilled(false);
@@ -410,7 +413,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBack.setForeground(new java.awt.Color(0, 51, 102));
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/home_enabled.png"))); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_enabled.png"))); // NOI18N
         btnBack.setText("Volver");
         btnBack.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnBack.setContentAreaFilled(false);
@@ -475,11 +478,11 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         lblBirthday.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblBirthday.setText("21/03/1991");
 
-        lblInsuranceNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblInsuranceNumber.setText("3-4534543-2");
+        lblMedicalCoverageNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblMedicalCoverageNumber.setText("3-4534543-2");
 
-        lblPPHealthInsurance.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblPPHealthInsurance.setText("OSPAC");
+        lblMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblMedicalCoverage.setText("OSPAC");
 
         lblstaticFirstVisitDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblstaticFirstVisitDate.setText("Fecha de Primera Consulta:");
@@ -582,9 +585,9 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblInsuranceNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                                .addComponent(lblMedicalCoverageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                                 .addComponent(lblPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblPPHealthInsurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(lblMedicalCoverage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(lblFirstVisitDate, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -603,13 +606,13 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
                     .addComponent(lblstaticDni)
                     .addComponent(lblDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblsMedicalCoverage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblPPHealthInsurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblMedicalCoverage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblstaticAge)
                     .addComponent(lblAge, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblsMedicalCoverageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblInsuranceNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblMedicalCoverageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblstaticCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -822,8 +825,8 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblDni;
     private javax.swing.JLabel lblFirstVisitDate;
-    private javax.swing.JLabel lblInsuranceNumber;
-    private javax.swing.JLabel lblPPHealthInsurance;
+    private javax.swing.JLabel lblMedicalCoverage;
+    private javax.swing.JLabel lblMedicalCoverageNumber;
     private javax.swing.JLabel lblPatientName;
     private javax.swing.JLabel lblPhone;
     private javax.swing.JLabel lblsMedicalCoverage;
@@ -929,26 +932,6 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
     private void setButtonsState(boolean state) {
         this.btnSave.setEnabled(state);
         this.btnModify.setEnabled(!state);
-    }
-
-    /**
-     * Fills all the patient's data fields.
-     *
-     * @param patient
-     */
-    private void fillPatientFields(Patient patient) {
-        lblPatientName.setText(String.format(Constants.FULLNAME, patient.getLastname(), patient.getName()));
-
-        lblBirthday.setText(patient.getBirthday());
-        lblDni.setText(patient.getDni() + "");
-        lblAge.setText(String.valueOf(calculateAge(patient.getBirthday())));
-        lblCity.setText(patient.getCity());
-
-        lblFirstVisitDate.setText(patient.getFirstVisitDate());
-        lblInsuranceNumber.setText(patient.getMedicalCoverageNumber());
-        lblPPHealthInsurance.setText(patient.getMedicalCoverage().getName());
-        lblAddress.setText(patient.getAddress());
-        lblPhone.setText(patient.getPhone());
     }
 
     @Override
