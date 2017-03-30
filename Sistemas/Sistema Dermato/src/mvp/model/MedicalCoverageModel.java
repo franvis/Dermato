@@ -16,7 +16,7 @@ public class MedicalCoverageModel {
         daoMedicalCoverage = new DAOMedicalCoverage();
     }
 
-    public boolean updateMedicalCoverage(MedicalCoverage medicalCoverage) {
+    public String updateMedicalCoverage(MedicalCoverage medicalCoverage) {
         return daoMedicalCoverage.updateMedicalCoverage(medicalCoverage);
     }
 
@@ -24,11 +24,11 @@ public class MedicalCoverageModel {
         return daoMedicalCoverage.getAllMedicalCoverages();
     }
     
-    public boolean registerMedicalCoverage(MedicalCoverage medicalCoverage){
+    public String registerMedicalCoverage(MedicalCoverage medicalCoverage){
         return daoMedicalCoverage.registerMedicalCoverage(medicalCoverage);
     }
     
-    public boolean deleteMedicalCoverage(MedicalCoverage medicalCoverage){
+    public String deleteMedicalCoverage(MedicalCoverage medicalCoverage){
         return daoMedicalCoverage.deleteMedicalCoverage(medicalCoverage);
     }
 }

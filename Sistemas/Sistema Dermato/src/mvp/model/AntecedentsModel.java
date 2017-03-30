@@ -16,7 +16,7 @@ public class AntecedentsModel {
         daoAntecedents = new DAOAntecedents();
     }
 
-    public boolean updateAntecedents(Antecedents antecedents, Patient patient) {
+    public String updateAntecedents(Antecedents antecedents, Patient patient) {
         return daoAntecedents.updateAntecedents(antecedents, patient.getDni(), patient.getDniType().getId());
     }
 

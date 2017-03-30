@@ -8,6 +8,7 @@ package mvp.presenter;
 import bussines.DniType;
 import bussines.Patient;
 import bussines.MedicalCoverage;
+import dao.DAOBasics;
 import java.util.List;
 import mvp.model.PatientABMModel;
 import mvp.view.PatientABMView;
@@ -139,8 +140,8 @@ public class PatientABMPresenter {
         if (view == null) {
             return;
         }
-        
-        if (model.registerMedicalCoverage(medicalCoverage)) {
+        String result = model.registerMedicalCoverage(medicalCoverage);
+        if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
 
             medicalCoverages = model.getAllMedicalCoverages();
             if (medicalCoverages == null || medicalCoverages.isEmpty()) {
@@ -153,8 +154,7 @@ public class PatientABMPresenter {
                 view.finishRegisteringMedicalCoverage(medicalCoverage.getName());
             }
         } else {
-            view.showErrorMessage("No se pudo registrar la obra social. Intente nuevamente"
-                    + ", y si el error persiste, comuniquese con el administrador.");
+            view.showErrorMessage(result);
         }
     }
 

@@ -15,6 +15,10 @@ import java.sql.Statement;
  * @author fran
  */
 public abstract class DAOBasics {
+    
+    public static final String DB_COMMAND_SUCCESS = "SUCCESS";
+    private static final String DB_COMMAND_FAILED = "FAILED: %s";
+    
     protected DAOConnection daoConnection;
     protected ResultSet resultSet;
     protected Connection connection;
@@ -28,4 +32,8 @@ public abstract class DAOBasics {
     protected Statement statement;
     
     abstract String getInsertStatement();
+    
+    public String dbCommandFailed(String error){
+        return String.format(DB_COMMAND_FAILED, error);
+    }
 }

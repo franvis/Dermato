@@ -38,19 +38,17 @@ public class PatientABMModel {
     }
 
     public String validatePatientInsuranceNumber(Patient patient) {
-//        Patient match = daoPatient.validatePatientByInsuranceNumber(
-//                patient.getMedicalCoverage().getId(), patient.getMedicalCoverageNumber());
-//        return match != null ? match.getFullName() : EMPTY_STRING;
-        return EMPTY_STRING;
+        Patient match = daoPatient.validatePatientByInsuranceNumber(
+                patient.getMedicalCoverage().getId(), patient.getMedicalCoverageNumber());
+        return match != null ? match.getFullName() : EMPTY_STRING;
     }
 
     public String verifyPatientDni(Patient patient) {
-//        Patient match = daoPatient.verifyPatient(patient.getDni());
-//        return match != null ? match.getFullName() : EMPTY_STRING;
-        return EMPTY_STRING;
+        Patient match = daoPatient.verifyPatient(patient.getDni(), patient.getDniType());
+        return match != null ? match.getFullName() : EMPTY_STRING;
     }
 
-    public boolean registerMedicalCoverage(MedicalCoverage medicalCoverage) {
+    public String registerMedicalCoverage(MedicalCoverage medicalCoverage) {
         return daoMedicalCoverage.registerMedicalCoverage(medicalCoverage);
     }
 

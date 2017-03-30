@@ -7,6 +7,7 @@ package mvp.presenter;
 
 import bussines.Patient;
 import bussines.Antecedents;
+import dao.DAOBasics;
 import mvp.model.AntecedentsModel;
 import mvp.view.AntecedentsView;
 
@@ -53,12 +54,13 @@ public class AntecedentsPresenter {
             return;
         }
         
-        if (model.updateAntecedents(antecedents, patient)) {
+        String result = model.updateAntecedents(antecedents, patient);
+        
+        if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
             view.showInfoMessage("Antecedentes actualizados correctamente.");
             view.finishUpdatingAntecedents();
         } else {
-            view.showErrorMessage("No se pudieron actualizar los antecedentes."
-                    + "\nSi el error persiste comuniquese con el administrador.");
+            view.showErrorMessage("Antecedentes no actualizados: " + result);
         }
     }
 

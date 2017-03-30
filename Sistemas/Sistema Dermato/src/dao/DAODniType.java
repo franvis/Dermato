@@ -52,6 +52,7 @@ public class DAODniType extends DAOBasics{
 
     @Override
     String getInsertStatement() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Insert of this kind of data "
+                + "is not supported for now.");
     }
 }

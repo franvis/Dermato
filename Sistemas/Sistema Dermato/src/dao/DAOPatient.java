@@ -134,7 +134,7 @@ public class DAOPatient extends DAOBasics {
 
         columns = DBUtils.getStringWithValuesSeparatedWithCommas("d." + DAODniType.DNI_TYPE_NAME, DNI_TYPE, DNI,
                 NAME, LASTNAME, BIRTHDAY, DBUtils
-                .getMaxColumnAs(DAOVisit.DATE, LAST_VISIT_DATE_KEY));
+                        .getMaxColumnAs(DAOVisit.DATE, LAST_VISIT_DATE_KEY));
 
         where = DBUtils.getWhereForFilters(filterName, filterLastName, filterDni, filterDniType);
         orderBy = DBUtils.getOrderByForFilters(filterName, filterLastName, filterDni);
@@ -389,7 +389,7 @@ public class DAOPatient extends DAOBasics {
         try {
             connection = daoConnection.openDBConnection();
             connection.setAutoCommit(false);
-            
+
             //UPDATE PATIENT
             columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
                     DNI_TYPE, DNI, NAME, LASTNAME, PHONE,
@@ -420,11 +420,11 @@ public class DAOPatient extends DAOBasics {
             preparedStatement.setString(9, patient.getAddress());
             preparedStatement.setString(10, patient.getBirthday());
             preparedStatement.executeUpdate();
-            
+
             //UPDATE ANTECEDENTS
             columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
                     DAOAntecedents.PERSONAL, DAOAntecedents.SURGICAL,
-                    DAOAntecedents.TOXIC, DAOAntecedents.PHARMACOLOGICAL, 
+                    DAOAntecedents.TOXIC, DAOAntecedents.PHARMACOLOGICAL,
                     DAOAntecedents.FAMILY);
             where = DBUtils.getWhereConditions(
                     DBUtils.getSimpleWhereCondition(DAOAntecedents.PATIENT_DNI),
@@ -474,16 +474,17 @@ public class DAOPatient extends DAOBasics {
 //        }
 //    }
 //
-//    /**
-//     * Allows to verify that duplicated patients don't exist for a certain Pre
-//     * Paid Health Insurance with a certain Insurance Number
-//     *
-//     * @param prePaidHealthInsuranceId pre paid health insurance id
-//     * @param insuranceNumber patient's insurance number
-//     * @return the only patient that exists for the pre paid health insurance
-//     * and with that insurance number null if no match were found
-//     */
-//    public Patient validatePatientByInsuranceNumber(int prePaidHealthInsuranceId, String insuranceNumber) {
+
+    /**
+     * Allows to verify that duplicated patients don't exist for a certain Pre
+     * Paid Health Insurance with a certain Insurance Number
+     *
+     * @param prePaidHealthInsuranceId pre paid health insurance id
+     * @param insuranceNumber patient's insurance number
+     * @return the only patient that exists for the pre paid health insurance
+     * and with that insurance number null if no match were found
+     */
+    public Patient validatePatientByInsuranceNumber(int prePaidHealthInsuranceId, String insuranceNumber) {
 //        Patient match = null;
 //        try {
 //            connection = daoConnection.openDBConnection();
@@ -509,7 +510,8 @@ public class DAOPatient extends DAOBasics {
 //            daoConnection.closeDBConnection(connection);
 //        }
 //        return match;
-//    }
+        return null;
+    }
 
     @Override
     String getInsertStatement() {

@@ -42,7 +42,7 @@ public class DAOAntecedents extends DAOBasics {
      * 
      * @return true if registered, false otherwise
      */
-    public boolean registerAntecedents(Antecedents antecedents, String dni, int dniType) {
+    public String registerAntecedents(Antecedents antecedents, String dni, int dniType) {
         try {
             connection = daoConnection.openDBConnection();
             query = getInsertStatement();
@@ -54,10 +54,10 @@ public class DAOAntecedents extends DAOBasics {
             preparedStatement.setString(5, antecedents.getFamilyAntecedents());
             preparedStatement.setString(6, dni);
             preparedStatement.setInt(7, dniType);
-            return (preparedStatement.executeUpdate() > 0);
+            return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated returned <= 0");
         } catch (SQLException ex) {
             Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());
         } finally {
             try {
                 preparedStatement.close();
@@ -79,7 +79,7 @@ public class DAOAntecedents extends DAOBasics {
      * 
      * @return true if registered, false otherwise
      */
-    public boolean registerAntecedents(Antecedents antecedents, String dni, int dniType, Connection connection) {
+    public String registerAntecedents(Antecedents antecedents, String dni, int dniType, Connection connection) {
         boolean isTransaction = connection != null;
         try {
             if (!isTransaction) {
@@ -95,10 +95,10 @@ public class DAOAntecedents extends DAOBasics {
             preparedStatement.setString(5, antecedents.getFamilyAntecedents());
             preparedStatement.setString(6, dni);
             preparedStatement.setInt(7, dniType);
-            return (preparedStatement.executeUpdate() > 0);
+            return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated returned <= 0");
         } catch (SQLException ex) {
             Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());
         } finally {
             try {
                 preparedStatement.close();
@@ -158,7 +158,7 @@ public class DAOAntecedents extends DAOBasics {
      * @param dni patient's dni
      * @return true if updated correctly, false otherwise
      */
-    public boolean updateAntecedents(Antecedents antecedents, String dni, int dniType) {
+    public String updateAntecedents(Antecedents antecedents, String dni, int dniType) {
         boolean withConnection = true;
         try {
             if (connection == null || connection.isClosed()) {
@@ -182,10 +182,10 @@ public class DAOAntecedents extends DAOBasics {
             preparedStatement.setString(6, dni);
             preparedStatement.setInt(7, dniType);
 
-            return (preparedStatement.executeUpdate() > 0);
+            return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated returned <= 0");
         } catch (SQLException ex) {
             Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());
         } finally {
             try {
                 preparedStatement.close();

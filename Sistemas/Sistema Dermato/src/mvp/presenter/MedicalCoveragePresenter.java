@@ -6,6 +6,7 @@
 package mvp.presenter;
 
 import bussines.MedicalCoverage;
+import dao.DAOBasics;
 import java.util.List;
 import mvp.model.MedicalCoverageModel;
 import mvp.view.MedicalCoverageView;
@@ -53,11 +54,12 @@ public class MedicalCoveragePresenter {
         }
 
         if (!medicalCoverages.isEmpty()) {
-            if (model.deleteMedicalCoverage(medicalCoverages.get(medicalCoverage))) {
+            String result = model.deleteMedicalCoverage(medicalCoverages.get(medicalCoverage));
+            if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
                 view.showInfoMessage("Borrado Exitoso.");
                 view.finishDeletingMedicalCoverage();
             } else {
-                view.showErrorMessage("Borrado Fallido.");
+                view.showErrorMessage("Borrado Fallido: " + result);
             }
         }
     }
@@ -66,13 +68,14 @@ public class MedicalCoveragePresenter {
         if (view == null) {
             return;
         }
-
-        if (model.registerMedicalCoverage(new MedicalCoverage(0, medicalCoverageName))) {
+        
+        String result = model.registerMedicalCoverage(new MedicalCoverage(0, medicalCoverageName));
+        if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
             view.showInfoMessage("Registro Exitoso.");
             loadMedicalCoverages();
             view.finishRegisteringMedicalCoverage();
         } else {
-            view.showErrorMessage("Registro Fallido.");
+            view.showErrorMessage("Registro Fallido: " + result);
         }
     }
 
@@ -83,12 +86,13 @@ public class MedicalCoveragePresenter {
 
         medicalCoverage.setName(newName);
 
-        if (model.updateMedicalCoverage(medicalCoverage)) {
+        String result = model.updateMedicalCoverage(medicalCoverage);
+        if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
             view.showInfoMessage("Actualización Exitosa.");
             loadMedicalCoverages();
             view.finishRegisteringMedicalCoverage();
         } else {
-            view.showErrorMessage("Actualización Fallida.");
+            view.showErrorMessage("Actualización Fallida: " + result);
         }
     }
 
