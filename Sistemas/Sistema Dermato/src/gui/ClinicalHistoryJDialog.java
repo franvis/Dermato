@@ -633,7 +633,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
             o = new Object[3];
             o[0] = visits.get(i).getDate();
             o[1] = visits.get(i).getReason();
-            o[2] = visits.get(i).getDiagnosis();
+            o[2] = !visits.get(i).getDiagnosis().isEmpty() ? visits.get(i).getDiagnosis() : "-";
             visitsDtm.addRow(o);
         }
         tblVisits.changeSelection(0, 0, false, false);
@@ -656,7 +656,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
     }
 
     @Override
-    public void visitUpdated() {
+    public void visitsUpdated() {
         presenter.loadPatientVisits();
     }
 
@@ -668,7 +668,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
 
     @Override
     public void newVisit(Patient patient) {
-        VisitJDialog visitDialog = new VisitJDialog((Frame) getParent(), patient);
+        VisitJDialog visitDialog = new VisitJDialog((Frame) getParent(), patient, this);
         visitDialog.setVisible(true);
     }
 

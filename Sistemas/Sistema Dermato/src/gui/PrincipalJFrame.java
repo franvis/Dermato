@@ -37,6 +37,9 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
     public static final String PATIENTS_TABLE_BIRTHDAY_COLUMN_TITLE = "Fecha de Nacimiento";
     public static final String PATIENTS_TABLE_LAST_VISIT_COLUMN_TITLE = "Ultima Consulta";
 
+    //OTHER
+    private boolean updatingPatient;
+    
     //UI
     private DefaultTableModel dtmPatients;
     private MedicalCoverageJDialog abmPrePaidHealthInsurances;
@@ -118,6 +121,11 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             dtmPatients.addRow(o);
         }
         tblPatients.changeSelection(0, 0, false, false);
+        
+        if(updatingPatient && patients.isEmpty()){
+            clearFilters();
+        }
+        updatingPatient = false;
     }
 
     /**
@@ -826,6 +834,7 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     @Override
     public void patientUpdated(Patient patient) {
+        updatingPatient = true;
         presenter.filterPatients(txtfName.getText(), txtfLastname.getText(),
                 txtfDni.getText(), cmbDniType.getSelectedIndex());
     }

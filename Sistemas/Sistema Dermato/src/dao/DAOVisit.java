@@ -5,11 +5,8 @@ package dao;
 
 import bussines.Patient;
 import bussines.Visit;
-import static dao.DAOAntecedents.PATIENT_DNI;
-import static dao.DAOAntecedents.PATIENT_DNI_TYPE;
 import utils.DBConstants;
 import static utils.DBConstants.MAX_WITH_ALIAS;
-import static utils.DBConstants.SIMPLE_WHERE_CONDITION;
 import utils.DBConstants.Tables;
 import utils.DBUtils;
 import static utils.DBUtils.getSimpleWhereCondition;
@@ -70,7 +67,7 @@ public class DAOVisit extends DAOBasics{
             preparedStatement.setString(7, visit.getPhysicalExam());
             preparedStatement.setString(8, visit.getBiopsy());
             preparedStatement.setString(9, patient.getDni());
-            preparedStatement.setInt(9, patient.getDniType().getId());
+            preparedStatement.setInt(10, patient.getDniType().getId());
             preparedStatement.executeUpdate();
 
             connection.commit();

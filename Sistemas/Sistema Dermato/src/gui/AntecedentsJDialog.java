@@ -490,9 +490,13 @@ private void txtaToxicKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         this.txtaPersonal.setEditable(state);
         this.txtaToxic.setEditable(state);
         this.txtaSurgical.setEditable(state);
+        this.txtaPharmacological.setEditable(state);
+        this.txtaFamily.setEditable(state);
         this.txtaPersonal.setFocusable(state);
         this.txtaToxic.setFocusable(state);
         this.txtaSurgical.setFocusable(state);
+        this.txtaPharmacological.setFocusable(state);
+        this.txtaFamily.setFocusable(state);
         this.btnCancel.setEnabled(state);
     }
 

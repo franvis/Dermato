@@ -204,7 +204,6 @@ public class PatientJDialog extends JDialog implements PatientABMView {
 
         txtfMedicalCoverageNumber.setDisabledTextColor(StyleManager.getTextColor());
 
-        utils.StyleManager.paint(this);
         presenter.loadMedicalCoverages();
         presenter.loadDniTypes();
         setLocationRelativeTo(getParent());
