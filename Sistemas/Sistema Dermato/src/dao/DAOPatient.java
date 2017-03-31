@@ -93,11 +93,11 @@ public class DAOPatient extends DAOBasics {
                 preparedStatement.setString(6, patient.getDni());
                 preparedStatement.setInt(7, patient.getDniType().getId());
                 if (preparedStatement.executeUpdate() == 0) {
-                    return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated registering patient returned <= 0");
+                    return dbCommandFailed("executeUpdated registering patient returned <= 0");
                 }
                 connection.commit();
             } else {
-                return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated registering patient returned <= 0");
+                return dbCommandFailed("executeUpdated registering patient returned <= 0");
             }
         } catch (SQLException ex) {
             Logger.getLogger(DAOPatient.class.getName()).log(Level.SEVERE, null, ex);
@@ -106,7 +106,7 @@ public class DAOPatient extends DAOBasics {
             try {
                 preparedStatement.close();
             } catch (SQLException ex) {
-                Logger.getLogger(DAOPatient.class.getName()).log(Level.SEVERE, null, ex);
+                return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());
             }
             daoConnection.closeDBConnection(connection);
         }
@@ -229,53 +229,6 @@ public class DAOPatient extends DAOBasics {
         return patient;
     }
 
-//    /**
-//     * Method used to retrieve all the basic data for a patient
-//     *
-//     * @param dni
-//     * @return Patient containing dni, name, last name, birthday and last visit
-//     * date
-//     */
-//    public Patient getBasicPatient(String dni, DniType dniType) {
-//        patient = null;
-//
-//        from = DBUtils.getTableJoin(LEFT_JOIN, Tables.Patient,
-//                Tables.Visit, DNI, DAOVisit.PATIENT);
-//
-//        columns = DBUtils.getStringWithValuesSeparatedWithCommas(DNI,
-//                NAME, LASTNAME, BIRTHDAY, DBUtils
-//                .getMaxColumnAs(DAOVisit.DATE, LAST_VISIT_DATE_KEY));
-//
-//        query = DBUtils.getSelectColumnsMultipleTablesStatementWithWhere(columns, from,
-//                DBUtils.getSimpleWhereCondition(DNI));
-//        try {
-//            connection = daoConnection.openDBConnection();
-//            preparedStatement = connection.prepareStatement(query);
-//            preparedStatement.setLong(1, dni);
-//            preparedStatement.executeQuery();
-//            resultSet = preparedStatement.getResultSet();
-//            while (resultSet.next()) {
-//                patient = new Patient();
-//                patient.setDni(dni);
-//                patient.setName(resultSet.getString(NAME));
-//                patient.setLastname(resultSet.getString(LASTNAME));
-//                patient.setBirthday(DBUtils.getFormattedDate(resultSet.getString(BIRTHDAY)));
-//                String lastVisitDate = LAST_VISIT_DATE_DEFAULT_VALUE;
-//                if (resultSet.getObject(LAST_VISIT_DATE_KEY) != null) {
-//                    lastVisitDate = DBUtils.getFormattedDate(resultSet.
-//                            getString(LAST_VISIT_DATE_KEY));
-//                }
-//                patient.setLastVisitDate(lastVisitDate);
-//            }
-//            preparedStatement.close();
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        } finally {
-//            daoConnection.closeDBConnection(connection);
-//        }
-//        return patient;
-//    }
-//
     /**
      * Method used to retrieve a full data patient.
      *
@@ -448,66 +401,69 @@ public class DAOPatient extends DAOBasics {
         }
         return DB_COMMAND_SUCCESS;
     }
-//
-//    /**
-//     * Method used to delete a patient
-//     *
-//     * @param dni dni of the patient intended to delete
-//     * @return true if deleted correctly, false otherwise
-//     */
-//    public boolean deletePatient(long dni) {
-//        try {
-//            connection = daoConnection.openDBConnection();
-//            query = DBUtils.getDeleteStatement(Tables.Patient,
-//                    DBUtils.getSimpleWhereCondition(DNI));
-//            preparedStatement = connection.prepareStatement(query);
-//            preparedStatement.setLong(1, dni);
-//            return (preparedStatement.executeUpdate() > 0);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DAOMedicalCoverage.class.getName()).log(Level.SEVERE, null, ex);
-//            return false;
-//        } finally {
-//            daoConnection.closeDBConnection(connection);
-//        }
-//    }
-//
+
+    /**
+     * Method used to delete a patient
+     *
+     * @param dni dni of the patient intended to delete
+     * @param dniType dni type of the patient
+     *
+     * @return true if deleted correctly, false otherwise
+     */
+    public String deletePatient(String dni, DniType dniType) {
+        try {
+            connection = daoConnection.openDBConnection();
+            where = DBUtils.getWhereConditions(
+                    DBUtils.getSimpleWhereCondition(DNI),
+                    DBUtils.getSimpleWhereCondition(DNI_TYPE));
+            query = DBUtils.getDeleteStatement(Tables.Patient, where);
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, dni);
+            preparedStatement.setInt(2, dniType.getId());
+            return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated registering patient returned <= 0");
+        } catch (SQLException ex) {
+            return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());
+        } finally {
+            daoConnection.closeDBConnection(connection);
+        }
+    }
 
     /**
      * Allows to verify that duplicated patients don't exist for a certain Pre
      * Paid Health Insurance with a certain Insurance Number
      *
-     * @param prePaidHealthInsuranceId pre paid health insurance id
+     * @param medicalCoverageId pre paid health insurance id
      * @param insuranceNumber patient's insurance number
+     *
      * @return the only patient that exists for the pre paid health insurance
      * and with that insurance number null if no match were found
      */
-    public Patient validatePatientByInsuranceNumber(int prePaidHealthInsuranceId, String insuranceNumber) {
-//        Patient match = null;
-//        try {
-//            connection = daoConnection.openDBConnection();
-//            columns = DBUtils.getStringWithValuesSeparatedWithCommas(DNI, NAME, LASTNAME);
-//            where = DBUtils.getWhereConditions(DBUtils.getSimpleWhereCondition(
-//                    MEDICAL_COVERAGE), DBUtils.getSimpleWhereCondition(MEDICAL_COVERAGE_NUMBER));
-//            query = DBUtils.getSelectColumnsStatementWithWhere(Tables.Patient, columns, where);
-//            preparedStatement = connection.prepareStatement(query);
-//            preparedStatement.setInt(1, prePaidHealthInsuranceId);
-//            preparedStatement.setString(2, insuranceNumber);
-//            preparedStatement.executeQuery();
-//            resultSet = preparedStatement.getResultSet();
-//            while (resultSet.next()) {
-//                match = new Patient();
-//                match.setDni(resultSet.getString(DNI));
-//                match.setName(resultSet.getString(NAME));
-//                match.setLastname(resultSet.getString(LASTNAME));
-//            }
-//            preparedStatement.close();
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        } finally {
-//            daoConnection.closeDBConnection(connection);
-//        }
-//        return match;
-        return null;
+    public Patient validatePatientByInsuranceNumber(int medicalCoverageId, String insuranceNumber) {
+        Patient match = null;
+        try {
+            connection = daoConnection.openDBConnection();
+            columns = DBUtils.getStringWithValuesSeparatedWithCommas(DNI, NAME, LASTNAME);
+            where = DBUtils.getWhereConditions(DBUtils.getSimpleWhereCondition(
+                    MEDICAL_COVERAGE), DBUtils.getSimpleWhereCondition(MEDICAL_COVERAGE_NUMBER));
+            query = DBUtils.getSelectColumnsStatementWithWhere(Tables.Patient, columns, where);
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, medicalCoverageId);
+            preparedStatement.setString(2, insuranceNumber);
+            preparedStatement.executeQuery();
+            resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                match = new Patient();
+                match.setDni(resultSet.getString(DNI));
+                match.setName(resultSet.getString(NAME));
+                match.setLastname(resultSet.getString(LASTNAME));
+            }
+            preparedStatement.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            daoConnection.closeDBConnection(connection);
+        }
+        return match;
     }
 
     @Override
