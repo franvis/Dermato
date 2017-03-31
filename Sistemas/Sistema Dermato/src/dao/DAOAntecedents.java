@@ -40,7 +40,7 @@ public class DAOAntecedents extends DAOBasics {
      * @param dni patient dni
      * @param dniType patient dni type
      * 
-     * @return true if registered, false otherwise
+     * @return "SUCCESS" if registered successful, error otherwise
      */
     public String registerAntecedents(Antecedents antecedents, String dni, int dniType) {
         try {
@@ -54,7 +54,7 @@ public class DAOAntecedents extends DAOBasics {
             preparedStatement.setString(5, antecedents.getFamilyAntecedents());
             preparedStatement.setString(6, dni);
             preparedStatement.setInt(7, dniType);
-            return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated returned <= 0");
+            return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated registering antecedents returned <= 0");
         } catch (SQLException ex) {
             Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
             return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());
@@ -77,7 +77,7 @@ public class DAOAntecedents extends DAOBasics {
      * @param connection connection
      * @param dniType dni type
      * 
-     * @return true if registered, false otherwise
+     * @return "SUCCESS" if registered successful, error otherwise
      */
     public String registerAntecedents(Antecedents antecedents, String dni, int dniType, Connection connection) {
         boolean isTransaction = connection != null;
@@ -95,7 +95,7 @@ public class DAOAntecedents extends DAOBasics {
             preparedStatement.setString(5, antecedents.getFamilyAntecedents());
             preparedStatement.setString(6, dni);
             preparedStatement.setInt(7, dniType);
-            return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated returned <= 0");
+            return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated registering antecedents returned <= 0");
         } catch (SQLException ex) {
             Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
             return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());
@@ -156,7 +156,7 @@ public class DAOAntecedents extends DAOBasics {
      *
      * @param antecedents Updated antecedents
      * @param dni patient's dni
-     * @return true if updated correctly, false otherwise
+     * @return "SUCCESS" if updated successful, error otherwise
      */
     public String updateAntecedents(Antecedents antecedents, String dni, int dniType) {
         boolean withConnection = true;
@@ -182,7 +182,7 @@ public class DAOAntecedents extends DAOBasics {
             preparedStatement.setString(6, dni);
             preparedStatement.setInt(7, dniType);
 
-            return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated returned <= 0");
+            return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated updating antecedents returned <= 0");
         } catch (SQLException ex) {
             Logger.getLogger(DAOAntecedents.class.getName()).log(Level.SEVERE, null, ex);
             return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());

@@ -19,11 +19,11 @@ public class VisitModel {
         daoPatient = new DAOPatient();
     }
 
-    public boolean registerVisit(Visit visit, Patient patient) {
+    public String registerVisit(Visit visit, Patient patient) {
         return daoVisit.registerVisit(visit, patient);
     }
 
-    public boolean updateVisit(Visit visit) {
+    public String updateVisit(Visit visit) {
         return daoVisit.updateVisit(visit);
     }
     

@@ -67,7 +67,7 @@ public class DAOMedicalCoverage extends DAOBasics {
      * Method used to register a pre paid health insurance
      *
      * @param medicalCoverage pre paid health insurance to register
-     * @return true if registered correctly, false otherwise
+     * @return "SUCCESS" if registered successful, error otherwise
      */
     public String registerMedicalCoverage(MedicalCoverage medicalCoverage) {
         try {
@@ -75,7 +75,7 @@ public class DAOMedicalCoverage extends DAOBasics {
             query = getInsertStatement();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, medicalCoverage.getName());
-            return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated returned <= 0");
+            return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated registering medical coverage returned <= 0");
         } catch (SQLException ex) {
             Logger.getLogger(DAOMedicalCoverage.class.getName()).log(Level.SEVERE, null, ex);
             return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());
@@ -88,7 +88,7 @@ public class DAOMedicalCoverage extends DAOBasics {
      * Method used to update a Pre paid health insurance
      *
      * @param prepaidHealthInsurance Pre paid Health Insurance to update
-     * @return true if updated correctly, false otherwise
+     * @return "SUCCESS" if updated successful, error otherwise
      */
     public String updateMedicalCoverage(MedicalCoverage prepaidHealthInsurance) {
         try {
@@ -103,7 +103,7 @@ public class DAOMedicalCoverage extends DAOBasics {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, prepaidHealthInsurance.getName());
             preparedStatement.setInt(2, prepaidHealthInsurance.getId());
-            return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated returned <= 0");
+            return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated updating medical coverage returned <= 0");
         } catch (SQLException ex) {
             Logger.getLogger(DAOMedicalCoverage.class.getName()).log(Level.SEVERE, null, ex);
             return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());
@@ -116,7 +116,7 @@ public class DAOMedicalCoverage extends DAOBasics {
      * Method used to delete a Pre paid health insurance
      *
      * @param medicalCoverage
-     * @return true if deleted, false otherwise
+     * @return "SUCCESS" if deleted successful, error otherwise
      */
     public String deleteMedicalCoverage(MedicalCoverage medicalCoverage) {
         try {

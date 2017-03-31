@@ -42,13 +42,11 @@ public class DAOPatient extends DAOBasics {
     public static final String MEDICAL_COVERAGE_NUMBER = "medicalCoverageNumber";
     public static final String FIRST_VISIT_DATE = "firstVisitDate";
 
-    private final DAOMedicalCoverage daoMedicalCoverage;
     private final DAOAntecedents daoAntecedents;
     private LinkedList<Patient> pacientes;
     private Patient patient;
 
     public DAOPatient() {
-        daoMedicalCoverage = new DAOMedicalCoverage();
         daoAntecedents = new DAOAntecedents();
         daoConnection = new DAOConnection();
     }
@@ -57,9 +55,9 @@ public class DAOPatient extends DAOBasics {
      * Method used to register a patient
      *
      * @param patient Patient to register
-     * @return true if registered successful, false otherwise
+     * @return "SUCCESS" if registered successful, error otherwise
      */
-    public boolean registerPatient(Patient patient) {
+    public String registerPatient(Patient patient) {
         try {
             boolean hasPPHealthInsurance = patient.getMedicalCoverage().getId() != 0;
             connection = daoConnection.openDBConnection();
@@ -95,16 +93,15 @@ public class DAOPatient extends DAOBasics {
                 preparedStatement.setString(6, patient.getDni());
                 preparedStatement.setInt(7, patient.getDniType().getId());
                 if (preparedStatement.executeUpdate() == 0) {
-                    return false;
+                    return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated registering patient returned <= 0");
                 }
                 connection.commit();
             } else {
-                return false;
+                return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated registering patient returned <= 0");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DAOMedicalCoverage.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("query: " + query);
-            return false;
+            Logger.getLogger(DAOPatient.class.getName()).log(Level.SEVERE, null, ex);
+            return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());
         } finally {
             try {
                 preparedStatement.close();
@@ -113,7 +110,7 @@ public class DAOPatient extends DAOBasics {
             }
             daoConnection.closeDBConnection(connection);
         }
-        return true;
+        return DB_COMMAND_SUCCESS;
     }
 
     /**
@@ -201,7 +198,7 @@ public class DAOPatient extends DAOBasics {
      *
      * @param dni patient's dni
      * @param dniType patient's dni type
-     * @return true if exists, false otherwise
+     * @return Complete patient if exists, null patient otherwise
      */
     public Patient verifyPatient(String dni, DniType dniType) {
         connection = daoConnection.openDBConnection();
@@ -383,9 +380,9 @@ public class DAOPatient extends DAOBasics {
      * @param patient updated patient
      * @param oldPatient old patient
      *
-     * @return true if updated correctly, false otherwise
+     * @return "SUCCESS" if updated successful, error otherwise
      */
-    public boolean updatePatient(Patient patient, Patient oldPatient) {
+    public String updatePatient(Patient patient, Patient oldPatient) {
         try {
             connection = daoConnection.openDBConnection();
             connection.setAutoCommit(false);
@@ -443,13 +440,13 @@ public class DAOPatient extends DAOBasics {
 
             preparedStatement.close();
             connection.commit();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            return false;
+            return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());
         } finally {
             daoConnection.closeDBConnection(connection);
         }
-        return true;
+        return DB_COMMAND_SUCCESS;
     }
 //
 //    /**

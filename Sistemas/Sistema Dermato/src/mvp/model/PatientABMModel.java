@@ -33,7 +33,7 @@ public class PatientABMModel {
         return daoMedicalCoverage.getAllMedicalCoverages();
     }
 
-    public boolean updatePatient(Patient patient, Patient oldPatient) {
+    public String updatePatient(Patient patient, Patient oldPatient) {
         return daoPatient.updatePatient(patient, oldPatient);
     }
 
@@ -52,7 +52,7 @@ public class PatientABMModel {
         return daoMedicalCoverage.registerMedicalCoverage(medicalCoverage);
     }
 
-    public boolean registerPatient(Patient patient) {
+    public String registerPatient(Patient patient) {
         return daoPatient.registerPatient(patient);
     }
     

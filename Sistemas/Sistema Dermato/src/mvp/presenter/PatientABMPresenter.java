@@ -49,21 +49,21 @@ public class PatientABMPresenter {
             view.displayMedicalCoverages(medicalCoverages);
         }
     }
-    
-    public void loadDniTypes(){
-        if(view == null){
+
+    public void loadDniTypes() {
+        if (view == null) {
             return;
         }
-        
+
         dniTypes = model.getDniTypes();
-        if(dniTypes.isEmpty() || dniTypes == null){
+        if (dniTypes.isEmpty() || dniTypes == null) {
             view.showErrorMessage("No se pudo recuperar los tipos de dni. Por favor "
                     + "reinicie el sistema e intente nuevamente."
                     + "\nSi el error persiste comuniquese con el administrador.");
         } else {
             view.displayDniTypes(dniTypes);
         }
-        
+
     }
 
     /**
@@ -88,8 +88,8 @@ public class PatientABMPresenter {
         }
     }
 
-    public void updatePatient(Patient patient, int medicalCoverageSelected
-            , int dniTypeSelected) {
+    public void updatePatient(Patient patient, int medicalCoverageSelected,
+             int dniTypeSelected) {
         if (view == null) {
             return;
         }
@@ -108,17 +108,19 @@ public class PatientABMPresenter {
         } else if (patientDniMatch != null && !patientDniMatch.isEmpty()) {
             view.showErrorMessage("El paciente ya se encuentra registrado bajo el nombre de "
                     + patientInsuranceNumberMatch + " con el mismo dni.");
-        } else if (model.updatePatient(patient, this.patient)) {
-            view.showInfoMessage("Paciente actualizado correctamente.");
-            view.finishUpdatingPatient(patient);
         } else {
-            view.showErrorMessage("No se pudo actualizar el paciente."
-                    + "\nSi el error persiste comuniquese con el administrador.");
+            String result = model.updatePatient(patient, this.patient);
+            if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
+                view.showInfoMessage("Paciente actualizado correctamente.");
+                view.finishUpdatingPatient(patient);
+            } else {
+                view.showErrorMessage("Actualización Fallida: " + result);
+            }
         }
     }
 
-    public void registerPatient(Patient patient, int medicalCoverageSelected
-            , int dniTypeSelected) {
+    public void registerPatient(Patient patient, int medicalCoverageSelected,
+             int dniTypeSelected) {
         if (view == null) {
             return;
         }
@@ -128,11 +130,12 @@ public class PatientABMPresenter {
         DniType dniType = dniTypes.get(dniTypeSelected);
         patient.setDniType(dniType);
 
-        if (model.registerPatient(patient)) {
+        String result = model.registerPatient(patient);
+        
+        if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
             view.finishRegisteringPatient(patient);
         } else {
-            view.showErrorMessage("No se pudo registrar el paciente. Intente nuevamente"
-                    + ", y si el error persiste, comuniquese con el administrador.");
+            view.showErrorMessage("Registro fallido: " + result);
         }
     }
 

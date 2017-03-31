@@ -20,10 +20,10 @@ import java.util.logging.Logger;
  *
  * @author Fran
  */
-public class DAOVisit extends DAOBasics{
+public class DAOVisit extends DAOBasics {
 
     private static final String VISIT_INSERT = "null,str_to_date(?, '%d/%c/%Y'),?,?,?,?,?,?,?,?,?";
-    
+
     // TABLE COLUMNS
     public static final String VISIT_ID = "idVisit";
     public static final String DATE = "date";
@@ -36,28 +36,26 @@ public class DAOVisit extends DAOBasics{
     public static final String BIOPSY = "biopsy";
     public static final String PATIENT_DNI = "patientDni";
     public static final String PATIENT_DNI_TYPE = "patientDniType";
-    
+
     private Visit visit;
 
-    public DAOVisit(){
+    public DAOVisit() {
         daoConnection = new DAOConnection();
     }
-    
+
     /**
      * Method used to register a new visit
      *
      * @param visit
      * @param patient
      *
-     * @return true if registered, false otherwise
+     * @return "SUCCESS" if registered successful, error otherwise
      */
-    public boolean registerVisit(Visit visit, Patient patient) {
-        boolean result = false;
+    public String registerVisit(Visit visit, Patient patient) {
         try {
             connection = daoConnection.openDBConnection();
-            connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(getInsertStatement());
-            
+
             preparedStatement.setString(1, visit.getDate());
             preparedStatement.setString(2, visit.getReason());
             preparedStatement.setString(3, visit.getTreatment());
@@ -68,23 +66,18 @@ public class DAOVisit extends DAOBasics{
             preparedStatement.setString(8, visit.getBiopsy());
             preparedStatement.setString(9, patient.getDni());
             preparedStatement.setInt(10, patient.getDniType().getId());
-            preparedStatement.executeUpdate();
-
-            connection.commit();
-            result = true;
-            connection.setAutoCommit(true);
-            preparedStatement.close();
-        } catch (Exception ex) {
+            
+            return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated registering visit returned <= 0");
+        } catch (SQLException ex) {
             try {
                 connection.rollback();
             } catch (SQLException e) {
-                System.out.println("RollBack Failure." + e.getMessage());
+                return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + e.getErrorCode() : e.getMessage());
             }
-            System.out.println(ex.getMessage());
+            return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());
         } finally {
             daoConnection.closeDBConnection(connection);
         }
-        return result;
     }
 
     /**
@@ -111,7 +104,7 @@ public class DAOVisit extends DAOBasics{
     public long getLastVisitId(Connection connection, Patient patient) {
         columns = String.format(MAX_WITH_ALIAS, VISIT_ID,
                 VISIT_ID);
-        
+
         where = DBUtils.getWhereConditions(
                 DBUtils.getSimpleWhereCondition(PATIENT_DNI),
                 DBUtils.getSimpleWhereCondition(PATIENT_DNI_TYPE));
@@ -196,10 +189,10 @@ public class DAOVisit extends DAOBasics{
                 DBUtils.getSimpleWhereCondition(PATIENT_DNI),
                 DBUtils.getSimpleWhereCondition(PATIENT_DNI_TYPE),
                 getSimpleWhereCondition(VISIT_ID));
-        
-        query = DBUtils.getSelectAllStatementWithWhere(Tables.Visit, 
-                 where);
-        
+
+        query = DBUtils.getSelectAllStatementWithWhere(Tables.Visit,
+                where);
+
         try {
             connection = daoConnection.openDBConnection();
             preparedStatement = connection.prepareStatement(query);
@@ -222,9 +215,10 @@ public class DAOVisit extends DAOBasics{
             }
             preparedStatement.close();
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
         daoConnection.closeDBConnection(connection);
-        
+
         return visit;
     }
 
@@ -232,22 +226,22 @@ public class DAOVisit extends DAOBasics{
      * Method used to update a visit
      *
      * @param visit modified visit
-     * @return true if updated correctly, false otherwise
+     * @return "SUCCESS" if updated successful, error otherwise
      */
-    public boolean updateVisit(Visit visit) {
+    public String updateVisit(Visit visit) {
         try {
             this.visit = visit;
             connection = daoConnection.openDBConnection();
-                        
+
             columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
                     REASON, TREATMENT, COMPLEMENTARY_STUDIES,
                     LABORATORY, DIAGNOSIS, PHYSICAL_EXAM,
                     BIOPSY);
-            
+
             where = DBUtils.getSimpleWhereCondition(VISIT_ID);
-            
+
             query = DBUtils.getUpdateStatement(Tables.Visit, columns, where);
-            
+
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, visit.getReason());
             preparedStatement.setString(2, visit.getTreatment());
@@ -258,10 +252,10 @@ public class DAOVisit extends DAOBasics{
             preparedStatement.setString(7, visit.getBiopsy());
             preparedStatement.setInt(8, visit.getId());
 
-            return (((preparedStatement.executeUpdate() > 0)));
+            return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated updating visit returned <= 0");
         } catch (SQLException ex) {
             Logger.getLogger(DAOVisit.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());
         } finally {
             try {
                 preparedStatement.close();
@@ -271,10 +265,10 @@ public class DAOVisit extends DAOBasics{
             daoConnection.closeDBConnection(connection);
         }
     }
-    
+
     @Override
     String getInsertStatement() {
         return String.format(DBConstants.INSERT_WITH_VALUES_ONLY,
-                        DBConstants.Tables.Visit.name(), VISIT_INSERT);
+                DBConstants.Tables.Visit.name(), VISIT_INSERT);
     }
 }

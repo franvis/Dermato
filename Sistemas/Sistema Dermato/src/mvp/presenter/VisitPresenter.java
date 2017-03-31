@@ -7,6 +7,7 @@ package mvp.presenter;
 
 import bussines.Patient;
 import bussines.Visit;
+import dao.DAOBasics;
 import mvp.model.VisitModel;
 import mvp.view.VisitView;
 
@@ -68,12 +69,13 @@ public class VisitPresenter {
             return;
         }
 
-        if (model.registerVisit(visit, patient)) {
+        String result = model.registerVisit(visit, patient);
+        
+        if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
             view.showInfoMessage("Registro exitoso.");
             view.finishRegisteringVisit();
         } else {
-            view.showErrorMessage("No se pudo registrar la visita. Intente nuevamente"
-                    + ", y si el error persiste, comuniquese con el administrador.");
+            view.showErrorMessage("Registro Fallido: " + result);
         }
     }
     
@@ -85,12 +87,13 @@ public class VisitPresenter {
         //Setting id to new visit
         visit.setId(this.visit.getId());
         
-        if (model.updateVisit(visit)) {
+        String result = model.updateVisit(visit);
+        
+        if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
             view.showInfoMessage("Consulta actualizado correctamente.");
             view.finishUpdatingVisit();
         } else {
-            view.showErrorMessage("No se pudo actualizar la consulta."
-                    + "\nSi el error persiste comuniquese con el administrador.");
+            view.showErrorMessage("Actualización fallida: " + result);
         }
     }
 

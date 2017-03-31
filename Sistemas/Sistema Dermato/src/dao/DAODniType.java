@@ -24,6 +24,11 @@ public class DAODniType extends DAOBasics{
         daoConnection = new DAOConnection();
     }
     
+    /**
+     * Retrieves all the dni types
+     * 
+     * @return List containing all the Dni types
+     */
     public List<DniType> getAllDniTypes(){
         ArrayList<DniType> dniTypes = new ArrayList<>();
         DniType dniType;
