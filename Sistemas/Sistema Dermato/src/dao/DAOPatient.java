@@ -131,7 +131,7 @@ public class DAOPatient extends DAOBasics {
 
         columns = DBUtils.getStringWithValuesSeparatedWithCommas("d." + DAODniType.DNI_TYPE_NAME, DNI_TYPE, DNI,
                 NAME, LASTNAME, BIRTHDAY, DBUtils
-                        .getMaxColumnAs(DAOVisit.DATE, LAST_VISIT_DATE_KEY));
+                .getMaxColumnAs(DAOVisit.DATE, LAST_VISIT_DATE_KEY));
 
         where = DBUtils.getWhereForFilters(filterName, filterLastName, filterDni, filterDniType);
         orderBy = DBUtils.getOrderByForFilters(filterName, filterLastName, filterDni);
@@ -212,15 +212,17 @@ public class DAOPatient extends DAOBasics {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, dni);
             preparedStatement.setInt(2, dniType.getId());
-            preparedStatement.executeQuery();
-            if (preparedStatement.getResultSet().next()) {
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
                 patient = new Patient();
                 patient.setDniType(dniType);
-                patient.setDni(resultSet.getString(DNI));
+                patient.setDni(dni);
                 patient.setName(resultSet.getString(NAME));
                 patient.setLastname(resultSet.getString(LASTNAME));
+            } else {
+                preparedStatement.close();
+                return null;
             }
-            preparedStatement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {

@@ -16,10 +16,12 @@ import static utils.ValidationsAndMessages.FIRST_VISIT_DATE_FORMAT_ERROR;
 import static utils.ValidationsAndMessages.MANDATORY_FIELDS_ERROR;
 import static utils.ValidationsAndMessages.PRE_PAID_HEALTH_INSURANCE_NAME_EMPTY;
 import java.awt.Frame;
+import java.util.Date;
 import java.util.List;
 import mvp.presenter.PatientABMPresenter;
 import mvp.view.PatientABMView;
 import mvp.view.listener.PatientUpdatedListener;
+import utils.GeneralUtils;
 
 public class PatientJDialog extends JDialog implements PatientABMView {
 
@@ -78,7 +80,18 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         patient.setCity(txtfCity.getText());
 
         String birthday = ftxtfBirthday.getText();
+        String firstVisitDate = ftxtfFirstVisitDate.getText();
 
+        if (!firstVisitDate.isEmpty() && firstVisitDate.compareTo(DATE_MASK) != 0
+                && !birthday.isEmpty() && birthday.compareTo(DATE_MASK) != 0) {
+            Date birthdayDate = GeneralUtils.stringDateParser(birthday);
+            Date firstVisitDateDate = GeneralUtils.stringDateParser(firstVisitDate);
+            if(firstVisitDateDate.before(birthdayDate)){
+                showErrorMessage("La fecha de primera visita no puede ser menor a la fecha de nacimiento.");
+                return null;
+            }
+        }
+        
         if (!birthday.isEmpty() && birthday.compareTo(DATE_MASK) != 0) {
             error = ValidationsAndMessages.validateDateInCommonRange(ftxtfBirthday.getText());
             if (!error.isEmpty()) {
@@ -89,8 +102,6 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             }
         }
 
-        String firstVisitDate = ftxtfFirstVisitDate.getText();
-
         if (!firstVisitDate.isEmpty() && firstVisitDate.compareTo(DATE_MASK) != 0) {
             error = ValidationsAndMessages.validateDateInCommonRange(ftxtfFirstVisitDate.getText());
             if (!error.isEmpty()) {
@@ -100,7 +111,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
                 patient.setFirstVisitDate(this.ftxtfFirstVisitDate.getText());
             }
         }
-
+        
         patient.setMedicalCoverageNumber(this.txtfMedicalCoverageNumber.getText());
         generateAntecedents(patient);
 

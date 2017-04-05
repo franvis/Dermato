@@ -89,25 +89,25 @@ public class PatientABMPresenter {
     }
 
     public void updatePatient(Patient patient, int medicalCoverageSelected,
-             int dniTypeSelected) {
+            int dniTypeSelected) {
         if (view == null) {
             return;
         }
 
         MedicalCoverage medicalCoverage = medicalCoverages.get(medicalCoverageSelected);
         patient.setMedicalCoverage(medicalCoverage);
+        DniType dniType = dniTypes.get(dniTypeSelected);
+        patient.setDniType(dniType);
 
         String patientInsuranceNumberMatch = model.validatePatientInsuranceNumber(patient);
         String patientDniMatch = model.verifyPatientDni(patient);
-        DniType dniType = dniTypes.get(dniTypeSelected);
-        patient.setDniType(dniType);
 
         if (patientInsuranceNumberMatch != null && !patientInsuranceNumberMatch.isEmpty()) {
             view.showErrorMessage("El paciente ya se encuentra registrado bajo el nombre de "
                     + patientInsuranceNumberMatch + " con la misma obra social y numero de afiliado.");
         } else if (patientDniMatch != null && !patientDniMatch.isEmpty()) {
             view.showErrorMessage("El paciente ya se encuentra registrado bajo el nombre de "
-                    + patientInsuranceNumberMatch + " con el mismo dni.");
+                    + patientDniMatch + " con el mismo dni.");
         } else {
             String result = model.updatePatient(patient, this.patient);
             if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
@@ -120,7 +120,7 @@ public class PatientABMPresenter {
     }
 
     public void registerPatient(Patient patient, int medicalCoverageSelected,
-             int dniTypeSelected) {
+            int dniTypeSelected) {
         if (view == null) {
             return;
         }
@@ -130,12 +130,23 @@ public class PatientABMPresenter {
         DniType dniType = dniTypes.get(dniTypeSelected);
         patient.setDniType(dniType);
 
-        String result = model.registerPatient(patient);
-        
-        if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
-            view.finishRegisteringPatient(patient);
+        String patientInsuranceNumberMatch = model.validatePatientInsuranceNumber(patient);
+        String patientDniMatch = model.verifyPatientDni(patient);
+
+        if (patientInsuranceNumberMatch != null && !patientInsuranceNumberMatch.isEmpty()) {
+            view.showErrorMessage("El paciente ya se encuentra registrado bajo el nombre de "
+                    + patientInsuranceNumberMatch + " con la misma obra social y numero de afiliado.");
+        } else if (patientDniMatch != null && !patientDniMatch.isEmpty()) {
+            view.showErrorMessage("El paciente ya se encuentra registrado bajo el nombre de "
+                    + patientDniMatch + " con el mismo dni.");
         } else {
-            view.showErrorMessage("Registro fallido: " + result);
+            String result = model.registerPatient(patient);
+
+            if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
+                view.finishRegisteringPatient(patient);
+            } else {
+                view.showErrorMessage("Registro fallido: " + result);
+            }
         }
     }
 

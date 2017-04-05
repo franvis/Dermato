@@ -9,7 +9,12 @@ import static utils.Constants.SYSTEM_FONT;
 import java.awt.Component;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
@@ -118,5 +123,15 @@ public class GeneralUtils {
         if (r == JFileChooser.APPROVE_OPTION) {
             FileManager.backUp(parent, jfd.getSelectedFile());
         }
+    }
+    
+    public static Date stringDateParser(String stringDate){
+        try {
+            SimpleDateFormat parser = new SimpleDateFormat("d/MM/yyyy");
+            return parser.parse(stringDate);
+        } catch (ParseException ex) {
+            Logger.getLogger(GeneralUtils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }
