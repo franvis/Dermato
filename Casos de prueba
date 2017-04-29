@@ -1,0 +1,34 @@
+ABM Paciente:
+
+* Completo - DONE
+* Obligatorios - DONE
+* Sin Obra Social - DONE
+* Sin Antecedentes - DONE
+* Un Antecedente - DONE
+* Nueva Obra Social - DONE
+
+Modificar Paciente(Desde ambos lugares):
+* Todos los antecedentes.
+* Solo 1 Antecedente.
+* Obra Social.
+* Datos obligatorios.
+* Modificar y volver a modificar.
+
+Registrar Consulta:
+* Completa
+* Obligatorios
+* Solo 3
+
+Modificar Consulta:
+* Igual al registrar
+
+Modificar Antecedentes desde HC:
+* Todos
+* 1
+
+AGREGAR DOBLE CLICK EN CONSULTAS ANTERIORES
+
+HACER FUNCIONALIDAD DE BOTON DE HISTORIA CLINICA PREVIA
+
+CAMBIAR IDENTIFICADOR UNICO PACIENTES PARA PODER INSERTAR LA BD ANTERIOR. PONER ID Y CORROBORAR POR CODIGO QUE NO SE REPITAN(NOMBRE, APELLIDO, DNI Y TIPO).
+
