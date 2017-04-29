@@ -120,6 +120,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         lblFirstVisitDate = new javax.swing.JLabel();
         lblAddress = new javax.swing.JLabel();
         lblsAddress = new javax.swing.JLabel();
+        btnPreviousCH = new javax.swing.JButton();
         pnlButtons = new javax.swing.JPanel();
         btnNewVisit = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
@@ -315,6 +316,27 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         lblsAddress.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblsAddress.setText("Domicilio:");
 
+        btnPreviousCH.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnPreviousCH.setForeground(new java.awt.Color(0, 51, 102));
+        btnPreviousCH.setText("Historia clinica previa");
+        btnPreviousCH.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        btnPreviousCH.setContentAreaFilled(false);
+        btnPreviousCH.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPreviousCH.setOpaque(true);
+        btnPreviousCH.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPreviousCHMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPreviousCHMouseEntered(evt);
+            }
+        });
+        btnPreviousCH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPreviousCHActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlPatientDataLayout = new javax.swing.GroupLayout(pnlPatientData);
         pnlPatientData.setLayout(pnlPatientDataLayout);
         pnlPatientDataLayout.setHorizontalGroup(
@@ -332,6 +354,8 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
                         .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlPatientDataLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnPreviousCH, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnAntecedents, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlPatientDataLayout.createSequentialGroup()
                                 .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -359,7 +383,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(pnlPatientDataLayout.createSequentialGroup()
-                                                .addComponent(lblMedicalCoverageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(lblMedicalCoverageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                                                 .addGap(6, 6, 6))
                                             .addComponent(lblMedicalCoverage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addComponent(lblAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
@@ -391,8 +415,9 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
                     .addGroup(pnlPatientDataLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnAntecedents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnModifyPatient, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
+                            .addComponent(btnModifyPatient, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                            .addComponent(btnPreviousCH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAntecedents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(pnlPatientDataLayout.createSequentialGroup()
                         .addGroup(pnlPatientDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -543,11 +568,24 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         setButtonFontForPointerEvent(btnNewVisit, false);
     }//GEN-LAST:event_btnNewVisitMouseExited
 
+    private void btnPreviousCHMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPreviousCHMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPreviousCHMouseExited
+
+    private void btnPreviousCHMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPreviousCHMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPreviousCHMouseEntered
+
+    private void btnPreviousCHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousCHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPreviousCHActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAntecedents;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnModifyPatient;
     private javax.swing.JButton btnNewVisit;
+    private javax.swing.JButton btnPreviousCH;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBirthday;
     private javax.swing.JLabel lblCity;
