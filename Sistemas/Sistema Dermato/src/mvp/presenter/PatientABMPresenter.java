@@ -109,8 +109,9 @@ public class PatientABMPresenter {
             view.showErrorMessage("El paciente ya se encuentra registrado bajo el nombre de "
                     + patientDniMatch + " con el mismo dni.");
         } else {
-            String result = model.updatePatient(patient, this.patient);
+            String result = model.updatePatient(patient);
             if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
+                this.patient = patient;
                 view.showInfoMessage("Paciente actualizado correctamente.");
                 view.finishUpdatingPatient(patient);
             } else {

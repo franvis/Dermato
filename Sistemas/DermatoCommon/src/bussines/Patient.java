@@ -30,6 +30,7 @@ public class Patient {
     private LinkedList<Visit> visits = new LinkedList<>();
 
     public Patient() {
+        antecedents = new Antecedents();
     }
 
     public Patient(int id, String name, String lastname, String phone, DniType dniType, String dni,

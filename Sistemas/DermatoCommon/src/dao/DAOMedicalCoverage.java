@@ -151,7 +151,7 @@ public class DAOMedicalCoverage extends DAOBasics {
      * @param idMedicalCoverage id of the pre paid health insurance
      * @return Pre paid health insurance
      */
-    public MedicalCoverage getPPHealthInsurance(int idMedicalCoverage) {
+    public MedicalCoverage getMedicalCoverage(int idMedicalCoverage) {
         where = getWhereConditions(getSimpleWhereCondition(MEDICAL_COVERAGE_ID));
 
         query = DBUtils.getSelectAllStatementWithWhere(Tables.MedicalCoverage,
@@ -160,6 +160,38 @@ public class DAOMedicalCoverage extends DAOBasics {
             connection = daoConnection.openDBConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setLong(1, idMedicalCoverage);
+            preparedStatement.executeQuery();
+            resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                medicalCoverage = new MedicalCoverage();
+                medicalCoverage.setId(resultSet.getInt(MEDICAL_COVERAGE_ID));
+                medicalCoverage.setName(resultSet.getString(MEDICAL_COVERAGE_NAME));
+            }
+            preparedStatement.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            daoConnection.closeDBConnection(connection);
+        }
+        return medicalCoverage;
+    }
+    
+    /**
+     * Method used to retrieve a Pre paid Health Insurance. 
+     * ONLY USED FOR DB TRASPASSING
+     *
+     * @param name name of the pre paid health insurance
+     * @return Pre paid health insurance
+     */
+    public MedicalCoverage getMedicalCoverage(String name) {
+        where = getWhereConditions(getSimpleWhereCondition(MEDICAL_COVERAGE_NAME));
+
+        query = DBUtils.getSelectAllStatementWithWhere(Tables.MedicalCoverage,
+                where);
+        try {
+            connection = daoConnection.openDBConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
             preparedStatement.executeQuery();
             resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {

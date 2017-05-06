@@ -5,24 +5,21 @@
  */
 package dbconverter;
 
+import bussines.MedicalCoverage;
+import bussines.Patient;
+import dao.DAOMedicalCoverage;
 import dao.DAOPatient;
+import static dao.DAOPatient.MEDICAL_COVERAGE_DEFAULT_NAME;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import static java.nio.charset.StandardCharsets.ISO_8859_1;
-import static java.nio.charset.StandardCharsets.UTF_8;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.Iterator;
 import nl.knaw.dans.common.dbflib.CorruptedTableException;
 import nl.knaw.dans.common.dbflib.IfNonExistent;
 import nl.knaw.dans.common.dbflib.Record;
 import nl.knaw.dans.common.dbflib.Table;
-import nl.knaw.dans.common.dbflib.Version;
-import sun.nio.cs.ext.IBM865;
+import utils.DateTimeUtils;
+import utils.GeneralUtils;
 
 /**
  *
@@ -31,11 +28,13 @@ import sun.nio.cs.ext.IBM865;
 public class DBConverter {
 
     private final DAOPatient daoPatient;
-    
-    public DBConverter(){
+    private final DAOMedicalCoverage daoMedicalCoverage;
+
+    public DBConverter() {
         this.daoPatient = new DAOPatient();
+        this.daoMedicalCoverage = new DAOMedicalCoverage();
     }
-    
+
     public void convertDB() throws FileNotFoundException, IOException, CorruptedTableException {
         final Table t1 = new Table(new File("src/files/FICHERO.DBF"));
 
@@ -45,15 +44,52 @@ public class DBConverter {
             final Iterator<Record> recordIterator = t1.recordIterator();
 
             Record r;
+            Patient patient;
             int i = 0;
             while (recordIterator.hasNext()) {
-                i++;
                 r = recordIterator.next();
-                if (r.getStringValue("PAC") != null && r.getStringValue("TAR") != null) {
-                    String value = r.getStringValue("TAR");
-                    System.out.println(value);
+                i++;
+                patient = new Patient();
+
+                //NAME AND LASTNAME
+                String patientName = r.getStringValue("PAC").trim();
+                patient.setLastname(patientName.substring(0, patientName.indexOf(" ")).trim());
+                patient.setName(patientName.substring(patientName.indexOf(" ") + 1, patientName.length()).trim());
+
+                //ADDRESS
+                if (r.getStringValue("DIR") != null && !r.getStringValue("DIR").trim().isEmpty()) {
+                    patient.setAddress(r.getStringValue("DIR").trim());
                 }
-                if (i == 10) {
+
+                //CITY
+                if (r.getStringValue("LOC") != null && !r.getStringValue("LOC").trim().isEmpty()) {
+                    patient.setCity(r.getStringValue("LOC").trim());
+                }
+
+                //PHONE
+                if (r.getStringValue("TEL") != null && !r.getStringValue("TEL").trim().isEmpty()
+                        && !r.getStringValue("TEL").trim().equals("NO TIENE")
+                        && !r.getStringValue("TEL").trim().equals("NO")
+                        && !r.getStringValue("TEL").trim().equals("NT")
+                        && !r.getStringValue("TEL").trim().equals("N/T")) {
+                    patient.setPhone(r.getStringValue("TEL").trim());
+                }
+
+                //MEDICAL COVERAGE
+                if (r.getStringValue("MUT") != null && !r.getStringValue("MUT").trim().isEmpty()) {
+                    patient.setMedicalCoverage(daoMedicalCoverage.getMedicalCoverage(r.getStringValue("MUT").trim()));
+                } else {
+                    patient.setMedicalCoverage(new MedicalCoverage(0, MEDICAL_COVERAGE_DEFAULT_NAME));
+                }
+                
+                //BIRTHDAY
+                if (r.getDateValue("NAC") != null) {
+                    patient.setBirthday(DateTimeUtils.convertDateToString(r.getDateValue("NAC")));
+                }
+                
+                //FINAL REGISTER
+                daoPatient.registerPatient(patient);
+                if(i == 10){
                     break;
                 }
             }
@@ -62,6 +98,4 @@ public class DBConverter {
         }
     }
 
-    
-    
 }

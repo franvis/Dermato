@@ -117,7 +117,7 @@ public class ClinicalHistoryPresenter {
         }
 
         if (visits.size() > 0 && visits.get(selectedVisit) != null) {
-            Visit visit = model.getFullVisit(visits.get(selectedVisit).getId(), patient);
+            Visit visit = model.getFullVisit(visits.get(selectedVisit).getId(), patient.getPatientId());
             if (visit != null) {
                 view.displayVisit(patient, visit);
             } else {

@@ -36,7 +36,7 @@ public class ClinicalHistoryModel {
         return antecedentsDao.getAntecedents(patient);
     }
 
-    public Visit getFullVisit(int visitId, Patient patient) {
-        return visitDao.getFullVisit(visitId, patient);
+    public Visit getFullVisit(int visitId, int patientId) {
+        return visitDao.getFullVisit(visitId, patientId);
     }
 }

@@ -54,7 +54,7 @@ public class AntecedentsPresenter {
             return;
         }
         
-        String result = model.updateAntecedents(antecedents, patient);
+        String result = model.updateAntecedents(antecedents, patient.getPatientId());
         
         if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
             view.showInfoMessage("Antecedentes actualizados correctamente.");

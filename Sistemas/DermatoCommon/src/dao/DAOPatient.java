@@ -23,7 +23,7 @@ public class DAOPatient extends DAOBasics {
 
     private static final String LAST_VISIT_DATE_KEY = "lastVisitDate";
     private static final String LAST_VISIT_DATE_DEFAULT_VALUE = "Sin consultas";
-    private static final String MEDICAL_COVERAGE_DEFAULT_NAME = "Sin Obra Social";
+    public static final String MEDICAL_COVERAGE_DEFAULT_NAME = "Sin Obra Social";
     public static final String PATIENT_INSERT = "?,?,?,?,?,?,?,"
             + "str_to_date(?, '%d/%c/%Y'),?,?,str_to_date(?, '%d/%c/%Y'),?,null";
     public static final String PATIENT_INSERT_WITHOUT_MEDICAL_COVERAGE
@@ -72,8 +72,16 @@ public class DAOPatient extends DAOBasics {
                 preparedStatement.setNull(9, java.sql.Types.INTEGER);
                 preparedStatement.setNull(10, java.sql.Types.VARCHAR);
             }
-            preparedStatement.setString(1, patient.getDni());
-            preparedStatement.setInt(2, patient.getDniType().getId());
+            if (patient.getDni() != null && !patient.getDni().isEmpty()) {
+                preparedStatement.setString(1, patient.getDni());
+            } else {
+                preparedStatement.setNull(1, java.sql.Types.VARCHAR);
+            }
+            if (patient.getDniType() != null) {
+                preparedStatement.setInt(2, patient.getDniType().getId());
+            } else {
+                preparedStatement.setNull(2, java.sql.Types.INTEGER);
+            }
             preparedStatement.setString(3, patient.getName());
             preparedStatement.setString(4, patient.getLastname());
             preparedStatement.setString(5, patient.getPhone());
@@ -91,8 +99,7 @@ public class DAOPatient extends DAOBasics {
                 preparedStatement.setString(3, antecedents.getToxicAntecedents());
                 preparedStatement.setString(4, antecedents.getPharmacologicalAntecedents());
                 preparedStatement.setString(5, antecedents.getFamilyAntecedents());
-                preparedStatement.setString(6, patient.getDni());
-                preparedStatement.setInt(7, patient.getDniType().getId());
+                preparedStatement.setInt(6, patient.getPatientId());
                 if (preparedStatement.executeUpdate() == 0) {
                     return dbCommandFailed("executeUpdated registering patient returned <= 0");
                 }
@@ -105,7 +112,9 @@ public class DAOPatient extends DAOBasics {
             return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());
         } finally {
             try {
-                preparedStatement.close();
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
             } catch (SQLException ex) {
                 return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());
             }
@@ -127,11 +136,12 @@ public class DAOPatient extends DAOBasics {
     public LinkedList<Patient> getAllPatients(String filterName, String filterLastName, String filterDni, int filterDniType) {
         pacientes = new LinkedList<>();
 
-        from = "Patient p INNER JOIN DniType d on p.dniType = d.idDniType";
+        from = "Patient p LEFT JOIN DniType d on p.dniType = d.idDniType LEFT JOIN"
+                + " Visit v on p.patientId = v.patient";
 
         columns = DBUtils.getStringWithValuesSeparatedWithCommas("d." + DAODniType.DNI_TYPE_NAME, DNI_TYPE, DNI,
                 NAME, LASTNAME, BIRTHDAY, PATIENT_ID, DBUtils
-                .getMaxColumnAs(DAOVisit.DATE, LAST_VISIT_DATE_KEY));
+                .getMaxColumnAs("v." + DAOVisit.DATE, LAST_VISIT_DATE_KEY));
 
         where = DBUtils.getWhereForFilters(filterName, filterLastName, filterDni, filterDniType);
         orderBy = DBUtils.getOrderByForFilters(filterName, filterLastName, filterDni);
@@ -243,9 +253,9 @@ public class DAOPatient extends DAOBasics {
         Antecedents antecedents;
         this.patient = null;
 
-        from = "Patient p INNER JOIN DniType d on p.dniType = d.idDniType LEFT JOIN Visit v on"
-                + " p.patientId = v.patientId LEFT JOIN Antecedents a on"
-                + " p.patientId = a.patientId LEFT JOIN MedicalCoverage m on"
+        from = "Patient p LEFT JOIN DniType d on p.dniType = d.idDniType LEFT JOIN Visit v on"
+                + " p.patientId = v.patient LEFT JOIN Antecedents a on"
+                + " p.patientId = a.patient LEFT JOIN MedicalCoverage m on"
                 + " p.medicalCoverage = m.idMedicalCoverage";
 
         columns = DBUtils.getStringWithValuesSeparatedWithCommas(
@@ -263,17 +273,14 @@ public class DAOPatient extends DAOBasics {
                 "a." + DAOAntecedents.PHARMACOLOGICAL, "m." + DAOMedicalCoverage.MEDICAL_COVERAGE_NAME,
                 "m." + DAOMedicalCoverage.MEDICAL_COVERAGE_ID);
 
-        where = DBUtils.getWhereConditions(
-                DBUtils.getSimpleWhereCondition(DNI),
-                DBUtils.getSimpleWhereCondition(DNI_TYPE));
+        where = DBUtils.getSimpleWhereCondition(PATIENT_ID);
 
         query = DBUtils.getSelectColumnsMultipleTablesStatementWithWhereAndGroupBy(columns, from,
                 where, groupBy);
         try {
             connection = daoConnection.openDBConnection();
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, patient.getDni());
-            preparedStatement.setInt(2, patient.getDniType().getId());
+            preparedStatement.setInt(1, patient.getPatientId());
             preparedStatement.executeQuery();
             resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {

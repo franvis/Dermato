@@ -33,8 +33,8 @@ public class PatientABMModel {
         return daoMedicalCoverage.getAllMedicalCoverages();
     }
 
-    public String updatePatient(Patient patient, Patient oldPatient) {
-        return daoPatient.updatePatient(patient, oldPatient);
+    public String updatePatient(Patient patient) {
+        return daoPatient.updatePatient(patient);
     }
 
     public String validatePatientInsuranceNumber(Patient patient) {

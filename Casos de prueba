@@ -1,11 +1,11 @@
 ABM Paciente:
 
-* Completo - DONE
-* Obligatorios - DONE
-* Sin Obra Social - DONE
-* Sin Antecedentes - DONE
-* Un Antecedente - DONE
-* Nueva Obra Social - DONE
+* Completo
+* Obligatorios
+* Sin Obra Social
+* Sin Antecedentes
+* Un Antecedente
+* Nueva Obra Social
 
 Modificar Paciente(Desde ambos lugares):
 * Todos los antecedentes.
@@ -30,5 +30,5 @@ AGREGAR DOBLE CLICK EN CONSULTAS ANTERIORES
 
 HACER FUNCIONALIDAD DE BOTON DE HISTORIA CLINICA PREVIA
 
-CAMBIAR IDENTIFICADOR UNICO PACIENTES PARA PODER INSERTAR LA BD ANTERIOR. PONER ID Y CORROBORAR POR CODIGO QUE NO SE REPITAN(NOMBRE, APELLIDO, DNI Y TIPO).
+NULL NULL EN PACIENTES IMPORTADOS SIN DNI
 
