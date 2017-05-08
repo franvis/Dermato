@@ -164,7 +164,7 @@ public class DBUtils {
     public static String getStringWithValuesSeparatedWithCommasForUpdate(String... values) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < values.length; i++) {
-            if (i == 0 || i == values.length) {
+            if (i != 0 && i != values.length) {
                 builder.append(", ");
             }
             if (isDateField(values[i])) {

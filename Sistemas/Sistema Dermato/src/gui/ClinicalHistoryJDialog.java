@@ -569,11 +569,11 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
     }//GEN-LAST:event_btnNewVisitMouseExited
 
     private void btnPreviousCHMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPreviousCHMouseExited
-        // TODO add your handling code here:
+        setButtonFontForPointerEvent(btnPreviousCH, false);
     }//GEN-LAST:event_btnPreviousCHMouseExited
 
     private void btnPreviousCHMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPreviousCHMouseEntered
-        // TODO add your handling code here:
+        setButtonFontForPointerEvent(btnPreviousCH, true);
     }//GEN-LAST:event_btnPreviousCHMouseEntered
 
     private void btnPreviousCHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousCHActionPerformed
@@ -622,32 +622,45 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
     @Override
     public void displayPatientData(Patient patient) {
         this.lblPatientName.setText(String.format(FULLNAME, patient.getLastname(), patient.getName()));
-        this.lblDni.setText(patient.getDniType().getName() + " - " + patient.getDni() + "");
-
-        if (patient.getBirthday() != null && !patient.getBirthday().isEmpty()) {
+        
+        if (patient.getDniType() == null || patient.getDni() == null || !patient.getDni().isEmpty()) {
+            this.lblDni.setText("-");
+        } else {
+            this.lblDni.setText(patient.getDniType().getName() + " - " + patient.getDni() + "");
+        }
+        
+        if (patient.getBirthday() == null || patient.getBirthday().isEmpty()) {
+            this.lblBirthday.setText("-");
+        } else {
             this.lblBirthday.setText(String.format(BIRTHDAY_WITH_AGE, patient.getBirthday(), calculateAge(patient.getBirthday())));
         }
+        
         if (patient.getCity() == null || patient.getCity().isEmpty()) {
             this.lblCity.setText("-");
         } else {
             this.lblCity.setText(patient.getCity());
         }
+        
         if (patient.getPhone() == null || patient.getPhone().isEmpty()) {
             this.lblPhone.setText("-");
         } else {
             this.lblPhone.setText(patient.getPhone());
         }
+        
         if (patient.getFirstVisitDate() == null || patient.getFirstVisitDate().isEmpty()) {
             this.lblFirstVisitDate.setText("-");
         } else {
             this.lblFirstVisitDate.setText(patient.getFirstVisitDate());
         }
+        
         if (patient.getAddress() == null || patient.getAddress().isEmpty()) {
             this.lblAddress.setText("-");
         } else {
             this.lblAddress.setText(patient.getAddress());
         }
+        
         this.lblMedicalCoverage.setText(patient.getMedicalCoverage().getName());
+        
         if (patient.getMedicalCoverageNumber() == null || patient.getMedicalCoverageNumber().isEmpty()) {
             this.lblMedicalCoverageNumber.setText("-");
         } else {

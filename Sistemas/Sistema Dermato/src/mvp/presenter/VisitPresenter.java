@@ -90,7 +90,7 @@ public class VisitPresenter {
         String result = model.updateVisit(visit);
         
         if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
-            view.showInfoMessage("Consulta actualizado correctamente.");
+            view.showInfoMessage("Consulta actualizada correctamente.");
             view.finishUpdatingVisit();
         } else {
             view.showErrorMessage("Actualización fallida: " + result);

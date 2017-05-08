@@ -5,7 +5,6 @@ package dao;
 
 import bussines.Patient;
 import bussines.Visit;
-import static dao.DAOPatient.PATIENT_ID;
 import utils.DBConstants;
 import static utils.DBConstants.MAX_WITH_ALIAS;
 import utils.DBConstants.Tables;
@@ -33,8 +32,9 @@ public class DAOVisit extends DAOBasics {
     public static final String COMPLEMENTARY_STUDIES = "complementaryStudies";
     public static final String LABORATORY = "laboratory";
     public static final String DIAGNOSIS = "diagnosis";
-    public static final String PHYSICAL_EXAM = "physicalExamen";
+    public static final String PHYSICAL_EXAM = "physicalExam";
     public static final String BIOPSY = "biopsy";
+    private static final String PATIENT_ID = "patient";
 
     private Visit visit;
 
@@ -206,6 +206,7 @@ public class DAOVisit extends DAOBasics {
             preparedStatement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            return null;
         }
         daoConnection.closeDBConnection(connection);
 

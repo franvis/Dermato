@@ -86,12 +86,12 @@ public class PatientJDialog extends JDialog implements PatientABMView {
                 && !birthday.isEmpty() && birthday.compareTo(DATE_MASK) != 0) {
             Date birthdayDate = GeneralUtils.stringDateParser(birthday);
             Date firstVisitDateDate = GeneralUtils.stringDateParser(firstVisitDate);
-            if(firstVisitDateDate.before(birthdayDate)){
+            if (firstVisitDateDate.before(birthdayDate)) {
                 showErrorMessage("La fecha de primera visita no puede ser menor a la fecha de nacimiento.");
                 return null;
             }
         }
-        
+
         if (!birthday.isEmpty() && birthday.compareTo(DATE_MASK) != 0) {
             error = ValidationsAndMessages.validateDateInCommonRange(ftxtfBirthday.getText());
             if (!error.isEmpty()) {
@@ -111,7 +111,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
                 patient.setFirstVisitDate(this.ftxtfFirstVisitDate.getText());
             }
         }
-        
+
         patient.setMedicalCoverageNumber(this.txtfMedicalCoverageNumber.getText());
         generateAntecedents(patient);
 
@@ -203,7 +203,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         this.txtaPharmacological.setFocusable(state);
         this.txtaFamily.setFocusable(state);
         this.ftxtfFirstVisitDate.setFocusable(state);
-        
+
         this.btnNewMedicalCoverage.setEnabled(state);
     }
 
@@ -237,8 +237,12 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         txtfPhone.setText(patient.getPhone());
         txtfAddress.setText(patient.getAddress());
         txtfCity.setText(patient.getCity());
-        cmbDniType.setSelectedItem(patient.getDniType().getName());
-        txtfDni.setText(patient.getDni() + "");
+        if (patient.getDniType() != null) {
+            cmbDniType.setSelectedItem(patient.getDniType().getName());
+        }
+        if (patient.getDni() != null && !patient.getDni().isEmpty()) {
+            txtfDni.setText(patient.getDni() + "");
+        }
         ftxtfBirthday.setText(patient.getBirthday());
         cmbMedicalCoverage.setSelectedItem(patient.getMedicalCoverage().getName());
         txtfMedicalCoverageNumber.setText(patient.getMedicalCoverageNumber());
@@ -280,11 +284,11 @@ public class PatientJDialog extends JDialog implements PatientABMView {
 
     @Override
     public void finishRegisteringPatient(Patient patient) {
-        try{
-        ClinicalHistoryJDialog clinicalHistory = new ClinicalHistoryJDialog((java.awt.Frame) getParent(), patient);
-        dispose();
-        clinicalHistory.setVisible(true);
-        } catch(Exception ex){
+        try {
+            ClinicalHistoryJDialog clinicalHistory = new ClinicalHistoryJDialog((java.awt.Frame) getParent(), patient);
+            dispose();
+            clinicalHistory.setVisible(true);
+        } catch (Exception ex) {
             showErrorMessage("El paciente se registro correctamente pero no se pudo crear la Historia Clinica.\nIntente ingresar buscando el paciente desde el panel principal.");
             dispose();
         }

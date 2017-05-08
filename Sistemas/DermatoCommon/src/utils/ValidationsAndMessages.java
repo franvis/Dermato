@@ -84,6 +84,7 @@ public class ValidationsAndMessages {
      * @param error error to show
      */
     public static void showError(Component f, String error) {
+        error = "<html><body width='400'<p>" + error + "<p><html>";
         JOptionPane.showOptionDialog(
                 f,
                 error,
@@ -102,6 +103,7 @@ public class ValidationsAndMessages {
      * @param info information to show
      */
     public static void showInfo(Component f, String info) {
+        info = "<html><body width='400'<p>" + info + "<p><html>";
         JOptionPane.showOptionDialog(
                 f,
                 info,
