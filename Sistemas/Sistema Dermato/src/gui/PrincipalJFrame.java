@@ -75,7 +75,6 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         tblPatients.getTableHeader().setFont(new Font(SYSTEM_FONT, Font.PLAIN, 14));
         tblPatients.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         dtmPatients = (DefaultTableModel) tblPatients.getModel();
-        changeTableSize(dtmPatients, 10);
 
         tblPatients.addMouseListener(new MouseAdapter() {
             @Override

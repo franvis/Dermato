@@ -87,9 +87,14 @@ public class DBConverter {
                     patient.setBirthday(DateTimeUtils.convertDateToString(r.getDateValue("NAC")));
                 }
                 
+                //BIRTHDAY
+                if (r.getStringValue("TAR") != null && !r.getStringValue("TAR").trim().isEmpty()) {
+                    patient.setPreviousCH(r.getStringValue("TAR"));
+                }
+                
                 //FINAL REGISTER
                 daoPatient.registerPatient(patient);
-                if(i == 10){
+                if(i == 50){
                     break;
                 }
             }

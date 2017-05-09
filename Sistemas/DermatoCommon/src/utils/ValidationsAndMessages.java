@@ -23,19 +23,19 @@ public class ValidationsAndMessages {
     private static final String ABOUT_MESSAGE = "Sistema de Gestión de Pacientes de Dermatologia\nVersión 1.0";
     private static final String ABOUT_TITLE = "Acerca De...";
     public static final String BIRTHDAY_DATE_FORMAT_ERROR = "Los siguientes valores de "
-                    + "la fecha de nacimiento no son válidos "
-                    + "o están fuera de rango: \n%s";
+            + "la fecha de nacimiento no son válidos "
+            + "o están fuera de rango: \n%s";
     public static final String FIRST_VISIT_DATE_FORMAT_ERROR = "Los siguientes valores de "
-                    + "la fecha de primera consulta no son válidos "
-                    + "o están fuera de rango: \n%s";
+            + "la fecha de primera consulta no son válidos "
+            + "o están fuera de rango: \n%s";
     public static final String PRE_PAID_HEALTH_INSURANCE_NAME_EMPTY = "El nombre de la nueva obra social esta vacio.";
     public static final String REGISTER_SUCCESSFUL = "Registro Exitoso.";
     public static final String UPDATE_SUCCESSFUL = "Actualización Exitosa.";
     public static final String REGISTER_FAILED = "Registro Fallido.";
     public static final String UPDATE_FAILED = "Actualización Fallida.";
     public static final String MANDATORY_FIELDS_ERROR = "Debe completar los siguientes datos obligatorios: \n%s";
-    public static final String PATIENT_ALREADY_REGISTERED_MODIFIED_DNI_ERROR = 
-            "El dni ingresado para la modificación ya se encuentra en la "
+    public static final String PATIENT_ALREADY_REGISTERED_MODIFIED_DNI_ERROR
+            = "El dni ingresado para la modificación ya se encuentra en la "
             + "base de datos a nombre del paciente:.\n%s. Corrija el DNI";
     public static final String PATIENT_ALREADY_REGISTERED_DNI_ERROR = "El paciente "
             + "%s ya se encuentra registrado con el mismo dni. "
@@ -84,7 +84,9 @@ public class ValidationsAndMessages {
      * @param error error to show
      */
     public static void showError(Component f, String error) {
-        error = "<html><body width='400'<p>" + error + "<p><html>";
+        if (error.length() > 60) {
+            error = "<html><body width='400'<p>" + error;
+        }
         JOptionPane.showOptionDialog(
                 f,
                 error,
@@ -103,7 +105,9 @@ public class ValidationsAndMessages {
      * @param info information to show
      */
     public static void showInfo(Component f, String info) {
-        info = "<html><body width='400'<p>" + info + "<p><html>";
+        if (info.length() > 60) {
+            info = "<html><body width='400'<p>" + info;
+        }
         JOptionPane.showOptionDialog(
                 f,
                 info,

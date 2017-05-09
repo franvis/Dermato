@@ -27,49 +27,11 @@ public class Patient {
     private String firstVisitDate;
     private Antecedents antecedents;
     private String lastVisitDate;
+    private String previousCH;
     private LinkedList<Visit> visits = new LinkedList<>();
 
     public Patient() {
         antecedents = new Antecedents();
-    }
-
-    public Patient(int id, String name, String lastname, String phone, DniType dniType, String dni,
-            String address, String city, String birthday, 
-            MedicalCoverage prepaidHealthInsurance, String prepaidHealthInsuranceNumber, Antecedents antecendent,
-            String firstVisitDate) {
-        this.patientId = id;
-        this.name = name;
-        this.lastname = lastname;
-        this.phone = phone;
-        this.dniType = dniType;
-        this.dni = dni;
-        this.address = address;
-        this.city = city;
-        this.birthday = birthday;
-        this.medicalCoverage = prepaidHealthInsurance;
-        this.medicalCoverageNumber = prepaidHealthInsuranceNumber;
-        this.antecedents = antecendent;
-        this.firstVisitDate = firstVisitDate;
-    }
-
-    public Patient(int id, String name, String lastname, String phone, DniType dniType, String dni,
-            String address, String city, String birthday,
-            MedicalCoverage prepaidHealthInsurance, String prepaidHealthInsuranceNumber, Antecedents antecendent, 
-            String firstVisitDate, LinkedList<Visit> visits) {
-        this.patientId = id;
-        this.name = name;
-        this.lastname = lastname;
-        this.phone = phone;
-        this.dniType = dniType;
-        this.dni = dni;
-        this.address = address;
-        this.city = city;
-        this.birthday = birthday;
-        this.medicalCoverage = prepaidHealthInsurance;
-        this.medicalCoverageNumber = prepaidHealthInsuranceNumber;
-        this.antecedents = antecendent;
-        this.firstVisitDate = firstVisitDate;
-        this.visits = visits;
     }
 
     public int getPatientId() {
@@ -194,5 +156,13 @@ public class Patient {
     
     public String getFullName(){
         return String.format(FULLNAME, lastname, name);
+    }
+
+    public String getPreviousCH() {
+        return previousCH;
+    }
+
+    public void setPreviousCH(String previousCH) {
+        this.previousCH = previousCH;
     }
 }

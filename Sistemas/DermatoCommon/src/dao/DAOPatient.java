@@ -42,6 +42,7 @@ public class DAOPatient extends DAOBasics {
     public static final String MEDICAL_COVERAGE = "medicalCoverage";
     public static final String MEDICAL_COVERAGE_NUMBER = "medicalCoverageNumber";
     public static final String FIRST_VISIT_DATE = "firstVisitDate";
+    public static final String PREVIOUS_CH = "previousVisits";
 
     private final DAOAntecedents daoAntecedents;
     private LinkedList<Patient> pacientes;
@@ -89,8 +90,16 @@ public class DAOPatient extends DAOBasics {
             preparedStatement.setString(7, patient.getCity());
             preparedStatement.setString(8, patient.getBirthday());
             preparedStatement.setString(11, patient.getFirstVisitDate());
-            preparedStatement.setNull(12, java.sql.Types.VARCHAR);
-            if (preparedStatement.executeUpdate() != 0) {
+            if (patient.getPreviousCH() == null || patient.getPreviousCH().isEmpty()) {
+                preparedStatement.setNull(12, java.sql.Types.VARCHAR);
+            } else {
+                preparedStatement.setString(12, patient.getPreviousCH());
+            }
+            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            rs.next();
+            int patientId = rs.getInt(1);
+            if (patientId != 0) {
                 query = daoAntecedents.getInsertStatement();
                 Antecedents antecedents = patient.getAntecedents();
                 preparedStatement = connection.prepareStatement(query);
@@ -99,7 +108,7 @@ public class DAOPatient extends DAOBasics {
                 preparedStatement.setString(3, antecedents.getToxicAntecedents());
                 preparedStatement.setString(4, antecedents.getPharmacologicalAntecedents());
                 preparedStatement.setString(5, antecedents.getFamilyAntecedents());
-                preparedStatement.setInt(6, patient.getPatientId());
+                preparedStatement.setInt(6, patientId);
                 if (preparedStatement.executeUpdate() == 0) {
                     return dbCommandFailed("executeUpdated registering patient returned <= 0");
                 }
@@ -261,7 +270,7 @@ public class DAOPatient extends DAOBasics {
         columns = DBUtils.getStringWithValuesSeparatedWithCommas(
                 "d." + DAODniType.DNI_TYPE_ID, "d." + DAODniType.DNI_TYPE_NAME, "p." + DNI_TYPE, "p." + DNI, "p." + NAME, "p." + LASTNAME, "p." + PHONE, "p." + ADDRESS,
                 "p." + CITY, "p." + BIRTHDAY, "p." + PATIENT_ID, "p." + MEDICAL_COVERAGE, "p." + MEDICAL_COVERAGE_NUMBER,
-                "p." + FIRST_VISIT_DATE, DBUtils.getMaxColumnAs("v." + DAOVisit.DATE, LAST_VISIT_DATE_KEY),
+                "p." + FIRST_VISIT_DATE, "p." + PREVIOUS_CH, DBUtils.getMaxColumnAs("v." + DAOVisit.DATE, LAST_VISIT_DATE_KEY),
                 "a." + DAOAntecedents.PERSONAL, "a." + DAOAntecedents.SURGICAL, "a." + DAOAntecedents.TOXIC, "a." + DAOAntecedents.FAMILY,
                 "a." + DAOAntecedents.PHARMACOLOGICAL, "m." + DAOMedicalCoverage.MEDICAL_COVERAGE_NAME,
                 "m." + DAOMedicalCoverage.MEDICAL_COVERAGE_ID);
@@ -269,7 +278,7 @@ public class DAOPatient extends DAOBasics {
         groupBy = DBUtils.getStringWithValuesSeparatedWithCommas(
                 DNI_TYPE, DNI, NAME, LASTNAME, PHONE, ADDRESS,
                 CITY, BIRTHDAY, PATIENT_ID, MEDICAL_COVERAGE, MEDICAL_COVERAGE_NUMBER,
-                FIRST_VISIT_DATE, "a." + DAOAntecedents.PERSONAL, "a." + DAOAntecedents.SURGICAL, "a." + DAOAntecedents.TOXIC, "a." + DAOAntecedents.FAMILY,
+                FIRST_VISIT_DATE, PREVIOUS_CH, "a." + DAOAntecedents.PERSONAL, "a." + DAOAntecedents.SURGICAL, "a." + DAOAntecedents.TOXIC, "a." + DAOAntecedents.FAMILY,
                 "a." + DAOAntecedents.PHARMACOLOGICAL, "m." + DAOMedicalCoverage.MEDICAL_COVERAGE_NAME,
                 "m." + DAOMedicalCoverage.MEDICAL_COVERAGE_ID);
 
@@ -300,6 +309,9 @@ public class DAOPatient extends DAOBasics {
                 }
                 if (resultSet.getString(BIRTHDAY) != null) {
                     patient.setBirthday(DBUtils.getFormattedDate(resultSet.getString(BIRTHDAY)));
+                }
+                if (resultSet.getString(PREVIOUS_CH) != null) {
+                    patient.setPreviousCH(resultSet.getString(PREVIOUS_CH));
                 }
                 if (resultSet.getObject(MEDICAL_COVERAGE) != null && resultSet.getInt(MEDICAL_COVERAGE) != 0) {
                     patient.setMedicalCoverage(new MedicalCoverage(resultSet.getInt("m." + DAOMedicalCoverage.MEDICAL_COVERAGE_ID),

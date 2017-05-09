@@ -131,4 +131,17 @@ public class ClinicalHistoryPresenter {
                     + "\nSi el error persiste comuniquese con el administrador.");
         }
     }
+
+    public void seePatientPreviousHC() {
+        if (view == null) {
+            return;
+        }
+
+        if (patient.getPreviousCH() == null || patient.getPreviousCH().isEmpty()) {
+//            view.showInfoMessage("El paciente no posee historia clinica previa.");
+            view.showInfoMessage("El paciente no posee historia clinica previa.");
+        } else {
+            view.showPreviousCH(patient.getPreviousCH());
+        }
+    }
 }

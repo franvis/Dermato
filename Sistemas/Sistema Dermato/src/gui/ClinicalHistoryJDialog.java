@@ -577,7 +577,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
     }//GEN-LAST:event_btnPreviousCHMouseEntered
 
     private void btnPreviousCHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousCHActionPerformed
-        // TODO add your handling code here:
+        presenter.seePatientPreviousHC();
     }//GEN-LAST:event_btnPreviousCHActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -675,9 +675,9 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         clearTable(visitsDtm);
 
         if (visits.isEmpty()) {
-            changeTableSize(visitsDtm, 8);
-        } else {
             changeTableSize(visitsDtm, 0);
+        } else {
+            changeTableSize(visitsDtm, 8);
         }
 
         for (int i = 0; i < visits.size(); i++) {
@@ -728,5 +728,13 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         VisitJDialog abmVisit = new VisitJDialog((Frame) getParent(), patient, visit, this);
         abmVisit.setVisible(true);
         abmVisit.requestFocus();
+    }
+
+    @Override
+    public void showPreviousCH(String previousCH) {
+        PreviousCHJDialog previousCHJDialog = new PreviousCHJDialog((Frame) getParent(), 
+                true, previousCH);
+        previousCHJDialog.setVisible(true);
+        previousCHJDialog.requestFocus();
     }
 }

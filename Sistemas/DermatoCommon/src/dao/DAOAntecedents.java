@@ -24,6 +24,7 @@ public class DAOAntecedents extends DAOBasics {
     public static final String TOXIC = "toxic";
     public static final String PHARMACOLOGICAL = "pharmacological";
     public static final String FAMILY = "family";
+    public static final String PATIENT_ID = "patient";
     
     private Antecedents antecedents;
 
@@ -113,7 +114,7 @@ public class DAOAntecedents extends DAOBasics {
      */
     public Antecedents getAntecedents(Patient patient) {
         antecedents = null;
-        where = DBUtils.getSimpleWhereCondition(DAOPatient.PATIENT_ID);
+        where = DBUtils.getSimpleWhereCondition(PATIENT_ID);
         query = DBUtils.getSelectAllStatementWithWhere(Tables.Antecedents, where);
         try {
             connection = daoConnection.openDBConnection();
@@ -155,7 +156,7 @@ public class DAOAntecedents extends DAOBasics {
             }
             columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
                     PERSONAL, SURGICAL, TOXIC, PHARMACOLOGICAL, FAMILY);
-            where = DBUtils.getSimpleWhereCondition(DAOPatient.PATIENT_ID);
+            where = DBUtils.getSimpleWhereCondition(PATIENT_ID);
             query = DBUtils.getUpdateStatement(Tables.Antecedents, columns, where);
 
             preparedStatement = connection.prepareStatement(query);

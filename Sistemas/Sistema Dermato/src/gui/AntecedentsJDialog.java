@@ -127,7 +127,7 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
         txtaToxic.setLineWrap(true);
         txtaToxic.setRows(5);
         txtaToxic.setWrapStyleWord(true);
-        txtaToxic.setNextFocusableComponent(btnSave);
+        txtaToxic.setNextFocusableComponent(txtaPharmacological);
         txtaToxic.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtaToxicKeyPressed(evt);
@@ -175,12 +175,19 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
 
         pnlPharmacological.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Medicamentosos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
+        txtaPharmacological.setEditable(false);
         txtaPharmacological.setColumns(20);
         txtaPharmacological.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtaPharmacological.setLineWrap(true);
         txtaPharmacological.setRows(5);
         txtaPharmacological.setTabSize(0);
         txtaPharmacological.setWrapStyleWord(true);
+        txtaPharmacological.setNextFocusableComponent(txtaFamily);
+        txtaPharmacological.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtaPharmacologicalKeyPressed(evt);
+            }
+        });
         jScrollPane9.setViewportView(txtaPharmacological);
 
         javax.swing.GroupLayout pnlPharmacologicalLayout = new javax.swing.GroupLayout(pnlPharmacological);
@@ -196,12 +203,19 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
 
         pnlFamily.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Familiares", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 102))); // NOI18N
 
+        txtaFamily.setEditable(false);
         txtaFamily.setColumns(20);
         txtaFamily.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtaFamily.setLineWrap(true);
         txtaFamily.setRows(5);
         txtaFamily.setTabSize(0);
         txtaFamily.setWrapStyleWord(true);
+        txtaFamily.setNextFocusableComponent(txtaPersonal);
+        txtaFamily.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtaFamilyKeyPressed(evt);
+            }
+        });
         jScrollPane8.setViewportView(txtaFamily);
 
         javax.swing.GroupLayout pnlFamilyLayout = new javax.swing.GroupLayout(pnlFamily);
@@ -457,6 +471,14 @@ private void txtaToxicKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         exitWindow();
     }//GEN-LAST:event_formWindowClosing
 
+    private void txtaPharmacologicalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaPharmacologicalKeyPressed
+        handleFocus(evt);
+    }//GEN-LAST:event_txtaPharmacologicalKeyPressed
+
+    private void txtaFamilyKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaFamilyKeyPressed
+        handleFocus(evt);
+    }//GEN-LAST:event_txtaFamilyKeyPressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCancel;
@@ -536,8 +558,8 @@ private void txtaToxicKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     }
 
     private void setUpInitialUI() {
-        btnModify.grabFocus();
         setFieldsState(false);
+        setLocationRelativeTo(getParent());
     }
 
     private Antecedents generateAntecedents() {

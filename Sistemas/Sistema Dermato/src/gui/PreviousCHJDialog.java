@@ -4,35 +4,31 @@
  */
 package gui;
 
-import bussines.Antecedents;
-import utils.ValidationsAndMessages;
-import bussines.Patient;
-import static utils.GeneralUtils.handleFocus;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import static utils.GeneralUtils.setButtonFontForPointerEvent;
 import javax.swing.JRootPane;
-import mvp.presenter.AntecedentsPresenter;
-import mvp.view.AntecedentsView;
 
 /**
  *
  * @author Fran
  */
-public class PreviousClinicalHistoryJDialog extends javax.swing.JDialog {
+public class PreviousCHJDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form AntecGenerales
      *
      * @param parent
      * @param modal
-     * @param patient
+     * @param previousClinicalHistory 
      */
-    public PreviousClinicalHistoryJDialog(java.awt.Frame parent, boolean modal, String previousClinicalHistory) {
+    public PreviousCHJDialog(java.awt.Frame parent, boolean modal, String previousClinicalHistory) {
         super(parent, modal);
         initComponents();
+        txtaPreviousClinicalHistory.setText(previousClinicalHistory);
+        setLocationRelativeTo(getParent());
     }
 
     @Override
@@ -79,7 +75,6 @@ public class PreviousClinicalHistoryJDialog extends javax.swing.JDialog {
         txtaPreviousClinicalHistory.setLineWrap(true);
         txtaPreviousClinicalHistory.setRows(5);
         txtaPreviousClinicalHistory.setWrapStyleWord(true);
-        txtaPreviousClinicalHistory.setEnabled(false);
         jScrollPane3.setViewportView(txtaPreviousClinicalHistory);
 
         javax.swing.GroupLayout pnlPreviousClinicalHistoryLayout = new javax.swing.GroupLayout(pnlPreviousClinicalHistory);

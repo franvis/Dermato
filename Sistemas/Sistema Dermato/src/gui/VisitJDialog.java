@@ -636,7 +636,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         txtaBiopsy.setRows(2);
         txtaBiopsy.setTabSize(0);
         txtaBiopsy.setWrapStyleWord(true);
-        txtaBiopsy.setNextFocusableComponent(btnSave);
+        txtaBiopsy.setNextFocusableComponent(txtaReason);
         txtaBiopsy.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtaBiopsyKeyPressed(evt);
