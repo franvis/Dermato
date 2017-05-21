@@ -379,6 +379,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         lblsBirthday.setText("Nacimiento:");
 
         txtfNames.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfNames.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfNames.setNextFocusableComponent(txtfLastNames);
         txtfNames.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -387,6 +388,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         });
 
         txtfLastNames.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfLastNames.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfLastNames.setNextFocusableComponent(txtfPhone);
         txtfLastNames.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -395,6 +397,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         });
 
         txtfPhone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfPhone.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfPhone.setNextFocusableComponent(cmbDniType);
         txtfPhone.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -411,6 +414,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             ex.printStackTrace();
         }
         ftxtfBirthday.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ftxtfBirthday.setMargin(new java.awt.Insets(0, 2, 0, 0));
 
         pnlMedicalCoverage.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Obra Social", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
         pnlMedicalCoverage.setOpaque(false);
@@ -442,6 +446,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         txtfMedicalCoverageNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtfMedicalCoverageNumber.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtfMedicalCoverageNumber.setEnabled(false);
+        txtfMedicalCoverageNumber.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfMedicalCoverageNumber.setNextFocusableComponent(ftxtfFirstVisitDate);
         txtfMedicalCoverageNumber.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -461,6 +466,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
 
         txtfNewMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtfNewMedicalCoverage.setEnabled(false);
+        txtfNewMedicalCoverage.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfNewMedicalCoverage.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtfNewMedicalCoverageKeyTyped(evt);
@@ -528,18 +534,21 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         lblsAddress.setText("Domicilio:");
 
         txtfAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfAddress.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfAddress.setNextFocusableComponent(txtfCity);
 
         lblsCity.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblsCity.setText("Localidad:");
 
         txtfCity.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfCity.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfCity.setNextFocusableComponent(ftxtfBirthday);
 
         lblsDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblsDni.setText("(*) Nro. Doc.:");
 
         txtfDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfDni.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfDni.setNextFocusableComponent(txtfAddress);
 
         cmbDniType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -562,24 +571,22 @@ public class PatientJDialog extends JDialog implements PatientABMView {
                         .addComponent(lblsPhone)
                         .addComponent(lblsAddress)
                         .addComponent(lblsCity)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlPersonalDataLayout.createSequentialGroup()
+                    .addComponent(txtfLastNames, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtfPhone, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPersonalDataLayout.createSequentialGroup()
+                        .addComponent(cmbDniType, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtfLastNames, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtfPhone, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPersonalDataLayout.createSequentialGroup()
-                                .addComponent(cmbDniType, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblsDni)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtfDni, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
-                            .addComponent(txtfAddress)
-                            .addComponent(txtfCity)
-                            .addComponent(txtfNames)))
+                        .addComponent(lblsDni)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtfDni, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
+                    .addComponent(txtfAddress)
+                    .addComponent(txtfCity)
+                    .addComponent(txtfNames)
                     .addGroup(pnlPersonalDataLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(ftxtfBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ftxtfBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlPersonalDataLayout.setVerticalGroup(
@@ -740,6 +747,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         txtaPersonal.setRows(5);
         txtaPersonal.setTabSize(0);
         txtaPersonal.setWrapStyleWord(true);
+        txtaPersonal.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtaPersonal.setNextFocusableComponent(txtaSurgical);
         txtaPersonal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -767,6 +775,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         txtaSurgical.setRows(5);
         txtaSurgical.setTabSize(0);
         txtaSurgical.setWrapStyleWord(true);
+        txtaSurgical.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtaSurgical.setNextFocusableComponent(txtaToxics);
         txtaSurgical.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -794,6 +803,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         txtaToxics.setRows(5);
         txtaToxics.setTabSize(0);
         txtaToxics.setWrapStyleWord(true);
+        txtaToxics.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtaToxics.setNextFocusableComponent(txtaPharmacological);
         txtaToxics.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -821,6 +831,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         txtaFamily.setRows(5);
         txtaFamily.setTabSize(0);
         txtaFamily.setWrapStyleWord(true);
+        txtaFamily.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtaFamily.setNextFocusableComponent(txtfNames);
         txtaFamily.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -848,6 +859,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         txtaPharmacological.setRows(5);
         txtaPharmacological.setTabSize(0);
         txtaPharmacological.setWrapStyleWord(true);
+        txtaPharmacological.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtaPharmacological.setNextFocusableComponent(txtaFamily);
         txtaPharmacological.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -907,6 +919,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             ex.printStackTrace();
         }
         ftxtfFirstVisitDate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ftxtfFirstVisitDate.setMargin(new java.awt.Insets(0, 2, 0, 0));
         ftxtfFirstVisitDate.setNextFocusableComponent(txtaPersonal);
 
         javax.swing.GroupLayout pnlOtherDataLayout = new javax.swing.GroupLayout(pnlOtherData);
@@ -986,11 +999,12 @@ public class PatientJDialog extends JDialog implements PatientABMView {
     }//GEN-LAST:event_txtfLastNamesKeyTyped
 
     private void btnNewMedicalCoverageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewMedicalCoverageActionPerformed
-        this.txtfNewMedicalCoverage.setEnabled(true);
-        this.btnSaveMedicalCoverage.setEnabled(true);
-        this.btnCancelMedicalCoverage.setEnabled(true);
-        this.btnNewMedicalCoverage.setEnabled(false);
-        this.cmbMedicalCoverage.setEnabled(false);
+        txtfNewMedicalCoverage.setEnabled(true);
+        btnSaveMedicalCoverage.setEnabled(true);
+        btnCancelMedicalCoverage.setEnabled(true);
+        btnNewMedicalCoverage.setEnabled(false);
+        cmbMedicalCoverage.setEnabled(false);
+        txtfNewMedicalCoverage.requestFocus();
     }//GEN-LAST:event_btnNewMedicalCoverageActionPerformed
 
     private void txtfMedicalCoverageNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfMedicalCoverageNumberKeyTyped

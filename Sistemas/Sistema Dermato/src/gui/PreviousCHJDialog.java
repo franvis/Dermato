@@ -24,8 +24,8 @@ public class PreviousCHJDialog extends javax.swing.JDialog {
      * @param modal
      * @param previousClinicalHistory 
      */
-    public PreviousCHJDialog(java.awt.Frame parent, boolean modal, String previousClinicalHistory) {
-        super(parent, modal);
+    public PreviousCHJDialog(java.awt.Frame parent, String previousClinicalHistory) {
+        super(parent, true);
         initComponents();
         txtaPreviousClinicalHistory.setText(previousClinicalHistory);
         setLocationRelativeTo(getParent());
@@ -75,6 +75,7 @@ public class PreviousCHJDialog extends javax.swing.JDialog {
         txtaPreviousClinicalHistory.setLineWrap(true);
         txtaPreviousClinicalHistory.setRows(5);
         txtaPreviousClinicalHistory.setWrapStyleWord(true);
+        txtaPreviousClinicalHistory.setMargin(new java.awt.Insets(0, 2, 0, 0));
         jScrollPane3.setViewportView(txtaPreviousClinicalHistory);
 
         javax.swing.GroupLayout pnlPreviousClinicalHistoryLayout = new javax.swing.GroupLayout(pnlPreviousClinicalHistory);

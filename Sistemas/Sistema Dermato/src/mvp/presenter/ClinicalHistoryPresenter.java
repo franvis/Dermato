@@ -8,7 +8,6 @@ package mvp.presenter;
 import bussines.Antecedents;
 import bussines.Patient;
 import bussines.Visit;
-import gui.ClinicalHistoryJDialog;
 import java.util.List;
 import mvp.model.ClinicalHistoryModel;
 import mvp.view.ClinicalHistoryView;

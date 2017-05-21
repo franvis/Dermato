@@ -100,6 +100,7 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
         txtaSurgical.setLineWrap(true);
         txtaSurgical.setRows(5);
         txtaSurgical.setWrapStyleWord(true);
+        txtaSurgical.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtaSurgical.setNextFocusableComponent(txtaToxic);
         txtaSurgical.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -127,6 +128,7 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
         txtaToxic.setLineWrap(true);
         txtaToxic.setRows(5);
         txtaToxic.setWrapStyleWord(true);
+        txtaToxic.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtaToxic.setNextFocusableComponent(txtaPharmacological);
         txtaToxic.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -154,6 +156,7 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
         txtaPersonal.setLineWrap(true);
         txtaPersonal.setRows(5);
         txtaPersonal.setWrapStyleWord(true);
+        txtaPersonal.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtaPersonal.setNextFocusableComponent(txtaSurgical);
         txtaPersonal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -182,6 +185,7 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
         txtaPharmacological.setRows(5);
         txtaPharmacological.setTabSize(0);
         txtaPharmacological.setWrapStyleWord(true);
+        txtaPharmacological.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtaPharmacological.setNextFocusableComponent(txtaFamily);
         txtaPharmacological.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -210,6 +214,7 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
         txtaFamily.setRows(5);
         txtaFamily.setTabSize(0);
         txtaFamily.setWrapStyleWord(true);
+        txtaFamily.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtaFamily.setNextFocusableComponent(txtaPersonal);
         txtaFamily.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {

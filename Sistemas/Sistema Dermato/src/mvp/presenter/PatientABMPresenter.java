@@ -93,7 +93,7 @@ public class PatientABMPresenter {
         if (view == null) {
             return;
         }
-
+        patient.setPatientId(this.patient.getPatientId());
         MedicalCoverage medicalCoverage = medicalCoverages.get(medicalCoverageSelected);
         patient.setMedicalCoverage(medicalCoverage);
         DniType dniType = dniTypes.get(dniTypeSelected);

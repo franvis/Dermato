@@ -622,45 +622,45 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
     @Override
     public void displayPatientData(Patient patient) {
         this.lblPatientName.setText(String.format(FULLNAME, patient.getLastname(), patient.getName()));
-        
-        if (patient.getDniType() == null || patient.getDni() == null || !patient.getDni().isEmpty()) {
+
+        if (patient.getDniType() == null || patient.getDni() == null || patient.getDni().isEmpty()) {
             this.lblDni.setText("-");
         } else {
             this.lblDni.setText(patient.getDniType().getName() + " - " + patient.getDni() + "");
         }
-        
+
         if (patient.getBirthday() == null || patient.getBirthday().isEmpty()) {
             this.lblBirthday.setText("-");
         } else {
             this.lblBirthday.setText(String.format(BIRTHDAY_WITH_AGE, patient.getBirthday(), calculateAge(patient.getBirthday())));
         }
-        
+
         if (patient.getCity() == null || patient.getCity().isEmpty()) {
             this.lblCity.setText("-");
         } else {
             this.lblCity.setText(patient.getCity());
         }
-        
+
         if (patient.getPhone() == null || patient.getPhone().isEmpty()) {
             this.lblPhone.setText("-");
         } else {
             this.lblPhone.setText(patient.getPhone());
         }
-        
+
         if (patient.getFirstVisitDate() == null || patient.getFirstVisitDate().isEmpty()) {
             this.lblFirstVisitDate.setText("-");
         } else {
             this.lblFirstVisitDate.setText(patient.getFirstVisitDate());
         }
-        
+
         if (patient.getAddress() == null || patient.getAddress().isEmpty()) {
             this.lblAddress.setText("-");
         } else {
             this.lblAddress.setText(patient.getAddress());
         }
-        
+
         this.lblMedicalCoverage.setText(patient.getMedicalCoverage().getName());
-        
+
         if (patient.getMedicalCoverageNumber() == null || patient.getMedicalCoverageNumber().isEmpty()) {
             this.lblMedicalCoverageNumber.setText("-");
         } else {
@@ -674,20 +674,18 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         DefaultTableModel visitsDtm = (DefaultTableModel) this.tblVisits.getModel();
         clearTable(visitsDtm);
 
-        if (visits.isEmpty()) {
-            changeTableSize(visitsDtm, 0);
-        } else {
-            changeTableSize(visitsDtm, 8);
+        changeTableSize(visitsDtm, 0);
+        
+        if (!visits.isEmpty()) {
+            for (int i = 0; i < visits.size(); i++) {
+                o = new Object[3];
+                o[0] = visits.get(i).getDate();
+                o[1] = visits.get(i).getReason();
+                o[2] = !visits.get(i).getDiagnosis().isEmpty() ? visits.get(i).getDiagnosis() : "-";
+                visitsDtm.addRow(o);
+            }
+            tblVisits.changeSelection(0, 0, false, false);
         }
-
-        for (int i = 0; i < visits.size(); i++) {
-            o = new Object[3];
-            o[0] = visits.get(i).getDate();
-            o[1] = visits.get(i).getReason();
-            o[2] = !visits.get(i).getDiagnosis().isEmpty() ? visits.get(i).getDiagnosis() : "-";
-            visitsDtm.addRow(o);
-        }
-        tblVisits.changeSelection(0, 0, false, false);
     }
 
     @Override
@@ -732,8 +730,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
 
     @Override
     public void showPreviousCH(String previousCH) {
-        PreviousCHJDialog previousCHJDialog = new PreviousCHJDialog((Frame) getParent(), 
-                true, previousCH);
+        PreviousCHJDialog previousCHJDialog = new PreviousCHJDialog((Frame) getParent(), previousCH);
         previousCHJDialog.setVisible(true);
         previousCHJDialog.requestFocus();
     }

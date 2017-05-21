@@ -4,21 +4,18 @@ import utils.ValidationsAndMessages;
 import bussines.MedicalCoverage;
 import static utils.GeneralUtils.clearTable;
 import java.awt.Frame;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 import static utils.GeneralUtils.setButtonFontForPointerEvent;
-import java.util.HashMap;
 import java.util.List;
 import javax.swing.JRootPane;
 import mvp.presenter.MedicalCoveragePresenter;
 import mvp.view.MedicalCoverageView;
 
-public class MedicalCoverageJDialog extends javax.swing.JFrame implements MedicalCoverageView {
+public class MedicalCoverageJDialog extends javax.swing.JDialog implements MedicalCoverageView {
 
     private final MedicalCoveragePresenter presenter;
     private boolean isUpdating;
@@ -27,11 +24,14 @@ public class MedicalCoverageJDialog extends javax.swing.JFrame implements Medica
      * Creates new form ABMObrasSociales
      *
      * @param parent
+     * @param modal 
      */
     public MedicalCoverageJDialog(Frame parent) {
+        super(parent, true);
         presenter = new MedicalCoveragePresenter(this);
         initComponents();
         presenter.loadMedicalCoverages();
+        setLocationRelativeTo(getParent());
     }
 
     @Override
@@ -81,7 +81,6 @@ public class MedicalCoverageJDialog extends javax.swing.JFrame implements Medica
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Gestión de Obras Sociales");
-        setIconImage(getIconImage());
         setName("frmObrasSociales"); // NOI18N
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -234,10 +233,11 @@ public class MedicalCoverageJDialog extends javax.swing.JFrame implements Medica
         pnlNewPPHealthInsurance.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nueva Obra Social", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtMedicalCoverageName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtMedicalCoverageName.setMargin(new java.awt.Insets(0, 2, 0, 0));
 
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSave.setForeground(new java.awt.Color(0, 51, 102));
-        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save_enabled.png"))); // NOI18N
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save_enabled.png"))); // NOI18N
         btnSave.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnSave.setContentAreaFilled(false);
         btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -272,7 +272,7 @@ public class MedicalCoverageJDialog extends javax.swing.JFrame implements Medica
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBack.setForeground(new java.awt.Color(0, 51, 102));
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/home_enabled.png"))); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_enabled.png"))); // NOI18N
         btnBack.setText("Volver");
         btnBack.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnBack.setContentAreaFilled(false);

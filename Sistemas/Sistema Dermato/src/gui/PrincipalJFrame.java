@@ -19,6 +19,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import static java.awt.event.KeyEvent.VK_DOWN;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.logging.Level;
@@ -39,10 +40,10 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
 
     //OTHER
     private boolean updatingPatient;
-    
+
     //UI
     private DefaultTableModel dtmPatients;
-    private MedicalCoverageJDialog abmPrePaidHealthInsurances;
+    private MedicalCoverageJDialog abmMedicalCoverages;
 
     //PRESENTER
     private final PrincipalPresenter presenter;
@@ -89,6 +90,28 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             }
         });
 
+        tblPatients.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                //DO NOTHING
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                int eventKeyCode = e.getKeyCode();
+
+                if ((eventKeyCode == KeyEvent.VK_ENTER) && tblPatients.getSelectedRow() != -1) {
+                    PrincipalJFrame.this.presenter.seeClinicalHistory(
+                            tblPatients.getSelectedRow());
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                //DO NOTHING
+            }
+        });
+
         //Window
         setLocationRelativeTo(getRootPane());
         StyleManager.paint(this);
@@ -108,9 +131,9 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         changeTableSize(dtmPatients, 0);
 
         for (int i = 0; i < patients.size(); i++) {
-            boolean currentPatientHasBirthday = patients.get(i).getBirthday() != null 
+            boolean currentPatientHasBirthday = patients.get(i).getBirthday() != null
                     && !patients.get(i).getBirthday().isEmpty();
-            boolean currentPatientHasLastVisitDate = patients.get(i).getLastVisitDate() != null 
+            boolean currentPatientHasLastVisitDate = patients.get(i).getLastVisitDate() != null
                     && !patients.get(i).getLastVisitDate().isEmpty();
             o = new Object[4];
             o[0] = patients.get(i).getLastname();
@@ -120,8 +143,8 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             dtmPatients.addRow(o);
         }
         tblPatients.changeSelection(0, 0, false, false);
-        
-        if(updatingPatient && patients.isEmpty()){
+
+        if (updatingPatient && patients.isEmpty()) {
             clearFilters();
         }
         updatingPatient = false;
@@ -151,12 +174,12 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         }
     }
 
-    public void changeButtonState(JButton jbtn, boolean state){
+    public void changeButtonState(JButton jbtn, boolean state) {
         jbtn.setEnabled(state);
-            jbtn.setForeground(state ? StyleManager.getTextColor(
-                    StyleManager.actualColor) : DEFAULT_TEXT_COLOR);
+        jbtn.setForeground(state ? StyleManager.getTextColor(
+                StyleManager.actualColor) : DEFAULT_TEXT_COLOR);
     }
-    
+
     private String captureTextWhenDeleting(char eventKeyChar, JTextField textField) {
         String text = "";
         int textFieldLength = textField.getText().length();
@@ -241,7 +264,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         pnlSearchPatient.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         txtfLastname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtfLastname.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtfLastname.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfLastname.setNextFocusableComponent(txtfName);
         txtfLastname.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -256,6 +279,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         lblsDni.setText("Nro. Doc.:");
 
         txtfDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfDni.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfDni.setNextFocusableComponent(txtfLastname);
         txtfDni.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -264,6 +288,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         });
 
         txtfName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfName.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfName.setNextFocusableComponent(cmbDniType);
         txtfName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -631,15 +656,19 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
     }//GEN-LAST:event_menuAboutActionPerformed
 
     private void menuMedicalCoverageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMedicalCoverageActionPerformed
-        abmPrePaidHealthInsurances = new MedicalCoverageJDialog(this);
-        abmPrePaidHealthInsurances.setVisible(true);
+        abmMedicalCoverages = new MedicalCoverageJDialog(this);
+        abmMedicalCoverages.setVisible(true);
     }//GEN-LAST:event_menuMedicalCoverageActionPerformed
 
     private void txtfLastnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfLastnameKeyReleased
         String lastname, name, dni;
         int eventKeyCode = evt.getKeyCode();
         char eventKeyChar = evt.getKeyChar();
-
+        
+        if (eventKeyCode == KeyEvent.VK_ENTER) {
+            return;
+        }
+        
         lastname = captureTextWhenDeleting(eventKeyChar, txtfLastname);
 
         if ((eventKeyCode == VK_DOWN) && !lastname.isEmpty()) {
@@ -657,6 +686,10 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         int eventKeyCode = evt.getKeyCode();
         char eventKeyChar = evt.getKeyChar();
 
+        if(eventKeyCode == KeyEvent.VK_ENTER){
+            return;
+        }
+        
         name = captureTextWhenDeleting(eventKeyChar, txtfName);
 
         if ((eventKeyCode == VK_DOWN) && !name.isEmpty()) {
@@ -675,6 +708,10 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         int eventKeyCode = evt.getKeyCode();
         char eventKeyChar = evt.getKeyChar();
 
+        if(eventKeyCode == KeyEvent.VK_ENTER){
+            return;
+        }
+        
         dni = captureTextWhenDeleting(eventKeyChar, txtfDni);
 
         if ((eventKeyCode == VK_DOWN) && !dni.isEmpty()) {

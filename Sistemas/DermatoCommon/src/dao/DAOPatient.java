@@ -268,10 +268,15 @@ public class DAOPatient extends DAOBasics {
                 + " p.medicalCoverage = m.idMedicalCoverage";
 
         columns = DBUtils.getStringWithValuesSeparatedWithCommas(
-                "d." + DAODniType.DNI_TYPE_ID, "d." + DAODniType.DNI_TYPE_NAME, "p." + DNI_TYPE, "p." + DNI, "p." + NAME, "p." + LASTNAME, "p." + PHONE, "p." + ADDRESS,
-                "p." + CITY, "p." + BIRTHDAY, "p." + PATIENT_ID, "p." + MEDICAL_COVERAGE, "p." + MEDICAL_COVERAGE_NUMBER,
-                "p." + FIRST_VISIT_DATE, "p." + PREVIOUS_CH, DBUtils.getMaxColumnAs("v." + DAOVisit.DATE, LAST_VISIT_DATE_KEY),
-                "a." + DAOAntecedents.PERSONAL, "a." + DAOAntecedents.SURGICAL, "a." + DAOAntecedents.TOXIC, "a." + DAOAntecedents.FAMILY,
+                "d." + DAODniType.DNI_TYPE_ID, "d." + DAODniType.DNI_TYPE_NAME, 
+                "p." + DNI_TYPE, "p." + DNI, "p." + NAME, 
+                "p." + LASTNAME, "p." + PHONE, "p." + ADDRESS,
+                "p." + CITY, "p." + BIRTHDAY, "p." + PATIENT_ID, 
+                "p." + MEDICAL_COVERAGE, "p." + MEDICAL_COVERAGE_NUMBER,
+                "p." + FIRST_VISIT_DATE, "p." + PREVIOUS_CH, 
+                DBUtils.getMaxColumnAs("v." + DAOVisit.DATE, LAST_VISIT_DATE_KEY),
+                "a." + DAOAntecedents.PERSONAL, "a." + DAOAntecedents.SURGICAL, 
+                "a." + DAOAntecedents.TOXIC, "a." + DAOAntecedents.FAMILY,
                 "a." + DAOAntecedents.PHARMACOLOGICAL, "m." + DAOMedicalCoverage.MEDICAL_COVERAGE_NAME,
                 "m." + DAOMedicalCoverage.MEDICAL_COVERAGE_ID);
 
@@ -387,27 +392,29 @@ public class DAOPatient extends DAOBasics {
             preparedStatement.setString(10, patient.getBirthday());
             preparedStatement.setString(11, patient.getFirstVisitDate());
             preparedStatement.setInt(12, patient.getPatientId());
-            preparedStatement.executeUpdate();
+            if (preparedStatement.executeUpdate() > 0) {
 
-            //UPDATE ANTECEDENTS
-            columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
-                    DAOAntecedents.PERSONAL, DAOAntecedents.SURGICAL,
-                    DAOAntecedents.TOXIC, DAOAntecedents.PHARMACOLOGICAL,
-                    DAOAntecedents.FAMILY);
-            where = DBUtils.getSimpleWhereCondition(DAOPatient.PATIENT_ID);
-            query = DBUtils.getUpdateStatement(Tables.Antecedents, columns, where);
-            Antecedents antecedents = patient.getAntecedents();
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, antecedents.getPersonalAntecedents());
-            preparedStatement.setString(2, antecedents.getSurgicalAntecedents());
-            preparedStatement.setString(3, antecedents.getToxicAntecedents());
-            preparedStatement.setString(4, antecedents.getPharmacologicalAntecedents());
-            preparedStatement.setString(5, antecedents.getFamilyAntecedents());
-            preparedStatement.setInt(6, patient.getPatientId());
-            preparedStatement.executeUpdate();
+                //UPDATE ANTECEDENTS
+                columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
+                        DAOAntecedents.PERSONAL, DAOAntecedents.SURGICAL,
+                        DAOAntecedents.TOXIC, DAOAntecedents.PHARMACOLOGICAL,
+                        DAOAntecedents.FAMILY);
+                where = DBUtils.getSimpleWhereCondition(DAOAntecedents.PATIENT_ID);
+                query = DBUtils.getUpdateStatement(Tables.Antecedents, columns, where);
+                Antecedents antecedents = patient.getAntecedents();
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, antecedents.getPersonalAntecedents());
+                preparedStatement.setString(2, antecedents.getSurgicalAntecedents());
+                preparedStatement.setString(3, antecedents.getToxicAntecedents());
+                preparedStatement.setString(4, antecedents.getPharmacologicalAntecedents());
+                preparedStatement.setString(5, antecedents.getFamilyAntecedents());
+                preparedStatement.setInt(6, patient.getPatientId());
 
+                if (preparedStatement.executeUpdate() > 0) {
+                    connection.commit();
+                }
+            }
             preparedStatement.close();
-            connection.commit();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());

@@ -155,6 +155,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         txtaPhysicalExam.setRows(2);
         txtaPhysicalExam.setTabSize(0);
         txtaPhysicalExam.setWrapStyleWord(true);
+        txtaPhysicalExam.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtaPhysicalExam.setNextFocusableComponent(txtaBiopsy);
         txtaPhysicalExam.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -185,6 +186,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         txtaReason.setRows(2);
         txtaReason.setTabSize(0);
         txtaReason.setWrapStyleWord(true);
+        txtaReason.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtaReason.setNextFocusableComponent(txtaTreatment);
         txtaReason.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -242,6 +244,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         txtaTreatment.setRows(2);
         txtaTreatment.setTabSize(0);
         txtaTreatment.setWrapStyleWord(true);
+        txtaTreatment.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtaTreatment.setNextFocusableComponent(txtaComplementaryStudies);
         txtaTreatment.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -270,6 +273,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         txtaComplementaryStudies.setRows(2);
         txtaComplementaryStudies.setTabSize(0);
         txtaComplementaryStudies.setWrapStyleWord(true);
+        txtaComplementaryStudies.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtaComplementaryStudies.setNextFocusableComponent(txtaLaboratory);
         txtaComplementaryStudies.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -298,6 +302,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         txtaLaboratory.setRows(2);
         txtaLaboratory.setTabSize(0);
         txtaLaboratory.setWrapStyleWord(true);
+        txtaLaboratory.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtaLaboratory.setNextFocusableComponent(txtaDiagnosis);
         txtaLaboratory.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -326,6 +331,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         txtaDiagnosis.setRows(2);
         txtaDiagnosis.setTabSize(0);
         txtaDiagnosis.setWrapStyleWord(true);
+        txtaDiagnosis.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtaDiagnosis.setNextFocusableComponent(txtaPhysicalExam);
         txtaDiagnosis.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -371,7 +377,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
             }
         });
 
-        btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnSave.setForeground(new java.awt.Color(0, 51, 102));
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save_enabled.png"))); // NOI18N
         btnSave.setText("Guardar");
@@ -418,7 +424,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
             }
         });
 
-        btnBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnBack.setForeground(new java.awt.Color(0, 51, 102));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_enabled.png"))); // NOI18N
         btnBack.setText("Volver");
@@ -559,8 +565,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
                                 .addGap(12, 12, 12)
                                 .addComponent(lblstaticBirthday)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(lblBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlPatientsDataLayout.createSequentialGroup()
                                 .addGap(49, 49, 49)
                                 .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -568,15 +573,11 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
                                     .addComponent(lblstaticCity)
                                     .addComponent(lblstaticAddress))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlPatientsDataLayout.createSequentialGroup()
-                                        .addComponent(lblCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(38, 38, 38))
-                                    .addGroup(pnlPatientsDataLayout.createSequentialGroup()
-                                        .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblDni, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                                    .addComponent(lblDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblsMedicalCoverage, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblstaticFirstVisitDate)
@@ -636,6 +637,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         txtaBiopsy.setRows(2);
         txtaBiopsy.setTabSize(0);
         txtaBiopsy.setWrapStyleWord(true);
+        txtaBiopsy.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtaBiopsy.setNextFocusableComponent(txtaReason);
         txtaBiopsy.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
