@@ -1027,8 +1027,9 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         txtaReason.grabFocus();
         pnlDate.setBackground(StyleManager.getSecondaryColor(StyleManager.actualColor));
         pnlFullName.setBackground(StyleManager.getSecondaryColor(StyleManager.actualColor));
-        setLocationRelativeTo(getParent());
         setBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds());
+        setLocationRelativeTo(getParent());
+        StyleManager.paint(this);
     }
 
     @Override

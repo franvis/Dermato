@@ -16,6 +16,7 @@ import static utils.GeneralUtils.setButtonFontForPointerEvent;
 import javax.swing.JRootPane;
 import mvp.presenter.AntecedentsPresenter;
 import mvp.view.AntecedentsView;
+import utils.StyleManager;
 
 /**
  *
@@ -565,6 +566,7 @@ private void txtaToxicKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private void setUpInitialUI() {
         setFieldsState(false);
         setLocationRelativeTo(getParent());
+        StyleManager.paint(this);
     }
 
     private Antecedents generateAntecedents() {

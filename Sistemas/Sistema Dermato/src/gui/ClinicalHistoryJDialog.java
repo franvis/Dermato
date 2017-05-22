@@ -81,9 +81,9 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         });
 
         pnlNameLastname.setBackground(StyleManager.getSecondaryColor(StyleManager.actualColor));
-        StyleManager.paint(this);
-        setLocationRelativeTo(getParent());
         setBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds());
+        setLocationRelativeTo(getParent());
+        StyleManager.paint(this);
     }
 
     /**

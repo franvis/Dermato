@@ -10,6 +10,7 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import static utils.GeneralUtils.setButtonFontForPointerEvent;
 import javax.swing.JRootPane;
+import utils.StyleManager;
 
 /**
  *
@@ -27,8 +28,7 @@ public class PreviousCHJDialog extends javax.swing.JDialog {
     public PreviousCHJDialog(java.awt.Frame parent, String previousClinicalHistory) {
         super(parent, true);
         initComponents();
-        txtaPreviousClinicalHistory.setText(previousClinicalHistory);
-        setLocationRelativeTo(getParent());
+        setupInitialUi(previousClinicalHistory);
     }
 
     @Override
@@ -190,4 +190,10 @@ public class PreviousCHJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel pnlPreviousClinicalHistory;
     private javax.swing.JTextArea txtaPreviousClinicalHistory;
     // End of variables declaration//GEN-END:variables
+
+    private void setupInitialUi(String previousClinicalHistory) {
+        txtaPreviousClinicalHistory.setText(previousClinicalHistory);
+        setLocationRelativeTo(getParent());
+        StyleManager.paint(this);
+    }
 }

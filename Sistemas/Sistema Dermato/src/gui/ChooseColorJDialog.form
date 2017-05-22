@@ -35,20 +35,20 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="rbtn0" alignment="0" max="32767" attributes="2"/>
+                  <Component id="rbtnDefault" alignment="0" max="32767" attributes="2"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btnVistaPrevia" alignment="0" max="32767" attributes="0"/>
-                          <Component id="rbtn3" alignment="0" max="32767" attributes="2"/>
-                          <Component id="rbtn2" alignment="0" max="32767" attributes="2"/>
-                          <Component id="rbtn1" alignment="0" max="32767" attributes="3"/>
+                          <Component id="btnPreview" alignment="0" max="32767" attributes="0"/>
+                          <Component id="rbtnGreen" alignment="0" max="32767" attributes="2"/>
+                          <Component id="rbtnOldRose" alignment="0" max="32767" attributes="2"/>
+                          <Component id="rbtnPalidRose" alignment="0" max="32767" attributes="3"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="rbtn4" max="32767" attributes="2"/>
-                          <Component id="rbtn5" alignment="0" max="32767" attributes="2"/>
-                          <Component id="rbtn6" alignment="0" min="-2" pref="82" max="-2" attributes="2"/>
-                          <Component id="btnAplicar" max="32767" attributes="0"/>
+                          <Component id="rbtnYellow" max="32767" attributes="2"/>
+                          <Component id="rbtnBlue" alignment="0" max="32767" attributes="2"/>
+                          <Component id="rbtnPurple" alignment="0" min="-2" pref="82" max="-2" attributes="2"/>
+                          <Component id="btnApply" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -60,29 +60,29 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="rbtn0" max="32767" attributes="0"/>
+              <Component id="rbtnDefault" max="32767" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="rbtn4" max="32767" attributes="0"/>
+                      <Component id="rbtnYellow" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="rbtn5" max="32767" attributes="0"/>
+                      <Component id="rbtnBlue" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="rbtn6" max="32767" attributes="0"/>
+                      <Component id="rbtnPurple" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="rbtn1" max="32767" attributes="0"/>
+                      <Component id="rbtnPalidRose" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="rbtn2" max="32767" attributes="0"/>
+                      <Component id="rbtnOldRose" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="rbtn3" max="32767" attributes="0"/>
+                      <Component id="rbtnGreen" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnVistaPrevia" alignment="3" max="32767" attributes="0"/>
-                  <Component id="btnAplicar" alignment="3" max="32767" attributes="0"/>
+                  <Component id="btnPreview" alignment="3" max="32767" attributes="0"/>
+                  <Component id="btnApply" alignment="3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
           </Group>
@@ -90,7 +90,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JRadioButton" name="rbtn4">
+    <Component class="javax.swing.JRadioButton" name="rbtnYellow">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="fc" red="ff" type="rgb"/>
@@ -104,7 +104,7 @@
         <Property name="text" type="java.lang.String" value="Amarillo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="rbtn5">
+    <Component class="javax.swing.JRadioButton" name="rbtnBlue">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fe" green="e1" red="e1" type="rgb"/>
@@ -118,7 +118,7 @@
         <Property name="text" type="java.lang.String" value="Azul"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="rbtn6">
+    <Component class="javax.swing.JRadioButton" name="rbtnPurple">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f5" green="b3" red="e8" type="rgb"/>
@@ -141,7 +141,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="rbtn1">
+    <Component class="javax.swing.JRadioButton" name="rbtnPalidRose">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="ff" type="rgb"/>
@@ -155,7 +155,7 @@
         <Property name="text" type="java.lang.String" value="Rosa P&#xe1;lido"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="rbtn2">
+    <Component class="javax.swing.JRadioButton" name="rbtnOldRose">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="ff" type="rgb"/>
@@ -169,7 +169,7 @@
         <Property name="text" type="java.lang.String" value="Rosa Viejo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="rbtn3">
+    <Component class="javax.swing.JRadioButton" name="rbtnGreen">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="c2" green="e1" red="b3" type="rgb"/>
@@ -183,7 +183,7 @@
         <Property name="text" type="java.lang.String" value="Verde"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnVistaPrevia">
+    <Component class="javax.swing.JButton" name="btnPreview">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
@@ -200,10 +200,10 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVistaPreviaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPreviewActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnAplicar">
+    <Component class="javax.swing.JButton" name="btnApply">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
@@ -220,10 +220,10 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAplicarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnApplyActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="rbtn0">
+    <Component class="javax.swing.JRadioButton" name="rbtnDefault">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup1"/>

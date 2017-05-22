@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package utils;
 
 import static utils.Constants.SYSTEM_FONT;
@@ -20,8 +15,7 @@ import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author fran
+ * @author Francisco Visintini
  */
 public class GeneralUtils {
 
@@ -121,10 +115,17 @@ public class GeneralUtils {
         jfd.setDialogTitle(PERFORM_BACK_UP_DIALOG_TITLE);
         int r = jfd.showSaveDialog(parent);
         if (r == JFileChooser.APPROVE_OPTION) {
-            FileManager.backUp(parent, jfd.getSelectedFile());
+            FileManager.manualBackUp(parent, jfd.getSelectedFile());
         }
     }
     
+    /**
+     * Method used to parse a String date with "d/MM/yyyy" format to a Date object.
+     * 
+     * @param stringDate
+     *
+     * @return date as a Date object
+     */
     public static Date stringDateParser(String stringDate){
         try {
             SimpleDateFormat parser = new SimpleDateFormat("d/MM/yyyy");

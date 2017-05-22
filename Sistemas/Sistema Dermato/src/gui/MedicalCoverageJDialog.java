@@ -14,6 +14,7 @@ import java.util.List;
 import javax.swing.JRootPane;
 import mvp.presenter.MedicalCoveragePresenter;
 import mvp.view.MedicalCoverageView;
+import utils.StyleManager;
 
 public class MedicalCoverageJDialog extends javax.swing.JDialog implements MedicalCoverageView {
 
@@ -30,8 +31,8 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
         super(parent, true);
         presenter = new MedicalCoveragePresenter(this);
         initComponents();
+        setupInitialUi();
         presenter.loadMedicalCoverages();
-        setLocationRelativeTo(getParent());
     }
 
     @Override
@@ -474,5 +475,10 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
     public void displayMedicalCoverageInfo(MedicalCoverage medicalCoverage) {
         txtMedicalCoverageName.setText(medicalCoverage.getName());
         txtMedicalCoverageName.grabFocus();
+    }
+
+    private void setupInitialUi() {
+        setLocationRelativeTo(getParent());
+        StyleManager.paint(this);
     }
 }

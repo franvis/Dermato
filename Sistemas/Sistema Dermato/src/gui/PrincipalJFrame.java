@@ -55,6 +55,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         presenter = new PrincipalPresenter(this);
         initComponents();
         setupInitialUI();
+        presenter.loadDniTypes();
     }
 
     private void setupInitialUI() {
@@ -117,9 +118,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         StyleManager.paint(this);
         setExtendedState(PrincipalJFrame.MAXIMIZED_BOTH);
         setIconImage(getIconImage());
-
-        //Presenter calls
-        presenter.loadDniTypes();
+        StyleManager.paint(this);
     }
 
     @Override

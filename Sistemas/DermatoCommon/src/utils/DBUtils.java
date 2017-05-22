@@ -1,18 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package utils;
 
-import dao.DAOAntecedents;
 import dao.DAOPatient;
 import dao.DAOVisit;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static utils.DBConstants.COLUMN_WITH_TABLE_PREFIX;
 import static utils.DBConstants.INNER_JOIN;
 import static utils.DBConstants.LEFT_JOIN;
@@ -21,8 +10,7 @@ import static utils.DBConstants.RIGHT_JOIN;
 import utils.DBConstants.Tables;
 
 /**
- *
- * @author fran
+ * @author Francisco Visintini
  */
 public class DBUtils {
 

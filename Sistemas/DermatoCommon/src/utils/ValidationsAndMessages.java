@@ -9,7 +9,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
- * Handles messages to user and validations
+ * Handles messages to user and validations.
+ * 
+ * @author Francisco Visintini
  */
 public class ValidationsAndMessages {
 
@@ -45,17 +47,17 @@ public class ValidationsAndMessages {
     /**
      * Validates and denies unnecessary characters for a float field.
      *
-     * @param evt writing event
-     * @param ch component where event was triggered
+     * @param event writing event
+     * @param component component where event was triggered
      *
      * @return true if the character was denied, false otherwise
      */
-    public static boolean denyCharactersForFloatField(KeyEvent evt, Component ch) {
-        char c = evt.getKeyChar();
+    public static boolean denyCharactersForFloatField(KeyEvent event, Component component) {
+        char c = event.getKeyChar();
         if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE)
                 || (c == KeyEvent.VK_DELETE) || c == KeyEvent.VK_PERIOD)) {
-            ch.getToolkit().beep();
-            evt.consume();
+            component.getToolkit().beep();
+            event.consume();
             return true;
         } else {
             return false;
@@ -66,29 +68,29 @@ public class ValidationsAndMessages {
      * Validates and limits the length of the text for a text field
      *
      * @param txtf text field to validate
-     * @param evt writing event
-     * @param ch component where event was triggered
+     * @param event writing event
+     * @param component component where event was triggered
      * @param textMaxLength maximum length for the given text field
      */
-    public static void validateTextLength(JTextField txtf, KeyEvent evt, int textMaxLength, Component ch) {
+    public static void validateTextLength(JTextField txtf, KeyEvent event, int textMaxLength, Component component) {
         if (txtf.getText().length() == textMaxLength) {
-            ch.getToolkit().beep();
-            evt.consume();
+            component.getToolkit().beep();
+            event.consume();
         }
     }
 
     /**
      * Shows an error to the user
      *
-     * @param f component where error has been triggered
+     * @param component component where error has been triggered
      * @param error error to show
      */
-    public static void showError(Component f, String error) {
+    public static void showError(Component component, String error) {
         if (error.length() > 60) {
             error = "<html><body width='400'<p>" + error;
         }
         JOptionPane.showOptionDialog(
-                f,
+                component,
                 error,
                 ATENTION,
                 JOptionPane.DEFAULT_OPTION,
@@ -101,15 +103,15 @@ public class ValidationsAndMessages {
     /**
      * Shows information to the user
      *
-     * @param f component where info is wanted to be shown
+     * @param component component where info is wanted to be shown
      * @param info information to show
      */
-    public static void showInfo(Component f, String info) {
+    public static void showInfo(Component component, String info) {
         if (info.length() > 60) {
             info = "<html><body width='400'<p>" + info;
         }
         JOptionPane.showOptionDialog(
-                f,
+                component,
                 info,
                 ATENTION,
                 JOptionPane.DEFAULT_OPTION,
@@ -141,11 +143,11 @@ public class ValidationsAndMessages {
     /**
      * Shows about this dialog to user
      *
-     * @param f message component
+     * @param component message component
      */
-    public static void showAbout(Component f) {
+    public static void showAbout(Component component) {
         JOptionPane.showMessageDialog(
-                f,
+                component,
                 ABOUT_MESSAGE,
                 ABOUT_TITLE,
                 JOptionPane.INFORMATION_MESSAGE);
@@ -212,16 +214,16 @@ public class ValidationsAndMessages {
     /**
      * Denies letter characters in a certain component.
      *
-     * @param evt writing event
+     * @param event writing event
      * @param component component where event was triggered
      * @return true if the character is denied, false otherwise
      */
-    public static boolean denyLetterCharacter(KeyEvent evt, Component component) {
-        char c = evt.getKeyChar();
+    public static boolean denyLetterCharacter(KeyEvent event, Component component) {
+        char c = event.getKeyChar();
         if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE)
                 || (c == KeyEvent.VK_DELETE))) {
             component.getToolkit().beep();
-            evt.consume();
+            event.consume();
             return true;
         }
         return false;
@@ -230,16 +232,16 @@ public class ValidationsAndMessages {
     /**
      * Denies numbers characters in a certain component.
      *
-     * @param evt writing event
+     * @param event writing event
      * @param component component where event was triggered
      * @return true if the character is denied, false otherwise
      */
-    public static boolean denyNumberCharacter(KeyEvent evt, Component component) {
-        char c = evt.getKeyChar();
+    public static boolean denyNumberCharacter(KeyEvent event, Component component) {
+        char c = event.getKeyChar();
         if (!(!Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE)
                 || (c == KeyEvent.VK_DELETE))) {
             component.getToolkit().beep();
-            evt.consume();
+            event.consume();
             return true;
         }
         return false;
@@ -248,15 +250,15 @@ public class ValidationsAndMessages {
     /**
      * Validates character entries for Health Insurance Number
      *
-     * @param evt writing event
+     * @param event writing event
      * @param component Component where event was triggered
      */
-    public static void validateHealthInsuranceNumberCharacter(KeyEvent evt, Component component) {
-        char c = evt.getKeyChar();
+    public static void validateHealthInsuranceNumberCharacter(KeyEvent event, Component component) {
+        char c = event.getKeyChar();
         if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE)
                 || (c == KeyEvent.VK_DELETE) || (c == KeyEvent.VK_SLASH) || (c == KeyEvent.VK_PERIOD) || (c == KeyEvent.VK_MINUS))) {
             component.getToolkit().beep();
-            evt.consume();
+            event.consume();
         }
     }
 

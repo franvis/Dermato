@@ -211,13 +211,14 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         JTextField etf = (JTextField) cmbMedicalCoverage.getEditor()
                 .getEditorComponent();
         etf.setDisabledTextColor(StyleManager.getTextColor());
-        etf.setBackground(StyleManager.getThirdColor());
+        etf.setBackground(StyleManager.getTertiaryColor());
 
         txtfMedicalCoverageNumber.setDisabledTextColor(StyleManager.getTextColor());
 
         presenter.loadMedicalCoverages();
         presenter.loadDniTypes();
         setLocationRelativeTo(getParent());
+        StyleManager.paint(this);
     }
 
     @Override

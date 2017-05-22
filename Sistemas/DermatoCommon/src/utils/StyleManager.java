@@ -1,265 +1,327 @@
 package utils;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
+import javax.swing.ComboBoxEditor;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
 
 /**
  * Class that handle styles along the application
- * 
+ *
  * @author Francisco Visintini
  */
 public class StyleManager {
-    
-    public static int actualColor = 5;
-    
+
+    public static int actualColor = 1;
+
     public static final Color DEFAULT_TEXT_COLOR = new Color(153, 153, 153);
-    
+
     /* 0 - Por defecto
-     * 1 - Rosa pálido
-     * 2 - Rosa viejo
-     * 3 - Verde
-     * 4 - Amarillo
-     * 5 - Azul
-     * 6 - Lila
+     * 1 - Palid rose
+     * 2 - Old rose
+     * 3 - Green
+     * 4 - Yellow
+     * 5 - Blue
+     * 6 - Purple
      */
-    
     /**
-     * Obtiene el color primario en la paleta de colores a usar
-     * @param color int El código representativo de la paleta de colores a usar
-     * @return Color El color primario para la paleta en cuestión
+     * Retrieves primary color in the color pallet to use.
+     *
+     * @param color Representative code of the color pallet
+     * @return Color Primary color of the color pallet
      */
-    public static Color getColorPrimario(int color) {
-        int a, b, c;
-        switch (color){
+    public static Color getPrimaryColor(int color) {
+        int r, g, b;
+        switch (color) {
             case 0:
-                a = 240; b = 240; c=240;
+                r = 240;
+                g = 240;
+                b = 240;
                 break;
             case 1:
-                a = 255; b = 204; c=204;
-                return Color.getHSBColor( a, b, 0.62f * c);
-             case 2:
-                a = 250; b = 174; c=174;
-                break; 
-             case 3:
-                a = 179; b = 225; c=194;
+                r = 255;
+                g = 204;
+                b = 204;
+                return Color.getHSBColor(r, g, 0.62f * b);
+            case 2:
+                r = 250;
+                g = 174;
+                b = 174;
                 break;
-             case 4:
-                a = 255; b = 252; c=204;
-                return Color.getHSBColor( a, b, 0.28f * c);
-             case 5:
-                a = 225; b = 225; c=254;
+            case 3:
+                r = 179;
+                g = 225;
+                b = 194;
                 break;
-             case 6:
-                a = 240; b = 208; c=248;
+            case 4:
+                r = 255;
+                g = 252;
+                b = 204;
+                return Color.getHSBColor(r, g, 0.28f * b);
+            case 5:
+                r = 225;
+                g = 225;
+                b = 254;
                 break;
-             default:
-                a = 240; b = 240; c=240;
+            case 6:
+                r = 240;
+                g = 208;
+                b = 248;
+                break;
+            default:
+                r = 240;
+                g = 240;
+                b = 240;
         }
-        return new Color(a, b, c);
+        return new Color(r, g, b);
     }
-    
+
     /**
-     * Obtiene el color secundario en la paleta de colores a usar
-     * @param color int - El código representativo de la paleta de colores a usar
-     * @return Color - El color secundario para la paleta en cuestión
+     * Retrieves secondary color in the color pallet to use.
+     *
+     * @param color Representative code of the color pallet
+     * @return Color Secondary color of the color pallet
      */
     public static Color getSecondaryColor(int color) {
-        int a, b, c;
-        switch (color){
+        int r, g, b;
+        switch (color) {
             case 0:
-                a = 228; b = 228; c = 241;
+                r = 228;
+                g = 228;
+                b = 241;
                 break;
             case 1:
-                a = 235; b = 197; c = 218;
+                r = 235;
+                g = 197;
+                b = 218;
                 break;
-             case 2:
-                a = 255; b = 204; c=204;
-                break; 
-             case 3:
-                a = 176; b = 205; c=186;
+            case 2:
+                r = 255;
+                g = 204;
+                b = 204;
                 break;
-             case 4:
-                a = 253; b = 222; c=160;
+            case 3:
+                r = 176;
+                g = 205;
+                b = 186;
                 break;
-             case 5:
-                a = 204; b = 204; c=255;
+            case 4:
+                r = 253;
+                g = 222;
+                b = 160;
                 break;
-             case 6:
-                a = 232; b = 190; c=245;
+            case 5:
+                r = 204;
+                g = 204;
+                b = 255;
                 break;
-             default:
-                a = 255; b = 240; c=240;
+            case 6:
+                r = 232;
+                g = 190;
+                b = 245;
+                break;
+            default:
+                r = 255;
+                g = 240;
+                b = 240;
         }
-        return new Color(a, b, c);
+        return new Color(r, g, b);
     }
-    
+
     /**
-     * Obtiene el color terciario en la paleta de colores a usar
-     * @param color int - El código representativo de la paleta de colores a usar
-     * @return Color - El color secundario para la paleta en cuestión
+     * Retrieves tertiary color in the color pallet to use.
+     *
+     * @param color Representative code of the color pallet
+     * @return Color tertiary color of the color pallet
      */
-    public static Color getColorTerciario(int color) {
-        int a, b, c;
-        switch (color){
+    public static Color getTertiaryColor(int color) {
+        int r, g, b;
+        switch (color) {
             case 0:
-                a = 255; b = 255; c = 255;
+                r = 255;
+                g = 255;
+                b = 255;
                 break;
             case 1:
-                a = 250; b = 230; c = 250;
+                r = 250;
+                g = 230;
+                b = 250;
                 break;
-             case 2:
-                a = 250; b = 230; c = 250;
-                break; 
-             case 3:
-                a = 220; b = 240; c = 240;
+            case 2:
+                r = 250;
+                g = 230;
+                b = 250;
                 break;
-             case 4:
-                a = 249; b = 249; c = 222;
+            case 3:
+                r = 220;
+                g = 240;
+                b = 240;
                 break;
-             case 5:
-                a = 229; b = 229; c = 250;
+            case 4:
+                r = 249;
+                g = 249;
+                b = 222;
                 break;
-             case 6:
-                a = 244; b = 224; c = 244;
+            case 5:
+                r = 229;
+                g = 229;
+                b = 250;
                 break;
-             default:
-                a = 240; b = 240; c=240;
+            case 6:
+                r = 244;
+                g = 224;
+                b = 244;
+                break;
+            default:
+                r = 240;
+                g = 240;
+                b = 240;
         }
-        return new Color(a, b, c);
+        return new Color(r, g, b);
     }
-    
+
     /**
-     * Devuelve el color terciario según el estilo actual
-     * @return color terciario actual
+     * Returns tertiary color according to current style.
+     *
+     * @return actual tertiary color
      */
-    public static Color getThirdColor() {
-        return getColorTerciario(actualColor);
+    public static Color getTertiaryColor() {
+        return StyleManager.getTertiaryColor(actualColor);
     }
-    
+
     /**
-     * Obtiene el color de texto en la paleta de colores a usar
-     * @param color int - El código representativo de la paleta de colores a usar
-     * @return Color - El color secundario para la paleta en cuestión
+     * Retrieves text color in the color pallet to use.
+     *
+     * @param color Representative text color in the current pallet.
+     *
+     * @return Color
      */
     public static Color getTextColor(int color) {
-        int a, b, c;
-        switch (color){
+        int r, g, b;
+        switch (color) {
             case 0:
-                a = 0; b = 0; c = 0;
+                r = 0;
+                g = 0;
+                b = 0;
                 break;
             case 1:
-                a = 57; b = 4; c = 4;
+                r = 57;
+                g = 4;
+                b = 4;
                 break;
-             case 2:
-                a = 57; b = 4; c = 4;
-                break; 
-             case 3:
-                a = 0; b = 51; c = 51;
+            case 2:
+                r = 57;
+                g = 4;
+                b = 4;
                 break;
-             case 4:
-                a = 91; b = 41; c = 2;
+            case 3:
+                r = 0;
+                g = 51;
+                b = 51;
                 break;
-             case 5:
-                a = 0; b = 51; c = 102;
+            case 4:
+                r = 91;
+                g = 41;
+                b = 2;
                 break;
-             case 6:
-                a = 61; b = 1; c = 61;
+            case 5:
+                r = 0;
+                g = 51;
+                b = 102;
                 break;
-             default:
-                a = 0; b = 0; c = 0;
+            case 6:
+                r = 61;
+                g = 1;
+                b = 61;
+                break;
+            default:
+                r = 0;
+                g = 0;
+                b = 0;
         }
-        return new Color(a, b, c);
+        return new Color(r, g, b);
     }
-    
+
     /**
-     * Devuelve el color de texto según el estilo actual
-     * @return color actual de texto
+     * Returns text color according to actual style.
+     *
+     * @return Color
      */
     public static Color getTextColor() {
         return getTextColor(actualColor);
     }
-    
+
     /**
-     * Pinta un objeto contenedor según el código de paleta guardado en el archivo auxiliar
-     * @param c Container a pintar
+     * Paints a container according to saved color.
+     *
+     * @param container
      */
-    public static void paint(Container c) {
-//        try {
-//            colorActual = ManejoArchivos.leerColor();
-//        }
-//        catch (Exception e) {}
-//        pintarComponentes(c, actualColor);
-    }   
-    
-    /**
-     * Pinta un objeto contenedor según el código de paleta pasado por parámetro
-     * @param c Container a pintar
-     */
-    public static void paint(Container c, int color) {
-        if (color < 0 || color > 6)
-            return;
-//        pintarComponentes(c, color);
+    public static void paint(Container container) {
+        try {
+            actualColor = FileManager.readColor();
+        } catch (Exception e) {
+        }
+        paintComponents(container, actualColor);
     }
-    
-//    /**
-//     * Pinta los componentes pertenecientes a un objeto Container
-//     * @param parent Container - El contenedor a pintar
-//     * @param colorPrimario Color primario
-//     * @param colorSecundario Color secundario
-//     */
-//    public static void pintarComponentes(Container parent, int color) {
-//        if (parent instanceof ChooseColor)
-//        {
-//            pintarComponentes(parent.getParent(), color);
-//            ((gui.Principal) parent.getParent()).paintChilds(color);
-//        }
-//        if (parent instanceof ClinicalHistoryJFrame)
-//        {
-//            ((GUI.ClinicalHistoryJFrame) parent).paintChilds(color);
-//        }
-//        for (Component componente : parent.getComponents())
-//        {
-//            if (componente instanceof JRadioButton)
-//                break;
-//            //Seteo de background
-//            if (componente instanceof JTextArea){
-//                componente.setBackground(getColorTerciario(color));
-//                ((JTextArea)componente).setDisabledTextColor(getTextColor(color));
-//                ((JTextArea)componente).setSelectionColor(getSecondaryColor(color));
-//            }
-//            else if (componente instanceof JTextField){
-//                componente.setBackground(getColorTerciario(color));
-//                ((JTextField)componente).setDisabledTextColor(getTextColor(color));
-//                ((JTextField)componente).setSelectionColor(getSecondaryColor(color));
-//            }
-//            else if (componente instanceof JButton)
-//                componente.setBackground(getSecondaryColor(color));
-//            else if (componente instanceof JTable)
-//                componente.setBackground(getColorTerciario(color));
-//            else if (componente instanceof JComboBox){
-//                JComboBox aux = (JComboBox) componente;
-//                ComboBoxEditor editor = aux.getEditor();
-//                JTextField etf = (JTextField)editor.getEditorComponent();
-//                etf.setDisabledTextColor(StyleManager.getTextColor(color));
-//                etf.setBackground(StyleManager.getColorTerciario(color));
-//            }
-//            else 
-//                componente.setBackground(getColorPrimario(color));
-//            
-//            //Seteo de fuente
-//            if (componente instanceof JButton && componente.isEnabled())
-//                componente.setForeground(getTextColor(color));
-//            
-//            //Seteo de títulos en bordes de paneles
-//            if (componente instanceof JPanel) {
-//                JPanel comp = (JPanel)componente;
-//                if (comp.getBorder() instanceof TitledBorder) {
-//                    String texto = ((TitledBorder)comp.getBorder()).getTitle();
-//                    comp.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), texto, javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), getTextColor(actualColor)));
-//                }
-//            }
-//            if (componente instanceof Container || componente instanceof JPanel)
-//                pintarComponentes((Container)componente, color);
-//        }
-//    }
+
+    /**
+     * Paints all component child from a container.
+     *
+     * @param container
+     * @param color
+     */
+    public static void paintComponents(Container container, int color) {
+        for (Component componente : container.getComponents()) {
+            if (componente instanceof JRadioButton) {
+                break;
+            }
+            //Background color
+            if (componente instanceof JTextArea) {
+                componente.setBackground(getTertiaryColor(color));
+                ((JTextArea) componente).setDisabledTextColor(getTextColor(color));
+                ((JTextArea) componente).setSelectionColor(getSecondaryColor(color));
+            } else if (componente instanceof JTextField) {
+                componente.setBackground(getTertiaryColor(color));
+                ((JTextField) componente).setDisabledTextColor(getTextColor(color));
+                ((JTextField) componente).setSelectionColor(getSecondaryColor(color));
+            } else if (componente instanceof JButton) {
+                componente.setBackground(getSecondaryColor(color));
+            } else if (componente instanceof JTable) {
+                componente.setBackground(getTertiaryColor(color));
+            } else if (componente instanceof JComboBox) {
+                JComboBox aux = (JComboBox) componente;
+                ComboBoxEditor editor = aux.getEditor();
+                JTextField etf = (JTextField) editor.getEditorComponent();
+                etf.setDisabledTextColor(StyleManager.getTextColor(color));
+                etf.setBackground(StyleManager.getTertiaryColor(color));
+            } else {
+                componente.setBackground(getPrimaryColor(color));
+            }
+
+            //Font setting
+            if (componente instanceof JButton && componente.isEnabled()) {
+                componente.setForeground(getTextColor(color));
+            }
+
+            //Title in panel borders setting
+            if (componente instanceof JPanel) {
+                JPanel comp = (JPanel) componente;
+                if (comp.getBorder() instanceof TitledBorder) {
+                    String texto = ((TitledBorder) comp.getBorder()).getTitle();
+                    comp.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), texto, javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), getTextColor(actualColor)));
+                }
+            }
+            if (componente instanceof Container || componente instanceof JPanel) {
+                paintComponents((Container) componente, color);
+            }
+        }
+    }
 }

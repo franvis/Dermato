@@ -3,45 +3,46 @@ package utils;
 import java.awt.Component;
 import java.io.*;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 /**
- * Clase para manejas las interacciones con archivos físicos
- * @author Denise
+ * Handles interaction with configuration files.
+ *
+ * @author Francisco Visintini
  */
 public class FileManager {
 
     private static final int BUFFER = 1024;
-    //para guardar en memoria
+    //to save in RAM
     private static StringBuffer temp = null;
-    //para guardar el archivo SQL
-    private static FileWriter fichero = null;
+    //to save SQL file
+    private static FileWriter backupFile = null;
     private static PrintWriter pw = null;
-    //datos de la BD
-    private static String host = Constants.HOST;
-    private static String port = Constants.PORT;
-    private static String user = Constants.USER;
-    private static String password = Constants.PASSWORD;
-    private static String db = Constants.DB;
-    private static String dia, mes, año, hora, minuto, segundo;
+    //DB data
+    private final static String HOST = Constants.HOST;
+    private final static String PORT = Constants.PORT;
+    private final static String USER = Constants.USER;
+    private final static String PASSWORD = Constants.PASSWORD;
+    private final static String DB = Constants.DB;
+    private static String day, month, year, hour, minute, second;
 
     /**
-     * Método de realización de Back Up manual de la Base de Datos
-     * @param j Component que llama al método
-     * @param destino File ubicación final del archivo
-     * @return true de realizar exitosamente el backup, false de los contrario
+     * Performs a data base backup.
+     *
+     * @param component Component that calls the method
+     * @param finalLocation Backup file final location
+     * @return true if correctly backed up, false otherwise
      */
-    public static boolean backUp(Component j, File destino) {
+    public static boolean manualBackUp(Component component, File finalLocation) {
         try {
-            if (destino == null) {
+            if (finalLocation == null) {
                 return false;
             }
 
             Process run = Runtime.getRuntime().exec(
-                    Constants.BACKUP_PRCESS_PATH + " --host=" + host + " --port=" + port
-                    + " --user=" + user + " --password=" + password
+                    Constants.BACKUP_PRCESS_PATH + " --host=" + HOST + " --port=" + PORT
+                    + " --user=" + USER + " --password=" + PASSWORD
                     + " --compact --database sistemacarla --add-drop-database --complete-insert --extended-insert --skip-quote-names"
-                    + " --skip-comments --skip-triggers " + db);
+                    + " --skip-comments --skip-triggers " + DB);
 
             InputStream in = run.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -55,225 +56,128 @@ public class FileManager {
             br.close();
             in.close();
             temp.append("/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;");
-            
-            Calendar c = Calendar.getInstance();
-            dia = c.get(Calendar.DAY_OF_MONTH) + "";
-            mes = c.get(Calendar.MONTH) + 1 + "";
-            año = c.get(Calendar.YEAR) + "";
-            hora = c.get(Calendar.HOUR) + "";
-            minuto = c.get(Calendar.MINUTE) + "";
-            segundo = c.get(Calendar.SECOND) + "";
 
-            fichero = new FileWriter(destino.getAbsolutePath() + "\\BackUp " + dia + "-" + mes + "-" + año + "-" + hora + "h" + minuto + "m" + segundo + "s.sql");
-            pw = new PrintWriter(fichero);
+            Calendar c = Calendar.getInstance();
+            day = c.get(Calendar.DAY_OF_MONTH) + "";
+            month = c.get(Calendar.MONTH) + 1 + "";
+            year = c.get(Calendar.YEAR) + "";
+            hour = c.get(Calendar.HOUR) + "";
+            minute = c.get(Calendar.MINUTE) + "";
+            second = c.get(Calendar.SECOND) + "";
+
+            backupFile = new FileWriter(finalLocation.getAbsolutePath() + "\\BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
+            pw = new PrintWriter(backupFile);
             pw.println(temp.toString());
 
-            ValidationsAndMessages.showInfo(j, "Back Up exitoso en " + destino.getAbsolutePath());
+            ValidationsAndMessages.showInfo(component, "Back Up exitoso en " + finalLocation.getAbsolutePath());
             run.destroy();
             return true;
         } catch (IOException e) {
-            ValidationsAndMessages.showError(j, "Back Up fallido en " + destino.getAbsolutePath() + ". " + e.getMessage());
+            ValidationsAndMessages.showError(component, "Back Up fallido en " + finalLocation.getAbsolutePath() + ". " + e.getMessage());
             return false;
         } finally {
             try {
-                if (null != fichero) {
-                    fichero.close();
+                if (null != backupFile) {
+                    backupFile.close();
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
     }
-    
+
     /**
-     * Método de realización de Back Up automático cada 30 días de la Base de Datos
+     * Performs a backup.
      */
-    public static void AutomaticBackup() {
+    public static void backUp() {
         try {
-                Process run = Runtime.getRuntime().exec(
-                        Constants.BACKUP_PRCESS_PATH + " --host=" + host + " --port=" + port
-                        + " --user=" + user + " --password=" + password
-                        + " --compact --complete-insert --extended-insert --skip-quote-names"
-                        + " --skip-comments --skip-triggers " + db);
+            Process run = Runtime.getRuntime().exec(
+                    Constants.BACKUP_PRCESS_PATH + " --host=" + HOST + " --port=" + PORT
+                    + " --user=" + USER + " --password=" + PASSWORD
+                    + " --compact --complete-insert --extended-insert --skip-quote-names"
+                    + " --skip-comments --skip-triggers " + DB);
 
-                InputStream in = run.getInputStream();
-                BufferedReader br = new BufferedReader(new InputStreamReader(in));
-                temp = new StringBuffer();
-                int count;
-                char[] cbuf = new char[BUFFER];
-                while ((count = br.read(cbuf, 0, BUFFER)) != -1) {
-                    temp.append(cbuf, 0, count);
-                }
-                br.close();
-                in.close();
+            InputStream in = run.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            temp = new StringBuffer();
+            int count;
+            char[] cbuf = new char[BUFFER];
+            while ((count = br.read(cbuf, 0, BUFFER)) != -1) {
+                temp.append(cbuf, 0, count);
+            }
+            br.close();
+            in.close();
 
-                File archBackUp = new File(Constants.BACKUPS_FOLDER_PATH + "\\BackUp.sql");
-                archBackUp.delete();
-                archBackUp.createNewFile();
-                
-                fichero = new FileWriter(archBackUp);
-                pw = new PrintWriter(fichero);
-                pw.print(temp.toString());
-            
-        } catch (IOException e) {
-            ValidationsAndMessages.showError(null, "Back Up automático fallido en " + Constants.BACKUPS_FOLDER_PATH + ". " + e.getMessage());
-        } finally {
-            try {
-                if (null != fichero) {
-                    fichero.close();
-                }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-    
-    /**
-     * Método de realización de Back Up automático cada 30 días de la Base de Datos
-     */
-    
-    public static void backUpAutomatico30Dias() {
-        try {
-            if(esHoyBackUp())
-            {
-                Process run = Runtime.getRuntime().exec(
-                        Constants.BACKUP_PRCESS_PATH + " --host=" + host + " --port=" + port
-                        + " --user=" + user + " --password=" + password
-                        + " --compact --complete-insert --extended-insert --skip-quote-names"
-                        + " --skip-comments --skip-triggers " + db);
-
-                InputStream in = run.getInputStream();
-                BufferedReader br = new BufferedReader(new InputStreamReader(in));
-                temp = new StringBuffer();
-                int count;
-                char[] cbuf = new char[BUFFER];
-                while ((count = br.read(cbuf, 0, BUFFER)) != -1) {
-                    temp.append(cbuf, 0, count);
-                }
-                br.close();
-                in.close();
-
-                Calendar c = Calendar.getInstance();
-                dia = c.get(Calendar.DAY_OF_MONTH) + "";
-                mes = c.get(Calendar.MONTH) + 1 + "";
-                año = c.get(Calendar.YEAR) + "";
-                hora = c.get(Calendar.HOUR) + "";
-                minuto = c.get(Calendar.MINUTE) + "";
-                segundo = c.get(Calendar.SECOND) + "";
-
-                fichero = new FileWriter(Constants.BACKUPS_FOLDER_PATH + "\\BackUp " + dia + "-" + mes + "-" + año + "-" + hora + "h" + minuto + "m" + segundo + "s.sql");
-                pw = new PrintWriter(fichero);
-                pw.print(temp.toString());
-            }
-        } catch (IOException e) {
-            ValidationsAndMessages.showError(null, "Back Up automático fallido en " + Constants.BACKUPS_FOLDER_PATH + ". " + e.getMessage());
-        } finally {
-            try {
-                if (null != fichero) {
-                    fichero.close();
-                }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-    
-    /**
-     * Determina si en la fecha actual -del sistema- se debe realizar el Back Up automático.
-     * Realización de Back Up cada 30 días.
-     * @return true de tener que realizarse el Back Up, false de lo contrario
-     */
-    
-    private static boolean esHoyBackUp() {
-        boolean eshoy = false;
-        try
-        {
-            Calendar c = Calendar.getInstance();
-            int dia = c.get(Calendar.DAY_OF_MONTH);
-            int mes = c.get(Calendar.MONTH) + 1;
-            int año = c.get(Calendar.YEAR);
-            hora = c.get(Calendar.HOUR) + "";
-            minuto = c.get(Calendar.MINUTE) + "";
-            segundo = c.get(Calendar.SECOND) + "";
-            File archBackUp = new File(Constants.AUXILIAR_AUTOMATIC_BACKUP_PATH);
-            String info = "";
-            if (archBackUp.canRead()) {
-                FileReader fr = new FileReader(archBackUp);
-                BufferedReader br = new BufferedReader(fr);
-                temp = new StringBuffer();
-                int count;
-                char[] cbuf = new char[BUFFER];
-                while ((count = br.read(cbuf, 0, BUFFER)) != -1) {
-                    temp.append(cbuf, 0, count);
-                }
-                br.close();
-                fr.close();
-                info = temp.toString();
-            }
-            if (!info.isEmpty()) {
-                String fecha = info.substring(0, info.lastIndexOf('/')+5);
-                int diaGuardado = Integer.parseInt(fecha.substring(0, fecha.indexOf('/')));
-                int mesGuardado = Integer.parseInt(fecha.substring(fecha.indexOf('/')+1, fecha.lastIndexOf('/')));
-                int añoGuardado = Integer.parseInt(fecha.substring(fecha.lastIndexOf('/')+1));
-                GregorianCalendar fechaActual = new GregorianCalendar(año, mes, dia);
-                GregorianCalendar fechaGuardada = new GregorianCalendar(añoGuardado, mesGuardado, diaGuardado);
-                int diasPasados = fechaActual.get(GregorianCalendar.DAY_OF_YEAR) - fechaGuardada.get(GregorianCalendar.DAY_OF_YEAR);
-                if(diasPasados > 30)
-                    eshoy = true;
-            }
-            else
-                eshoy = true;
+            File archBackUp = new File(Constants.BACKUPS_FOLDER_PATH + "\\BackUp.sql");
             archBackUp.delete();
-            fichero = new FileWriter(Constants.AUXILIAR_AUTOMATIC_BACKUP_PATH);
-            pw = new PrintWriter(fichero);
-            pw.println(dia + "/" + mes + "/" + año);
-        
+            archBackUp.createNewFile();
+
+            backupFile = new FileWriter(archBackUp);
+            pw = new PrintWriter(backupFile);
+            pw.print(temp.toString());
+
         } catch (IOException e) {
-            ValidationsAndMessages.showError(null, "Imposible leer archivo de back up en " + Constants.AUXILIAR_AUTOMATIC_BACKUP_PATH + ". " + e.getMessage());
+            ValidationsAndMessages.showError(null, "Back Up automático fallido en " + Constants.BACKUPS_FOLDER_PATH + ". " + e.getMessage());
         } finally {
             try {
-                if (null != fichero) {
-                    fichero.close();
+                if (null != backupFile) {
+                    backupFile.close();
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
-        return eshoy;
     }
 
-    public static void guardarColor(Component j, int color) {
+    /**
+     * Saves a color preference.
+     * 
+     * @param component
+     * @param color 
+     * 
+     * @return true if correctly saved, false otherwise
+     */
+    public static boolean saveColor(Component component, int color) {
         try {
-            //Creamos la carpeta si no existe
-            File carpeta = new File(Constants.COLOR_FILE_PATH.substring(0, Constants.COLOR_FILE_PATH.lastIndexOf("\\")));
-            if (!carpeta.exists())
-                carpeta.mkdir();
-            //Creamos el archivo de color
-            File archViejo = new File(Constants.COLOR_FILE_PATH);
-            archViejo.delete();
-            archViejo.createNewFile();
-            fichero = new FileWriter(archViejo);
-            pw = new PrintWriter(fichero);
+            //We create the folder if it doesn't exist
+//            File folder = new File(Constants.COLOR_FILE_PATH.substring(0, Constants.COLOR_FILE_PATH.lastIndexOf("\\")));
+            File folder = new File(Constants.COLOR_FILE_PATH.substring(0, Constants.COLOR_FILE_PATH.lastIndexOf("/")));
+            if (!folder.exists()) {
+                folder.mkdir();
+            }
+            //We create the color file
+            File oldFile = new File(Constants.COLOR_FILE_PATH);
+            oldFile.delete();
+            oldFile.createNewFile();
+            backupFile = new FileWriter(oldFile);
+            pw = new PrintWriter(backupFile);
             pw.println(color + "");
         } catch (Exception e) {
-            ValidationsAndMessages.showError(j, "No se pudo guardar el código de color.");
+            ValidationsAndMessages.showError(component, "No se pudo guardar el código de color. Error: " + e.getMessage());
+            return false;
         } finally {
             try {
-                if (null != fichero) {
-                    fichero.close();
+                if (null != backupFile) {
+                    backupFile.close();
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
+        return true;
     }
 
-    public static int leerColor() {
+    /**
+     * Reads a color preference.
+     * 
+     * @return preferred color
+     */
+    public static int readColor() {
         try {
-            File archivoColor = new File(Constants.COLOR_FILE_PATH);
-            if (!archivoColor.canRead()) {
-                guardarColor(null, 0);            
-                return 0;
+            File colorFile = new File(Constants.COLOR_FILE_PATH);
+            if (!colorFile.canRead()) {
+                saveColor(null, StyleManager.actualColor);
+                return StyleManager.actualColor;
             }
             FileReader fr = new FileReader(new File(Constants.COLOR_FILE_PATH));
             BufferedReader br = new BufferedReader(fr);
@@ -287,13 +191,12 @@ public class FileManager {
             fr.close();
             int a = Integer.parseInt(temp.toString().substring(0, 1));
             return a;
-        } catch (Exception e) {
-            //MensajesValidaciones.mostrarError(null, "Imposible leer color desde " + VariablesLocales.rutaArchivoColor + ". " + e.getMessage());
+        } catch (IOException | NumberFormatException e) {
             return 0;
         } finally {
             try {
-                if (null != fichero) {
-                    fichero.close();
+                if (null != backupFile) {
+                    backupFile.close();
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
