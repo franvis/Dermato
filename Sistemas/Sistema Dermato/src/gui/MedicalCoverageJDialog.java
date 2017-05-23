@@ -16,6 +16,10 @@ import mvp.presenter.MedicalCoveragePresenter;
 import mvp.view.MedicalCoverageView;
 import utils.StyleManager;
 
+/**
+ *
+ * @author Francisco Visintini
+ */
 public class MedicalCoverageJDialog extends javax.swing.JDialog implements MedicalCoverageView {
 
     private final MedicalCoveragePresenter presenter;

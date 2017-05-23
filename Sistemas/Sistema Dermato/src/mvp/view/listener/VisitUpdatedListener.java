@@ -2,8 +2,9 @@ package mvp.view.listener;
 
 /**
  *
- * @author fran
+ * @author Francisco Visintini
  */
 public interface VisitUpdatedListener {
+    
     public void visitsUpdated();
 }

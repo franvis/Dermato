@@ -3,8 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/gui/PreviousCHJDialog.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/gui/MedicalCoverageJDialog.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/gui/PatientJDialog.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/gui/ChooseColorJDialog.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/gui/AntecedentsJDialog.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/gui/ClinicalHistoryJDialog.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/gui/VisitJDialog.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/gui/PrincipalJFrame.java</file>
         </group>
     </open-files>
 </project-private>

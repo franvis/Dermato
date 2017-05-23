@@ -23,6 +23,10 @@ import mvp.view.PatientABMView;
 import mvp.view.listener.PatientUpdatedListener;
 import utils.GeneralUtils;
 
+/**
+ *
+ * @author Francisco Visintini
+ */
 public class PatientJDialog extends JDialog implements PatientABMView {
 
     private static final String DATE_MASK = "  /  /    ";

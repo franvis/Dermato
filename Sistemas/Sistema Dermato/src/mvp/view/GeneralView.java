@@ -2,12 +2,11 @@ package mvp.view;
 
 /**
  *
- * @author fran
+ * @author Francisco Visintini
  */
 public interface GeneralView {
     
     void showErrorMessage(String error);
     
     void showInfoMessage(String info);
-    
 }

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import bussines.Antecedents;
@@ -20,7 +16,7 @@ import utils.StyleManager;
 
 /**
  *
- * @author Fran
+ * @author Francisco Visintini
  */
 public class AntecedentsJDialog extends javax.swing.JDialog implements AntecedentsView {
 

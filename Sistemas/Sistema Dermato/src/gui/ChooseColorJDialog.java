@@ -1,9 +1,3 @@
-/*
- * EleccionColor.java
- *
- * Created on 07-oct-2012, 15:38:54
- */
-//La re concha de tu madre
 package gui;
 
 import utils.StyleManager;
@@ -19,7 +13,7 @@ import utils.ValidationsAndMessages;
 
 /**
  *
- * @author Denise
+ * @author Francisco Visintini
  */
 public class ChooseColorJDialog extends javax.swing.JDialog {
 

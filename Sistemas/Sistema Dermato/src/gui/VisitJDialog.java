@@ -1,6 +1,3 @@
-/*
- * Interfaz donde se registran y modifican las consultas
- */
 package gui;
 
 import utils.ValidationsAndMessages;
@@ -24,6 +21,10 @@ import mvp.view.listener.VisitUpdatedListener;
 import static utils.Constants.BIRTHDAY_WITH_AGE;
 import static utils.GeneralUtils.calculateAge;
 
+/**
+ *
+ * @author Francisco Visintini
+ */
 public class VisitJDialog extends javax.swing.JDialog implements VisitView {
 
     private final VisitPresenter presenter;

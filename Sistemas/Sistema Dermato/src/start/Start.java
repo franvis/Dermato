@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package start;
 
 import static utils.Constants.SYSTEM_FONT;
@@ -18,7 +13,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
- * @author fran
+ * @author Francisco Visintini
  */
 public class Start {
 
@@ -36,12 +31,11 @@ public class Start {
         } catch (ParseException | UnsupportedLookAndFeelException ex) {
             Logger.getLogger(PrincipalJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-//
-//        FileManager.AutomaticBackup();
+
+        FileManager.backUp();
 
         java.awt.EventQueue.invokeLater(() -> {
             new PrincipalJFrame().setVisible(true);
         });
     }
-
 }

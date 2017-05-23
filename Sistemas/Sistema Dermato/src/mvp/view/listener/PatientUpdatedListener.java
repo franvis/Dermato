@@ -4,8 +4,9 @@ import bussines.Patient;
 
 /**
  *
- * @author fran
+ * @author Francisco Visintini
  */
 public interface PatientUpdatedListener {
+    
     public void patientUpdated(Patient patient);
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mvp.presenter;
 
 import bussines.Antecedents;
@@ -14,7 +9,7 @@ import mvp.view.ClinicalHistoryView;
 
 /**
  *
- * @author fran
+ * @author Francisco Visintini
  */
 public class ClinicalHistoryPresenter {
 
@@ -137,7 +132,6 @@ public class ClinicalHistoryPresenter {
         }
 
         if (patient.getPreviousCH() == null || patient.getPreviousCH().isEmpty()) {
-//            view.showInfoMessage("El paciente no posee historia clinica previa.");
             view.showInfoMessage("El paciente no posee historia clinica previa.");
         } else {
             view.showPreviousCH(patient.getPreviousCH());

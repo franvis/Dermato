@@ -1,13 +1,12 @@
 package mvp.view;
 
-import bussines.Antecedents;
 import bussines.Patient;
 import bussines.Visit;
 import java.util.List;
 
 /**
  *
- * @author fran
+ * @author Francisco Visintini
  */
 public interface ClinicalHistoryView extends GeneralView {
     

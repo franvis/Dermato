@@ -30,6 +30,10 @@ import mvp.presenter.PrincipalPresenter;
 import mvp.view.listener.PatientUpdatedListener;
 import mvp.view.PrincipalView;
 
+/**
+ *
+ * @author Francisco Visintini
+ */
 public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView, PatientUpdatedListener {
 
     //STATIC VARS

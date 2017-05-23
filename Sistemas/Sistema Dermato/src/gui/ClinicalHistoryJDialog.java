@@ -28,6 +28,10 @@ import mvp.view.ClinicalHistoryView;
 import mvp.view.listener.PatientUpdatedListener;
 import mvp.view.listener.VisitUpdatedListener;
 
+/**
+ *
+ * @author Francisco Visintini
+ */
 public class ClinicalHistoryJDialog extends javax.swing.JDialog implements ClinicalHistoryView, PatientUpdatedListener, VisitUpdatedListener {
 
     private static final String TABLE_COLUMN_DATE = "Fecha";

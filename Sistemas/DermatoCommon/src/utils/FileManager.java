@@ -41,7 +41,7 @@ public class FileManager {
             Process run = Runtime.getRuntime().exec(
                     Constants.BACKUP_PRCESS_PATH + " --host=" + HOST + " --port=" + PORT
                     + " --user=" + USER + " --password=" + PASSWORD
-                    + " --compact --database sistemacarla --add-drop-database --complete-insert --extended-insert --skip-quote-names"
+                    + " --compact --add-drop-database --complete-insert --extended-insert --skip-quote-names"
                     + " --skip-comments --skip-triggers " + DB);
 
             InputStream in = run.getInputStream();
@@ -65,7 +65,8 @@ public class FileManager {
             minute = c.get(Calendar.MINUTE) + "";
             second = c.get(Calendar.SECOND) + "";
 
-            backupFile = new FileWriter(finalLocation.getAbsolutePath() + "\\BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
+//            backupFile = new FileWriter(finalLocation.getAbsolutePath() + "\\BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
+            backupFile = new FileWriter(finalLocation.getAbsolutePath() + "/BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
             pw = new PrintWriter(backupFile);
             pw.println(temp.toString());
 
@@ -94,7 +95,7 @@ public class FileManager {
             Process run = Runtime.getRuntime().exec(
                     Constants.BACKUP_PRCESS_PATH + " --host=" + HOST + " --port=" + PORT
                     + " --user=" + USER + " --password=" + PASSWORD
-                    + " --compact --complete-insert --extended-insert --skip-quote-names"
+                    + " --compact --add-drop-database --complete-insert --extended-insert --skip-quote-names"
                     + " --skip-comments --skip-triggers " + DB);
 
             InputStream in = run.getInputStream();
@@ -108,7 +109,8 @@ public class FileManager {
             br.close();
             in.close();
 
-            File archBackUp = new File(Constants.BACKUPS_FOLDER_PATH + "\\BackUp.sql");
+//            File archBackUp = new File(Constants.BACKUPS_FOLDER_PATH + "\\BackUp.sql");
+            File archBackUp = new File(Constants.BACKUPS_FOLDER_PATH + "/BackUp.sql");
             archBackUp.delete();
             archBackUp.createNewFile();
 

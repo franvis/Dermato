@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  *
- * @author fran
+ * @author Francisco Visintini
  */
 public interface PatientABMView extends GeneralView{
     
