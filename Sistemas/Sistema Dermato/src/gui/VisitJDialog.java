@@ -19,6 +19,7 @@ import mvp.presenter.VisitPresenter;
 import mvp.view.VisitView;
 import mvp.view.listener.VisitUpdatedListener;
 import static utils.Constants.BIRTHDAY_WITH_AGE;
+import utils.GeneralUtils;
 import static utils.GeneralUtils.calculateAge;
 
 /**
@@ -141,6 +142,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Consulta Completa");
         setMinimumSize(new java.awt.Dimension(40, 40));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -1017,10 +1019,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
 
     private void setDateLabel() {
         Calendar calendar = Calendar.getInstance();
-        String day = calendar.get(Calendar.DAY_OF_MONTH) + "";
-        String month = calendar.get(Calendar.MONTH) + 1 + "";
-        String year = calendar.get(Calendar.YEAR) + "";
-        this.lblDate.setText(day + "/" + month + "/" + year);
+        this.lblDate.setText(GeneralUtils.stringDateParser(calendar.getTime()));
     }
 
     private void setupInitialUI() {
@@ -1059,6 +1058,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
     public void finishRegisteringVisit() {
         this.setFieldsState(false);
         visitsUpdatedListener.visitsUpdated();
+        exitWindow();
     }
 
     @Override

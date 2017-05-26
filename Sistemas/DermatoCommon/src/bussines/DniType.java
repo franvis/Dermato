@@ -10,7 +10,7 @@ package bussines;
  * @author fran
  */
 public class DniType {
-    
+
     private int id;
     private String name;
 

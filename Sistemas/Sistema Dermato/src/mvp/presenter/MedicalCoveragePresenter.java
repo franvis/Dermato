@@ -32,7 +32,7 @@ public class MedicalCoveragePresenter {
             return;
         }
 
-        this.medicalCoverages = model.loadAllMedicalCoverages();
+        this.medicalCoverages = model.getAllMedicalCoverages();
 
         if (this.medicalCoverages == null) {
             view.showErrorMessage("No se pudieron encontrar las obras sociales. Por favor "

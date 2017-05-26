@@ -777,9 +777,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
     private void btnNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPatientActionPerformed
         PatientJDialog patientABM = new PatientJDialog(this);
         clearTable(dtmPatients);
-        txtfDni.setText("");
-        txtfLastname.setText("");
-        txtfName.setText("");
+        clearFilters();
         patientABM.setVisible(true);
     }//GEN-LAST:event_btnNewPatientActionPerformed
 
@@ -844,7 +842,10 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
     @Override
     public void showPatientClinicalHistory(Patient patient) {
         changeButtonState(btnSeeCH, false);
-        ClinicalHistoryJDialog clinicalHistory = new ClinicalHistoryJDialog(this, patient);
+        clearTable(dtmPatients);
+        clearFilters();
+        ClinicalHistoryJDialog clinicalHistory = new ClinicalHistoryJDialog(this, 
+                this, patient);
         clinicalHistory.setVisible(true);
     }
 

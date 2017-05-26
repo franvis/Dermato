@@ -175,10 +175,10 @@ public class DAOMedicalCoverage extends DAOBasics {
         }
         return medicalCoverage;
     }
-    
+
     /**
-     * Method used to retrieve a Pre paid Health Insurance. 
-     * ONLY USED FOR DB TRASPASSING
+     * Method used to retrieve a Pre paid Health Insurance. ONLY USED FOR DB
+     * TRASPASSING
      *
      * @param name name of the pre paid health insurance
      * @return Pre paid health insurance
@@ -212,5 +212,26 @@ public class DAOMedicalCoverage extends DAOBasics {
     String getInsertStatement() {
         return String.format(DBConstants.INSERT_WITH_VALUES_ONLY,
                 DBConstants.Tables.MedicalCoverage.name(), MEDICAL_COVERAGE_INSERT);
+    }
+
+    public boolean isMedicalCoverageAlreadyRegistered(String name) {
+        try {
+            connection = daoConnection.openDBConnection();
+            where = DBUtils.getSimpleWhereCondition(MEDICAL_COVERAGE_NAME);
+            query = DBUtils.getSelectOneStatementWithWhere(Tables.MedicalCoverage, where);
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            preparedStatement.executeQuery();
+            resultSet = preparedStatement.getResultSet();
+            if (resultSet.next()) {
+                return true;
+            }
+            preparedStatement.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            daoConnection.closeDBConnection(connection);
+        }
+        return false;
     }
 }

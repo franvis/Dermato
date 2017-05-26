@@ -67,7 +67,6 @@ public class VisitPresenter {
         String result = model.registerVisit(visit, patient);
         
         if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
-            view.showInfoMessage("Registro exitoso.");
             view.finishRegisteringVisit();
         } else {
             view.showErrorMessage("Registro Fallido: " + result);

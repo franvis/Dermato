@@ -19,7 +19,6 @@ import nl.knaw.dans.common.dbflib.IfNonExistent;
 import nl.knaw.dans.common.dbflib.Record;
 import nl.knaw.dans.common.dbflib.Table;
 import utils.DateTimeUtils;
-import utils.GeneralUtils;
 
 /**
  *
@@ -45,59 +44,61 @@ public class DBConverter {
 
             Record r;
             Patient patient;
-            int i = 0;
             while (recordIterator.hasNext()) {
                 r = recordIterator.next();
-                i++;
                 patient = new Patient();
 
-                //NAME AND LASTNAME
                 String patientName = r.getStringValue("PAC").trim();
-                patient.setLastname(patientName.substring(0, patientName.indexOf(" ")).trim());
-                patient.setName(patientName.substring(patientName.indexOf(" ") + 1, patientName.length()).trim());
+                if (!patientName.isEmpty()) {
+                    //NAME AND LASTNAME
+                    if (patientName.contains(" ")) {
+                        patient.setLastname(patientName.substring(0, patientName.indexOf(" ")).trim());
+                        patient.setName(patientName.substring(patientName.indexOf(" ") + 1, patientName.length()).trim());
+                    } else {
+                        patient.setName(patientName);
+                    }
 
-                //ADDRESS
-                if (r.getStringValue("DIR") != null && !r.getStringValue("DIR").trim().isEmpty()) {
-                    patient.setAddress(r.getStringValue("DIR").trim());
-                }
+                    //ADDRESS
+                    if (r.getStringValue("DIR") != null && !r.getStringValue("DIR").trim().isEmpty()) {
+                        patient.setAddress(r.getStringValue("DIR").trim());
+                    }
 
-                //CITY
-                if (r.getStringValue("LOC") != null && !r.getStringValue("LOC").trim().isEmpty()) {
-                    patient.setCity(r.getStringValue("LOC").trim());
-                }
+                    //CITY
+                    if (r.getStringValue("LOC") != null && !r.getStringValue("LOC").trim().isEmpty()) {
+                        patient.setCity(r.getStringValue("LOC").trim());
+                    }
 
-                //PHONE
-                if (r.getStringValue("TEL") != null && !r.getStringValue("TEL").trim().isEmpty()
-                        && !r.getStringValue("TEL").trim().equals("NO TIENE")
-                        && !r.getStringValue("TEL").trim().equals("NO")
-                        && !r.getStringValue("TEL").trim().equals("NT")
-                        && !r.getStringValue("TEL").trim().equals("N/T")) {
-                    patient.setPhone(r.getStringValue("TEL").trim());
-                }
+                    //PHONE
+                    if (r.getStringValue("TEL") != null && !r.getStringValue("TEL").trim().isEmpty()
+                            && !r.getStringValue("TEL").trim().equals("NO TIENE")
+                            && !r.getStringValue("TEL").trim().equals("NO")
+                            && !r.getStringValue("TEL").trim().equals("NT")
+                            && !r.getStringValue("TEL").trim().equals("N/T")) {
+                        patient.setPhone(r.getStringValue("TEL").trim());
+                    }
 
-                //MEDICAL COVERAGE
-                if (r.getStringValue("MUT") != null && !r.getStringValue("MUT").trim().isEmpty()) {
-                    patient.setMedicalCoverage(daoMedicalCoverage.getMedicalCoverage(r.getStringValue("MUT").trim()));
-                } else {
-                    patient.setMedicalCoverage(new MedicalCoverage(0, MEDICAL_COVERAGE_DEFAULT_NAME));
-                }
-                
-                //BIRTHDAY
-                if (r.getDateValue("NAC") != null) {
-                    patient.setBirthday(DateTimeUtils.convertDateToString(r.getDateValue("NAC")));
-                }
-                
-                //BIRTHDAY
-                if (r.getStringValue("TAR") != null && !r.getStringValue("TAR").trim().isEmpty()) {
-                    patient.setPreviousCH(r.getStringValue("TAR"));
-                }
-                
-                //FINAL REGISTER
-                daoPatient.registerPatient(patient);
-                if(i == 50){
-                    break;
+                    //MEDICAL COVERAGE
+                    if (r.getStringValue("MUT") != null && !r.getStringValue("MUT").trim().isEmpty()) {
+                        patient.setMedicalCoverage(daoMedicalCoverage.getMedicalCoverage(r.getStringValue("MUT").trim()));
+                    } else {
+                        patient.setMedicalCoverage(new MedicalCoverage(0, MEDICAL_COVERAGE_DEFAULT_NAME));
+                    }
+
+                    //BIRTHDAY
+                    if (r.getDateValue("NAC") != null) {
+                        patient.setBirthday(DateTimeUtils.convertDateToString(r.getDateValue("NAC")));
+                    }
+
+                    //BIRTHDAY
+                    if (r.getStringValue("TAR") != null && !r.getStringValue("TAR").trim().isEmpty()) {
+                        patient.setPreviousCH(r.getStringValue("TAR"));
+                    }
+
+                    //FINAL REGISTER
+                    daoPatient.registerPatient(patient);
                 }
             }
+            System.out.println("DB IMPORT FINISHED CORRECTLY");
         } finally {
             t1.close();
         }

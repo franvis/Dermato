@@ -11,8 +11,8 @@ import java.util.List;
 public class MedicalCoverageModel {
 
     private final DAOMedicalCoverage daoMedicalCoverage;
-    
-    public MedicalCoverageModel(){
+
+    public MedicalCoverageModel() {
         daoMedicalCoverage = new DAOMedicalCoverage();
     }
 
@@ -20,15 +20,29 @@ public class MedicalCoverageModel {
         return daoMedicalCoverage.updateMedicalCoverage(medicalCoverage);
     }
 
-    public List<MedicalCoverage> loadAllMedicalCoverages() {
+    public List<MedicalCoverage> getAllMedicalCoverages() {
         return daoMedicalCoverage.getAllMedicalCoverages();
     }
-    
-    public String registerMedicalCoverage(MedicalCoverage medicalCoverage){
-        return daoMedicalCoverage.registerMedicalCoverage(medicalCoverage);
+
+    public String registerMedicalCoverage(MedicalCoverage medicalCoverage) {
+        if (!isAlreadyRegistered(medicalCoverage)) {
+            return daoMedicalCoverage.registerMedicalCoverage(medicalCoverage);
+        } else {
+            return "La obra social ya se encuentra registrada.";
+        }
     }
-    
-    public String deleteMedicalCoverage(MedicalCoverage medicalCoverage){
+
+    public String deleteMedicalCoverage(MedicalCoverage medicalCoverage) {
         return daoMedicalCoverage.deleteMedicalCoverage(medicalCoverage);
+    }
+
+    /**
+     * Validates if a medical coverage is already registered.
+     *
+     * @param medicalCoverage
+     * @return true if already registered, false otherwise
+     */
+    private boolean isAlreadyRegistered(MedicalCoverage medicalCoverage) {
+        return daoMedicalCoverage.isMedicalCoverageAlreadyRegistered(medicalCoverage.getName());
     }
 }

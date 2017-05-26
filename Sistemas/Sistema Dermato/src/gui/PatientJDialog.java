@@ -290,7 +290,8 @@ public class PatientJDialog extends JDialog implements PatientABMView {
     @Override
     public void finishRegisteringPatient(Patient patient) {
         try {
-            ClinicalHistoryJDialog clinicalHistory = new ClinicalHistoryJDialog((java.awt.Frame) getParent(), patient);
+            ClinicalHistoryJDialog clinicalHistory = new ClinicalHistoryJDialog((Frame) getParent(),
+                    patientUpdatedListener, patient);
             dispose();
             clinicalHistory.setVisible(true);
         } catch (Exception ex) {
@@ -363,6 +364,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Nuevo Paciente");
         setIconImages(getIconImages());
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -567,18 +569,18 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             .addComponent(pnlMedicalCoverage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlPersonalDataLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblsBirthday)
-                    .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lblsNames, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblsLastNames, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblsDniType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblsPhone)
-                        .addComponent(lblsAddress)
-                        .addComponent(lblsCity)))
+                .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblsBirthday)
+                        .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblsNames, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblsDniType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblsAddress)
+                            .addComponent(lblsCity)
+                            .addComponent(lblsPhone)))
+                    .addComponent(lblsLastNames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtfLastNames, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtfPhone, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPersonalDataLayout.createSequentialGroup()
                         .addComponent(cmbDniType, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -589,6 +591,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
                     .addComponent(txtfAddress)
                     .addComponent(txtfCity)
                     .addComponent(txtfNames)
+                    .addComponent(txtfLastNames)
                     .addGroup(pnlPersonalDataLayout.createSequentialGroup()
                         .addComponent(ftxtfBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -599,12 +602,12 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             .addGroup(pnlPersonalDataLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtfNames)
-                    .addComponent(lblsNames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtfLastNames)
                     .addComponent(lblsLastNames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtfNames)
+                    .addComponent(lblsNames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtfPhone)
@@ -625,7 +628,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
                     .addComponent(lblsCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ftxtfBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ftxtfBirthday)
                     .addComponent(lblsBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlMedicalCoverage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -731,8 +734,9 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         pnlReferencesLayout.setHorizontalGroup(
             pnlReferencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlReferencesLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lblsMandatoryFieldsReference, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlReferencesLayout.setVerticalGroup(
             pnlReferencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -956,7 +960,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
                         .addComponent(pnlButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnlPersonalData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnlPersonalData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)

@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 public class GeneralUtils {
 
     private static final String PERFORM_BACK_UP_DIALOG_TITLE = "Elija un directorio destino para el archivo de Back Up...";
-    
+
     /**
      * Method used to clean a table deleting all of the rows
      *
@@ -70,13 +70,14 @@ public class GeneralUtils {
 
         return age;
     }
-    
+
     /**
-     * Changes the button font according to the mouse pointer event passing trough it.
+     * Changes the button font according to the mouse pointer event passing
+     * trough it.
      *
      * @param jbtn JButton to set
-     * @param mouseEntering boolean true if the mouse pointer is entering the jButton
-     * area, false otherwise
+     * @param mouseEntering boolean true if the mouse pointer is entering the
+     * jButton area, false otherwise
      */
     public static void setButtonFontForPointerEvent(JButton jbtn, boolean mouseEntering) {
         if (jbtn.isEnabled()) {
@@ -87,7 +88,7 @@ public class GeneralUtils {
             }
         }
     }
-    
+
     /**
      * Handle the focus gain-loss with TAB and shift TAB keys.
      *
@@ -103,10 +104,10 @@ public class GeneralUtils {
             KeyboardFocusManager.getCurrentKeyboardFocusManager().focusPreviousComponent();
         }
     }
-    
+
     /**
      * Method used to perform a manual backup
-     * 
+     *
      * @param parent component where save dialog will be shown
      */
     public static void performBackup(Component parent) {
@@ -118,15 +119,16 @@ public class GeneralUtils {
             FileManager.manualBackUp(parent, jfd.getSelectedFile());
         }
     }
-    
+
     /**
-     * Method used to parse a String date with "d/MM/yyyy" format to a Date object.
-     * 
+     * Method used to parse a String date with "d/MM/yyyy" format to a Date
+     * object.
+     *
      * @param stringDate
      *
      * @return date as a Date object
      */
-    public static Date stringDateParser(String stringDate){
+    public static Date stringDateParser(String stringDate) {
         try {
             SimpleDateFormat parser = new SimpleDateFormat("d/MM/yyyy");
             return parser.parse(stringDate);
@@ -134,5 +136,18 @@ public class GeneralUtils {
             Logger.getLogger(GeneralUtils.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    /**
+     * Method used to parse a Date date to a String date with "d/MM/yyyy"
+     * format.
+     *
+     * @param date
+     *
+     * @return date as a String object
+     */
+    public static String stringDateParser(Date date) {
+        SimpleDateFormat parser = new SimpleDateFormat("d/MM/yyyy");
+        return parser.format(date);
     }
 }

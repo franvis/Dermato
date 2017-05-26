@@ -137,7 +137,7 @@ public class DAOVisit extends DAOBasics {
         LinkedList<Visit> visits = new LinkedList<>();
 
         columns = DBUtils.getStringWithValuesSeparatedWithCommas(
-                VISIT_ID, DATE, REASON, DIAGNOSIS);
+                VISIT_ID, DATE, REASON, DIAGNOSIS, TREATMENT);
         where = DBUtils.getSimpleWhereCondition(PATIENT_ID);
         orderBy = DBUtils.getStringWithValuesSeparatedWithCommas(
                 DBUtils.getOrderByCondition(DATE, false),
@@ -157,6 +157,7 @@ public class DAOVisit extends DAOBasics {
                 visit.setDate(DBUtils.getFormattedDate(resultSet.getString(DATE)));
                 visit.setReason(resultSet.getString(REASON));
                 visit.setDiagnosis(resultSet.getString(DIAGNOSIS));
+                visit.setTreatment(resultSet.getString(TREATMENT));
                 visits.add(visit);
             }
             preparedStatement.close();

@@ -53,7 +53,7 @@ public class PreviousCHJDialog extends javax.swing.JDialog {
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Antecedentes Generales");
+        setTitle("Historia Clinica Previa");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -63,7 +63,7 @@ public class PreviousCHJDialog extends javax.swing.JDialog {
 
         pnlGeneral.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        pnlPreviousClinicalHistory.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Historia clinica previa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlPreviousClinicalHistory.setBorder(null);
 
         txtaPreviousClinicalHistory.setEditable(false);
         txtaPreviousClinicalHistory.setColumns(20);

@@ -37,14 +37,16 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
     private static final String TABLE_COLUMN_DATE = "Fecha";
     private static final String TABLE_COLUMN_REASON = "Motivo";
     private static final String TABLE_COLUMN_DIAGNOSIS = "Diagnóstico";
+    private static final String TABLE_COLUMN_TREATMENT = "Tratamiento";
 
     private final ClinicalHistoryPresenter presenter;
 
     private final PatientUpdatedListener patientUpdatedListener;
 
-    public ClinicalHistoryJDialog(java.awt.Frame parent, Patient patient) {
+    public ClinicalHistoryJDialog(java.awt.Frame parent, PatientUpdatedListener 
+            patientUpdatedListener, Patient patient) {
         super(parent, true);
-        patientUpdatedListener = (PatientUpdatedListener) parent;
+        this.patientUpdatedListener = patientUpdatedListener;
         presenter = new ClinicalHistoryPresenter(this);
         initComponents();
         setupInitialUI();
@@ -68,6 +70,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         tblVisits.getColumn(TABLE_COLUMN_DATE).setResizable(false);
         tblVisits.getColumn(TABLE_COLUMN_REASON).setResizable(false);
         tblVisits.getColumn(TABLE_COLUMN_DIAGNOSIS).setResizable(false);
+        tblVisits.getColumn(TABLE_COLUMN_TREATMENT).setResizable(false);
         tblVisits.getTableHeader().setFont(new Font(Constants.SYSTEM_FONT, Font.PLAIN, 14));
         tblVisits.setDefaultRenderer(String.class, new MultiLineCellRenderer());
         tblVisits.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -133,6 +136,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         setTitle("Historia Clínica");
         setIconImage(null);
         setMinimumSize(new java.awt.Dimension(850, 600));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -144,24 +148,24 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         tblVisits.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tblVisits.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Fecha", "Motivo", "Diagnóstico"
+                "Fecha", "Motivo", "Diagnóstico", "Tratamiento"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -618,8 +622,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
 
     @Override
     public void patientUpdated(Patient patient) {
-        displayPatientData(patient);
-        presenter.setPatient(patient);
+        presenter.loadPatientData(patient);
         patientUpdatedListener.patientUpdated(patient);
     }
 
@@ -682,10 +685,15 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         
         if (!visits.isEmpty()) {
             for (int i = 0; i < visits.size(); i++) {
-                o = new Object[3];
+                o = new Object[4];
                 o[0] = visits.get(i).getDate();
                 o[1] = visits.get(i).getReason();
-                o[2] = !visits.get(i).getDiagnosis().isEmpty() ? visits.get(i).getDiagnosis() : "-";
+                o[2] = (visits.get(i).getDiagnosis() != null 
+                        && !visits.get(i).getDiagnosis().isEmpty()) 
+                        ? visits.get(i).getDiagnosis() : "-";
+                o[3] = (visits.get(i).getTreatment() != null 
+                        && !visits.get(i).getTreatment().isEmpty()) 
+                        ? visits.get(i).getTreatment() : "-";
                 visitsDtm.addRow(o);
             }
             tblVisits.changeSelection(0, 0, false, false);
