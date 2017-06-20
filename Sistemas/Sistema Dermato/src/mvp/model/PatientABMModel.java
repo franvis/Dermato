@@ -29,8 +29,8 @@ public class PatientABMModel {
         return daoPatient.getFullPatient(patient);
     }
 
-    public List<MedicalCoverage> getAllMedicalCoverages() {
-        return daoMedicalCoverage.getAllMedicalCoverages();
+    public List<MedicalCoverage> getAllMedicalCoverages(boolean withNoCoverage) {
+        return daoMedicalCoverage.getAllMedicalCoverages(withNoCoverage);
     }
 
     public String updatePatient(Patient patient) {

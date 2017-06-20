@@ -38,7 +38,7 @@ public class PatientABMPresenter {
             return;
         }
 
-        medicalCoverages = medicalCoverageModel.getAllMedicalCoverages();
+        medicalCoverages = medicalCoverageModel.getAllMedicalCoverages(true);
         if (medicalCoverages == null || medicalCoverages.isEmpty()) {
             view.showErrorMessage("No se pudo recuperar las obras sociales. Por favor "
                     + "reinicie el sistema e intente nuevamente."
@@ -162,7 +162,7 @@ public class PatientABMPresenter {
         String result = medicalCoverageModel.registerMedicalCoverage(medicalCoverage);
         if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
 
-            medicalCoverages = patientAbmModel.getAllMedicalCoverages();
+            medicalCoverages = patientAbmModel.getAllMedicalCoverages(true);
             if (medicalCoverages == null || medicalCoverages.isEmpty()) {
                 view.showErrorMessage("No se pudieron actualizar las obras sociales despues de registrar una nueva. Por favor "
                         + "reinicie el sistema e intente nuevamente."

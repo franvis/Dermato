@@ -28,8 +28,7 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
     /**
      * Creates new form ABMObrasSociales
      *
-     * @param parent
-     * @param modal 
+     * @param parent 
      */
     public MedicalCoverageJDialog(Frame parent) {
         super(parent, true);
@@ -61,7 +60,7 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
         jTable1 = new javax.swing.JTable();
         pnlPrePaidHealthInsurances = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblPrePaidHealthInsurances = new javax.swing.JTable();
+        tblMedicalCoverages = new javax.swing.JTable();
         pnlButtons = new javax.swing.JPanel();
         btnDelete = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
@@ -98,8 +97,8 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
 
         jScrollPane2.setFocusable(false);
 
-        tblPrePaidHealthInsurances.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tblPrePaidHealthInsurances.setModel(new javax.swing.table.DefaultTableModel(
+        tblMedicalCoverages.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tblMedicalCoverages.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -128,7 +127,7 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tblPrePaidHealthInsurances);
+        jScrollPane2.setViewportView(tblMedicalCoverages);
 
         javax.swing.GroupLayout pnlPrePaidHealthInsurancesLayout = new javax.swing.GroupLayout(pnlPrePaidHealthInsurances);
         pnlPrePaidHealthInsurances.setLayout(pnlPrePaidHealthInsurancesLayout);
@@ -353,8 +352,8 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
     }//GEN-LAST:event_btnDeleteMouseExited
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        if (tblPrePaidHealthInsurances.getSelectedRow() != -1) {
-            presenter.deleteMedicalCoverage(tblPrePaidHealthInsurances.getSelectedRow());
+        if (tblMedicalCoverages.getSelectedRow() != -1) {
+            presenter.deleteMedicalCoverage(tblMedicalCoverages.getSelectedRow());
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -383,7 +382,7 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
     }//GEN-LAST:event_btnModifyMouseExited
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
-        int selectedMedicalCoverage = tblPrePaidHealthInsurances.getSelectedRow();
+        int selectedMedicalCoverage = tblMedicalCoverages.getSelectedRow();
         if (selectedMedicalCoverage != -1) {
             presenter.loadMedicalCoverageInfo(selectedMedicalCoverage);
 
@@ -402,7 +401,7 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
             return;
         }
         if (isUpdating) {
-            presenter.updateMedicalCoverage(txtMedicalCoverageName.getText());
+            presenter.updateMedicalCoverage(tblMedicalCoverages.getSelectedRow(), txtMedicalCoverageName.getText());
         } else {
             presenter.registerMedicalCoverage(txtMedicalCoverageName.getText());
         }
@@ -423,21 +422,21 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
     private javax.swing.JPanel pnlButtons;
     private javax.swing.JPanel pnlNewPPHealthInsurance;
     private javax.swing.JPanel pnlPrePaidHealthInsurances;
-    private javax.swing.JTable tblPrePaidHealthInsurances;
+    private javax.swing.JTable tblMedicalCoverages;
     private javax.swing.JTextField txtMedicalCoverageName;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void displayMedicalCoverages(List<MedicalCoverage> medicalCoverages) {
         Object[] o;
-        DefaultTableModel dtmPrePaidHealthInsurances = (DefaultTableModel) this.tblPrePaidHealthInsurances.getModel();
+        DefaultTableModel dtmPrePaidHealthInsurances = (DefaultTableModel) this.tblMedicalCoverages.getModel();
         clearTable(dtmPrePaidHealthInsurances);
         for (int i = 0; i < medicalCoverages.size(); i++) {
             o = new Object[1];
             o[0] = medicalCoverages.get(i).getName();
             dtmPrePaidHealthInsurances.addRow(o);
         }
-        this.tblPrePaidHealthInsurances.changeSelection(0, 0, false, false);
+        tblMedicalCoverages.changeSelection(0, 0, false, false);
     }
 
     @Override
@@ -447,12 +446,14 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
 
     @Override
     public void finishUpdatingMedicalCoverage(int selectedMedicalCoverage) {
+        tblMedicalCoverages.changeSelection(selectedMedicalCoverage, 0, false, false);
         txtMedicalCoverageName.setText("");
         isUpdating = false;
         btnDelete.setEnabled(true);
         btnModify.setEnabled(true);
         btnCancel.setEnabled(false);
         txtMedicalCoverageName.grabFocus();
+        
     }
 
     @Override

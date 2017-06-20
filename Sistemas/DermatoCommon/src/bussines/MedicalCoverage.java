@@ -8,8 +8,8 @@ package bussines;
  * @author Fran
  */
 public class MedicalCoverage {
-    public static final String NO_MEDICAL_COBERTURE_NAME = 
-            "Sin Obra Social";
+    public static final String NO_MEDICAL_COVERAGE_NAME = 
+            "PARTICULAR";
     
     private int id;
     private String name;

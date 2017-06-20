@@ -23,7 +23,6 @@ public class DAOPatient extends DAOBasics {
 
     private static final String LAST_VISIT_DATE_KEY = "lastVisitDate";
     private static final String LAST_VISIT_DATE_DEFAULT_VALUE = "Sin consultas";
-    public static final String MEDICAL_COVERAGE_DEFAULT_NAME = "Sin Obra Social";
     public static final String PATIENT_INSERT = "?,?,?,?,?,?,?,"
             + "str_to_date(?, '%d/%c/%Y'),?,?,str_to_date(?, '%d/%c/%Y'),?,null";
     public static final String PATIENT_INSERT_WITHOUT_MEDICAL_COVERAGE
@@ -61,7 +60,12 @@ public class DAOPatient extends DAOBasics {
      */
     public String registerPatient(Patient patient) {
         try {
-            boolean hasPPHealthInsurance = patient.getMedicalCoverage().getId() != 0;
+            boolean hasPPHealthInsurance;
+            if(patient.getMedicalCoverage() != null){
+                hasPPHealthInsurance = patient.getMedicalCoverage().getId() != 0;
+            } else {
+                hasPPHealthInsurance = false;
+            }
             connection = daoConnection.openDBConnection();
             connection.setAutoCommit(false);
             query = getInsertStatement();
@@ -208,7 +212,6 @@ public class DAOPatient extends DAOBasics {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        System.out.println(query);
         daoConnection.closeDBConnection(connection);
         return pacientes;
     }
@@ -323,7 +326,7 @@ public class DAOPatient extends DAOBasics {
                             resultSet.getString("m." + DAOMedicalCoverage.MEDICAL_COVERAGE_NAME)));
                     patient.setMedicalCoverageNumber(resultSet.getString(MEDICAL_COVERAGE_NUMBER));
                 } else {
-                    patient.setMedicalCoverage(new MedicalCoverage(0, MEDICAL_COVERAGE_DEFAULT_NAME));
+                    patient.setMedicalCoverage(new MedicalCoverage(0, MedicalCoverage.NO_MEDICAL_COVERAGE_NAME));
                 }
                 patient.setPhone(resultSet.getString(PHONE));
                 String lastVisitDate = LAST_VISIT_DATE_DEFAULT_VALUE;

@@ -65,8 +65,9 @@ public class FileManager {
             minute = c.get(Calendar.MINUTE) + "";
             second = c.get(Calendar.SECOND) + "";
 
-//            backupFile = new FileWriter(finalLocation.getAbsolutePath() + "\\BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
-            backupFile = new FileWriter(finalLocation.getAbsolutePath() + "/BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
+            backupFile = new FileWriter(finalLocation.getAbsolutePath() + "\\BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
+            //TODO Development environment
+//            backupFile = new FileWriter(finalLocation.getAbsolutePath() + "/BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
             pw = new PrintWriter(backupFile);
             pw.println(temp.toString());
 
@@ -109,8 +110,9 @@ public class FileManager {
             br.close();
             in.close();
 
-//            File archBackUp = new File(Constants.BACKUPS_FOLDER_PATH + "\\BackUp.sql");
-            File archBackUp = new File(Constants.BACKUPS_FOLDER_PATH + "/BackUp.sql");
+            File archBackUp = new File(Constants.BACKUPS_FOLDER_PATH + "\\BackUp.sql");
+            //TODO Development environment
+//            File archBackUp = new File(Constants.BACKUPS_FOLDER_PATH + "/BackUp.sql");
             archBackUp.delete();
             archBackUp.createNewFile();
 
@@ -133,17 +135,18 @@ public class FileManager {
 
     /**
      * Saves a color preference.
-     * 
+     *
      * @param component
-     * @param color 
-     * 
+     * @param color
+     *
      * @return true if correctly saved, false otherwise
      */
     public static boolean saveColor(Component component, int color) {
         try {
             //We create the folder if it doesn't exist
-//            File folder = new File(Constants.COLOR_FILE_PATH.substring(0, Constants.COLOR_FILE_PATH.lastIndexOf("\\")));
-            File folder = new File(Constants.COLOR_FILE_PATH.substring(0, Constants.COLOR_FILE_PATH.lastIndexOf("/")));
+            File folder = new File(Constants.COLOR_FILE_PATH.substring(0, Constants.COLOR_FILE_PATH.lastIndexOf("\\")));
+            //TODO Development environment
+//            File folder = new File(Constants.COLOR_FILE_PATH.substring(0, Constants.COLOR_FILE_PATH.lastIndexOf("/")));
             if (!folder.exists()) {
                 folder.mkdir();
             }
@@ -171,14 +174,13 @@ public class FileManager {
 
     /**
      * Reads a color preference.
-     * 
+     *
      * @return preferred color
      */
     public static int readColor() {
         try {
             File colorFile = new File(Constants.COLOR_FILE_PATH);
             if (!colorFile.canRead()) {
-                saveColor(null, StyleManager.actualColor);
                 return StyleManager.actualColor;
             }
             FileReader fr = new FileReader(new File(Constants.COLOR_FILE_PATH));

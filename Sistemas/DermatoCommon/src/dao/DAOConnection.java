@@ -8,6 +8,7 @@ import utils.Constants;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import utils.ValidationsAndMessages;
 
 /**
  *
@@ -20,7 +21,7 @@ public class DAOConnection extends DAOBasics {
     private static final String URL = Constants.URL;
 
     private static final String OPENING_CONNECTION_WITH_DB_OK = "Connection to Database %s ... Ok";
-    private static final String PROBLEM_OPENING_CONNECTION_WITH_DB = "There was a problem trying to connect to Database $1%s $2%s";
+    private static final String PROBLEM_OPENING_CONNECTION_WITH_DB = "There was a problem trying to connect to Database $1%s.\n SQLSTATE: $2%s.\n EXC MESSAGE: $3%s";
     private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
     private static final String PROBLEM_CLOSING_CONNECTION = "Connection couldn't be closed. Error: \n%s";
     private static final String CLOSING_CONNECTION_OK = "Database disconected successfully";
@@ -39,7 +40,9 @@ public class DAOConnection extends DAOBasics {
             }
             return connection;
         } catch (SQLException ex) {
-            System.out.println(String.format(PROBLEM_OPENING_CONNECTION_WITH_DB, URL, ex.getSQLState()));
+            String error = String.format(PROBLEM_OPENING_CONNECTION_WITH_DB, URL, ex.getSQLState(), ex.getMessage());
+            System.out.println(error);
+            ValidationsAndMessages.showError(null, error);
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
         }

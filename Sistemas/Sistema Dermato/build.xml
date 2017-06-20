@@ -74,7 +74,7 @@
     
     <target name="package-for-store" depends="jar">
         
-        <property name="store.jar.name" value="SistemaGestionPacientesV1.5"/>
+        <property name="store.jar.name" value="SistemaDermatologico"/>
         
         <property name="store.dir" value="store"/>
         <property name="store.jar" value="${store.dir}/${store.jar.name}.jar"/>

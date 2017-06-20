@@ -387,7 +387,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
 
         txtfNames.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtfNames.setMargin(new java.awt.Insets(0, 2, 0, 0));
-        txtfNames.setNextFocusableComponent(txtfLastNames);
+        txtfNames.setNextFocusableComponent(txtfPhone);
         txtfNames.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtfNamesKeyTyped(evt);
@@ -396,7 +396,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
 
         txtfLastNames.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtfLastNames.setMargin(new java.awt.Insets(0, 2, 0, 0));
-        txtfLastNames.setNextFocusableComponent(txtfPhone);
+        txtfLastNames.setNextFocusableComponent(txtfNames);
         txtfLastNames.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtfLastNamesKeyTyped(evt);

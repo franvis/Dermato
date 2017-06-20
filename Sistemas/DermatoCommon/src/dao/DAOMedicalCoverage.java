@@ -4,7 +4,6 @@
 package dao;
 
 import bussines.MedicalCoverage;
-import static bussines.MedicalCoverage.NO_MEDICAL_COBERTURE_NAME;
 import utils.DBConstants;
 import utils.DBConstants.Tables;
 import utils.DBUtils;
@@ -15,6 +14,7 @@ import static utils.DBUtils.getSimpleWhereCondition;
 import static utils.DBUtils.getWhereConditions;
 import java.util.ArrayList;
 import java.util.List;
+import static bussines.MedicalCoverage.NO_MEDICAL_COVERAGE_NAME;
 
 /**
  *
@@ -36,11 +36,15 @@ public class DAOMedicalCoverage extends DAOBasics {
     /**
      * Method used to get all the pre paid health insurances
      *
+     * @param withNoCoverage defines if no medical coverage option should be
+     * added
      * @return All the pre paid health insurances
      */
-    public List<MedicalCoverage> getAllMedicalCoverages() {
+    public List<MedicalCoverage> getAllMedicalCoverages(boolean withNoCoverage) {
         medicalCoverages = new ArrayList<>();
-        medicalCoverages.add(new MedicalCoverage(0, NO_MEDICAL_COBERTURE_NAME));
+        if (withNoCoverage) {
+            medicalCoverages.add(new MedicalCoverage(0, NO_MEDICAL_COVERAGE_NAME));
+        }
         connection = daoConnection.openDBConnection();
         query = DBUtils.getSelectAllStatementWithOrder(Tables.MedicalCoverage,
                 DBUtils.getOrderByCondition(MEDICAL_COVERAGE_NAME, true));
@@ -94,7 +98,7 @@ public class DAOMedicalCoverage extends DAOBasics {
         try {
             connection = daoConnection.openDBConnection();
 
-            columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate();
+            columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(MEDICAL_COVERAGE_NAME);
 
             where = DBUtils.getSimpleWhereCondition(MEDICAL_COVERAGE_ID);
 

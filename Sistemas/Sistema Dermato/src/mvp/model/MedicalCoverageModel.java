@@ -20,8 +20,8 @@ public class MedicalCoverageModel {
         return daoMedicalCoverage.updateMedicalCoverage(medicalCoverage);
     }
 
-    public List<MedicalCoverage> getAllMedicalCoverages() {
-        return daoMedicalCoverage.getAllMedicalCoverages();
+    public List<MedicalCoverage> getAllMedicalCoverages(boolean withNoCoverage) {
+        return daoMedicalCoverage.getAllMedicalCoverages(withNoCoverage);
     }
 
     public String registerMedicalCoverage(MedicalCoverage medicalCoverage) {

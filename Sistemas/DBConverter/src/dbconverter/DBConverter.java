@@ -6,10 +6,10 @@
 package dbconverter;
 
 import bussines.MedicalCoverage;
+import static bussines.MedicalCoverage.NO_MEDICAL_COVERAGE_NAME;
 import bussines.Patient;
 import dao.DAOMedicalCoverage;
 import dao.DAOPatient;
-import static dao.DAOPatient.MEDICAL_COVERAGE_DEFAULT_NAME;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -78,10 +78,12 @@ public class DBConverter {
                     }
 
                     //MEDICAL COVERAGE
-                    if (r.getStringValue("MUT") != null && !r.getStringValue("MUT").trim().isEmpty()) {
+                    if (r.getStringValue("MUT") != null && 
+                            !r.getStringValue("MUT").trim().isEmpty() && 
+                            !r.getStringValue("MUT").trim().equals("PARTICULAR")) {
                         patient.setMedicalCoverage(daoMedicalCoverage.getMedicalCoverage(r.getStringValue("MUT").trim()));
                     } else {
-                        patient.setMedicalCoverage(new MedicalCoverage(0, MEDICAL_COVERAGE_DEFAULT_NAME));
+                        patient.setMedicalCoverage(new MedicalCoverage(0, NO_MEDICAL_COVERAGE_NAME));
                     }
 
                     //BIRTHDAY

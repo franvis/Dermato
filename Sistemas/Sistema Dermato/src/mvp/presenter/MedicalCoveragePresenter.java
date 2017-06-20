@@ -32,7 +32,7 @@ public class MedicalCoveragePresenter {
             return;
         }
 
-        this.medicalCoverages = model.getAllMedicalCoverages();
+        this.medicalCoverages = model.getAllMedicalCoverages(false);
 
         if (this.medicalCoverages == null) {
             view.showErrorMessage("No se pudieron encontrar las obras sociales. Por favor "
@@ -74,7 +74,7 @@ public class MedicalCoveragePresenter {
         }
     }
 
-    public void updateMedicalCoverage(String newName) {
+    public void updateMedicalCoverage(int selectedRow, String newName) {
         if (view == null) {
             return;
         }
@@ -85,7 +85,7 @@ public class MedicalCoveragePresenter {
         if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
             view.showInfoMessage("Actualización Exitosa.");
             loadMedicalCoverages();
-            view.finishRegisteringMedicalCoverage();
+            view.finishUpdatingMedicalCoverage(selectedRow);
         } else {
             view.showErrorMessage("Actualización Fallida: " + result);
         }
