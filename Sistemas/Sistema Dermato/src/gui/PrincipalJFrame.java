@@ -357,7 +357,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         pnlButtons.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pnlButtons.setOpaque(false);
 
-        btnNewPatient.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnNewPatient.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnNewPatient.setForeground(new java.awt.Color(153, 153, 153));
         btnNewPatient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add_user_enabled.png"))); // NOI18N
         btnNewPatient.setText("Nuevo Paciente");
@@ -382,7 +382,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             }
         });
 
-        btnSeeCH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSeeCH.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnSeeCH.setForeground(new java.awt.Color(153, 153, 153));
         btnSeeCH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/HC_enabled.png"))); // NOI18N
         btnSeeCH.setText("Ver Historia Clínica");
@@ -407,7 +407,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             }
         });
 
-        btnModifyPatient.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModifyPatient.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnModifyPatient.setForeground(new java.awt.Color(153, 153, 153));
         btnModifyPatient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit_profile_enabled.png"))); // NOI18N
         btnModifyPatient.setText("Modificar Paciente");
@@ -432,7 +432,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             }
         });
 
-        btnPerformBackup.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnPerformBackup.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnPerformBackup.setForeground(new java.awt.Color(153, 153, 153));
         btnPerformBackup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backup_enabled.png"))); // NOI18N
         btnPerformBackup.setText("Realizar Back Up");

@@ -149,7 +149,7 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
         pnlButtons.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         pnlButtons.setName("pnlButtons"); // NOI18N
 
-        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(0, 51, 102));
         btnDelete.setText("Eliminar");
         btnDelete.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -158,11 +158,11 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
         btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnDelete.setOpaque(true);
         btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnDeleteMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnDeleteMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseEntered(evt);
             }
         });
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -171,7 +171,7 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
             }
         });
 
-        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnCancel.setForeground(new java.awt.Color(0, 51, 102));
         btnCancel.setText("Cancelar");
         btnCancel.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -181,11 +181,11 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
         btnCancel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnCancel.setOpaque(true);
         btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnCancelMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnCancelMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCancelMouseEntered(evt);
             }
         });
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -194,7 +194,7 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
             }
         });
 
-        btnModify.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModify.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnModify.setForeground(new java.awt.Color(0, 51, 102));
         btnModify.setText("Modificar");
         btnModify.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -203,11 +203,11 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
         btnModify.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnModify.setOpaque(true);
         btnModify.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnModifyMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnModifyMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModifyMouseEntered(evt);
             }
         });
         btnModify.addActionListener(new java.awt.event.ActionListener() {
@@ -274,7 +274,7 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        btnBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnBack.setForeground(new java.awt.Color(0, 51, 102));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_enabled.png"))); // NOI18N
         btnBack.setText("Volver");
@@ -324,7 +324,7 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBack)))
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 

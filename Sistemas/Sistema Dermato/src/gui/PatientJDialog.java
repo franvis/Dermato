@@ -634,7 +634,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
                 .addComponent(pnlMedicalCoverage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        btnModify.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModify.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnModify.setForeground(new java.awt.Color(0, 51, 102));
         btnModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit_enabled.png"))); // NOI18N
         btnModify.setText("Modificar");
@@ -656,7 +656,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             }
         });
 
-        btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnSave.setForeground(new java.awt.Color(0, 51, 102));
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save_enabled.png"))); // NOI18N
         btnSave.setText("Guardar");
@@ -679,7 +679,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             }
         });
 
-        btnBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnBack.setForeground(new java.awt.Color(0, 51, 102));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_enabled.png"))); // NOI18N
         btnBack.setText("Volver");

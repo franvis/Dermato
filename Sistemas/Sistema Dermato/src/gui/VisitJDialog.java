@@ -356,7 +356,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
 
         pnlButtons.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnCancel.setForeground(new java.awt.Color(0, 51, 102));
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel_enabled.png"))); // NOI18N
         btnCancel.setText("Cancelar");
@@ -403,7 +403,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
             }
         });
 
-        btnModify.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModify.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnModify.setForeground(new java.awt.Color(0, 51, 102));
         btnModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit_enabled.png"))); // NOI18N
         btnModify.setText("Modificar");

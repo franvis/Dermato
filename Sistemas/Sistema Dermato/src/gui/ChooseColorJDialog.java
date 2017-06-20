@@ -106,7 +106,7 @@ public class ChooseColorJDialog extends javax.swing.JDialog {
         rbtnGreen.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtnGreen.setText("Verde");
 
-        btnPreview.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnPreview.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnPreview.setText("Vista Previa");
         btnPreview.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnPreview.setContentAreaFilled(false);
@@ -117,7 +117,7 @@ public class ChooseColorJDialog extends javax.swing.JDialog {
             }
         });
 
-        btnApply.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnApply.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnApply.setText("Aplicar");
         btnApply.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnApply.setContentAreaFilled(false);
