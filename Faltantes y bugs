@@ -1,5 +1,3 @@
-* Edad no se ve en nueva consulta
-* Obras sociales, ver importación, db converter.
 * No sé puede guardar nueva consulta ni bien guardas paciente
 * trim en todos los campos de registro
 * no se puede borrar obra social que tiene pacientes asociados.

@@ -753,25 +753,31 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="pnlFullName" pref="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                   <Component id="lblstaticBirthday" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lblBirthday" min="-2" pref="134" max="-2" attributes="0"/>
+                                  <Component id="lblBirthday" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lblstaticDni" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblstaticCity" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblstaticAddress" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="lblAddress" pref="133" max="32767" attributes="0"/>
-                                      <Component id="lblDni" max="32767" attributes="0"/>
-                                      <Component id="lblCity" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="lblstaticAddress" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblstaticCity" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="lblAddress" pref="145" max="32767" attributes="0"/>
+                                              <Component id="lblCity" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="lblstaticDni" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lblDni" min="-2" pref="146" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
