@@ -76,15 +76,15 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         String error;
         Patient patient = new Patient();
 
-        patient.setName(txtfNames.getText());
-        patient.setLastname(txtfLastNames.getText());
-        patient.setDni(txtfDni.getText());
-        patient.setPhone(txtfPhone.getText());
-        patient.setAddress(txtfAddress.getText());
-        patient.setCity(txtfCity.getText());
+        patient.setName(txtfNames.getText().trim());
+        patient.setLastname(txtfLastNames.getText().trim());
+        patient.setDni(txtfDni.getText().trim());
+        patient.setPhone(txtfPhone.getText().trim());
+        patient.setAddress(txtfAddress.getText().trim());
+        patient.setCity(txtfCity.getText().trim());
 
-        String birthday = ftxtfBirthday.getText();
-        String firstVisitDate = ftxtfFirstVisitDate.getText();
+        String birthday = ftxtfBirthday.getText().trim();
+        String firstVisitDate = ftxtfFirstVisitDate.getText().trim();
 
         if (!firstVisitDate.isEmpty() && firstVisitDate.compareTo(DATE_MASK) != 0
                 && !birthday.isEmpty() && birthday.compareTo(DATE_MASK) != 0) {
@@ -97,26 +97,26 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         }
 
         if (!birthday.isEmpty() && birthday.compareTo(DATE_MASK) != 0) {
-            error = ValidationsAndMessages.validateDateInCommonRange(ftxtfBirthday.getText());
+            error = ValidationsAndMessages.validateDateInCommonRange(ftxtfBirthday.getText().trim());
             if (!error.isEmpty()) {
                 showErrorMessage(String.format(BIRTHDAY_DATE_FORMAT_ERROR, error));
                 return null;
             } else {
-                patient.setBirthday(this.ftxtfBirthday.getText());
+                patient.setBirthday(this.ftxtfBirthday.getText().trim());
             }
         }
 
         if (!firstVisitDate.isEmpty() && firstVisitDate.compareTo(DATE_MASK) != 0) {
-            error = ValidationsAndMessages.validateDateInCommonRange(ftxtfFirstVisitDate.getText());
+            error = ValidationsAndMessages.validateDateInCommonRange(ftxtfFirstVisitDate.getText().trim());
             if (!error.isEmpty()) {
                 showErrorMessage(String.format(FIRST_VISIT_DATE_FORMAT_ERROR, error));
                 return null;
             } else {
-                patient.setFirstVisitDate(this.ftxtfFirstVisitDate.getText());
+                patient.setFirstVisitDate(this.ftxtfFirstVisitDate.getText().trim());
             }
         }
 
-        patient.setMedicalCoverageNumber(this.txtfMedicalCoverageNumber.getText());
+        patient.setMedicalCoverageNumber(this.txtfMedicalCoverageNumber.getText().trim());
         generateAntecedents(patient);
 
         return patient;
@@ -129,11 +129,11 @@ public class PatientJDialog extends JDialog implements PatientABMView {
     private void generateAntecedents(Patient patient) {
         Antecedents antecedents = new Antecedents();
 
-        antecedents.setPersonalAntecedents(this.txtaPersonal.getText());
-        antecedents.setSurgicalAntecedents(this.txtaSurgical.getText());
-        antecedents.setToxicAntecedents(this.txtaToxics.getText());
-        antecedents.setFamilyAntecedents(this.txtaFamily.getText());
-        antecedents.setPharmacologicalAntecedents(this.txtaPharmacological.getText());
+        antecedents.setPersonalAntecedents(this.txtaPersonal.getText().trim());
+        antecedents.setSurgicalAntecedents(this.txtaSurgical.getText().trim());
+        antecedents.setToxicAntecedents(this.txtaToxics.getText().trim());
+        antecedents.setFamilyAntecedents(this.txtaFamily.getText().trim());
+        antecedents.setPharmacologicalAntecedents(this.txtaPharmacological.getText().trim());
 
         patient.setAntecedents(antecedents);
     }
@@ -1027,7 +1027,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             return;
         }
 
-        String nuevaObra = this.txtfNewMedicalCoverage.getText();
+        String nuevaObra = this.txtfNewMedicalCoverage.getText().trim();
         presenter.registerMedicalCoverage(new MedicalCoverage(0, nuevaObra));
     }//GEN-LAST:event_btnSaveMedicalCoverageActionPerformed
 

@@ -67,7 +67,7 @@ public class FileManager {
 
             backupFile = new FileWriter(finalLocation.getAbsolutePath() + "\\BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
             //TODO Development environment
-//            backupFile = new FileWriter(finalLocation.getAbsolutePath() + "/BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
+            backupFile = new FileWriter(finalLocation.getAbsolutePath() + "/BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
             pw = new PrintWriter(backupFile);
             pw.println(temp.toString());
 
@@ -96,7 +96,7 @@ public class FileManager {
             Process run = Runtime.getRuntime().exec(
                     Constants.BACKUP_PRCESS_PATH + " --host=" + HOST + " --port=" + PORT
                     + " --user=" + USER + " --password=" + PASSWORD
-                    + " --compact --add-drop-database --complete-insert --extended-insert --skip-quote-names"
+                    + " --compact --database "+DB+" --add-drop-database --complete-insert --extended-insert --skip-quote-names"
                     + " --skip-comments --skip-triggers " + DB);
 
             InputStream in = run.getInputStream();

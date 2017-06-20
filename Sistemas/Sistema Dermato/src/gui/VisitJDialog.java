@@ -906,14 +906,14 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
      */
     private Visit generateVisit() {
         Visit visit = new Visit();
-        visit.setDate(this.lblDate.getText());
-        visit.setReason(this.txtaReason.getText());
-        visit.setTreatment(this.txtaTreatment.getText());
-        visit.setComplementaryStudies(this.txtaComplementaryStudies.getText());
-        visit.setLaboratory(this.txtaLaboratory.getText());
-        visit.setDiagnosis(this.txtaDiagnosis.getText());
-        visit.setPhysicalExam(this.txtaPhysicalExam.getText());
-        visit.setBiopsy(this.txtaBiopsy.getText());
+        visit.setDate(this.lblDate.getText().trim());
+        visit.setReason(this.txtaReason.getText().trim());
+        visit.setTreatment(this.txtaTreatment.getText().trim());
+        visit.setComplementaryStudies(this.txtaComplementaryStudies.getText().trim());
+        visit.setLaboratory(this.txtaLaboratory.getText().trim());
+        visit.setDiagnosis(this.txtaDiagnosis.getText().trim());
+        visit.setPhysicalExam(this.txtaPhysicalExam.getText().trim());
+        visit.setBiopsy(this.txtaBiopsy.getText().trim());
         return visit;
     }
 

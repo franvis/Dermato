@@ -567,11 +567,11 @@ private void txtaToxicKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
 
     private Antecedents generateAntecedents() {
         Antecedents antecedents = new Antecedents();
-        antecedents.setPersonalAntecedents(this.txtaPersonal.getText());
-        antecedents.setSurgicalAntecedents(this.txtaSurgical.getText());
-        antecedents.setToxicAntecedents(this.txtaToxic.getText());
-        antecedents.setPharmacologicalAntecedents(this.txtaPharmacological.getText());
-        antecedents.setFamilyAntecedents(this.txtaFamily.getText());
+        antecedents.setPersonalAntecedents(this.txtaPersonal.getText().trim());
+        antecedents.setSurgicalAntecedents(this.txtaSurgical.getText().trim());
+        antecedents.setToxicAntecedents(this.txtaToxic.getText().trim());
+        antecedents.setPharmacologicalAntecedents(this.txtaPharmacological.getText().trim());
+        antecedents.setFamilyAntecedents(this.txtaFamily.getText().trim());
         return antecedents;
     }
 }

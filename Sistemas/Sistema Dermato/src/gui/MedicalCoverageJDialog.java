@@ -401,9 +401,9 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
             return;
         }
         if (isUpdating) {
-            presenter.updateMedicalCoverage(tblMedicalCoverages.getSelectedRow(), txtMedicalCoverageName.getText());
+            presenter.updateMedicalCoverage(tblMedicalCoverages.getSelectedRow(), txtMedicalCoverageName.getText().trim());
         } else {
-            presenter.registerMedicalCoverage(txtMedicalCoverageName.getText());
+            presenter.registerMedicalCoverage(txtMedicalCoverageName.getText().trim());
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
