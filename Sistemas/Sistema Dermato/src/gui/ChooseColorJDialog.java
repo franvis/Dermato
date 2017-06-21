@@ -189,6 +189,7 @@ private void btnPreviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_btnPreviewActionPerformed
 
 private void btnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplyActionPerformed
+    color = getSelectedColor();
     this.dispose();
     if (FileManager.saveColor(null, color)) {
         StyleManager.paint(getParent());
@@ -217,6 +218,17 @@ private void btnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     // End of variables declaration//GEN-END:variables
 
     private void preview() {
+        color = getSelectedColor();
+        utils.StyleManager.paintComponents(this, color);
+    }
+
+    private void setupInitialUi() {
+        setLocationRelativeTo(getParent());
+        StyleManager.paint(this);
+        this.rbtnDefault.setBackground(new Color(240, 240, 240));
+    }
+
+    private int getSelectedColor() {
         if (rbtnDefault.isSelected()) {
             color = 0;
         }
@@ -238,12 +250,6 @@ private void btnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         if (rbtnPurple.isSelected()) {
             color = 6;
         }
-        utils.StyleManager.paintComponents(this, color);
-    }
-
-    private void setupInitialUi() {
-        setLocationRelativeTo(getParent());
-        StyleManager.paint(this);
-        this.rbtnDefault.setBackground(new Color(240, 240, 240));
+        return color;
     }
 }

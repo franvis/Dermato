@@ -268,6 +268,7 @@ public class StyleManager {
         try {
             actualColor = FileManager.readColor();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         paintComponents(container, actualColor);
     }

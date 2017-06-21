@@ -67,7 +67,7 @@ public class FileManager {
 
             backupFile = new FileWriter(finalLocation.getAbsolutePath() + "\\BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
             //TODO Development environment
-            backupFile = new FileWriter(finalLocation.getAbsolutePath() + "/BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
+//            backupFile = new FileWriter(finalLocation.getAbsolutePath() + "/BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
             pw = new PrintWriter(backupFile);
             pw.println(temp.toString());
 

@@ -83,8 +83,8 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         patient.setAddress(txtfAddress.getText().trim());
         patient.setCity(txtfCity.getText().trim());
 
-        String birthday = ftxtfBirthday.getText().trim();
-        String firstVisitDate = ftxtfFirstVisitDate.getText().trim();
+        String birthday = ftxtfBirthday.getText();
+        String firstVisitDate = ftxtfFirstVisitDate.getText();
 
         if (!firstVisitDate.isEmpty() && firstVisitDate.compareTo(DATE_MASK) != 0
                 && !birthday.isEmpty() && birthday.compareTo(DATE_MASK) != 0) {
@@ -97,22 +97,22 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         }
 
         if (!birthday.isEmpty() && birthday.compareTo(DATE_MASK) != 0) {
-            error = ValidationsAndMessages.validateDateInCommonRange(ftxtfBirthday.getText().trim());
+            error = ValidationsAndMessages.validateDateInCommonRange(ftxtfBirthday.getText());
             if (!error.isEmpty()) {
                 showErrorMessage(String.format(BIRTHDAY_DATE_FORMAT_ERROR, error));
                 return null;
             } else {
-                patient.setBirthday(this.ftxtfBirthday.getText().trim());
+                patient.setBirthday(this.ftxtfBirthday.getText());
             }
         }
 
         if (!firstVisitDate.isEmpty() && firstVisitDate.compareTo(DATE_MASK) != 0) {
-            error = ValidationsAndMessages.validateDateInCommonRange(ftxtfFirstVisitDate.getText().trim());
+            error = ValidationsAndMessages.validateDateInCommonRange(ftxtfFirstVisitDate.getText());
             if (!error.isEmpty()) {
                 showErrorMessage(String.format(FIRST_VISIT_DATE_FORMAT_ERROR, error));
                 return null;
             } else {
-                patient.setFirstVisitDate(this.ftxtfFirstVisitDate.getText().trim());
+                patient.setFirstVisitDate(this.ftxtfFirstVisitDate.getText());
             }
         }
 

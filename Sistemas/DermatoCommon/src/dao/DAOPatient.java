@@ -61,7 +61,7 @@ public class DAOPatient extends DAOBasics {
     public String registerPatient(Patient patient) {
         try {
             boolean hasPPHealthInsurance;
-            if(patient.getMedicalCoverage() != null){
+            if (patient.getMedicalCoverage() != null) {
                 hasPPHealthInsurance = patient.getMedicalCoverage().getId() != 0;
             } else {
                 hasPPHealthInsurance = false;
@@ -104,6 +104,8 @@ public class DAOPatient extends DAOBasics {
             rs.next();
             int patientId = rs.getInt(1);
             if (patientId != 0) {
+                //HERE WE SET THE CREATED ID TO THE REFERENCED PATIENT
+                patient.setPatientId(patientId);
                 query = daoAntecedents.getInsertStatement();
                 Antecedents antecedents = patient.getAntecedents();
                 preparedStatement = connection.prepareStatement(query);
@@ -197,15 +199,16 @@ public class DAOPatient extends DAOBasics {
                 patient.setDni(resultSet.getString(DNI));
                 patient.setName(resultSet.getString(NAME));
                 patient.setLastname(resultSet.getString(LASTNAME));
+                
                 if (resultSet.getString(BIRTHDAY) != null) {
                     patient.setBirthday(DBUtils.getFormattedDate(resultSet.getString(BIRTHDAY)));
                 }
-                String lastVisitDate = LAST_VISIT_DATE_DEFAULT_VALUE;
+
                 if (resultSet.getObject(LAST_VISIT_DATE_KEY) != null) {
-                    lastVisitDate = DBUtils.getFormattedDate(resultSet.
+                    String lastVisitDate = DBUtils.getFormattedDate(resultSet.
                             getString(LAST_VISIT_DATE_KEY));
+                    patient.setLastVisitDate(lastVisitDate);
                 }
-                patient.setLastVisitDate(lastVisitDate);
                 pacientes.add(patient);
             }
             preparedStatement.close();
@@ -271,14 +274,14 @@ public class DAOPatient extends DAOBasics {
                 + " p.medicalCoverage = m.idMedicalCoverage";
 
         columns = DBUtils.getStringWithValuesSeparatedWithCommas(
-                "d." + DAODniType.DNI_TYPE_ID, "d." + DAODniType.DNI_TYPE_NAME, 
-                "p." + DNI_TYPE, "p." + DNI, "p." + NAME, 
+                "d." + DAODniType.DNI_TYPE_ID, "d." + DAODniType.DNI_TYPE_NAME,
+                "p." + DNI_TYPE, "p." + DNI, "p." + NAME,
                 "p." + LASTNAME, "p." + PHONE, "p." + ADDRESS,
-                "p." + CITY, "p." + BIRTHDAY, "p." + PATIENT_ID, 
+                "p." + CITY, "p." + BIRTHDAY, "p." + PATIENT_ID,
                 "p." + MEDICAL_COVERAGE, "p." + MEDICAL_COVERAGE_NUMBER,
-                "p." + FIRST_VISIT_DATE, "p." + PREVIOUS_CH, 
+                "p." + FIRST_VISIT_DATE, "p." + PREVIOUS_CH,
                 DBUtils.getMaxColumnAs("v." + DAOVisit.DATE, LAST_VISIT_DATE_KEY),
-                "a." + DAOAntecedents.PERSONAL, "a." + DAOAntecedents.SURGICAL, 
+                "a." + DAOAntecedents.PERSONAL, "a." + DAOAntecedents.SURGICAL,
                 "a." + DAOAntecedents.TOXIC, "a." + DAOAntecedents.FAMILY,
                 "a." + DAOAntecedents.PHARMACOLOGICAL, "m." + DAOMedicalCoverage.MEDICAL_COVERAGE_NAME,
                 "m." + DAOMedicalCoverage.MEDICAL_COVERAGE_ID);

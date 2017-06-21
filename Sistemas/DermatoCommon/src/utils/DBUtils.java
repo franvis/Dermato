@@ -220,24 +220,17 @@ public class DBUtils {
 
     public static String getOrderByForFilters(String filterName, String filterLastName, String filterDni) {
         StringBuilder orderBy = new StringBuilder();
+
+        orderBy.append(getOrderByCondition(DAOPatient.LASTNAME, true));
+        orderBy.append(" , ");
+        orderBy.append(getOrderByCondition(DAOPatient.NAME, true));
+
         if (!filterDni.isEmpty()) {
+            orderBy.append(" , ");
             orderBy.append(getOrderByCondition(DAOPatient.DNI, true)).append(" , ")
                     .append(getOrderByCondition(DAOPatient.DNI_TYPE, true));
         }
 
-        if (!filterLastName.isEmpty()) {
-            if (!orderBy.toString().isEmpty()) {
-                orderBy.append(" , ");
-            }
-            orderBy.append(getOrderByCondition(DAOPatient.LASTNAME, true));
-        }
-
-        if (!filterName.isEmpty()) {
-            if (!orderBy.toString().isEmpty()) {
-                orderBy.append(" , ");
-            }
-            orderBy.append(getOrderByCondition(DAOPatient.NAME, true));
-        }
         return orderBy.toString();
     }
 
