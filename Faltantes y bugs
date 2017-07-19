@@ -1,2 +1,6 @@
-* No sé puede guardar nueva consulta ni bien guardas paciente
+Cosas a ver:
 * revisar el back up de la bd. ver si podemos dejar los inserts solos.
+Modificaciones a futuro:
+* Ver scroll en obras sociales q no anda
+* Imprimir HC
+* Eliminar consultas y pacientes.
