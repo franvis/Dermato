@@ -160,9 +160,6 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         if (!incomplete.isEmpty()) {
             showErrorMessage(String.format(MANDATORY_FIELDS_ERROR, incomplete));
             return false;
-        } else if (cmbMedicalCoverage.getSelectedIndex() != 0 && txtfMedicalCoverageNumber.getText().isEmpty()) {
-            showErrorMessage("Por favor ingrese el numero de afiliado para la obra social seleccionada.");
-            return false;
         } else {
             return true;
         }

@@ -135,13 +135,9 @@ public class PatientABMPresenter {
         DniType dniType = dniTypes.get(dniTypeSelected);
         patient.setDniType(dniType);
 
-        String patientInsuranceNumberMatch = patientAbmModel.validatePatientInsuranceNumber(patient);
         String patientDniMatch = patientAbmModel.verifyPatientDni(patient);
 
-        if (patientInsuranceNumberMatch != null && !patientInsuranceNumberMatch.isEmpty()) {
-            view.showErrorMessage("El paciente ya se encuentra registrado bajo el nombre de "
-                    + patientInsuranceNumberMatch + " con la misma obra social y numero de afiliado.");
-        } else if (patientDniMatch != null && !patientDniMatch.isEmpty()) {
+        if (patientDniMatch != null && !patientDniMatch.isEmpty()) {
             view.showErrorMessage("El paciente ya se encuentra registrado bajo el nombre de "
                     + patientDniMatch + " con el mismo dni.");
         } else {

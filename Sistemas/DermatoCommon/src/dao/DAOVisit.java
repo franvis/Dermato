@@ -31,7 +31,7 @@ public class DAOVisit extends DAOBasics {
     public static final String TREATMENT = "treatment";
     public static final String COMPLEMENTARY_STUDIES = "complementaryStudies";
     public static final String LABORATORY = "laboratory";
-    public static final String DIAGNOSIS = "diagnosis";
+    public static final String ANTECEDENTS = "antecedents";
     public static final String PHYSICAL_EXAM = "physicalExam";
     public static final String BIOPSY = "biopsy";
     private static final String PATIENT_ID = "patient";
@@ -60,7 +60,7 @@ public class DAOVisit extends DAOBasics {
             preparedStatement.setString(3, visit.getTreatment());
             preparedStatement.setString(4, visit.getComplementaryStudies());
             preparedStatement.setString(5, visit.getLaboratory());
-            preparedStatement.setString(6, visit.getDiagnosis());
+            preparedStatement.setString(6, visit.getAntecedents());
             preparedStatement.setString(7, visit.getPhysicalExam());
             preparedStatement.setString(8, visit.getBiopsy());
             preparedStatement.setInt(9, patient.getPatientId());
@@ -136,8 +136,7 @@ public class DAOVisit extends DAOBasics {
     public LinkedList<Visit> getAllPatientVisits(Patient patient) {
         LinkedList<Visit> visits = new LinkedList<>();
 
-        columns = DBUtils.getStringWithValuesSeparatedWithCommas(
-                VISIT_ID, DATE, REASON, DIAGNOSIS, TREATMENT);
+        columns = DBUtils.getStringWithValuesSeparatedWithCommas(VISIT_ID, DATE, REASON, ANTECEDENTS, TREATMENT);
         where = DBUtils.getSimpleWhereCondition(PATIENT_ID);
         orderBy = DBUtils.getStringWithValuesSeparatedWithCommas(
                 DBUtils.getOrderByCondition(DATE, false),
@@ -156,7 +155,7 @@ public class DAOVisit extends DAOBasics {
                 visit.setId(Integer.parseInt(resultSet.getString(VISIT_ID)));
                 visit.setDate(DBUtils.getFormattedDate(resultSet.getString(DATE)));
                 visit.setReason(resultSet.getString(REASON));
-                visit.setDiagnosis(resultSet.getString(DIAGNOSIS));
+                visit.setAntecedents(resultSet.getString(ANTECEDENTS));
                 visit.setTreatment(resultSet.getString(TREATMENT));
                 visits.add(visit);
             }
@@ -200,7 +199,7 @@ public class DAOVisit extends DAOBasics {
                 visit.setTreatment(resultSet.getString(TREATMENT));
                 visit.setComplementaryStudies(resultSet.getString(COMPLEMENTARY_STUDIES));
                 visit.setLaboratory(resultSet.getString(LABORATORY));
-                visit.setDiagnosis(resultSet.getString(DIAGNOSIS));
+                visit.setAntecedents(resultSet.getString(ANTECEDENTS));
                 visit.setPhysicalExam(resultSet.getString(PHYSICAL_EXAM));
                 visit.setBiopsy(resultSet.getString(BIOPSY));
             }
@@ -225,9 +224,8 @@ public class DAOVisit extends DAOBasics {
             this.visit = visit;
             connection = daoConnection.openDBConnection();
 
-            columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(
-                    REASON, TREATMENT, COMPLEMENTARY_STUDIES,
-                    LABORATORY, DIAGNOSIS, PHYSICAL_EXAM,
+            columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(REASON, TREATMENT, COMPLEMENTARY_STUDIES,
+                    LABORATORY, ANTECEDENTS, PHYSICAL_EXAM,
                     BIOPSY);
 
             where = DBUtils.getSimpleWhereCondition(VISIT_ID);
@@ -239,7 +237,7 @@ public class DAOVisit extends DAOBasics {
             preparedStatement.setString(2, visit.getTreatment());
             preparedStatement.setString(3, visit.getComplementaryStudies());
             preparedStatement.setString(4, visit.getLaboratory());
-            preparedStatement.setString(5, visit.getDiagnosis());
+            preparedStatement.setString(5, visit.getAntecedents());
             preparedStatement.setString(6, visit.getPhysicalExam());
             preparedStatement.setString(7, visit.getBiopsy());
             preparedStatement.setInt(8, visit.getId());

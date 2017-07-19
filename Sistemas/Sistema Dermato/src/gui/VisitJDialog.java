@@ -105,9 +105,9 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlLaboratory = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         txtaLaboratory = new javax.swing.JTextArea();
-        pnlDiagnosis = new javax.swing.JPanel();
+        pnlAntecedents = new javax.swing.JPanel();
         jScrollPane11 = new javax.swing.JScrollPane();
-        txtaDiagnosis = new javax.swing.JTextArea();
+        txtaAntecedents = new javax.swing.JTextArea();
         pnlButtons = new javax.swing.JPanel();
         btnCancel = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
@@ -306,7 +306,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         txtaLaboratory.setTabSize(0);
         txtaLaboratory.setWrapStyleWord(true);
         txtaLaboratory.setMargin(new java.awt.Insets(0, 2, 0, 0));
-        txtaLaboratory.setNextFocusableComponent(txtaDiagnosis);
+        txtaLaboratory.setNextFocusableComponent(txtaAntecedents);
         txtaLaboratory.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtaLaboratoryKeyPressed(evt);
@@ -325,32 +325,32 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
             .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
         );
 
-        pnlDiagnosis.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Diagnóstico", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
-        pnlDiagnosis.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        pnlAntecedents.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Antecedentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlAntecedents.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
 
-        txtaDiagnosis.setColumns(20);
-        txtaDiagnosis.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtaDiagnosis.setLineWrap(true);
-        txtaDiagnosis.setRows(2);
-        txtaDiagnosis.setTabSize(0);
-        txtaDiagnosis.setWrapStyleWord(true);
-        txtaDiagnosis.setMargin(new java.awt.Insets(0, 2, 0, 0));
-        txtaDiagnosis.setNextFocusableComponent(txtaPhysicalExam);
-        txtaDiagnosis.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtaAntecedents.setColumns(20);
+        txtaAntecedents.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaAntecedents.setLineWrap(true);
+        txtaAntecedents.setRows(2);
+        txtaAntecedents.setTabSize(0);
+        txtaAntecedents.setWrapStyleWord(true);
+        txtaAntecedents.setMargin(new java.awt.Insets(0, 2, 0, 0));
+        txtaAntecedents.setNextFocusableComponent(txtaPhysicalExam);
+        txtaAntecedents.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtaDiagnosisKeyPressed(evt);
+                txtaAntecedentsKeyPressed(evt);
             }
         });
-        jScrollPane11.setViewportView(txtaDiagnosis);
+        jScrollPane11.setViewportView(txtaAntecedents);
 
-        javax.swing.GroupLayout pnlDiagnosisLayout = new javax.swing.GroupLayout(pnlDiagnosis);
-        pnlDiagnosis.setLayout(pnlDiagnosisLayout);
-        pnlDiagnosisLayout.setHorizontalGroup(
-            pnlDiagnosisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlAntecedentsLayout = new javax.swing.GroupLayout(pnlAntecedents);
+        pnlAntecedents.setLayout(pnlAntecedentsLayout);
+        pnlAntecedentsLayout.setHorizontalGroup(
+            pnlAntecedentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane11)
         );
-        pnlDiagnosisLayout.setVerticalGroup(
-            pnlDiagnosisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlAntecedentsLayout.setVerticalGroup(
+            pnlAntecedentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
         );
 
@@ -693,7 +693,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
                     .addComponent(pnlTreatment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlReason, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlDiagnosis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlAntecedents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlExams, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -719,7 +719,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlLaboratory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlDiagnosis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pnlAntecedents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnlPatientsData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -822,9 +822,9 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         handleFocus(evt);
     }//GEN-LAST:event_txtaLaboratoryKeyPressed
 
-    private void txtaDiagnosisKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaDiagnosisKeyPressed
+    private void txtaAntecedentsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaAntecedentsKeyPressed
         handleFocus(evt);
-    }//GEN-LAST:event_txtaDiagnosisKeyPressed
+    }//GEN-LAST:event_txtaAntecedentsKeyPressed
 
     private void txtaPhysicalExamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtaPhysicalExamKeyPressed
         handleFocus(evt);
@@ -867,11 +867,11 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
     private javax.swing.JLabel lblstaticFirstVisitDate;
     private javax.swing.JLabel lblstaticNombre;
     private javax.swing.JLabel lblstaticPhone;
+    private javax.swing.JPanel pnlAntecedents;
     private javax.swing.JPanel pnlBiopsy;
     private javax.swing.JPanel pnlButtons;
     private javax.swing.JPanel pnlComplementaryStudies;
     private javax.swing.JPanel pnlDate;
-    private javax.swing.JPanel pnlDiagnosis;
     private javax.swing.JTabbedPane pnlExams;
     private javax.swing.JPanel pnlFullName;
     private javax.swing.JPanel pnlLaboratory;
@@ -880,9 +880,9 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
     private javax.swing.JPanel pnlReason;
     private javax.swing.JPanel pnlReferences;
     private javax.swing.JPanel pnlTreatment;
+    private javax.swing.JTextArea txtaAntecedents;
     private javax.swing.JTextArea txtaBiopsy;
     private javax.swing.JTextArea txtaComplementaryStudies;
-    private javax.swing.JTextArea txtaDiagnosis;
     private javax.swing.JTextArea txtaLaboratory;
     private javax.swing.JTextArea txtaPhysicalExam;
     private javax.swing.JTextArea txtaReason;
@@ -911,7 +911,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         visit.setTreatment(this.txtaTreatment.getText().trim());
         visit.setComplementaryStudies(this.txtaComplementaryStudies.getText().trim());
         visit.setLaboratory(this.txtaLaboratory.getText().trim());
-        visit.setDiagnosis(this.txtaDiagnosis.getText().trim());
+        visit.setAntecedents(this.txtaAntecedents.getText().trim());
         visit.setPhysicalExam(this.txtaPhysicalExam.getText().trim());
         visit.setBiopsy(this.txtaBiopsy.getText().trim());
         return visit;
@@ -927,7 +927,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         this.txtaTreatment.setEnabled(state);
         this.txtaComplementaryStudies.setEnabled(state);
         this.txtaLaboratory.setEnabled(state);
-        this.txtaDiagnosis.setEnabled(state);
+        this.txtaAntecedents.setEnabled(state);
         this.txtaPhysicalExam.setEnabled(state);
         this.txtaBiopsy.setEnabled(state);
         this.btnCancel.setEnabled(state);
@@ -1042,7 +1042,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         this.txtaTreatment.setText(visit.getTreatment());
         this.txtaComplementaryStudies.setText(visit.getComplementaryStudies());
         this.txtaLaboratory.setText(visit.getLaboratory());
-        this.txtaDiagnosis.setText(visit.getDiagnosis());
+        this.txtaAntecedents.setText(visit.getAntecedents());
         this.txtaPhysicalExam.setText(visit.getPhysicalExam());
         this.txtaBiopsy.setText(visit.getBiopsy());
     }

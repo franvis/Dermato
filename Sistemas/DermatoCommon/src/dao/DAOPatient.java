@@ -72,9 +72,12 @@ public class DAOPatient extends DAOBasics {
             preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             if (hasPPHealthInsurance) {
                 preparedStatement.setInt(9, patient.getMedicalCoverage().getId());
-                preparedStatement.setString(10, patient.getMedicalCoverageNumber());
             } else {
                 preparedStatement.setNull(9, java.sql.Types.INTEGER);
+            }
+            if (patient.getMedicalCoverageNumber() != null) {
+                preparedStatement.setString(10, patient.getMedicalCoverageNumber());
+            } else {
                 preparedStatement.setNull(10, java.sql.Types.VARCHAR);
             }
             if (patient.getDni() != null && !patient.getDni().isEmpty()) {
@@ -199,7 +202,7 @@ public class DAOPatient extends DAOBasics {
                 patient.setDni(resultSet.getString(DNI));
                 patient.setName(resultSet.getString(NAME));
                 patient.setLastname(resultSet.getString(LASTNAME));
-                
+
                 if (resultSet.getString(BIRTHDAY) != null) {
                     patient.setBirthday(DBUtils.getFormattedDate(resultSet.getString(BIRTHDAY)));
                 }
@@ -324,13 +327,17 @@ public class DAOPatient extends DAOBasics {
                 if (resultSet.getString(PREVIOUS_CH) != null) {
                     patient.setPreviousCH(resultSet.getString(PREVIOUS_CH));
                 }
-                if (resultSet.getObject(MEDICAL_COVERAGE) != null && resultSet.getInt(MEDICAL_COVERAGE) != 0) {
+                if (resultSet.getObject(MEDICAL_COVERAGE) != null) {
                     patient.setMedicalCoverage(new MedicalCoverage(resultSet.getInt("m." + DAOMedicalCoverage.MEDICAL_COVERAGE_ID),
                             resultSet.getString("m." + DAOMedicalCoverage.MEDICAL_COVERAGE_NAME)));
-                    patient.setMedicalCoverageNumber(resultSet.getString(MEDICAL_COVERAGE_NUMBER));
                 } else {
                     patient.setMedicalCoverage(new MedicalCoverage(0, MedicalCoverage.NO_MEDICAL_COVERAGE_NAME));
                 }
+
+                if (resultSet.getInt(MEDICAL_COVERAGE) != 0) {
+                    patient.setMedicalCoverageNumber(resultSet.getString(MEDICAL_COVERAGE_NUMBER));
+                }
+                
                 patient.setPhone(resultSet.getString(PHONE));
                 String lastVisitDate = LAST_VISIT_DATE_DEFAULT_VALUE;
                 if (resultSet.getObject(LAST_VISIT_DATE_KEY) != null) {

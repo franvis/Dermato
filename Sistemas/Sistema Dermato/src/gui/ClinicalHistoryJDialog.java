@@ -36,7 +36,6 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
 
     private static final String TABLE_COLUMN_DATE = "Fecha";
     private static final String TABLE_COLUMN_REASON = "Motivo";
-    private static final String TABLE_COLUMN_DIAGNOSIS = "Diagnóstico";
     private static final String TABLE_COLUMN_TREATMENT = "Tratamiento";
 
     private final ClinicalHistoryPresenter presenter;
@@ -69,7 +68,6 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         tblVisits.getColumn(TABLE_COLUMN_DATE).setMaxWidth(120);
         tblVisits.getColumn(TABLE_COLUMN_DATE).setResizable(false);
         tblVisits.getColumn(TABLE_COLUMN_REASON).setResizable(false);
-        tblVisits.getColumn(TABLE_COLUMN_DIAGNOSIS).setResizable(false);
         tblVisits.getColumn(TABLE_COLUMN_TREATMENT).setResizable(false);
         tblVisits.getTableHeader().setFont(new Font(Constants.SYSTEM_FONT, Font.PLAIN, 14));
         tblVisits.setDefaultRenderer(String.class, new MultiLineCellRenderer());
@@ -148,24 +146,24 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         tblVisits.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tblVisits.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Fecha", "Motivo", "Diagnóstico", "Tratamiento"
+                "Fecha", "Motivo", "Tratamiento"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -688,10 +686,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
                 o = new Object[4];
                 o[0] = visits.get(i).getDate();
                 o[1] = visits.get(i).getReason();
-                o[2] = (visits.get(i).getDiagnosis() != null 
-                        && !visits.get(i).getDiagnosis().isEmpty()) 
-                        ? visits.get(i).getDiagnosis() : "-";
-                o[3] = (visits.get(i).getTreatment() != null 
+                o[2] = (visits.get(i).getTreatment() != null 
                         && !visits.get(i).getTreatment().isEmpty()) 
                         ? visits.get(i).getTreatment() : "-";
                 visitsDtm.addRow(o);

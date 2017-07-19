@@ -14,7 +14,7 @@ public class Visit {
     private String treatment;
     private String complementaryStudies;
     private String laboratory;
-    private String diagnosis;
+    private String antecedents;
     private String physicalExam;
     private String biopsy;
 
@@ -32,7 +32,7 @@ public class Visit {
         this.physicalExam = physicalExam;
         this.biopsy = biopsy;
         this.laboratory = laboratory;
-        this.diagnosis = diagnosis;
+        this.antecedents = diagnosis;
     }
     
     public String getComplementaryStudies() {
@@ -67,12 +67,12 @@ public class Visit {
         this.treatment = treatment;
     }
 
-    public String getDiagnosis() {
-        return diagnosis;
+    public String getAntecedents() {
+        return antecedents;
     }
 
-    public void setDiagnosis(String diagnosis) {
-        this.diagnosis = diagnosis;
+    public void setAntecedents(String antecedents) {
+        this.antecedents = antecedents;
     }
 
     public int getId() {
