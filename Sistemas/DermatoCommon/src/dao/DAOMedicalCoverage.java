@@ -156,6 +156,8 @@ public class DAOMedicalCoverage extends DAOBasics {
      * @return Pre paid health insurance
      */
     public MedicalCoverage getMedicalCoverage(int idMedicalCoverage) {
+        medicalCoverage = new MedicalCoverage(0, NO_MEDICAL_COVERAGE_NAME);
+        
         where = getWhereConditions(getSimpleWhereCondition(MEDICAL_COVERAGE_ID));
 
         query = DBUtils.getSelectAllStatementWithWhere(Tables.MedicalCoverage,
@@ -167,7 +169,6 @@ public class DAOMedicalCoverage extends DAOBasics {
             preparedStatement.executeQuery();
             resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
-                medicalCoverage = new MedicalCoverage();
                 medicalCoverage.setId(resultSet.getInt(MEDICAL_COVERAGE_ID));
                 medicalCoverage.setName(resultSet.getString(MEDICAL_COVERAGE_NAME));
             }
@@ -184,18 +185,18 @@ public class DAOMedicalCoverage extends DAOBasics {
      * Method used to retrieve a Pre paid Health Insurance. ONLY USED FOR DB
      * TRASPASSING
      *
-     * @param name name of the pre paid health insurance
+     * @param id name of the pre paid health insurance
      * @return Pre paid health insurance
      */
-    public MedicalCoverage getMedicalCoverage(String name) {
-        where = getWhereConditions(getSimpleWhereCondition(MEDICAL_COVERAGE_NAME));
+    public MedicalCoverage getMedicalCoverage(String id) {
+        where = getWhereConditions(getSimpleWhereCondition(MEDICAL_COVERAGE_ID));
 
         query = DBUtils.getSelectAllStatementWithWhere(Tables.MedicalCoverage,
                 where);
         try {
             connection = daoConnection.openDBConnection();
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, name);
+            preparedStatement.setString(1, id);
             preparedStatement.executeQuery();
             resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {

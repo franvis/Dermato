@@ -78,12 +78,16 @@ public class DBConverter {
                     }
 
                     //MEDICAL COVERAGE
-                    if (r.getStringValue("MUT") != null && 
-                            !r.getStringValue("MUT").trim().isEmpty() && 
-                            !r.getStringValue("MUT").trim().equals("PARTICULAR")) {
-                        patient.setMedicalCoverage(daoMedicalCoverage.getMedicalCoverage(r.getStringValue("MUT").trim()));
+                    if (r.getNumberValue("MUT1") != null && r.getNumberValue("MUT1").intValue() != 0
+                            && r.getNumberValue("MUT1").intValue() != 9) { //9 PARTICULAR EN DOS
+                        patient.setMedicalCoverage(daoMedicalCoverage.getMedicalCoverage(r.getNumberValue("MUT1").intValue()));
                     } else {
                         patient.setMedicalCoverage(new MedicalCoverage(0, NO_MEDICAL_COVERAGE_NAME));
+                    }
+                    
+                    //BIRTHDAY
+                    if (r.getStringValue("MUT") != null && !r.getStringValue("MUT").trim().isEmpty()) {
+                        patient.setMedicalCoverageNumber(r.getStringValue("MUT"));
                     }
 
                     //BIRTHDAY
