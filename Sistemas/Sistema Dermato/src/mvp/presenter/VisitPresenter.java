@@ -24,6 +24,21 @@ public class VisitPresenter {
     }
 
     /**
+     * Method used to visualize patient's previous clinic history
+     */
+    public void seePatientPreviousCH(){
+        if (view == null) {
+            return;
+        }
+
+        if (patient.getPreviousCH() == null || patient.getPreviousCH().isEmpty()) {
+            view.showInfoMessage("El paciente no posee historia clinica previa.");
+        } else {
+            view.showPreviousCH(patient.getPreviousCH());
+        }
+    }
+    
+    /**
      * Method used only when user is modifying a visit to load all the visit
      * data.
      *

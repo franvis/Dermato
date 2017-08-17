@@ -76,15 +76,15 @@
                       <Component id="pnlAntecedents" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="pnlPatientsData" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlPatientsData" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="pnlExams" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="pnlBiopsy" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pnlReferences" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlReferences" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pnlButtons" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlButtons" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -132,7 +132,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane12" alignment="0" pref="233" max="32767" attributes="0"/>
+                  <Component id="jScrollPane12" alignment="0" pref="203" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -748,11 +748,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="pnlFullName" pref="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblstaticBirthday" min="-2" max="-2" attributes="0"/>
@@ -762,41 +762,38 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="lblstaticAddress" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblstaticCity" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="lblAddress" pref="145" max="32767" attributes="0"/>
-                                              <Component id="lblCity" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="lblstaticDni" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="lblDni" min="-2" pref="146" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="lblstaticCity" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblstaticDni" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblstaticAddress" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblDni" min="-2" pref="146" max="-2" attributes="0"/>
+                                      <Component id="lblCity" min="-2" pref="145" max="-2" attributes="0"/>
+                                      <Component id="lblAddress" min="-2" pref="145" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblsMedicalCoverage" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblstaticFirstVisitDate" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblstaticPhone" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                  <Component id="lblsMedicalCoverage" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblstaticFirstVisitDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="lblsMedicalCoverageNumber" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblstaticPhone" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lblMedicalCoverageNumber" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblPhone" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                                  <Component id="lblMedicalCoverage" alignment="0" min="-2" pref="212" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="lblMedicalCoverage" alignment="0" min="-2" pref="212" max="-2" attributes="0"/>
                               <Component id="lblFirstVisitDate" min="-2" pref="129" max="-2" attributes="0"/>
+                              <Component id="lblMedicalCoverageNumber" min="-2" pref="212" max="-2" attributes="0"/>
+                              <Component id="lblPhone" min="-2" pref="120" max="-2" attributes="0"/>
                           </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="btnPreviousCH" min="-2" pref="186" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -806,7 +803,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Component id="pnlFullName" max="32767" attributes="0"/>
+                  <Component id="pnlFullName" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblstaticFirstVisitDate" alignment="3" max="32767" attributes="0"/>
@@ -822,29 +819,22 @@
                       <Component id="lblMedicalCoverage" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblsMedicalCoverageNumber" alignment="3" max="32767" attributes="0"/>
-                              <Component id="lblMedicalCoverageNumber" alignment="3" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblPhone" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblCity" alignment="3" max="32767" attributes="0"/>
-                              <Component id="lblstaticCity" alignment="3" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblAddress" alignment="3" max="32767" attributes="0"/>
-                              <Component id="lblstaticAddress" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblstaticPhone" alignment="3" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblstaticCity" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblCity" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblsMedicalCoverageNumber" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblMedicalCoverageNumber" alignment="3" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblstaticAddress" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAddress" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblstaticPhone" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblPhone" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="btnPreviousCH" min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -977,7 +967,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="lblPatientName" alignment="3" max="32767" attributes="0"/>
-                      <Component id="lblstaticNombre" alignment="3" pref="22" max="32767" attributes="0"/>
+                      <Component id="lblstaticNombre" alignment="3" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1038,6 +1028,32 @@
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JButton" name="btnPreviousCH">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="13" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="33" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Historia clinica previa"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                <EtchetBorder bevelType="0"/>
+              </Border>
+            </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Default Cursor"/>
+            </Property>
+            <Property name="opaque" type="boolean" value="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPreviousCHMouseExited"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPreviousCHMouseEntered"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPreviousCHActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="pnlBiopsy">
@@ -1068,7 +1084,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane13" alignment="0" pref="231" max="32767" attributes="0"/>
+              <Component id="jScrollPane13" alignment="0" pref="218" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

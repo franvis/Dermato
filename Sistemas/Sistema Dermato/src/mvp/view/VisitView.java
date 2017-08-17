@@ -18,4 +18,6 @@ public interface VisitView extends GeneralView{
     public void finishRegisteringVisit();
     
     public void finishUpdatingVisit();
+    
+    public void showPreviousCH(String previousCH);
 }
