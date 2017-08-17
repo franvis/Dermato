@@ -317,7 +317,7 @@ public class StyleManager {
                 JPanel comp = (JPanel) componente;
                 if (comp.getBorder() instanceof TitledBorder) {
                     String texto = ((TitledBorder) comp.getBorder()).getTitle();
-                    comp.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), texto, javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), getTextColor(actualColor)));
+                    comp.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), texto, javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15), getTextColor(actualColor)));
                 }
             }
             if (componente instanceof Container || componente instanceof JPanel) {

@@ -67,7 +67,7 @@ public class PreviousCHJDialog extends javax.swing.JDialog {
 
         txtaPreviousClinicalHistory.setEditable(false);
         txtaPreviousClinicalHistory.setColumns(20);
-        txtaPreviousClinicalHistory.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaPreviousClinicalHistory.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
         txtaPreviousClinicalHistory.setLineWrap(true);
         txtaPreviousClinicalHistory.setRows(5);
         txtaPreviousClinicalHistory.setWrapStyleWord(true);

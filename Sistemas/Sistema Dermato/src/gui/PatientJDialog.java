@@ -16,6 +16,8 @@ import static utils.ValidationsAndMessages.FIRST_VISIT_DATE_FORMAT_ERROR;
 import static utils.ValidationsAndMessages.MANDATORY_FIELDS_ERROR;
 import static utils.ValidationsAndMessages.PRE_PAID_HEALTH_INSURANCE_NAME_EMPTY;
 import java.awt.Frame;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.util.Date;
 import java.util.List;
 import mvp.presenter.PatientABMPresenter;
@@ -218,6 +220,8 @@ public class PatientJDialog extends JDialog implements PatientABMView {
 
         presenter.loadMedicalCoverages();
         presenter.loadDniTypes();
+        Rectangle r = new Rectangle(getBounds().width, (int)GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().getHeight());
+        setBounds(r);
         setLocationRelativeTo(getParent());
         StyleManager.paint(this);
     }
@@ -382,7 +386,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         lblsBirthday.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblsBirthday.setText("Nacimiento:");
 
-        txtfNames.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfNames.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtfNames.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfNames.setNextFocusableComponent(txtfPhone);
         txtfNames.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -391,7 +395,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             }
         });
 
-        txtfLastNames.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfLastNames.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtfLastNames.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfLastNames.setNextFocusableComponent(txtfNames);
         txtfLastNames.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -400,7 +404,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             }
         });
 
-        txtfPhone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfPhone.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtfPhone.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfPhone.setNextFocusableComponent(cmbDniType);
         txtfPhone.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -417,13 +421,13 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ftxtfBirthday.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ftxtfBirthday.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ftxtfBirthday.setMargin(new java.awt.Insets(0, 2, 0, 0));
 
         pnlMedicalCoverage.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Obra Social", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
         pnlMedicalCoverage.setOpaque(false);
 
-        cmbMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cmbMedicalCoverage.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cmbMedicalCoverage.setFocusCycleRoot(true);
         cmbMedicalCoverage.setNextFocusableComponent(txtfMedicalCoverageNumber.isEnabled() ? txtfMedicalCoverageNumber : ftxtfFirstVisitDate);
         cmbMedicalCoverage.addItemListener(new java.awt.event.ItemListener() {
@@ -447,7 +451,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         lblsMedicalCoverageNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblsMedicalCoverageNumber.setText("Nro. Afiliado:");
 
-        txtfMedicalCoverageNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfMedicalCoverageNumber.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtfMedicalCoverageNumber.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtfMedicalCoverageNumber.setEnabled(false);
         txtfMedicalCoverageNumber.setMargin(new java.awt.Insets(0, 2, 0, 0));
@@ -468,7 +472,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             }
         });
 
-        txtfNewMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfNewMedicalCoverage.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtfNewMedicalCoverage.setEnabled(false);
         txtfNewMedicalCoverage.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfNewMedicalCoverage.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -537,25 +541,25 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         lblsAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblsAddress.setText("Domicilio:");
 
-        txtfAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfAddress.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtfAddress.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfAddress.setNextFocusableComponent(txtfCity);
 
         lblsCity.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblsCity.setText("Localidad:");
 
-        txtfCity.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfCity.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtfCity.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfCity.setNextFocusableComponent(ftxtfBirthday);
 
         lblsDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblsDni.setText("(*) Nro. Doc.:");
 
-        txtfDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfDni.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtfDni.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfDni.setNextFocusableComponent(txtfAddress);
 
-        cmbDniType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cmbDniType.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cmbDniType.setFocusCycleRoot(true);
         cmbDniType.setNextFocusableComponent(txtfDni);
 
@@ -748,7 +752,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         pnlPersonal.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaPersonal.setColumns(20);
-        txtaPersonal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaPersonal.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtaPersonal.setLineWrap(true);
         txtaPersonal.setRows(5);
         txtaPersonal.setTabSize(0);
@@ -776,7 +780,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         pnlSurgical.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Quirúrgicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaSurgical.setColumns(20);
-        txtaSurgical.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaSurgical.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtaSurgical.setLineWrap(true);
         txtaSurgical.setRows(5);
         txtaSurgical.setTabSize(0);
@@ -804,7 +808,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         pnlToxics.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Tóxicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaToxics.setColumns(20);
-        txtaToxics.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaToxics.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtaToxics.setLineWrap(true);
         txtaToxics.setRows(5);
         txtaToxics.setTabSize(0);
@@ -832,7 +836,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         pnlFamily.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Familiares", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaFamily.setColumns(20);
-        txtaFamily.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaFamily.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtaFamily.setLineWrap(true);
         txtaFamily.setRows(5);
         txtaFamily.setTabSize(0);
@@ -860,7 +864,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         pnlPharmacological.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Medicamentosos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaPharmacological.setColumns(20);
-        txtaPharmacological.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaPharmacological.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtaPharmacological.setLineWrap(true);
         txtaPharmacological.setRows(5);
         txtaPharmacological.setTabSize(0);
@@ -924,7 +928,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ftxtfFirstVisitDate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ftxtfFirstVisitDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ftxtfFirstVisitDate.setMargin(new java.awt.Insets(0, 2, 0, 0));
         ftxtfFirstVisitDate.setNextFocusableComponent(txtaPersonal);
 

@@ -236,7 +236,7 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
 
         pnlNewPPHealthInsurance.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nueva Obra Social", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
-        txtMedicalCoverageName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtMedicalCoverageName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtMedicalCoverageName.setMargin(new java.awt.Insets(0, 2, 0, 0));
 
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N

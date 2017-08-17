@@ -89,11 +89,11 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
 
         pnlGeneral.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        pnlSurgical.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Quirúrgicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlSurgical.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Quirúrgicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaSurgical.setEditable(false);
         txtaSurgical.setColumns(20);
-        txtaSurgical.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaSurgical.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         txtaSurgical.setLineWrap(true);
         txtaSurgical.setRows(5);
         txtaSurgical.setWrapStyleWord(true);
@@ -117,11 +117,11 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
             .addComponent(jScrollPane6)
         );
 
-        pnlToxic.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Tóxicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlToxic.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Tóxicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaToxic.setEditable(false);
         txtaToxic.setColumns(20);
-        txtaToxic.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaToxic.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         txtaToxic.setLineWrap(true);
         txtaToxic.setRows(5);
         txtaToxic.setWrapStyleWord(true);
@@ -145,12 +145,11 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
             .addComponent(jScrollPane7)
         );
 
-        pnlPersonal.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlPersonal.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaPersonal.setEditable(false);
         txtaPersonal.setColumns(20);
-        txtaPersonal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtaPersonal.setLineWrap(true);
+        txtaPersonal.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         txtaPersonal.setRows(5);
         txtaPersonal.setWrapStyleWord(true);
         txtaPersonal.setMargin(new java.awt.Insets(0, 2, 0, 0));
@@ -173,11 +172,11 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
         );
 
-        pnlPharmacological.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Medicamentosos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlPharmacological.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Medicamentosos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaPharmacological.setEditable(false);
         txtaPharmacological.setColumns(20);
-        txtaPharmacological.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaPharmacological.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         txtaPharmacological.setLineWrap(true);
         txtaPharmacological.setRows(5);
         txtaPharmacological.setTabSize(0);
@@ -202,11 +201,11 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
             .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
         );
 
-        pnlFamily.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Familiares", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlFamily.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Familiares", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaFamily.setEditable(false);
         txtaFamily.setColumns(20);
-        txtaFamily.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtaFamily.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         txtaFamily.setLineWrap(true);
         txtaFamily.setRows(5);
         txtaFamily.setTabSize(0);

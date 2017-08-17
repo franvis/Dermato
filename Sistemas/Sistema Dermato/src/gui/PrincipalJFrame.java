@@ -266,7 +266,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         pnlSearchPatient.setToolTipText("");
         pnlSearchPatient.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        txtfLastname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfLastname.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtfLastname.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfLastname.setNextFocusableComponent(txtfName);
         txtfLastname.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -281,7 +281,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         lblsDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblsDni.setText("Nro. Doc.:");
 
-        txtfDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfDni.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtfDni.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfDni.setNextFocusableComponent(txtfLastname);
         txtfDni.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -290,7 +290,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             }
         });
 
-        txtfName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtfName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtfName.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfName.setNextFocusableComponent(cmbDniType);
         txtfName.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -305,7 +305,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         lblsDniType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblsDniType.setText("Tipo Doc:");
 
-        cmbDniType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cmbDniType.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cmbDniType.setFocusCycleRoot(true);
         cmbDniType.setNextFocusableComponent(txtfDni);
         cmbDniType.addItemListener(new java.awt.event.ItemListener() {
