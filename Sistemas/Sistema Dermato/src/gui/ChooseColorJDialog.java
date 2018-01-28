@@ -26,7 +26,7 @@ public class ChooseColorJDialog extends javax.swing.JDialog {
      * @param modal true if modal dialog, false otherwise
      */
     public ChooseColorJDialog(JFrame parent, boolean modal) {
-        super(parent, modal);
+        super(parent, false);
         initComponents();
         setupInitialUi();
     }

@@ -42,9 +42,8 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
 
     private final PatientUpdatedListener patientUpdatedListener;
 
-    public ClinicalHistoryJDialog(java.awt.Frame parent, PatientUpdatedListener 
-            patientUpdatedListener, Patient patient) {
-        super(parent, true);
+    public ClinicalHistoryJDialog(java.awt.Frame parent, PatientUpdatedListener patientUpdatedListener, Patient patient) {
+        super(parent, false);
         this.patientUpdatedListener = patientUpdatedListener;
         presenter = new ClinicalHistoryPresenter(this);
         initComponents();
@@ -87,7 +86,6 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
 
         pnlNameLastname.setBackground(StyleManager.getSecondaryColor(StyleManager.actualColor));
         setBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds());
-        setLocationRelativeTo(getParent());
         StyleManager.paint(this);
     }
 
@@ -680,14 +678,14 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         clearTable(visitsDtm);
 
         changeTableSize(visitsDtm, 0);
-        
+
         if (!visits.isEmpty()) {
             for (int i = 0; i < visits.size(); i++) {
                 o = new Object[4];
                 o[0] = visits.get(i).getDate();
                 o[1] = visits.get(i).getReason();
-                o[2] = (visits.get(i).getTreatment() != null 
-                        && !visits.get(i).getTreatment().isEmpty()) 
+                o[2] = (visits.get(i).getTreatment() != null
+                        && !visits.get(i).getTreatment().isEmpty())
                         ? visits.get(i).getTreatment() : "-";
                 visitsDtm.addRow(o);
             }
@@ -709,6 +707,11 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
     public void modifyPatientData(Patient patient) {
         PatientJDialog pacienteInterfaz = new PatientJDialog((java.awt.Frame) getParent(), this, patient);
         pacienteInterfaz.setVisible(true);
+        pacienteInterfaz.toFront();
+        pacienteInterfaz.show();
+        pacienteInterfaz.setAutoRequestFocus(true);
+        pacienteInterfaz.requestFocus();
+        pacienteInterfaz.setAlwaysOnTop(true);
     }
 
     @Override
@@ -720,12 +723,22 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
     public void showAntecedents(Patient patient) {
         AntecedentsJDialog antecedentsDialog = new AntecedentsJDialog((Frame) getParent(), true, patient);
         antecedentsDialog.setVisible(true);
+        antecedentsDialog.toFront();
+        antecedentsDialog.show();
+        antecedentsDialog.setAutoRequestFocus(true);
+        antecedentsDialog.requestFocus();
+        antecedentsDialog.setAlwaysOnTop(true);
     }
 
     @Override
     public void newVisit(Patient patient) {
         VisitJDialog visitDialog = new VisitJDialog((Frame) getParent(), patient, this);
         visitDialog.setVisible(true);
+        visitDialog.toFront();
+        visitDialog.show();
+        visitDialog.setAutoRequestFocus(true);
+        visitDialog.requestFocus();
+        visitDialog.setAlwaysOnTop(true);
     }
 
     @Override
@@ -733,12 +746,21 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         VisitJDialog abmVisit = new VisitJDialog((Frame) getParent(), patient, visit, this);
         abmVisit.setVisible(true);
         abmVisit.requestFocus();
+        abmVisit.toFront();
+        abmVisit.show();
+        abmVisit.setAutoRequestFocus(true);
+        abmVisit.requestFocus();
+        abmVisit.setAlwaysOnTop(true);
     }
 
     @Override
     public void showPreviousCH(String previousCH) {
         PreviousCHJDialog previousCHJDialog = new PreviousCHJDialog((Frame) getParent(), previousCH);
         previousCHJDialog.setVisible(true);
+        previousCHJDialog.toFront();
+        previousCHJDialog.show();
+        previousCHJDialog.setAutoRequestFocus(true);
         previousCHJDialog.requestFocus();
+        previousCHJDialog.setAlwaysOnTop(true);
     }
 }

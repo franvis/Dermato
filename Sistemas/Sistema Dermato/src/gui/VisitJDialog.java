@@ -39,7 +39,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
      * @param patient
      */
     public VisitJDialog(java.awt.Frame parent, Patient patient, VisitUpdatedListener visitUdpatedListener) {
-        super(parent, true);
+        super(parent, false);
 
         //VARS INITIATION
         presenter = new VisitPresenter(this, patient);
@@ -61,7 +61,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
      * @param visitUdpatedListener
      */
     public VisitJDialog(java.awt.Frame parent, Patient patient, Visit visit, VisitUpdatedListener visitUdpatedListener) {
-        super(parent, true);
+        super(parent, false);
         //VARS INITIATION
         presenter = new VisitPresenter(this, patient);
         this.visitsUpdatedListener = visitUdpatedListener;
@@ -1109,5 +1109,10 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         PreviousCHJDialog previousCHJDialog = new PreviousCHJDialog((Frame) getParent(), previousCH);
         previousCHJDialog.setVisible(true);
         previousCHJDialog.requestFocus();
+        previousCHJDialog.toFront();
+        previousCHJDialog.show();
+        previousCHJDialog.setAutoRequestFocus(true);
+        previousCHJDialog.requestFocus();
+        previousCHJDialog.setAlwaysOnTop(true);
     }
 }

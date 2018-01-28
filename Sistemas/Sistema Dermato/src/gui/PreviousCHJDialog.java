@@ -22,7 +22,7 @@ public class PreviousCHJDialog extends javax.swing.JDialog {
      * @param previousClinicalHistory 
      */
     public PreviousCHJDialog(java.awt.Frame parent, String previousClinicalHistory) {
-        super(parent, true);
+        super(parent, false);
         initComponents();
         setupInitialUi(previousClinicalHistory);
     }

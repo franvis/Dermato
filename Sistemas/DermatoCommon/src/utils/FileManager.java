@@ -65,9 +65,9 @@ public class FileManager {
             minute = c.get(Calendar.MINUTE) + "";
             second = c.get(Calendar.SECOND) + "";
 
-            backupFile = new FileWriter(finalLocation.getAbsolutePath() + "\\BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
+//            backupFile = new FileWriter(finalLocation.getAbsolutePath() + "\\BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
             //TODO Development environment
-//            backupFile = new FileWriter(finalLocation.getAbsolutePath() + "/BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
+            backupFile = new FileWriter(finalLocation.getAbsolutePath() + "/BackUp " + day + "-" + month + "-" + year + "-" + hour + "h" + minute + "m" + second + "s.sql");
             pw = new PrintWriter(backupFile);
             pw.println(temp.toString());
 
@@ -110,9 +110,9 @@ public class FileManager {
             br.close();
             in.close();
 
-            File archBackUp = new File(Constants.BACKUPS_FOLDER_PATH + "\\BackUp.sql");
+//            File archBackUp = new File(Constants.BACKUPS_FOLDER_PATH + "\\BackUp.sql");
             //TODO Development environment
-//            File archBackUp = new File(Constants.BACKUPS_FOLDER_PATH + "/BackUp.sql");
+            File archBackUp = new File(Constants.BACKUPS_FOLDER_PATH + "/BackUp.sql");
             archBackUp.delete();
             archBackUp.createNewFile();
 

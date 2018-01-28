@@ -52,11 +52,11 @@ public class DAOConnection extends DAOBasics {
     /**
      * Method used to close an open connection
      *
-     * @param connectionection Open connection to close
+     * @param connection Open connection to close
      */
-    public void closeDBConnection(Connection connectionection) {
+    public void closeDBConnection(Connection connection) {
         try {
-            connectionection.close();
+            connection.close();
             System.out.println(CLOSING_CONNECTION_OK);
         } catch (SQLException ex) {
             System.out.println(String.format(PROBLEM_CLOSING_CONNECTION, ex.getSQLState()));

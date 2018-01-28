@@ -661,17 +661,22 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
     private void menuMedicalCoverageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMedicalCoverageActionPerformed
         abmMedicalCoverages = new MedicalCoverageJDialog(this);
         abmMedicalCoverages.setVisible(true);
+        abmMedicalCoverages.toFront();
+        abmMedicalCoverages.show();
+        abmMedicalCoverages.setAutoRequestFocus(true);
+        abmMedicalCoverages.requestFocus();
+        abmMedicalCoverages.setAlwaysOnTop(true);
     }//GEN-LAST:event_menuMedicalCoverageActionPerformed
 
     private void txtfLastnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfLastnameKeyReleased
         String lastname, name, dni;
         int eventKeyCode = evt.getKeyCode();
         char eventKeyChar = evt.getKeyChar();
-        
+
         if (eventKeyCode == KeyEvent.VK_ENTER) {
             return;
         }
-        
+
         lastname = captureTextWhenDeleting(eventKeyChar, txtfLastname);
 
         if ((eventKeyCode == VK_DOWN) && !lastname.isEmpty()) {
@@ -689,10 +694,10 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         int eventKeyCode = evt.getKeyCode();
         char eventKeyChar = evt.getKeyChar();
 
-        if(eventKeyCode == KeyEvent.VK_ENTER){
+        if (eventKeyCode == KeyEvent.VK_ENTER) {
             return;
         }
-        
+
         name = captureTextWhenDeleting(eventKeyChar, txtfName);
 
         if ((eventKeyCode == VK_DOWN) && !name.isEmpty()) {
@@ -711,10 +716,10 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         int eventKeyCode = evt.getKeyCode();
         char eventKeyChar = evt.getKeyChar();
 
-        if(eventKeyCode == KeyEvent.VK_ENTER){
+        if (eventKeyCode == KeyEvent.VK_ENTER) {
             return;
         }
-        
+
         dni = captureTextWhenDeleting(eventKeyChar, txtfDni);
 
         if ((eventKeyCode == VK_DOWN) && !dni.isEmpty()) {
@@ -782,7 +787,13 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
     }//GEN-LAST:event_btnNewPatientActionPerformed
 
 private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuChangeColorActionPerformed
-    new ChooseColorJDialog(this, true).setVisible(true);
+    ChooseColorJDialog choseColorDialog = new ChooseColorJDialog(this, true);
+    choseColorDialog.setVisible(true);
+    choseColorDialog.toFront();
+    choseColorDialog.show();
+    choseColorDialog.setAutoRequestFocus(true);
+    choseColorDialog.requestFocus();
+    choseColorDialog.setAlwaysOnTop(true);
 }//GEN-LAST:event_menuChangeColorActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -844,7 +855,7 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
         changeButtonState(btnSeeCH, false);
         clearTable(dtmPatients);
         clearFilters();
-        ClinicalHistoryJDialog clinicalHistory = new ClinicalHistoryJDialog(this, 
+        ClinicalHistoryJDialog clinicalHistory = new ClinicalHistoryJDialog(this,
                 this, patient);
         clinicalHistory.setVisible(true);
     }
@@ -863,6 +874,11 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
     public void modifyPatientData(Patient patient) {
         PatientJDialog pacienteInterfaz = new PatientJDialog(this, this, patient);
         pacienteInterfaz.setVisible(true);
+        pacienteInterfaz.toFront();
+        pacienteInterfaz.show();
+        pacienteInterfaz.setAutoRequestFocus(true);
+        pacienteInterfaz.requestFocus();
+        pacienteInterfaz.setAlwaysOnTop(true);
     }
 
     private void changeSideBarButtonsHighlight(boolean state) {

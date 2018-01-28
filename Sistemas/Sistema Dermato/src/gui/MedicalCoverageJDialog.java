@@ -31,7 +31,7 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
      * @param parent 
      */
     public MedicalCoverageJDialog(Frame parent) {
-        super(parent, true);
+        super(parent, false);
         presenter = new MedicalCoveragePresenter(this);
         initComponents();
         setupInitialUi();

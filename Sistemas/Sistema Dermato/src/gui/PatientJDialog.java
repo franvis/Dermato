@@ -59,7 +59,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
      */
     public PatientJDialog(Frame parent,
             PatientUpdatedListener patientUpdatedListener, Patient patient) {
-        super(parent, true);
+        super(parent, false);
         this.patientUpdatedListener = patientUpdatedListener;
         presenter = new PatientABMPresenter(this);
 
