@@ -39,4 +39,8 @@ public class ClinicalHistoryModel {
     public Visit getFullVisit(int visitId, int patientId) {
         return visitDao.getFullVisit(visitId, patientId);
     }
+
+    public String deleteVisit(int visitId) {
+        return visitDao.deleteVisit(visitId);
+    }
 }

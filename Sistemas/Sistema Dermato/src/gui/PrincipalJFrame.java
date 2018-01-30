@@ -231,10 +231,11 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         lblsDniType = new javax.swing.JLabel();
         cmbDniType = new javax.swing.JComboBox();
         pnlButtons = new javax.swing.JPanel();
-        btnNewPatient = new javax.swing.JButton();
+        btnDeletePatient = new javax.swing.JButton();
         btnSeeCH = new javax.swing.JButton();
         btnModifyPatient = new javax.swing.JButton();
         btnPerformBackup = new javax.swing.JButton();
+        btnNewPatient = new javax.swing.JButton();
         pnlPatientsTable = new javax.swing.JPanel();
         scrollPanePatientsTable = new javax.swing.JScrollPane();
         tblPatients = new javax.swing.JTable();
@@ -357,28 +358,28 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         pnlButtons.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pnlButtons.setOpaque(false);
 
-        btnNewPatient.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnNewPatient.setForeground(new java.awt.Color(153, 153, 153));
-        btnNewPatient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add_user_enabled.png"))); // NOI18N
-        btnNewPatient.setText("Nuevo Paciente");
-        btnNewPatient.setBorder(null);
-        btnNewPatient.setContentAreaFilled(false);
-        btnNewPatient.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnNewPatient.setEnabled(false);
-        btnNewPatient.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnNewPatient.setOpaque(true);
-        btnNewPatient.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnNewPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnDeletePatient.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnDeletePatient.setForeground(new java.awt.Color(153, 153, 153));
+        btnDeletePatient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete_user_enabled.png"))); // NOI18N
+        btnDeletePatient.setText("Borrar Paciente");
+        btnDeletePatient.setBorder(null);
+        btnDeletePatient.setContentAreaFilled(false);
+        btnDeletePatient.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnDeletePatient.setEnabled(false);
+        btnDeletePatient.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDeletePatient.setOpaque(true);
+        btnDeletePatient.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDeletePatient.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnNewPatientMouseExited(evt);
+                btnDeletePatientMouseExited(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnNewPatientMouseEntered(evt);
+                btnDeletePatientMouseEntered(evt);
             }
         });
-        btnNewPatient.addActionListener(new java.awt.event.ActionListener() {
+        btnDeletePatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewPatientActionPerformed(evt);
+                btnDeletePatientActionPerformed(evt);
             }
         });
 
@@ -457,26 +458,53 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             }
         });
 
+        btnNewPatient.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnNewPatient.setForeground(new java.awt.Color(153, 153, 153));
+        btnNewPatient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add_user_enabled.png"))); // NOI18N
+        btnNewPatient.setText("Nuevo Paciente");
+        btnNewPatient.setBorder(null);
+        btnNewPatient.setContentAreaFilled(false);
+        btnNewPatient.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNewPatient.setEnabled(false);
+        btnNewPatient.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnNewPatient.setOpaque(true);
+        btnNewPatient.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNewPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnNewPatientMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnNewPatientMouseEntered(evt);
+            }
+        });
+        btnNewPatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewPatientActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlButtonsLayout = new javax.swing.GroupLayout(pnlButtons);
         pnlButtons.setLayout(pnlButtonsLayout);
         pnlButtonsLayout.setHorizontalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnNewPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnDeletePatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnSeeCH, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
             .addComponent(btnModifyPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnPerformBackup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnNewPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlButtonsLayout.setVerticalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlButtonsLayout.createSequentialGroup()
-                .addComponent(btnNewPatient, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                .addComponent(btnNewPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSeeCH, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                .addComponent(btnSeeCH, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnModifyPatient, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                .addComponent(btnModifyPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPerformBackup, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(btnDeletePatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPerformBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pnlPatientsTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tabla de Pacientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
@@ -771,20 +799,22 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         }
     }//GEN-LAST:event_btnSeeCHActionPerformed
 
-    private void btnNewPatientMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewPatientMouseEntered
-        buttonHighlight(btnNewPatient, true);
-    }//GEN-LAST:event_btnNewPatientMouseEntered
+    private void btnDeletePatientMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletePatientMouseEntered
+        buttonHighlight(btnDeletePatient, true);
+    }//GEN-LAST:event_btnDeletePatientMouseEntered
 
-    private void btnNewPatientMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewPatientMouseExited
-        buttonHighlight(btnNewPatient, false);
-    }//GEN-LAST:event_btnNewPatientMouseExited
+    private void btnDeletePatientMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletePatientMouseExited
+        buttonHighlight(btnDeletePatient, false);
+    }//GEN-LAST:event_btnDeletePatientMouseExited
 
-    private void btnNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPatientActionPerformed
-        PatientJDialog patientABM = new PatientJDialog(this);
-        clearTable(dtmPatients);
-        clearFilters();
-        patientABM.setVisible(true);
-    }//GEN-LAST:event_btnNewPatientActionPerformed
+    private void btnDeletePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletePatientActionPerformed
+        if (validatePatientDeleting()) {
+            String name = txtfName.getText();
+            String lastname = txtfLastname.getText();
+            String dni = txtfDni.getText();
+            presenter.deletePatient(tblPatients.getSelectedRow(), name, lastname, dni, cmbDniType.getSelectedIndex());
+        }
+    }//GEN-LAST:event_btnDeletePatientActionPerformed
 
 private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuChangeColorActionPerformed
     ChooseColorJDialog choseColorDialog = new ChooseColorJDialog(this, true);
@@ -805,7 +835,23 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
                 txtfDni.getText(), cmbDniType.getSelectedIndex());
     }//GEN-LAST:event_cmbDniTypeItemStateChanged
 
+    private void btnNewPatientMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewPatientMouseExited
+        buttonHighlight(btnNewPatient, false);
+    }//GEN-LAST:event_btnNewPatientMouseExited
+
+    private void btnNewPatientMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewPatientMouseEntered
+        buttonHighlight(btnNewPatient, true);
+    }//GEN-LAST:event_btnNewPatientMouseEntered
+
+    private void btnNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPatientActionPerformed
+        PatientJDialog patientABM = new PatientJDialog(this);
+        clearTable(dtmPatients);
+        clearFilters();
+        patientABM.setVisible(true);
+    }//GEN-LAST:event_btnNewPatientActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDeletePatient;
     private javax.swing.JButton btnModifyPatient;
     private javax.swing.JButton btnNewPatient;
     private javax.swing.JButton btnPerformBackup;
@@ -884,7 +930,7 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
     private void changeSideBarButtonsHighlight(boolean state) {
         buttonHighlight(btnModifyPatient, state);
         buttonHighlight(btnSeeCH, state);
-        buttonHighlight(btnNewPatient, state);
+        buttonHighlight(btnDeletePatient, state);
         buttonHighlight(btnPerformBackup, state);
     }
 
@@ -909,5 +955,22 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
         txtfDni.setText("");
         txtfLastname.setText("");
         txtfName.setText("");
+    }
+
+    private boolean validatePatientDeleting() {
+        String OPTION_OK = "Si";
+        String OPTION_CANCEL = "No";
+        String EXIT_SYSTEM_MESSAGE = "¿Realmente desea borrar este paciente?";
+        String EXIT_WINDOW_MESSAGE_TITLE = "Borrar Paciente";
+        int ans = JOptionPane.showOptionDialog(this,
+                EXIT_SYSTEM_MESSAGE,
+                EXIT_WINDOW_MESSAGE_TITLE,
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                new String[]{OPTION_OK, OPTION_CANCEL},
+                "");
+
+        return ans == JOptionPane.YES_OPTION;
     }
 }

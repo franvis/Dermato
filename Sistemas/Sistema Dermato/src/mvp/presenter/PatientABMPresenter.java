@@ -105,15 +105,8 @@ public class PatientABMPresenter {
                         + patientDniMatch + " con el mismo dni.");
                 return;
             }
-        } else if (isMedicalCoverageModified(patient)) {
-            String patientInsuranceNumberMatch = patientAbmModel.validatePatientInsuranceNumber(patient);
-
-            if (patientInsuranceNumberMatch != null && !patientInsuranceNumberMatch.isEmpty()) {
-                view.showErrorMessage("El paciente ya se encuentra registrado bajo el nombre de "
-                        + patientInsuranceNumberMatch + " con la misma obra social y numero de afiliado.");
-                return;
-            }
-        }
+        } 
+        
         String result = patientAbmModel.updatePatient(patient);
         if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
             this.patient = patient;
@@ -181,14 +174,4 @@ public class PatientABMPresenter {
                 || !this.patient.getDni().equals(patient.getDni())
                 || this.patient.getDniType().getId() != patient.getDniType().getId();
     }
-
-    private boolean isMedicalCoverageModified(Patient patient) {
-        return (this.patient.getMedicalCoverage() == null && patient.getMedicalCoverage() != null)
-                || (this.patient.getMedicalCoverage() != null && patient.getMedicalCoverage() == null) //AVOID NULLS IN MEDICAL COVERAGE
-                || (this.patient.getMedicalCoverageNumber() == null && patient.getMedicalCoverageNumber() != null)
-                || (this.patient.getMedicalCoverageNumber() != null && patient.getMedicalCoverageNumber() == null) //AVOID NULLS IN MEDICAL COVERAGE NUMBER
-                || this.patient.getMedicalCoverage().getId() != patient.getMedicalCoverage().getId()
-                || !this.patient.getMedicalCoverageNumber().equals(patient.getMedicalCoverageNumber());
-    }
-
 }

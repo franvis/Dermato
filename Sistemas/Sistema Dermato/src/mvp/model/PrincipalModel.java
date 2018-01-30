@@ -31,4 +31,8 @@ public class PrincipalModel {
     public List<DniType> getDniTypes(){
         return daoDniType.getAllDniTypes();
     }
+    
+    public String deletePatient(int patientId){
+        return daoPatient.deletePatient(patientId);
+    }
 }

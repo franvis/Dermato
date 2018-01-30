@@ -224,7 +224,7 @@ public class DAOVisit extends DAOBasics {
             this.visit = visit;
             connection = daoConnection.openDBConnection();
 
-            columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(REASON, TREATMENT, COMPLEMENTARY_STUDIES,
+            columns = DBUtils.getStringWithValuesSeparatedWithCommasForUpdate(DATE, REASON, TREATMENT, COMPLEMENTARY_STUDIES,
                     LABORATORY, ANTECEDENTS, PHYSICAL_EXAM,
                     BIOPSY);
 
@@ -233,14 +233,15 @@ public class DAOVisit extends DAOBasics {
             query = DBUtils.getUpdateStatement(Tables.Visit, columns, where);
 
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, visit.getReason());
-            preparedStatement.setString(2, visit.getTreatment());
-            preparedStatement.setString(3, visit.getComplementaryStudies());
-            preparedStatement.setString(4, visit.getLaboratory());
-            preparedStatement.setString(5, visit.getAntecedents());
-            preparedStatement.setString(6, visit.getPhysicalExam());
-            preparedStatement.setString(7, visit.getBiopsy());
-            preparedStatement.setInt(8, visit.getId());
+            preparedStatement.setString(1, visit.getDate());
+            preparedStatement.setString(2, visit.getReason());
+            preparedStatement.setString(3, visit.getTreatment());
+            preparedStatement.setString(4, visit.getComplementaryStudies());
+            preparedStatement.setString(5, visit.getLaboratory());
+            preparedStatement.setString(6, visit.getAntecedents());
+            preparedStatement.setString(7, visit.getPhysicalExam());
+            preparedStatement.setString(8, visit.getBiopsy());
+            preparedStatement.setInt(9, visit.getId());
 
             return (preparedStatement.executeUpdate() > 0) ? DB_COMMAND_SUCCESS : dbCommandFailed("executeUpdated updating visit returned <= 0");
         } catch (SQLException ex) {
@@ -260,5 +261,32 @@ public class DAOVisit extends DAOBasics {
     String getInsertStatement() {
         return String.format(DBConstants.INSERT_WITH_VALUES_ONLY,
                 DBConstants.Tables.Visit.name(), VISIT_INSERT);
+    }
+
+    public String deleteVisit(int visitId) {
+        try {
+            connection = daoConnection.openDBConnection();
+
+            where = getWhereConditions(getSimpleWhereCondition(VISIT_ID));
+
+            query = DBUtils.getDeleteStatement(Tables.Visit, where);
+
+            preparedStatement = connection.prepareStatement(
+                    query);
+            preparedStatement.setInt(1, visitId);
+            preparedStatement.executeUpdate();
+
+            return DB_COMMAND_SUCCESS;
+        } catch (SQLException ex) {
+            try {
+                connection.rollback();
+            } catch (SQLException e) {
+                System.out.println("RollBack Failure." + e.getMessage());
+                return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());
+            }
+            return dbCommandFailed(ex.getMessage() == null ? "SqlException Error code " + ex.getErrorCode() : ex.getMessage());
+        } finally {
+            daoConnection.closeDBConnection(connection);
+        }
     }
 }

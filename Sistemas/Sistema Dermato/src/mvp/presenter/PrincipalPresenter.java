@@ -2,6 +2,7 @@ package mvp.presenter;
 
 import bussines.DniType;
 import bussines.Patient;
+import dao.DAOBasics;
 import java.util.List;
 import mvp.model.PrincipalModel;
 import mvp.view.PrincipalView;
@@ -70,7 +71,7 @@ public class PrincipalPresenter {
         } else {
             Patient patient = patientsList.get(selectedPatient);
             patient = model.getFullPatient(patient);
-            
+
             if (patient == null) {
                 view.showInfoMessage("No se pudo encontrar el paciente. Por favor "
                         + "reinicie el sistema e intente nuevamente."
@@ -114,5 +115,21 @@ public class PrincipalPresenter {
             view.displayDniTypes(dniTypes);
         }
 
+    }
+
+    public void deletePatient(int selectedRow, String name, String lastname, String dni, int dniTypeSelected) {
+        if (view == null) {
+            return;
+        }
+
+        if (!patientsList.isEmpty()) {
+            String result = model.deletePatient(patientsList.get(selectedRow).getPatientId());
+            if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
+                view.showInfoMessage("Borrado Exitoso.");
+                filterPatients(name, lastname, dni, dniTypeSelected);
+            } else {
+                view.showErrorMessage("Borrado Fallido: " + result);
+            }
+        }
     }
 }

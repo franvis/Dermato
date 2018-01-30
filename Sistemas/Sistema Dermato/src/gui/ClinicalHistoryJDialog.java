@@ -27,6 +27,7 @@ import mvp.presenter.ClinicalHistoryPresenter;
 import mvp.view.ClinicalHistoryView;
 import mvp.view.listener.PatientUpdatedListener;
 import mvp.view.listener.VisitUpdatedListener;
+import static utils.StyleManager.DEFAULT_TEXT_COLOR;
 
 /**
  *
@@ -62,6 +63,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
     }
 
     private void setupInitialUI() {
+        changeButtonState(btnDeleteVisit, false);
         btnModifyPatient.grabFocus();
 
         tblVisits.getColumn(TABLE_COLUMN_DATE).setMaxWidth(120);
@@ -127,6 +129,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         pnlButtons = new javax.swing.JPanel();
         btnNewVisit = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnDeleteVisit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Historia Clínica");
@@ -476,6 +479,27 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
             }
         });
 
+        btnDeleteVisit.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnDeleteVisit.setForeground(new java.awt.Color(0, 51, 102));
+        btnDeleteVisit.setText("Borrar Consulta");
+        btnDeleteVisit.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        btnDeleteVisit.setContentAreaFilled(false);
+        btnDeleteVisit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnDeleteVisit.setOpaque(true);
+        btnDeleteVisit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDeleteVisitMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDeleteVisitMouseEntered(evt);
+            }
+        });
+        btnDeleteVisit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteVisitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlButtonsLayout = new javax.swing.GroupLayout(pnlButtons);
         pnlButtons.setLayout(pnlButtonsLayout);
         pnlButtonsLayout.setHorizontalGroup(
@@ -483,6 +507,8 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlButtonsLayout.createSequentialGroup()
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDeleteVisit, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnNewVisit, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlButtonsLayout.setVerticalGroup(
@@ -491,7 +517,8 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
                 .addContainerGap()
                 .addGroup(pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNewVisit, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDeleteVisit, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
 
@@ -529,11 +556,11 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
     }//GEN-LAST:event_btnAntecedentsActionPerformed
 
     private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
-        setButtonFontForPointerEvent(btnBack, true);
+        buttonHighlight(btnBack, true);
     }//GEN-LAST:event_btnBackMouseEntered
 
     private void btnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseExited
-        setButtonFontForPointerEvent(btnBack, false);
+        buttonHighlight(btnBack, false);
     }//GEN-LAST:event_btnBackMouseExited
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -541,11 +568,11 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnModifyPatientMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyPatientMouseEntered
-        setButtonFontForPointerEvent(btnModifyPatient, true);
+        buttonHighlight(btnModifyPatient, true);
     }//GEN-LAST:event_btnModifyPatientMouseEntered
 
     private void btnModifyPatientMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyPatientMouseExited
-        setButtonFontForPointerEvent(btnModifyPatient, false);
+        buttonHighlight(btnModifyPatient, false);
     }//GEN-LAST:event_btnModifyPatientMouseExited
 
     private void btnModifyPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyPatientActionPerformed
@@ -557,36 +584,51 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
     }//GEN-LAST:event_formWindowClosing
 
     private void btnAntecedentsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAntecedentsMouseEntered
-        setButtonFontForPointerEvent(btnAntecedents, true);
+        buttonHighlight(btnAntecedents, true);
     }//GEN-LAST:event_btnAntecedentsMouseEntered
 
     private void btnAntecedentsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAntecedentsMouseExited
-        setButtonFontForPointerEvent(btnAntecedents, false);
+        buttonHighlight(btnAntecedents, false);
     }//GEN-LAST:event_btnAntecedentsMouseExited
 
     private void btnNewVisitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewVisitMouseEntered
-        setButtonFontForPointerEvent(btnNewVisit, true);
+        buttonHighlight(btnNewVisit, true);
     }//GEN-LAST:event_btnNewVisitMouseEntered
 
     private void btnNewVisitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewVisitMouseExited
-        setButtonFontForPointerEvent(btnNewVisit, false);
+        buttonHighlight(btnNewVisit, false);
     }//GEN-LAST:event_btnNewVisitMouseExited
 
     private void btnPreviousCHMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPreviousCHMouseExited
-        setButtonFontForPointerEvent(btnPreviousCH, false);
+        buttonHighlight(btnPreviousCH, false);
     }//GEN-LAST:event_btnPreviousCHMouseExited
 
     private void btnPreviousCHMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPreviousCHMouseEntered
-        setButtonFontForPointerEvent(btnPreviousCH, true);
+        buttonHighlight(btnPreviousCH, true);
     }//GEN-LAST:event_btnPreviousCHMouseEntered
 
     private void btnPreviousCHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousCHActionPerformed
         presenter.seePatientPreviousHC();
     }//GEN-LAST:event_btnPreviousCHActionPerformed
 
+    private void btnDeleteVisitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteVisitMouseExited
+        buttonHighlight(btnDeleteVisit, false);
+    }//GEN-LAST:event_btnDeleteVisitMouseExited
+
+    private void btnDeleteVisitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteVisitMouseEntered
+        buttonHighlight(btnDeleteVisit, true);
+    }//GEN-LAST:event_btnDeleteVisitMouseEntered
+
+    private void btnDeleteVisitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteVisitActionPerformed
+        if (validateDeleteVisit()) {
+            presenter.deleteVisit(tblVisits.getSelectedRow());
+        }
+    }//GEN-LAST:event_btnDeleteVisitActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAntecedents;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDeleteVisit;
     private javax.swing.JButton btnModifyPatient;
     private javax.swing.JButton btnNewVisit;
     private javax.swing.JButton btnPreviousCH;
@@ -615,6 +657,21 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
     private javax.swing.JScrollPane scrollPaneVisits;
     private javax.swing.JTable tblVisits;
     // End of variables declaration//GEN-END:variables
+
+    public void buttonHighlight(JButton jbtn, boolean mouseEntering) {
+        if (tblVisits.getSelectedRow() != -1 && jbtn.equals(btnDeleteVisit)) {
+            changeButtonState(jbtn, mouseEntering);
+            setButtonFontForPointerEvent(jbtn, mouseEntering);
+        } else if (!jbtn.equals(btnDeleteVisit)) {
+            setButtonFontForPointerEvent(jbtn, mouseEntering);
+        }
+    }
+
+    public void changeButtonState(JButton jbtn, boolean state) {
+        jbtn.setEnabled(state);
+        jbtn.setForeground(state ? StyleManager.getTextColor(
+                StyleManager.actualColor) : DEFAULT_TEXT_COLOR);
+    }
 
     @Override
     public void patientUpdated(Patient patient) {
@@ -762,5 +819,22 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements Clini
         previousCHJDialog.setAutoRequestFocus(true);
         previousCHJDialog.requestFocus();
         previousCHJDialog.setAlwaysOnTop(true);
+    }
+
+    private boolean validateDeleteVisit() {
+        String OPTION_OK = "Si";
+        String OPTION_CANCEL = "No";
+        String EXIT_SYSTEM_MESSAGE = "¿Realmente desea borrar la consulta?";
+        String EXIT_WINDOW_MESSAGE_TITLE = "Borrar Consulta";
+        int ans = JOptionPane.showOptionDialog(this,
+                EXIT_SYSTEM_MESSAGE,
+                EXIT_WINDOW_MESSAGE_TITLE,
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                new String[]{OPTION_OK, OPTION_CANCEL},
+                "");
+
+        return ans == JOptionPane.YES_OPTION;
     }
 }

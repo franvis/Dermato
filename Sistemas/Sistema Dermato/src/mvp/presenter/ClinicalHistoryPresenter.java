@@ -3,6 +3,7 @@ package mvp.presenter;
 import bussines.Antecedents;
 import bussines.Patient;
 import bussines.Visit;
+import dao.DAOBasics;
 import java.util.List;
 import mvp.model.ClinicalHistoryModel;
 import mvp.view.ClinicalHistoryView;
@@ -135,6 +136,21 @@ public class ClinicalHistoryPresenter {
             view.showInfoMessage("El paciente no posee historia clinica previa.");
         } else {
             view.showPreviousCH(patient.getPreviousCH());
+        }
+    }
+
+    public void deleteVisit(int selectedRow) {
+        if(view == null){
+            return;
+        }
+        
+        String result = model.deleteVisit(visits.get(selectedRow).getId());
+        
+        if (result.equals(DAOBasics.DB_COMMAND_SUCCESS)) {
+            view.showInfoMessage("Consulta borrada correctamente.");
+            loadPatientVisits();
+        } else {
+            view.showErrorMessage("Borrado fallido: " + result);
         }
     }
 }

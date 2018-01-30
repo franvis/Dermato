@@ -21,6 +21,7 @@ import mvp.view.listener.VisitUpdatedListener;
 import static utils.Constants.BIRTHDAY_WITH_AGE;
 import utils.GeneralUtils;
 import static utils.GeneralUtils.calculateAge;
+import static utils.ValidationsAndMessages.FIRST_VISIT_DATE_FORMAT_ERROR;
 
 /**
  *
@@ -31,6 +32,8 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
     private final VisitPresenter presenter;
     private final VisitUpdatedListener visitsUpdatedListener;
     private final boolean isNewVisit;
+
+    private static final String DATE_MASK = "  /  /    ";
 
     /**
      * Creates new form ABMConsultaCompleta
@@ -95,7 +98,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         txtaReason = new javax.swing.JTextArea();
         pnlDate = new javax.swing.JPanel();
         lblstaticDate = new javax.swing.JLabel();
-        lblDate = new javax.swing.JLabel();
+        ftxtfDate = new javax.swing.JFormattedTextField();
         pnlTreatment = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         txtaTreatment = new javax.swing.JTextArea();
@@ -218,9 +221,13 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         lblstaticDate.setForeground(new java.awt.Color(0, 51, 102));
         lblstaticDate.setText("Fecha:");
 
-        lblDate.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        lblDate.setForeground(new java.awt.Color(0, 51, 102));
-        lblDate.setText("FechaDeHoy");
+        try {
+            ftxtfDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        ftxtfDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        ftxtfDate.setMargin(new java.awt.Insets(0, 2, 0, 0));
 
         javax.swing.GroupLayout pnlDateLayout = new javax.swing.GroupLayout(pnlDate);
         pnlDate.setLayout(pnlDateLayout);
@@ -229,15 +236,15 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
             .addGroup(pnlDateLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblstaticDate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(ftxtfDate, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlDateLayout.setVerticalGroup(
             pnlDateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(lblDate, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                .addComponent(lblstaticDate, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                .addComponent(lblstaticDate, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ftxtfDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pnlTreatment.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Tratamiento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
@@ -872,6 +879,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
     private javax.swing.JButton btnPreviousCH;
     private javax.swing.JButton btnSave;
     private javax.swing.ButtonGroup btngrpMAF;
+    private javax.swing.JFormattedTextField ftxtfDate;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
@@ -882,7 +890,6 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBirthday;
     private javax.swing.JLabel lblCity;
-    private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblDni;
     private javax.swing.JLabel lblFirstVisitDate;
     private javax.swing.JLabel lblMedicalCoverage;
@@ -931,6 +938,10 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
             incompletas += "Motivo \n";
         }
 
+        if (this.ftxtfDate.getText().equals(DATE_MASK)) {
+            incompletas += "Fecha \n";
+        }
+
         return incompletas;
     }
 
@@ -938,8 +949,19 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
      * Generates the visit.
      */
     private Visit generateVisit() {
+
         Visit visit = new Visit();
-        visit.setDate(this.lblDate.getText().trim());
+        
+        String date = this.ftxtfDate.getText().trim();
+        String error = ValidationsAndMessages.validateDateInCommonRange(date);
+        if (!error.isEmpty()) {
+            showErrorMessage(String.format(FIRST_VISIT_DATE_FORMAT_ERROR, error));
+            return null;
+        } else {
+            visit.setDate(date);
+        }
+
+        visit.setDate(this.ftxtfDate.getText().trim());
         visit.setReason(this.txtaReason.getText().trim());
         visit.setTreatment(this.txtaTreatment.getText().trim());
         visit.setComplementaryStudies(this.txtaComplementaryStudies.getText().trim());
@@ -956,6 +978,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
      * @param state true (enabled), false (disabled)
      */
     private void setFieldsState(boolean state) {
+        this.ftxtfDate.setEnabled(state);
         this.txtaReason.setEnabled(state);
         this.txtaTreatment.setEnabled(state);
         this.txtaComplementaryStudies.setEnabled(state);
@@ -1055,7 +1078,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
 
     private void setDateLabel() {
         Calendar calendar = Calendar.getInstance();
-        this.lblDate.setText(GeneralUtils.stringDateParser(calendar.getTime()));
+        this.ftxtfDate.setText(GeneralUtils.stringDateParser(calendar.getTime()));
     }
 
     private void setupInitialUI() {
@@ -1070,7 +1093,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
 
     @Override
     public void displayVisitData(Visit visit) {
-        this.lblDate.setText(visit.getDate());
+        this.ftxtfDate.setText(visit.getDate());
         this.txtaReason.setText(visit.getReason());
         this.txtaTreatment.setText(visit.getTreatment());
         this.txtaComplementaryStudies.setText(visit.getComplementaryStudies());
