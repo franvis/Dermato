@@ -147,7 +147,7 @@ public class GeneralUtils {
      * @return date as a String object
      */
     public static String stringDateParser(Date date) {
-        SimpleDateFormat parser = new SimpleDateFormat("d/MM/yyyy");
+        SimpleDateFormat parser = new SimpleDateFormat("dd/MM/yyyy");
         return parser.format(date);
     }
 }

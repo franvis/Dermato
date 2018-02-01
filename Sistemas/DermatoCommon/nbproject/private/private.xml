@@ -5,7 +5,8 @@
         <group>
             <file>file:/home/fran/Projects/Dermato/Sistemas/DermatoCommon/src/utils/ValidationsAndMessages.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistemas/DermatoCommon/src/dao/DAOPatient.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistemas/DermatoCommon/src/utils/GeneralUtils.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistemas/DermatoCommon/src/dao/DAOVisit.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistemas/DermatoCommon/src/utils/Constants.java</file>
         </group>
     </open-files>
 </project-private>

@@ -38,4 +38,6 @@ public interface ClinicalHistoryView extends GeneralView {
     public void displayVisit(Patient patient, Visit visit);
 
     public void showPreviousCH(String previousCH);
+    
+    public void exitWindow();
 }

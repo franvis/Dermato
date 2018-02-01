@@ -280,9 +280,9 @@ public class ValidationsAndMessages {
      *
      * @param windowToClose
      */
-    public static void validateWindowExit(JDialog windowToClose) {
+    public static boolean validateWindowExit(JDialog windowToClose) {
         if (windowToClose == null) {
-            return;
+            return false;
         }
         int ans = JOptionPane.showOptionDialog(windowToClose,
                 EXIT_WINDOW_MESSAGE,
@@ -296,6 +296,7 @@ public class ValidationsAndMessages {
             windowToClose.dispose();
             windowToClose.getOwner().setVisible(true);
         }
+        return ans == JOptionPane.YES_OPTION;
     }
 
     /**

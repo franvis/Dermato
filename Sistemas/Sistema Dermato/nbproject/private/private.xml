@@ -6,12 +6,9 @@
             <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/mvp/model/PatientABMModel.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/gui/PatientJDialog.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/gui/ClinicalHistoryJDialog.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/mvp/presenter/ClinicalHistoryPresenter.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/gui/VisitJDialog.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/mvp/model/VisitModel.java</file>
+            <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/mvp/model/PrincipalModel.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/gui/PrincipalJFrame.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/mvp/presenter/VisitPresenter.java</file>
-            <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/mvp/presenter/PrincipalPresenter.java</file>
             <file>file:/home/fran/Projects/Dermato/Sistemas/Sistema%20Dermato/src/mvp/presenter/PatientABMPresenter.java</file>
         </group>
     </open-files>

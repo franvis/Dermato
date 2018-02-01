@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.List;
 import mvp.presenter.PatientABMPresenter;
 import mvp.view.PatientABMView;
+import mvp.view.listener.DialogExitedListener;
 import mvp.view.listener.PatientUpdatedListener;
 import utils.GeneralUtils;
 
@@ -35,14 +36,16 @@ public class PatientJDialog extends JDialog implements PatientABMView {
 
     private final PatientABMPresenter presenter;
     private PatientUpdatedListener patientUpdatedListener;
+    private DialogExitedListener dialogExitedListener;
 
     /**
      * Creates new form DatosPaciente to register a new patient.
      *
      * @param parent parent frame where the new creation call is being made
      */
-    public PatientJDialog(Frame parent) {
+    public PatientJDialog(Frame parent, DialogExitedListener dialogExitedListener) {
         super(parent, true);
+        this.dialogExitedListener = dialogExitedListener;
         presenter = new PatientABMPresenter(this);
 
         initComponents();
@@ -58,9 +61,10 @@ public class PatientJDialog extends JDialog implements PatientABMView {
      * @param patient patient to modify.
      */
     public PatientJDialog(Frame parent,
-            PatientUpdatedListener patientUpdatedListener, Patient patient) {
+            PatientUpdatedListener patientUpdatedListener, Patient patient, DialogExitedListener dialogExitedListener) {
         super(parent, false);
         this.patientUpdatedListener = patientUpdatedListener;
+        this.dialogExitedListener = dialogExitedListener;
         presenter = new PatientABMPresenter(this);
 
         initComponents();
@@ -211,6 +215,9 @@ public class PatientJDialog extends JDialog implements PatientABMView {
     }
 
     private void setupInitialUI() {
+        //HACK TO AVOID DELETING DATE WHEN FOCUS AND ESCAPE IS PRESSED
+        ftxtfBirthday.getInputMap().put(KeyStroke.getKeyStroke("ESCAPE"), new Object());
+        ftxtfFirstVisitDate.getInputMap().put(KeyStroke.getKeyStroke("ESCAPE"), new Object());
         JTextField etf = (JTextField) cmbMedicalCoverage.getEditor()
                 .getEditorComponent();
         etf.setDisabledTextColor(StyleManager.getTextColor());
@@ -275,8 +282,11 @@ public class PatientJDialog extends JDialog implements PatientABMView {
     public void exitWindow() {
         if (!btnSave.isEnabled()) {
             dispose();
+            dialogExitedListener.windowExited();
         } else {
-            ValidationsAndMessages.validateWindowExit(this);
+            if(ValidationsAndMessages.validateWindowExit(this)){
+                dialogExitedListener.windowExited();
+            }
         }
     }
 
@@ -292,7 +302,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
     public void finishRegisteringPatient(Patient patient) {
         try {
             ClinicalHistoryJDialog clinicalHistory = new ClinicalHistoryJDialog((Frame) getParent(),
-                    patientUpdatedListener, patient);
+                    patientUpdatedListener, patient, (DialogExitedListener) getParent());
             dispose();
             clinicalHistory.setVisible(true);
         } catch (Exception ex) {

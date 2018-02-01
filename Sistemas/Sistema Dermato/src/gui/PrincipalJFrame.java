@@ -29,12 +29,13 @@ import javax.swing.table.DefaultTableModel;
 import mvp.presenter.PrincipalPresenter;
 import mvp.view.listener.PatientUpdatedListener;
 import mvp.view.PrincipalView;
+import mvp.view.listener.DialogExitedListener;
 
 /**
  *
  * @author Francisco Visintini
  */
-public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView, PatientUpdatedListener {
+public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView, PatientUpdatedListener, DialogExitedListener {
 
     //STATIC VARS
     public static final String PATIENTS_TABLE_LASTNAME_COLUMN_TITLE = "Apellido";
@@ -674,7 +675,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
     }//GEN-LAST:event_menuExitActionPerformed
 
     private void menuNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNewPatientActionPerformed
-        PatientJDialog patientFrame = new PatientJDialog(this);
+        PatientJDialog patientFrame = new PatientJDialog(this, this);
         patientFrame.setVisible(true);
     }//GEN-LAST:event_menuNewPatientActionPerformed
 
@@ -844,7 +845,7 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
     }//GEN-LAST:event_btnNewPatientMouseEntered
 
     private void btnNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPatientActionPerformed
-        PatientJDialog patientABM = new PatientJDialog(this);
+        PatientJDialog patientABM = new PatientJDialog(this, this);
         clearTable(dtmPatients);
         clearFilters();
         patientABM.setVisible(true);
@@ -902,7 +903,7 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
         clearTable(dtmPatients);
         clearFilters();
         ClinicalHistoryJDialog clinicalHistory = new ClinicalHistoryJDialog(this,
-                this, patient);
+                this, patient, this);
         clinicalHistory.setVisible(true);
     }
 
@@ -918,7 +919,7 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     @Override
     public void modifyPatientData(Patient patient) {
-        PatientJDialog pacienteInterfaz = new PatientJDialog(this, this, patient);
+        PatientJDialog pacienteInterfaz = new PatientJDialog(this, this, patient, this);
         pacienteInterfaz.setVisible(true);
         pacienteInterfaz.toFront();
         pacienteInterfaz.show();
@@ -972,5 +973,10 @@ private void menuChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//G
                 "");
 
         return ans == JOptionPane.YES_OPTION;
+    }
+
+    @Override
+    public void windowExited() {
+        txtfLastname.grabFocus();
     }
 }

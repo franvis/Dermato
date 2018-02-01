@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Calendar;
 import javax.swing.JComponent;
 import javax.swing.JRootPane;
@@ -17,6 +18,7 @@ import javax.swing.KeyStroke;
 import static utils.GeneralUtils.setButtonFontForPointerEvent;
 import mvp.presenter.VisitPresenter;
 import mvp.view.VisitView;
+import mvp.view.listener.DialogExitedListener;
 import mvp.view.listener.VisitUpdatedListener;
 import static utils.Constants.BIRTHDAY_WITH_AGE;
 import utils.GeneralUtils;
@@ -31,6 +33,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
 
     private final VisitPresenter presenter;
     private final VisitUpdatedListener visitsUpdatedListener;
+    private final DialogExitedListener dialogExitedListener;
     private final boolean isNewVisit;
 
     private static final String DATE_MASK = "  /  /    ";
@@ -41,12 +44,14 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
      * @param parent
      * @param patient
      */
-    public VisitJDialog(java.awt.Frame parent, Patient patient, VisitUpdatedListener visitUdpatedListener) {
+    public VisitJDialog(java.awt.Frame parent, Patient patient, VisitUpdatedListener visitUdpatedListener,
+            DialogExitedListener dialogExitedListener) {
         super(parent, false);
 
         //VARS INITIATION
         presenter = new VisitPresenter(this, patient);
         this.visitsUpdatedListener = visitUdpatedListener;
+        this.dialogExitedListener = dialogExitedListener;
 
         //UI
         initComponents();
@@ -63,11 +68,13 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
      * @param visit
      * @param visitUdpatedListener
      */
-    public VisitJDialog(java.awt.Frame parent, Patient patient, Visit visit, VisitUpdatedListener visitUdpatedListener) {
+    public VisitJDialog(java.awt.Frame parent, Patient patient, Visit visit,
+            VisitUpdatedListener visitUdpatedListener, DialogExitedListener dialogExitedListener) {
         super(parent, false);
         //VARS INITIATION
         presenter = new VisitPresenter(this, patient);
         this.visitsUpdatedListener = visitUdpatedListener;
+        this.dialogExitedListener = dialogExitedListener;
 
         //UI
         initComponents();
@@ -951,7 +958,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
     private Visit generateVisit() {
 
         Visit visit = new Visit();
-        
+
         String date = this.ftxtfDate.getText().trim();
         String error = ValidationsAndMessages.validateDateInCommonRange(date);
         if (!error.isEmpty()) {
@@ -1052,8 +1059,9 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
     public void exitWindow() {
         if (!btnSave.isEnabled()) {
             dispose();
-        } else {
-            ValidationsAndMessages.validateWindowExit(this);
+            dialogExitedListener.windowExited();
+        } else if (ValidationsAndMessages.validateWindowExit(this)) {
+            dialogExitedListener.windowExited();
         }
     }
 
@@ -1078,17 +1086,20 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
 
     private void setDateLabel() {
         Calendar calendar = Calendar.getInstance();
-        this.ftxtfDate.setText(GeneralUtils.stringDateParser(calendar.getTime()));
+        String date = GeneralUtils.stringDateParser(calendar.getTime());
+        this.ftxtfDate.setText(date);
     }
 
     private void setupInitialUI() {
-        setDateLabel();
+        //HACK TO AVOID DELETING DATE WHEN FOCUS AND ESCAPE IS PRESSED
+        ftxtfDate.getInputMap().put(KeyStroke.getKeyStroke("ESCAPE"), new Object());
         txtaReason.grabFocus();
         pnlDate.setBackground(StyleManager.getSecondaryColor(StyleManager.actualColor));
         pnlFullName.setBackground(StyleManager.getSecondaryColor(StyleManager.actualColor));
         setBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds());
         setLocationRelativeTo(getParent());
         StyleManager.paint(this);
+        setDateLabel();
     }
 
     @Override
