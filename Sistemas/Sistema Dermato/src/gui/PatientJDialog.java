@@ -42,6 +42,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
      * Creates new form DatosPaciente to register a new patient.
      *
      * @param parent parent frame where the new creation call is being made
+     * @param dialogExitedListener listener for dialog exiting
      */
     public PatientJDialog(Frame parent, DialogExitedListener dialogExitedListener) {
         super(parent, true);
@@ -61,10 +62,9 @@ public class PatientJDialog extends JDialog implements PatientABMView {
      * @param patient patient to modify.
      */
     public PatientJDialog(Frame parent,
-            PatientUpdatedListener patientUpdatedListener, Patient patient, DialogExitedListener dialogExitedListener) {
-        super(parent, false);
+            PatientUpdatedListener patientUpdatedListener, Patient patient) {
+        super(parent, true);
         this.patientUpdatedListener = patientUpdatedListener;
-        this.dialogExitedListener = dialogExitedListener;
         presenter = new PatientABMPresenter(this);
 
         initComponents();
@@ -227,7 +227,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
 
         presenter.loadMedicalCoverages();
         presenter.loadDniTypes();
-        Rectangle r = new Rectangle(getBounds().width, (int)GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().getHeight());
+        Rectangle r = new Rectangle(getBounds().width, (int) GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().getHeight());
         setBounds(r);
         setLocationRelativeTo(getParent());
         StyleManager.paint(this);
@@ -282,9 +282,11 @@ public class PatientJDialog extends JDialog implements PatientABMView {
     public void exitWindow() {
         if (!btnSave.isEnabled()) {
             dispose();
-            dialogExitedListener.windowExited();
-        } else {
-            if(ValidationsAndMessages.validateWindowExit(this)){
+            if (dialogExitedListener != null) {
+                dialogExitedListener.windowExited();
+            }
+        } else if (ValidationsAndMessages.validateWindowExit(this)) {
+            if (dialogExitedListener != null) {
                 dialogExitedListener.windowExited();
             }
         }
@@ -305,6 +307,8 @@ public class PatientJDialog extends JDialog implements PatientABMView {
                     patientUpdatedListener, patient, (DialogExitedListener) getParent());
             dispose();
             clinicalHistory.setVisible(true);
+            clinicalHistory.toFront();
+            clinicalHistory.requestFocus();
         } catch (Exception ex) {
             showErrorMessage("El paciente se registro correctamente pero no se pudo crear la Historia Clinica.\nIntente ingresar buscando el paciente desde el panel principal.");
             dispose();

@@ -18,11 +18,10 @@ public class PreviousCHJDialog extends javax.swing.JDialog {
      * Creates new form AntecGenerales
      *
      * @param parent
-     * @param modal
      * @param previousClinicalHistory 
      */
     public PreviousCHJDialog(java.awt.Frame parent, String previousClinicalHistory) {
-        super(parent, false);
+        super(parent, true);
         initComponents();
         setupInitialUi(previousClinicalHistory);
     }

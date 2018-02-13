@@ -20,7 +20,6 @@ import static utils.GeneralUtils.setButtonFontForPointerEvent;
 import utils.ValidationsAndMessages;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.table.DefaultTableModel;
@@ -36,8 +35,7 @@ import static utils.StyleManager.DEFAULT_TEXT_COLOR;
  * @author Francisco Visintini
  */
 public class ClinicalHistoryJDialog extends javax.swing.JDialog implements
-        ClinicalHistoryView, PatientUpdatedListener, VisitUpdatedListener,
-        DialogExitedListener {
+        ClinicalHistoryView, PatientUpdatedListener, VisitUpdatedListener {
 
     private static final String TABLE_COLUMN_DATE = "Fecha";
     private static final String TABLE_COLUMN_REASON = "Motivo";
@@ -49,7 +47,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements
     private final DialogExitedListener dialogExitedListener;
 
     public ClinicalHistoryJDialog(java.awt.Frame parent, PatientUpdatedListener patientUpdatedListener, Patient patient, DialogExitedListener dialogExitedListener) {
-        super(parent, false);
+        super(parent, true);
         this.patientUpdatedListener = patientUpdatedListener;
         this.dialogExitedListener = dialogExitedListener;
         presenter = new ClinicalHistoryPresenter(this);
@@ -769,13 +767,10 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements
 
     @Override
     public void modifyPatientData(Patient patient) {
-        PatientJDialog pacienteInterfaz = new PatientJDialog((java.awt.Frame) getParent(), this, patient, this);
+        PatientJDialog pacienteInterfaz = new PatientJDialog((java.awt.Frame) getParent(), this, patient);
         pacienteInterfaz.setVisible(true);
-        pacienteInterfaz.toFront();
-        pacienteInterfaz.show();
-        pacienteInterfaz.setAutoRequestFocus(true);
         pacienteInterfaz.requestFocus();
-        pacienteInterfaz.setAlwaysOnTop(true);
+        pacienteInterfaz.toFront();
     }
 
     @Override
@@ -788,33 +783,23 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements
         AntecedentsJDialog antecedentsDialog = new AntecedentsJDialog((Frame) getParent(), true, patient);
         antecedentsDialog.setVisible(true);
         antecedentsDialog.toFront();
-        antecedentsDialog.show();
-        antecedentsDialog.setAutoRequestFocus(true);
         antecedentsDialog.requestFocus();
-        antecedentsDialog.setAlwaysOnTop(true);
     }
 
     @Override
     public void newVisit(Patient patient) {
-        VisitJDialog visitDialog = new VisitJDialog((Frame) getParent(), patient, this, this);
+        VisitJDialog visitDialog = new VisitJDialog((Frame) getParent(), patient, this);
         visitDialog.setVisible(true);
         visitDialog.toFront();
-        visitDialog.show();
-        visitDialog.setAutoRequestFocus(true);
         visitDialog.requestFocus();
-        visitDialog.setAlwaysOnTop(true);
     }
 
     @Override
     public void displayVisit(Patient patient, Visit visit) {
-        VisitJDialog abmVisit = new VisitJDialog((Frame) getParent(), patient, visit, this, this);
+        VisitJDialog abmVisit = new VisitJDialog((Frame) getParent(), patient, visit, this);
         abmVisit.setVisible(true);
-        abmVisit.requestFocus();
         abmVisit.toFront();
-        abmVisit.show();
-        abmVisit.setAutoRequestFocus(true);
         abmVisit.requestFocus();
-        abmVisit.setAlwaysOnTop(true);
     }
 
     @Override
@@ -822,10 +807,7 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements
         PreviousCHJDialog previousCHJDialog = new PreviousCHJDialog((Frame) getParent(), previousCH);
         previousCHJDialog.setVisible(true);
         previousCHJDialog.toFront();
-        previousCHJDialog.show();
-        previousCHJDialog.setAutoRequestFocus(true);
         previousCHJDialog.requestFocus();
-        previousCHJDialog.setAlwaysOnTop(true);
     }
 
     @Override
@@ -851,8 +833,8 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements
         return ans == JOptionPane.YES_OPTION;
     }
 
-    @Override
-    public void windowExited() {
-        btnModifyPatient.grabFocus();
-    }
+//    @Override
+//    public void windowExited() {
+//        btnModifyPatient.grabFocus();
+//    }
 }
