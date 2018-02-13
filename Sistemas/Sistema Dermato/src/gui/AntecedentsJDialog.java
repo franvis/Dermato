@@ -30,7 +30,7 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
      * @param patient
      */
     public AntecedentsJDialog(java.awt.Frame parent, boolean modal, Patient patient) {
-        super(parent, false);
+        super(parent, true);
         presenter = new AntecedentsPresenter(this, patient);
 
         initComponents();

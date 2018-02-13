@@ -10,7 +10,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.Calendar;
 import javax.swing.JComponent;
 import javax.swing.JRootPane;
@@ -18,7 +17,6 @@ import javax.swing.KeyStroke;
 import static utils.GeneralUtils.setButtonFontForPointerEvent;
 import mvp.presenter.VisitPresenter;
 import mvp.view.VisitView;
-import mvp.view.listener.DialogExitedListener;
 import mvp.view.listener.VisitUpdatedListener;
 import static utils.Constants.BIRTHDAY_WITH_AGE;
 import utils.GeneralUtils;
@@ -33,7 +31,6 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
 
     private final VisitPresenter presenter;
     private final VisitUpdatedListener visitsUpdatedListener;
-    private final DialogExitedListener dialogExitedListener;
     private final boolean isNewVisit;
 
     private static final String DATE_MASK = "  /  /    ";
@@ -43,15 +40,14 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
      *
      * @param parent
      * @param patient
+     * @param visitUdpatedListener
      */
-    public VisitJDialog(java.awt.Frame parent, Patient patient, VisitUpdatedListener visitUdpatedListener,
-            DialogExitedListener dialogExitedListener) {
-        super(parent, false);
+    public VisitJDialog(java.awt.Frame parent, Patient patient, VisitUpdatedListener visitUdpatedListener) {
+        super(parent, true);
 
         //VARS INITIATION
         presenter = new VisitPresenter(this, patient);
         this.visitsUpdatedListener = visitUdpatedListener;
-        this.dialogExitedListener = dialogExitedListener;
 
         //UI
         initComponents();
@@ -69,12 +65,11 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
      * @param visitUdpatedListener
      */
     public VisitJDialog(java.awt.Frame parent, Patient patient, Visit visit,
-            VisitUpdatedListener visitUdpatedListener, DialogExitedListener dialogExitedListener) {
-        super(parent, false);
+            VisitUpdatedListener visitUdpatedListener) {
+        super(parent, true);
         //VARS INITIATION
         presenter = new VisitPresenter(this, patient);
         this.visitsUpdatedListener = visitUdpatedListener;
-        this.dialogExitedListener = dialogExitedListener;
 
         //UI
         initComponents();
@@ -1059,9 +1054,8 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
     public void exitWindow() {
         if (!btnSave.isEnabled()) {
             dispose();
-            dialogExitedListener.windowExited();
-        } else if (ValidationsAndMessages.validateWindowExit(this)) {
-            dialogExitedListener.windowExited();
+        } else {
+            ValidationsAndMessages.validateWindowExit(this);
         }
     }
 
@@ -1142,11 +1136,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
     public void showPreviousCH(String previousCH) {
         PreviousCHJDialog previousCHJDialog = new PreviousCHJDialog((Frame) getParent(), previousCH);
         previousCHJDialog.setVisible(true);
-        previousCHJDialog.requestFocus();
         previousCHJDialog.toFront();
-        previousCHJDialog.show();
-        previousCHJDialog.setAutoRequestFocus(true);
         previousCHJDialog.requestFocus();
-        previousCHJDialog.setAlwaysOnTop(true);
     }
 }
