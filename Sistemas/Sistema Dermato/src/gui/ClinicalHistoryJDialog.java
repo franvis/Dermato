@@ -832,9 +832,4 @@ public class ClinicalHistoryJDialog extends javax.swing.JDialog implements
 
         return ans == JOptionPane.YES_OPTION;
     }
-
-//    @Override
-//    public void windowExited() {
-//        btnModifyPatient.grabFocus();
-//    }
 }

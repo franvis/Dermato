@@ -40,7 +40,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
      *
      * @param parent
      * @param patient
-     * @param visitUdpatedListener 
+     * @param visitUdpatedListener
      */
     public VisitJDialog(java.awt.Frame parent, Patient patient, VisitUpdatedListener visitUdpatedListener) {
         super(parent, true);
@@ -1054,8 +1054,8 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
     public void exitWindow() {
         if (!btnSave.isEnabled()) {
             dispose();
-        } else if (ValidationsAndMessages.validateWindowExit(this)) {
-            dispose();
+        } else {
+            ValidationsAndMessages.validateWindowExit(this);
         }
     }
 
