@@ -14,10 +14,10 @@ public class Constants {
     public static final String URL = "jdbc:mysql://localhost:3306/dermato";
 
 //    //File managing data MARQUI
-    public static final String COLOR_FILE_PATH = "C:\\Program Files\\Sistema Dermatologico\\Archivos Auxiliares\\Color.dat";
-    public static final String AUXILIAR_AUTOMATIC_BACKUP_PATH = "C:\\Program Files\\Sistema Dermatologico\\Backup Automatico\\BackUp.dat";
-    public static final String BACKUP_PRCESS_PATH = "\"C:\\Program Files\\MySQL\\MySQL Server 5.5\\bin\\mysqldump.exe\"";
-    public static final String BACKUPS_FOLDER_PATH = "C:\\Program Files\\Sistema Dermatologico\\Backup Automatico\\";
+    public static final String COLOR_FILE_PATH = "C:\\Users\\Marcos\\Documents\\Sistema Dermatologico\\Archivos Auxiliares\\Color.dat";
+    public static final String AUXILIAR_AUTOMATIC_BACKUP_PATH = "C:\\Users\\Marcos\\Documents\\Sistema Dermatologico\\Backup Automatico\\BackUp.dat";
+    public static final String BACKUP_PRCESS_PATH = "\"C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe\"";
+    public static final String BACKUPS_FOLDER_PATH = "C:\\Users\\Marcos\\Documents\\Sistema Dermatologico\\Backup Automatico\\";
 
 //    //File managing data PAPI
 //    public static final String COLOR_FILE_PATH = "/Applications/Sistema Dermatologico/Archivos Auxiliares/Color.dat";
