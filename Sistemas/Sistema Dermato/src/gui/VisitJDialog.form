@@ -76,15 +76,15 @@
                       <Component id="pnlAntecedents" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="pnlPatientsData" max="32767" attributes="0"/>
+                      <Component id="pnlPatientsData" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="pnlExams" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="pnlBiopsy" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="pnlReferences" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pnlButtons" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="pnlButtons" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -103,13 +103,13 @@
                   <Color PropertyName="color" blue="99" green="99" red="99" type="rgb"/>
                 </LineBorder>
               </Border>
-              <Font PropertyName="font" name="Tahoma" size="15" style="0"/>
+              <Font PropertyName="font" name="Tahoma" size="18" style="0"/>
               <Connection PropertyName="color" code="StyleManager.getTextColor(StyleManager.actualColor)&#xa;" type="code"/>
             </TitledBorder>
           </Border>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="0"/>
+          <Font name="Tahoma" size="18" style="0"/>
         </Property>
       </Properties>
 
@@ -127,12 +127,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane12" alignment="0" pref="707" max="32767" attributes="0"/>
+                  <Component id="jScrollPane12" alignment="0" pref="896" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane12" alignment="0" pref="203" max="32767" attributes="0"/>
+                  <Component id="jScrollPane12" alignment="0" pref="186" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -148,7 +148,7 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="16" style="1"/>
+                      <Font name="Tahoma" size="20" style="1"/>
                     </Property>
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="2"/>
@@ -194,7 +194,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane9" alignment="0" pref="481" max="32767" attributes="0"/>
+              <Component id="jScrollPane9" alignment="0" pref="338" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -215,7 +215,7 @@
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="16" style="1"/>
+                  <Font name="Tahoma" size="20" style="1"/>
                 </Property>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="2"/>
@@ -257,8 +257,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblstaticDate" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                  <Component id="ftxtfDate" min="-2" pref="119" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="ftxtfDate" min="-2" pref="153" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -276,7 +276,7 @@
         <Component class="javax.swing.JLabel" name="lblstaticDate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="2"/>
+              <Font name="Tahoma" size="20" style="2"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="33" red="0" type="rgb"/>
@@ -290,7 +290,7 @@
               <Format format="##/##/####" subtype="-1" type="5"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[0, 2, 0, 0]"/>
@@ -322,7 +322,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
+              <Component id="jScrollPane7" alignment="0" pref="338" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -343,7 +343,7 @@
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="16" style="1"/>
+                  <Font name="Tahoma" size="20" style="1"/>
                 </Property>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="2"/>
@@ -387,7 +387,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane10" alignment="0" max="32767" attributes="0"/>
+              <Component id="jScrollPane10" alignment="0" pref="338" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -408,7 +408,7 @@
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="16" style="1"/>
+                  <Font name="Tahoma" size="20" style="1"/>
                 </Property>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="2"/>
@@ -452,7 +452,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane8" alignment="0" max="32767" attributes="0"/>
+              <Component id="jScrollPane8" alignment="0" pref="338" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -473,7 +473,7 @@
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="16" style="1"/>
+                  <Font name="Tahoma" size="20" style="1"/>
                 </Property>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="2"/>
@@ -517,7 +517,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane11" alignment="0" max="32767" attributes="0"/>
+              <Component id="jScrollPane11" alignment="0" pref="338" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -538,7 +538,7 @@
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="16" style="1"/>
+                  <Font name="Tahoma" size="20" style="1"/>
                 </Property>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="2"/>
@@ -572,19 +572,19 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="btnBack" min="-2" pref="120" max="-2" attributes="0"/>
+                  <Component id="btnBack" min="-2" pref="132" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btnModify" min="-2" pref="119" max="-2" attributes="0"/>
+                  <Component id="btnModify" min="-2" pref="165" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnCancel" min="-2" pref="117" max="-2" attributes="0"/>
+                  <Component id="btnCancel" min="-2" pref="170" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnSave" min="-2" pref="124" max="-2" attributes="0"/>
+                  <Component id="btnSave" min="-2" pref="160" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnBack" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
                   <Component id="btnModify" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
                   <Component id="btnCancel" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
@@ -597,7 +597,7 @@
         <Component class="javax.swing.JButton" name="btnCancel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="13" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="33" red="0" type="rgb"/>
@@ -630,7 +630,7 @@
         <Component class="javax.swing.JButton" name="btnSave">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="13" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="33" red="0" type="rgb"/>
@@ -662,7 +662,7 @@
         <Component class="javax.swing.JButton" name="btnModify">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="13" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="33" red="0" type="rgb"/>
@@ -695,7 +695,7 @@
         <Component class="javax.swing.JButton" name="btnBack">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="13" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="33" red="0" type="rgb"/>
@@ -753,30 +753,34 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="pnlFullName" pref="0" max="32767" attributes="0"/>
+                      <Component id="pnlFullName" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblstaticBirthday" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lblBirthday" max="32767" attributes="0"/>
                               </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                                  <Component id="lblstaticDni" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lblDni" min="-2" pref="146" max="-2" attributes="0"/>
+                              </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="lblstaticCity" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblstaticDni" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblstaticAddress" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblstaticAddress" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblDni" min="-2" pref="146" max="-2" attributes="0"/>
                                       <Component id="lblCity" min="-2" pref="145" max="-2" attributes="0"/>
-                                      <Component id="lblAddress" min="-2" pref="145" max="-2" attributes="0"/>
+                                      <Component id="lblAddress" min="-2" pref="277" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                   <Component id="lblsMedicalCoverage" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -794,7 +798,7 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="btnPreviousCH" min="-2" pref="186" max="-2" attributes="0"/>
+                          <Component id="btnPreviousCH" min="-2" pref="249" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -845,7 +849,7 @@
         <Component class="javax.swing.JLabel" name="lblstaticDni">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nro. Documento:"/>
           </Properties>
@@ -853,7 +857,7 @@
         <Component class="javax.swing.JLabel" name="lblsMedicalCoverageNumber">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nro. Afiliado:"/>
           </Properties>
@@ -861,7 +865,7 @@
         <Component class="javax.swing.JLabel" name="lblsMedicalCoverage">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Obra Social:"/>
           </Properties>
@@ -869,7 +873,7 @@
         <Component class="javax.swing.JLabel" name="lblstaticBirthday">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Fecha de Nacimiento:"/>
           </Properties>
@@ -877,7 +881,7 @@
         <Component class="javax.swing.JLabel" name="lblDni">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="35953232"/>
           </Properties>
@@ -885,7 +889,7 @@
         <Component class="javax.swing.JLabel" name="lblBirthday">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="21/03/1991"/>
           </Properties>
@@ -893,7 +897,7 @@
         <Component class="javax.swing.JLabel" name="lblMedicalCoverageNumber">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="3-4534543-2"/>
           </Properties>
@@ -901,7 +905,7 @@
         <Component class="javax.swing.JLabel" name="lblMedicalCoverage">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="OSPAC"/>
           </Properties>
@@ -909,7 +913,7 @@
         <Component class="javax.swing.JLabel" name="lblstaticFirstVisitDate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Primera Consulta:"/>
           </Properties>
@@ -917,7 +921,7 @@
         <Component class="javax.swing.JLabel" name="lblFirstVisitDate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="0 -"/>
           </Properties>
@@ -925,7 +929,7 @@
         <Component class="javax.swing.JLabel" name="lblCity">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="423654"/>
           </Properties>
@@ -933,7 +937,7 @@
         <Component class="javax.swing.JLabel" name="lblstaticCity">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Localidad:"/>
           </Properties>
@@ -957,11 +961,11 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="lblstaticNombre" min="-2" pref="155" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="lblstaticNombre" min="-2" pref="205" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblPatientName" min="-2" pref="461" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                      <Component id="lblPatientName" min="-2" pref="443" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -978,7 +982,7 @@
             <Component class="javax.swing.JLabel" name="lblPatientName">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="15" style="3"/>
+                  <Font name="Tahoma" size="20" style="3"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="33" red="0" type="rgb"/>
@@ -991,7 +995,7 @@
             <Component class="javax.swing.JLabel" name="lblstaticNombre">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Tahoma" size="20" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Apellido y Nombre:"/>
               </Properties>
@@ -1001,7 +1005,7 @@
         <Component class="javax.swing.JLabel" name="lblAddress">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="423654"/>
           </Properties>
@@ -1009,7 +1013,7 @@
         <Component class="javax.swing.JLabel" name="lblstaticAddress">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Domicilio:"/>
           </Properties>
@@ -1017,7 +1021,7 @@
         <Component class="javax.swing.JLabel" name="lblstaticPhone">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Telefono:"/>
           </Properties>
@@ -1025,7 +1029,7 @@
         <Component class="javax.swing.JLabel" name="lblPhone">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
@@ -1033,7 +1037,7 @@
         <Component class="javax.swing.JButton" name="btnPreviousCH">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="13" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="33" red="0" type="rgb"/>
@@ -1086,7 +1090,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane13" alignment="0" pref="218" max="32767" attributes="0"/>
+              <Component id="jScrollPane13" alignment="0" pref="198" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -1102,7 +1106,7 @@
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="16" style="1"/>
+                  <Font name="Tahoma" size="20" style="1"/>
                 </Property>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="2"/>
@@ -1139,7 +1143,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="lblsMandatoryFieldsReference" min="-2" pref="176" max="-2" attributes="0"/>
+                  <Component id="lblsMandatoryFieldsReference" min="-2" pref="227" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -1154,7 +1158,7 @@
         <Component class="javax.swing.JLabel" name="lblsMandatoryFieldsReference">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="(*) = Campo Obligatorio"/>
           </Properties>

@@ -11,7 +11,7 @@ public class Constants {
     public static final String USER = "root";
     public static final String PASSWORD = "3654";
     public static final String DB = "dermato";
-    public static final String URL = "jdbc:mysql://localhost:3306/dermato";
+    public static final String URL = "jdbc:mysql://localhost:3306/dermato?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
 //    //File managing data MARQUI
     public static final String COLOR_FILE_PATH = "C:\\Users\\Marcos\\Documents\\Sistema Dermatologico\\Archivos Auxiliares\\Color.dat";

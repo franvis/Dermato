@@ -82,9 +82,9 @@ public class GeneralUtils {
     public static void setButtonFontForPointerEvent(JButton jbtn, boolean mouseEntering) {
         if (jbtn.isEnabled()) {
             if (mouseEntering) {
-                jbtn.setFont(new java.awt.Font(SYSTEM_FONT, 1, 14));
+                jbtn.setFont(new java.awt.Font(SYSTEM_FONT, 1, 21));
             } else {
-                jbtn.setFont(new java.awt.Font(SYSTEM_FONT, 1, 13));
+                jbtn.setFont(new java.awt.Font(SYSTEM_FONT, 1, 20));
             }
         }
     }

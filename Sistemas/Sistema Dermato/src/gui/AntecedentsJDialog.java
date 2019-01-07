@@ -93,7 +93,7 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
 
         txtaSurgical.setEditable(false);
         txtaSurgical.setColumns(20);
-        txtaSurgical.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
+        txtaSurgical.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         txtaSurgical.setLineWrap(true);
         txtaSurgical.setRows(5);
         txtaSurgical.setWrapStyleWord(true);
@@ -121,7 +121,7 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
 
         txtaToxic.setEditable(false);
         txtaToxic.setColumns(20);
-        txtaToxic.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
+        txtaToxic.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         txtaToxic.setLineWrap(true);
         txtaToxic.setRows(5);
         txtaToxic.setWrapStyleWord(true);
@@ -149,7 +149,7 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
 
         txtaPersonal.setEditable(false);
         txtaPersonal.setColumns(20);
-        txtaPersonal.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
+        txtaPersonal.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         txtaPersonal.setRows(5);
         txtaPersonal.setWrapStyleWord(true);
         txtaPersonal.setMargin(new java.awt.Insets(0, 2, 0, 0));
@@ -169,14 +169,14 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
         );
         pnlPersonalLayout.setVerticalGroup(
             pnlPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+            .addComponent(jScrollPane3)
         );
 
         pnlPharmacological.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Medicamentosos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaPharmacological.setEditable(false);
         txtaPharmacological.setColumns(20);
-        txtaPharmacological.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
+        txtaPharmacological.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         txtaPharmacological.setLineWrap(true);
         txtaPharmacological.setRows(5);
         txtaPharmacological.setTabSize(0);
@@ -198,14 +198,14 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
         );
         pnlPharmacologicalLayout.setVerticalGroup(
             pnlPharmacologicalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+            .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pnlFamily.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Familiares", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaFamily.setEditable(false);
         txtaFamily.setColumns(20);
-        txtaFamily.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
+        txtaFamily.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         txtaFamily.setLineWrap(true);
         txtaFamily.setRows(5);
         txtaFamily.setTabSize(0);
@@ -227,12 +227,14 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
         );
         pnlFamilyLayout.setVerticalGroup(
             pnlFamilyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+            .addGroup(pnlFamilyLayout.createSequentialGroup()
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pnlButtons.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        btnSave.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnSave.setForeground(new java.awt.Color(0, 51, 102));
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save_enabled.png"))); // NOI18N
         btnSave.setText("Guardar");
@@ -256,7 +258,7 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
             }
         });
 
-        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnCancel.setForeground(new java.awt.Color(0, 51, 102));
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel_enabled.png"))); // NOI18N
         btnCancel.setText("Cancelar");
@@ -280,7 +282,7 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
             }
         });
 
-        btnModify.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnModify.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnModify.setForeground(new java.awt.Color(0, 51, 102));
         btnModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit_enabled.png"))); // NOI18N
         btnModify.setText("Modificar");
@@ -303,7 +305,7 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
             }
         });
 
-        btnBack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnBack.setForeground(new java.awt.Color(0, 51, 102));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_enabled.png"))); // NOI18N
         btnBack.setText("Volver");
@@ -333,13 +335,13 @@ public class AntecedentsJDialog extends javax.swing.JDialog implements Anteceden
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlButtonsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
+                .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlButtonsLayout.setVerticalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

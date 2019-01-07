@@ -155,12 +155,12 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
             }
         });
 
-        pnlExams.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Exámenes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15), StyleManager.getTextColor(StyleManager.actualColor) // NOI18N
+        pnlExams.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Exámenes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), StyleManager.getTextColor(StyleManager.actualColor) // NOI18N
         ));
-        pnlExams.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        pnlExams.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         txtaPhysicalExam.setColumns(20);
-        txtaPhysicalExam.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtaPhysicalExam.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtaPhysicalExam.setLineWrap(true);
         txtaPhysicalExam.setRows(2);
         txtaPhysicalExam.setTabSize(0);
@@ -178,11 +178,11 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlPhysical.setLayout(pnlPhysicalLayout);
         pnlPhysicalLayout.setHorizontalGroup(
             pnlPhysicalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
+            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 896, Short.MAX_VALUE)
         );
         pnlPhysicalLayout.setVerticalGroup(
             pnlPhysicalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
         );
 
         pnlExams.addTab("Físico", pnlPhysical);
@@ -191,7 +191,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlReason.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
 
         txtaReason.setColumns(20);
-        txtaReason.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtaReason.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtaReason.setLineWrap(true);
         txtaReason.setRows(2);
         txtaReason.setTabSize(0);
@@ -209,7 +209,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlReason.setLayout(pnlReasonLayout);
         pnlReasonLayout.setHorizontalGroup(
             pnlReasonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+            .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
         );
         pnlReasonLayout.setVerticalGroup(
             pnlReasonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +219,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlDate.setBackground(new java.awt.Color(228, 228, 241));
         pnlDate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(153, 153, 153), new java.awt.Color(255, 255, 255), null));
 
-        lblstaticDate.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        lblstaticDate.setFont(new java.awt.Font("Tahoma", 2, 20)); // NOI18N
         lblstaticDate.setForeground(new java.awt.Color(0, 51, 102));
         lblstaticDate.setText("Fecha:");
 
@@ -228,7 +228,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ftxtfDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        ftxtfDate.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         ftxtfDate.setMargin(new java.awt.Insets(0, 2, 0, 0));
 
         javax.swing.GroupLayout pnlDateLayout = new javax.swing.GroupLayout(pnlDate);
@@ -238,8 +238,8 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
             .addGroup(pnlDateLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblstaticDate)
-                .addGap(4, 4, 4)
-                .addComponent(ftxtfDate, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ftxtfDate, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlDateLayout.setVerticalGroup(
@@ -253,7 +253,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlTreatment.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
 
         txtaTreatment.setColumns(20);
-        txtaTreatment.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtaTreatment.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtaTreatment.setLineWrap(true);
         txtaTreatment.setRows(2);
         txtaTreatment.setTabSize(0);
@@ -271,7 +271,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlTreatment.setLayout(pnlTreatmentLayout);
         pnlTreatmentLayout.setHorizontalGroup(
             pnlTreatmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
         );
         pnlTreatmentLayout.setVerticalGroup(
             pnlTreatmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,7 +282,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlComplementaryStudies.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
 
         txtaComplementaryStudies.setColumns(20);
-        txtaComplementaryStudies.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtaComplementaryStudies.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtaComplementaryStudies.setLineWrap(true);
         txtaComplementaryStudies.setRows(2);
         txtaComplementaryStudies.setTabSize(0);
@@ -300,7 +300,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlComplementaryStudies.setLayout(pnlComplementaryStudiesLayout);
         pnlComplementaryStudiesLayout.setHorizontalGroup(
             pnlComplementaryStudiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane10)
+            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
         );
         pnlComplementaryStudiesLayout.setVerticalGroup(
             pnlComplementaryStudiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,7 +311,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlLaboratory.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
 
         txtaLaboratory.setColumns(20);
-        txtaLaboratory.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtaLaboratory.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtaLaboratory.setLineWrap(true);
         txtaLaboratory.setRows(2);
         txtaLaboratory.setTabSize(0);
@@ -329,7 +329,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlLaboratory.setLayout(pnlLaboratoryLayout);
         pnlLaboratoryLayout.setHorizontalGroup(
             pnlLaboratoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane8)
+            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
         );
         pnlLaboratoryLayout.setVerticalGroup(
             pnlLaboratoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,7 +340,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlAntecedents.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
 
         txtaAntecedents.setColumns(20);
-        txtaAntecedents.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtaAntecedents.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtaAntecedents.setLineWrap(true);
         txtaAntecedents.setRows(2);
         txtaAntecedents.setTabSize(0);
@@ -358,7 +358,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlAntecedents.setLayout(pnlAntecedentsLayout);
         pnlAntecedentsLayout.setHorizontalGroup(
             pnlAntecedentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane11)
+            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
         );
         pnlAntecedentsLayout.setVerticalGroup(
             pnlAntecedentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,7 +367,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
 
         pnlButtons.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnCancel.setForeground(new java.awt.Color(0, 51, 102));
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel_enabled.png"))); // NOI18N
         btnCancel.setText("Cancelar");
@@ -391,7 +391,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
             }
         });
 
-        btnSave.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnSave.setForeground(new java.awt.Color(0, 51, 102));
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save_enabled.png"))); // NOI18N
         btnSave.setText("Guardar");
@@ -414,7 +414,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
             }
         });
 
-        btnModify.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnModify.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnModify.setForeground(new java.awt.Color(0, 51, 102));
         btnModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit_enabled.png"))); // NOI18N
         btnModify.setText("Modificar");
@@ -438,7 +438,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
             }
         });
 
-        btnBack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnBack.setForeground(new java.awt.Color(0, 51, 102));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_enabled.png"))); // NOI18N
         btnBack.setText("Volver");
@@ -467,13 +467,13 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlButtonsLayout.setHorizontalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlButtonsLayout.createSequentialGroup()
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlButtonsLayout.setVerticalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -487,52 +487,52 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlPatientsData.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Datos del Paciente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
         pnlPatientsData.setForeground(new java.awt.Color(204, 204, 255));
 
-        lblstaticDni.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblstaticDni.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         lblstaticDni.setText("Nro. Documento:");
 
-        lblsMedicalCoverageNumber.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblsMedicalCoverageNumber.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         lblsMedicalCoverageNumber.setText("Nro. Afiliado:");
 
-        lblsMedicalCoverage.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblsMedicalCoverage.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         lblsMedicalCoverage.setText("Obra Social:");
 
-        lblstaticBirthday.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblstaticBirthday.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         lblstaticBirthday.setText("Fecha de Nacimiento:");
 
-        lblDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblDni.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblDni.setText("35953232");
 
-        lblBirthday.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblBirthday.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblBirthday.setText("21/03/1991");
 
-        lblMedicalCoverageNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblMedicalCoverageNumber.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblMedicalCoverageNumber.setText("3-4534543-2");
 
-        lblMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblMedicalCoverage.setText("OSPAC");
 
-        lblstaticFirstVisitDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblstaticFirstVisitDate.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         lblstaticFirstVisitDate.setText("Primera Consulta:");
 
-        lblFirstVisitDate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblFirstVisitDate.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblFirstVisitDate.setText("0 -");
 
-        lblCity.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblCity.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblCity.setText("423654");
 
-        lblstaticCity.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblstaticCity.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         lblstaticCity.setText("Localidad:");
 
         pnlFullName.setBackground(new java.awt.Color(228, 228, 241));
         pnlFullName.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(153, 153, 153), new java.awt.Color(255, 255, 255), null));
 
-        lblPatientName.setFont(new java.awt.Font("Tahoma", 3, 15)); // NOI18N
+        lblPatientName.setFont(new java.awt.Font("Tahoma", 3, 20)); // NOI18N
         lblPatientName.setForeground(new java.awt.Color(0, 51, 102));
         lblPatientName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblPatientName.setText("Lopez, Juan Carlos");
         lblPatientName.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
-        lblstaticNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblstaticNombre.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         lblstaticNombre.setText("Apellido y Nombre:");
 
         javax.swing.GroupLayout pnlFullNameLayout = new javax.swing.GroupLayout(pnlFullName);
@@ -540,11 +540,11 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlFullNameLayout.setHorizontalGroup(
             pnlFullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFullNameLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblstaticNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addComponent(lblstaticNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblPatientName, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addComponent(lblPatientName, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlFullNameLayout.setVerticalGroup(
             pnlFullNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -553,19 +553,19 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
                 .addComponent(lblstaticNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        lblAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblAddress.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblAddress.setText("423654");
 
-        lblstaticAddress.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblstaticAddress.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         lblstaticAddress.setText("Domicilio:");
 
-        lblstaticPhone.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblstaticPhone.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         lblstaticPhone.setText("Telefono:");
 
-        lblPhone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblPhone.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblPhone.setText("0");
 
-        btnPreviousCH.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnPreviousCH.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnPreviousCH.setForeground(new java.awt.Color(0, 51, 102));
         btnPreviousCH.setText("Historia clinica previa");
         btnPreviousCH.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -593,25 +593,28 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
             .addGroup(pnlPatientsDataLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pnlFullName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPatientsDataLayout.createSequentialGroup()
-                        .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlPatientsDataLayout.createSequentialGroup()
                                 .addComponent(lblstaticBirthday)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(pnlPatientsDataLayout.createSequentialGroup()
-                                .addGap(36, 36, 36)
+                                .addGap(48, 48, 48)
+                                .addComponent(lblstaticDni)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblDni, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlPatientsDataLayout.createSequentialGroup()
+                                .addGap(115, 115, 115)
                                 .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblstaticCity)
-                                    .addComponent(lblstaticDni)
                                     .addComponent(lblstaticAddress))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblDni, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblCity, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPatientsDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(lblsMedicalCoverage, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -625,7 +628,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
                             .addComponent(lblMedicalCoverageNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlPatientsDataLayout.createSequentialGroup()
-                        .addComponent(btnPreviousCH, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPreviousCH, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -666,7 +669,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlBiopsy.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
 
         txtaBiopsy.setColumns(20);
-        txtaBiopsy.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtaBiopsy.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtaBiopsy.setLineWrap(true);
         txtaBiopsy.setRows(2);
         txtaBiopsy.setTabSize(0);
@@ -688,12 +691,12 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         );
         pnlBiopsyLayout.setVerticalGroup(
             pnlBiopsyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+            .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
         );
 
         pnlReferences.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Referencias", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
-        lblsMandatoryFieldsReference.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsMandatoryFieldsReference.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblsMandatoryFieldsReference.setText("(*) = Campo Obligatorio");
 
         javax.swing.GroupLayout pnlReferencesLayout = new javax.swing.GroupLayout(pnlReferences);
@@ -701,7 +704,7 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
         pnlReferencesLayout.setHorizontalGroup(
             pnlReferencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlReferencesLayout.createSequentialGroup()
-                .addComponent(lblsMandatoryFieldsReference, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblsMandatoryFieldsReference, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         pnlReferencesLayout.setVerticalGroup(
@@ -749,15 +752,15 @@ public class VisitJDialog extends javax.swing.JDialog implements VisitView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlAntecedents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnlPatientsData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlPatientsData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlExams)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pnlBiopsy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlReferences, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(pnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 

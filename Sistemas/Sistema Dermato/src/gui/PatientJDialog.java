@@ -352,8 +352,8 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         cmbDniType = new javax.swing.JComboBox();
         pnlButtons = new javax.swing.JPanel();
         btnModify = new javax.swing.JButton();
-        btnSave = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         pnlReferences = new javax.swing.JPanel();
         lblsMandatoryFieldsReference = new javax.swing.JLabel();
         pnlAntecedents = new javax.swing.JPanel();
@@ -386,21 +386,21 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             }
         });
 
-        pnlPersonalData.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Datos Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlPersonalData.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Datos Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 20), new java.awt.Color(0, 51, 102))); // NOI18N
 
-        lblsNames.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsNames.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblsNames.setText("(*) Nombres:");
 
-        lblsLastNames.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsLastNames.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblsLastNames.setText("(*) Apellidos:");
 
-        lblsPhone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsPhone.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblsPhone.setText("Teléfono:");
 
-        lblsBirthday.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsBirthday.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblsBirthday.setText("Nacimiento:");
 
-        txtfNames.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtfNames.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtfNames.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfNames.setNextFocusableComponent(txtfPhone);
         txtfNames.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -409,7 +409,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             }
         });
 
-        txtfLastNames.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtfLastNames.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtfLastNames.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfLastNames.setNextFocusableComponent(txtfNames);
         txtfLastNames.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -418,7 +418,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             }
         });
 
-        txtfPhone.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtfPhone.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtfPhone.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfPhone.setNextFocusableComponent(cmbDniType);
         txtfPhone.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -427,7 +427,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             }
         });
 
-        lblsDniType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsDniType.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblsDniType.setText("(*) Tipo Doc:");
 
         try {
@@ -435,13 +435,13 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ftxtfBirthday.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        ftxtfBirthday.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         ftxtfBirthday.setMargin(new java.awt.Insets(0, 2, 0, 0));
 
-        pnlMedicalCoverage.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Obra Social", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlMedicalCoverage.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Obra Social", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 20), new java.awt.Color(0, 51, 102))); // NOI18N
         pnlMedicalCoverage.setOpaque(false);
 
-        cmbMedicalCoverage.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cmbMedicalCoverage.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         cmbMedicalCoverage.setFocusCycleRoot(true);
         cmbMedicalCoverage.setNextFocusableComponent(txtfMedicalCoverageNumber.isEnabled() ? txtfMedicalCoverageNumber : ftxtfFirstVisitDate);
         cmbMedicalCoverage.addItemListener(new java.awt.event.ItemListener() {
@@ -450,7 +450,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             }
         });
 
-        btnNewMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnNewMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         btnNewMedicalCoverage.setText("Nueva");
         btnNewMedicalCoverage.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnNewMedicalCoverage.setContentAreaFilled(false);
@@ -462,10 +462,10 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             }
         });
 
-        lblsMedicalCoverageNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsMedicalCoverageNumber.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblsMedicalCoverageNumber.setText("Nro. Afiliado:");
 
-        txtfMedicalCoverageNumber.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtfMedicalCoverageNumber.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtfMedicalCoverageNumber.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtfMedicalCoverageNumber.setEnabled(false);
         txtfMedicalCoverageNumber.setMargin(new java.awt.Insets(0, 2, 0, 0));
@@ -476,7 +476,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             }
         });
 
-        btnSaveMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnSaveMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         btnSaveMedicalCoverage.setText("Guardar");
         btnSaveMedicalCoverage.setEnabled(false);
         btnSaveMedicalCoverage.setNextFocusableComponent(btnCancelMedicalCoverage);
@@ -486,7 +486,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             }
         });
 
-        txtfNewMedicalCoverage.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtfNewMedicalCoverage.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtfNewMedicalCoverage.setEnabled(false);
         txtfNewMedicalCoverage.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfNewMedicalCoverage.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -495,7 +495,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             }
         });
 
-        btnCancelMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnCancelMedicalCoverage.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         btnCancelMedicalCoverage.setText("Cancelar");
         btnCancelMedicalCoverage.setEnabled(false);
         btnCancelMedicalCoverage.setNextFocusableComponent(cmbMedicalCoverage);
@@ -515,21 +515,21 @@ public class PatientJDialog extends JDialog implements PatientABMView {
                         .addGap(10, 10, 10)
                         .addGroup(pnlMedicalCoverageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlMedicalCoverageLayout.createSequentialGroup()
-                                .addComponent(lblsMedicalCoverageNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtfMedicalCoverageNumber))
-                            .addGroup(pnlMedicalCoverageLayout.createSequentialGroup()
                                 .addComponent(cmbMedicalCoverage, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnNewMedicalCoverage, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnNewMedicalCoverage, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMedicalCoverageLayout.createSequentialGroup()
+                                .addComponent(lblsMedicalCoverageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                                .addGroup(pnlMedicalCoverageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMedicalCoverageLayout.createSequentialGroup()
+                                        .addComponent(btnCancelMedicalCoverage)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnSaveMedicalCoverage, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtfMedicalCoverageNumber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(pnlMedicalCoverageLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(txtfNewMedicalCoverage))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMedicalCoverageLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCancelMedicalCoverage, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSaveMedicalCoverage, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtfNewMedicalCoverage)))
                 .addContainerGap())
         );
         pnlMedicalCoverageLayout.setVerticalGroup(
@@ -552,28 +552,28 @@ public class PatientJDialog extends JDialog implements PatientABMView {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        lblsAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsAddress.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblsAddress.setText("Domicilio:");
 
-        txtfAddress.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtfAddress.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtfAddress.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfAddress.setNextFocusableComponent(txtfCity);
 
-        lblsCity.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsCity.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblsCity.setText("Localidad:");
 
-        txtfCity.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtfCity.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtfCity.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfCity.setNextFocusableComponent(ftxtfBirthday);
 
-        lblsDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsDni.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblsDni.setText("(*) Nro. Doc.:");
 
-        txtfDni.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtfDni.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtfDni.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfDni.setNextFocusableComponent(txtfAddress);
 
-        cmbDniType.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cmbDniType.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         cmbDniType.setFocusCycleRoot(true);
         cmbDniType.setNextFocusableComponent(txtfDni);
 
@@ -593,22 +593,22 @@ public class PatientJDialog extends JDialog implements PatientABMView {
                             .addComponent(lblsAddress)
                             .addComponent(lblsCity)
                             .addComponent(lblsPhone)))
-                    .addComponent(lblsLastNames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblsLastNames))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtfPhone, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtfNames)
+                    .addComponent(txtfLastNames, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtfPhone)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPersonalDataLayout.createSequentialGroup()
                         .addComponent(cmbDniType, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblsDni)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtfDni, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
-                    .addComponent(txtfAddress)
+                        .addComponent(txtfDni))
                     .addComponent(txtfCity)
-                    .addComponent(txtfNames)
-                    .addComponent(txtfLastNames)
+                    .addComponent(txtfAddress, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlPersonalDataLayout.createSequentialGroup()
-                        .addComponent(ftxtfBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ftxtfBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -646,10 +646,10 @@ public class PatientJDialog extends JDialog implements PatientABMView {
                     .addComponent(ftxtfBirthday)
                     .addComponent(lblsBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlMedicalCoverage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlMedicalCoverage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnModify.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnModify.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnModify.setForeground(new java.awt.Color(0, 51, 102));
         btnModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit_enabled.png"))); // NOI18N
         btnModify.setText("Modificar");
@@ -671,30 +671,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             }
         });
 
-        btnSave.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnSave.setForeground(new java.awt.Color(0, 51, 102));
-        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save_enabled.png"))); // NOI18N
-        btnSave.setText("Guardar");
-        btnSave.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        btnSave.setContentAreaFilled(false);
-        btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSave.setNextFocusableComponent(btnBack);
-        btnSave.setOpaque(true);
-        btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnSaveMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnSaveMouseEntered(evt);
-            }
-        });
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-
-        btnBack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnBack.setForeground(new java.awt.Color(0, 51, 102));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_enabled.png"))); // NOI18N
         btnBack.setText("Volver");
@@ -718,30 +695,54 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             }
         });
 
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(0, 51, 102));
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save_enabled.png"))); // NOI18N
+        btnSave.setText("Guardar");
+        btnSave.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        btnSave.setContentAreaFilled(false);
+        btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSave.setNextFocusableComponent(btnBack);
+        btnSave.setOpaque(true);
+        btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSaveMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSaveMouseEntered(evt);
+            }
+        });
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlButtonsLayout = new javax.swing.GroupLayout(pnlButtons);
         pnlButtons.setLayout(pnlButtonsLayout);
         pnlButtonsLayout.setHorizontalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlButtonsLayout.createSequentialGroup()
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
+                .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         pnlButtonsLayout.setVerticalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlButtonsLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlButtonsLayout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
                 .addGroup(pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2))
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        pnlReferences.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Referencias", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlReferences.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Referencias", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 20), new java.awt.Color(0, 51, 102))); // NOI18N
 
-        lblsMandatoryFieldsReference.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsMandatoryFieldsReference.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblsMandatoryFieldsReference.setText("(*) = Campo Obligatorio");
 
         javax.swing.GroupLayout pnlReferencesLayout = new javax.swing.GroupLayout(pnlReferences);
@@ -750,8 +751,8 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             pnlReferencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlReferencesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblsMandatoryFieldsReference, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblsMandatoryFieldsReference)
+                .addContainerGap(324, Short.MAX_VALUE))
         );
         pnlReferencesLayout.setVerticalGroup(
             pnlReferencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -760,13 +761,13 @@ public class PatientJDialog extends JDialog implements PatientABMView {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnlAntecedents.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Antecedentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlAntecedents.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Antecedentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 20), new java.awt.Color(0, 51, 102))); // NOI18N
         pnlAntecedents.setNextFocusableComponent(txtaPersonal);
 
-        pnlPersonal.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlPersonal.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 20), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaPersonal.setColumns(20);
-        txtaPersonal.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtaPersonal.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtaPersonal.setLineWrap(true);
         txtaPersonal.setRows(5);
         txtaPersonal.setTabSize(0);
@@ -784,17 +785,17 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         pnlPersonal.setLayout(pnlPersonalLayout);
         pnlPersonalLayout.setHorizontalGroup(
             pnlPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPanePersonal, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+            .addComponent(scrollPanePersonal, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
         );
         pnlPersonalLayout.setVerticalGroup(
             pnlPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(scrollPanePersonal)
         );
 
-        pnlSurgical.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Quirúrgicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlSurgical.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Quirúrgicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 20), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaSurgical.setColumns(20);
-        txtaSurgical.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtaSurgical.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtaSurgical.setLineWrap(true);
         txtaSurgical.setRows(5);
         txtaSurgical.setTabSize(0);
@@ -819,10 +820,10 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             .addComponent(scrollPaneSurgical)
         );
 
-        pnlToxics.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Tóxicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlToxics.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Tóxicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 20), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaToxics.setColumns(20);
-        txtaToxics.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtaToxics.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtaToxics.setLineWrap(true);
         txtaToxics.setRows(5);
         txtaToxics.setTabSize(0);
@@ -847,10 +848,10 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             .addComponent(scrollPaneToxics, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        pnlFamily.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Familiares", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlFamily.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Familiares", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 20), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaFamily.setColumns(20);
-        txtaFamily.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtaFamily.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtaFamily.setLineWrap(true);
         txtaFamily.setRows(5);
         txtaFamily.setTabSize(0);
@@ -875,10 +876,10 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             .addComponent(scrollPaneFamily, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        pnlPharmacological.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Medicamentosos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlPharmacological.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), "Medicamentosos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 20), new java.awt.Color(0, 51, 102))); // NOI18N
 
         txtaPharmacological.setColumns(20);
-        txtaPharmacological.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtaPharmacological.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtaPharmacological.setLineWrap(true);
         txtaPharmacological.setRows(5);
         txtaPharmacological.setTabSize(0);
@@ -921,20 +922,19 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             pnlAntecedentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAntecedentsLayout.createSequentialGroup()
                 .addComponent(pnlPersonal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlSurgical, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlToxics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlPharmacological, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlFamily, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
+                .addComponent(pnlFamily, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnlOtherData.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Otros Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
+        pnlOtherData.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Otros Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 20), new java.awt.Color(0, 51, 102))); // NOI18N
 
-        lblsFirstVisitDate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsFirstVisitDate.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblsFirstVisitDate.setText("Fecha de Primera Consulta:");
 
         try {
@@ -942,7 +942,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ftxtfFirstVisitDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        ftxtfFirstVisitDate.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         ftxtfFirstVisitDate.setMargin(new java.awt.Insets(0, 2, 0, 0));
         ftxtfFirstVisitDate.setNextFocusableComponent(txtaPersonal);
 
@@ -954,7 +954,7 @@ public class PatientJDialog extends JDialog implements PatientABMView {
                 .addContainerGap()
                 .addComponent(lblsFirstVisitDate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ftxtfFirstVisitDate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ftxtfFirstVisitDate, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlOtherDataLayout.setVerticalGroup(
@@ -970,19 +970,13 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnlButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnlPersonalData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(pnlReferences, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnlOtherData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(pnlAntecedents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnlReferences, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlOtherData, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlPersonalData, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addComponent(pnlAntecedents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -990,15 +984,15 @@ public class PatientJDialog extends JDialog implements PatientABMView {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlAntecedents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnlPersonalData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnlPersonalData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlOtherData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlReferences, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pnlAntecedents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 

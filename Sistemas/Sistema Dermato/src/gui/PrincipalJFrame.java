@@ -79,8 +79,12 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         tblPatients.getColumn(PATIENTS_TABLE_BIRTHDAY_COLUMN_TITLE).setResizable(false);
         tblPatients.getColumn(PATIENTS_TABLE_LAST_VISIT_COLUMN_TITLE).setResizable(false);
         tblPatients.setDefaultRenderer(Object.class, new MultiLineCellRenderer());
-        tblPatients.getTableHeader().setFont(new Font(SYSTEM_FONT, Font.PLAIN, 14));
+        tblPatients.getTableHeader().setFont(new Font(SYSTEM_FONT, Font.PLAIN, 20));
         tblPatients.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        ((javax.swing.border.TitledBorder) pnlPatientsTable.getBorder()).
+        setTitleFont(new Font(SYSTEM_FONT, Font.PLAIN, 20));
+        ((javax.swing.border.TitledBorder) pnlSearchPatient.getBorder()).
+        setTitleFont(new Font(SYSTEM_FONT, Font.PLAIN, 20));
         dtmPatients = (DefaultTableModel) tblPatients.getModel();
 
         tblPatients.addMouseListener(new MouseAdapter() {
@@ -264,11 +268,11 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             }
         });
 
-        pnlSearchPatient.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)), "Buscar por", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        pnlSearchPatient.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)), "Buscar por", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
         pnlSearchPatient.setToolTipText("");
-        pnlSearchPatient.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        pnlSearchPatient.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        txtfLastname.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtfLastname.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtfLastname.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfLastname.setNextFocusableComponent(txtfName);
         txtfLastname.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -277,13 +281,13 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             }
         });
 
-        lblsLastName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsLastName.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblsLastName.setText("Apellido:");
 
-        lblsDni.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsDni.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblsDni.setText("Nro. Doc.:");
 
-        txtfDni.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtfDni.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtfDni.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfDni.setNextFocusableComponent(txtfLastname);
         txtfDni.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -292,7 +296,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             }
         });
 
-        txtfName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtfName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtfName.setMargin(new java.awt.Insets(0, 2, 0, 0));
         txtfName.setNextFocusableComponent(cmbDniType);
         txtfName.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -301,13 +305,13 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             }
         });
 
-        lblsName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsName.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblsName.setText("Nombre:");
 
-        lblsDniType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblsDniType.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblsDniType.setText("Tipo Doc:");
 
-        cmbDniType.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cmbDniType.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         cmbDniType.setFocusCycleRoot(true);
         cmbDniType.setNextFocusableComponent(txtfDni);
         cmbDniType.addItemListener(new java.awt.event.ItemListener() {
@@ -359,7 +363,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         pnlButtons.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pnlButtons.setOpaque(false);
 
-        btnDeletePatient.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnDeletePatient.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnDeletePatient.setForeground(new java.awt.Color(153, 153, 153));
         btnDeletePatient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete_user_enabled.png"))); // NOI18N
         btnDeletePatient.setText("Borrar Paciente");
@@ -384,7 +388,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             }
         });
 
-        btnSeeCH.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnSeeCH.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnSeeCH.setForeground(new java.awt.Color(153, 153, 153));
         btnSeeCH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/HC_enabled.png"))); // NOI18N
         btnSeeCH.setText("Ver Historia Clínica");
@@ -409,7 +413,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             }
         });
 
-        btnModifyPatient.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnModifyPatient.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnModifyPatient.setForeground(new java.awt.Color(153, 153, 153));
         btnModifyPatient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit_profile_enabled.png"))); // NOI18N
         btnModifyPatient.setText("Modificar Paciente");
@@ -434,7 +438,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             }
         });
 
-        btnPerformBackup.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnPerformBackup.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnPerformBackup.setForeground(new java.awt.Color(153, 153, 153));
         btnPerformBackup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backup_enabled.png"))); // NOI18N
         btnPerformBackup.setText("Realizar Back Up");
@@ -459,7 +463,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             }
         });
 
-        btnNewPatient.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnNewPatient.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnNewPatient.setForeground(new java.awt.Color(153, 153, 153));
         btnNewPatient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add_user_enabled.png"))); // NOI18N
         btnNewPatient.setText("Nuevo Paciente");
@@ -489,7 +493,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         pnlButtonsLayout.setHorizontalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnDeletePatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnSeeCH, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+            .addComponent(btnSeeCH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnModifyPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnPerformBackup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnNewPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -497,21 +501,21 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         pnlButtonsLayout.setVerticalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlButtonsLayout.createSequentialGroup()
-                .addComponent(btnNewPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnNewPatient, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSeeCH, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                .addComponent(btnSeeCH, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnModifyPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnModifyPatient, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDeletePatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDeletePatient, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPerformBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnPerformBackup, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
         );
 
-        pnlPatientsTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tabla de Pacientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
-        pnlPatientsTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        pnlPatientsTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tabla de Pacientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 20))); // NOI18N
+        pnlPatientsTable.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
 
-        tblPatients.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tblPatients.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         tblPatients.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"", "", "", ""},
@@ -553,24 +557,24 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             pnlPatientsTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPatientsTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPanePatientsTable, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(scrollPanePatientsTable, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlPatientsTableLayout.setVerticalGroup(
             pnlPatientsTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPatientsTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPanePatientsTable, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(scrollPanePatientsTable, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         menuBar.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         menuFile.setText("Archivo");
-        menuFile.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuFile.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
 
         menuNewPatient.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        menuNewPatient.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuNewPatient.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         menuNewPatient.setText("Nuevo Paciente");
         menuNewPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -580,7 +584,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         menuFile.add(menuNewPatient);
 
         menuPerformBackUp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
-        menuPerformBackUp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuPerformBackUp.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         menuPerformBackUp.setText("Realizar Back Up");
         menuPerformBackUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -590,7 +594,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         menuFile.add(menuPerformBackUp);
 
         menuMedicalCoverage.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        menuMedicalCoverage.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuMedicalCoverage.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         menuMedicalCoverage.setText("Gestion de Obras Sociales");
         menuMedicalCoverage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -599,7 +603,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         });
         menuFile.add(menuMedicalCoverage);
 
-        menuExit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuExit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         menuExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salir.png"))); // NOI18N
         menuExit.setText("Salir");
         menuExit.addActionListener(new java.awt.event.ActionListener() {
@@ -612,9 +616,9 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         menuBar.add(menuFile);
 
         menuWindow.setText("Ventana");
-        menuWindow.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuWindow.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
 
-        menuChangeColor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuChangeColor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         menuChangeColor.setText("Cambiar Color");
         menuChangeColor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -626,9 +630,9 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
         menuBar.add(menuWindow);
 
         menuHelp.setText("Ayuda");
-        menuHelp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuHelp.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
 
-        menuAbout.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuAbout.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         menuAbout.setText("Acerca De...");
         menuAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -648,7 +652,7 @@ public class PrincipalJFrame extends javax.swing.JFrame implements PrincipalView
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlPatientsTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlSearchPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))

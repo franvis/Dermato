@@ -75,17 +75,17 @@ public class ChooseColorJDialog extends javax.swing.JDialog {
 
         rbtnYellow.setBackground(new java.awt.Color(255, 252, 204));
         buttonGroup1.add(rbtnYellow);
-        rbtnYellow.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbtnYellow.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         rbtnYellow.setText("Amarillo");
 
         rbtnBlue.setBackground(new java.awt.Color(225, 225, 254));
         buttonGroup1.add(rbtnBlue);
-        rbtnBlue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbtnBlue.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         rbtnBlue.setText("Azul");
 
         rbtnPurple.setBackground(new java.awt.Color(232, 179, 245));
         buttonGroup1.add(rbtnPurple);
-        rbtnPurple.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbtnPurple.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         rbtnPurple.setText("Lila");
         rbtnPurple.setMaximumSize(new java.awt.Dimension(45, 23));
         rbtnPurple.setMinimumSize(new java.awt.Dimension(45, 23));
@@ -93,20 +93,20 @@ public class ChooseColorJDialog extends javax.swing.JDialog {
 
         rbtnPalidRose.setBackground(new java.awt.Color(255, 204, 204));
         buttonGroup1.add(rbtnPalidRose);
-        rbtnPalidRose.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbtnPalidRose.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         rbtnPalidRose.setText("Rosa Pálido");
 
         rbtnOldRose.setBackground(new java.awt.Color(255, 153, 153));
         buttonGroup1.add(rbtnOldRose);
-        rbtnOldRose.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbtnOldRose.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         rbtnOldRose.setText("Rosa Viejo");
 
         rbtnGreen.setBackground(new java.awt.Color(179, 225, 194));
         buttonGroup1.add(rbtnGreen);
-        rbtnGreen.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbtnGreen.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         rbtnGreen.setText("Verde");
 
-        btnPreview.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnPreview.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnPreview.setText("Vista Previa");
         btnPreview.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnPreview.setContentAreaFilled(false);
@@ -117,7 +117,7 @@ public class ChooseColorJDialog extends javax.swing.JDialog {
             }
         });
 
-        btnApply.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnApply.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnApply.setText("Aplicar");
         btnApply.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         btnApply.setContentAreaFilled(false);
@@ -129,7 +129,7 @@ public class ChooseColorJDialog extends javax.swing.JDialog {
         });
 
         buttonGroup1.add(rbtnDefault);
-        rbtnDefault.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbtnDefault.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         rbtnDefault.setText("Color por defecto");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,7 +139,7 @@ public class ChooseColorJDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbtnDefault, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rbtnDefault, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnPreview, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -175,10 +175,10 @@ public class ChooseColorJDialog extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rbtnGreen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnPreview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnApply, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(15, 15, 15))
+                .addContainerGap())
         );
 
         pack();

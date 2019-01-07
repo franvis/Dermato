@@ -46,10 +46,10 @@ public class PreviousCHJDialog extends javax.swing.JDialog {
 
         pnlGeneral = new javax.swing.JPanel();
         pnlPreviousClinicalHistory = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtaPreviousClinicalHistory = new javax.swing.JTextArea();
         pnlButtons = new javax.swing.JPanel();
         btnBack = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtaPreviousClinicalHistory = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Historia Clinica Previa");
@@ -62,31 +62,20 @@ public class PreviousCHJDialog extends javax.swing.JDialog {
 
         pnlGeneral.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        pnlPreviousClinicalHistory.setBorder(null);
-
-        txtaPreviousClinicalHistory.setEditable(false);
-        txtaPreviousClinicalHistory.setColumns(20);
-        txtaPreviousClinicalHistory.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
-        txtaPreviousClinicalHistory.setLineWrap(true);
-        txtaPreviousClinicalHistory.setRows(5);
-        txtaPreviousClinicalHistory.setWrapStyleWord(true);
-        txtaPreviousClinicalHistory.setMargin(new java.awt.Insets(0, 2, 0, 0));
-        jScrollPane3.setViewportView(txtaPreviousClinicalHistory);
-
         javax.swing.GroupLayout pnlPreviousClinicalHistoryLayout = new javax.swing.GroupLayout(pnlPreviousClinicalHistory);
         pnlPreviousClinicalHistory.setLayout(pnlPreviousClinicalHistoryLayout);
         pnlPreviousClinicalHistoryLayout.setHorizontalGroup(
             pnlPreviousClinicalHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         pnlPreviousClinicalHistoryLayout.setVerticalGroup(
             pnlPreviousClinicalHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+            .addGap(0, 439, Short.MAX_VALUE)
         );
 
         pnlButtons.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        btnBack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnBack.setForeground(new java.awt.Color(0, 51, 102));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_enabled.png"))); // NOI18N
         btnBack.setText("Volver");
@@ -115,33 +104,47 @@ public class PreviousCHJDialog extends javax.swing.JDialog {
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlButtonsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(790, Short.MAX_VALUE))
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(756, Short.MAX_VALUE))
         );
         pnlButtonsLayout.setVerticalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        txtaPreviousClinicalHistory.setEditable(false);
+        txtaPreviousClinicalHistory.setColumns(20);
+        txtaPreviousClinicalHistory.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
+        txtaPreviousClinicalHistory.setLineWrap(true);
+        txtaPreviousClinicalHistory.setRows(5);
+        txtaPreviousClinicalHistory.setWrapStyleWord(true);
+        txtaPreviousClinicalHistory.setMargin(new java.awt.Insets(0, 2, 0, 0));
+        jScrollPane3.setViewportView(txtaPreviousClinicalHistory);
 
         javax.swing.GroupLayout pnlGeneralLayout = new javax.swing.GroupLayout(pnlGeneral);
         pnlGeneral.setLayout(pnlGeneralLayout);
         pnlGeneralLayout.setHorizontalGroup(
             pnlGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlGeneralLayout.createSequentialGroup()
-                .addGroup(pnlGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlGeneralLayout.createSequentialGroup()
-                        .addComponent(pnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(pnlGeneralLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(pnlPreviousClinicalHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addComponent(jScrollPane3))
+                    .addComponent(pnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlPreviousClinicalHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlGeneralLayout.setVerticalGroup(
             pnlGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGeneralLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(pnlPreviousClinicalHistory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlGeneralLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(pnlPreviousClinicalHistory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlGeneralLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))

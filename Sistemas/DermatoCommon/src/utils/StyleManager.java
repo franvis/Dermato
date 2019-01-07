@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -317,10 +318,26 @@ public class StyleManager {
                 JPanel comp = (JPanel) componente;
                 if (comp.getBorder() instanceof TitledBorder) {
                     String texto = ((TitledBorder) comp.getBorder()).getTitle();
-                    comp.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), texto, javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15), getTextColor(actualColor)));
+                    comp.setBorder(javax.swing.BorderFactory.createTitledBorder(
+                            new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), 
+                            texto, javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                            javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), 
+                            getTextColor(actualColor)));
                 }
             }
-            if (componente instanceof Container || componente instanceof JPanel) {
+            
+            if(componente instanceof JTabbedPane) {
+                JTabbedPane comp = (JTabbedPane) componente;
+                if (comp.getBorder() instanceof TitledBorder) {
+                    String texto = ((TitledBorder) comp.getBorder()).getTitle();
+                    comp.setBorder(javax.swing.BorderFactory.createTitledBorder(
+                            new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true), 
+                            texto, javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                            javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), 
+                            getTextColor(actualColor)));
+                }
+            }
+            if (componente instanceof Container || componente instanceof JPanel || componente instanceof JTabbedPane) {
                 paintComponents((Container) componente, color);
             }
         }

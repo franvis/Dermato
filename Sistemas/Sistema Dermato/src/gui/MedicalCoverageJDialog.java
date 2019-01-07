@@ -97,7 +97,7 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
 
         jScrollPane2.setFocusable(false);
 
-        tblMedicalCoverages.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tblMedicalCoverages.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         tblMedicalCoverages.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
@@ -135,21 +135,21 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
             pnlPrePaidHealthInsurancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPrePaidHealthInsurancesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlPrePaidHealthInsurancesLayout.setVerticalGroup(
             pnlPrePaidHealthInsurancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPrePaidHealthInsurancesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pnlButtons.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         pnlButtons.setName("pnlButtons"); // NOI18N
 
-        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(0, 51, 102));
         btnDelete.setText("Eliminar");
         btnDelete.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -171,7 +171,7 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
             }
         });
 
-        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnCancel.setForeground(new java.awt.Color(0, 51, 102));
         btnCancel.setText("Cancelar");
         btnCancel.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -194,7 +194,7 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
             }
         });
 
-        btnModify.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnModify.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnModify.setForeground(new java.awt.Color(0, 51, 102));
         btnModify.setText("Modificar");
         btnModify.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -220,9 +220,11 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
         pnlButtons.setLayout(pnlButtonsLayout);
         pnlButtonsLayout.setHorizontalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(pnlButtonsLayout.createSequentialGroup()
+                .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlButtonsLayout.setVerticalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,7 +238,7 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
 
         pnlNewPPHealthInsurance.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nueva Obra Social", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 51, 102))); // NOI18N
 
-        txtMedicalCoverageName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtMedicalCoverageName.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         txtMedicalCoverageName.setMargin(new java.awt.Insets(0, 2, 0, 0));
 
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -267,14 +269,13 @@ public class MedicalCoverageJDialog extends javax.swing.JDialog implements Medic
             pnlNewPPHealthInsuranceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNewPPHealthInsuranceLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtMedicalCoverageName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlNewPPHealthInsuranceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMedicalCoverageName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
-            .addGroup(pnlNewPPHealthInsuranceLayout.createSequentialGroup()
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        btnBack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnBack.setForeground(new java.awt.Color(0, 51, 102));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_enabled.png"))); // NOI18N
         btnBack.setText("Volver");

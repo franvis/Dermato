@@ -37,43 +37,33 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="pnlButtons" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="pnlPersonalData" max="32767" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="pnlReferences" max="32767" attributes="0"/>
-                          <Component id="pnlOtherData" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="pnlReferences" alignment="0" max="32767" attributes="0"/>
+                  <Component id="pnlOtherData" alignment="0" max="32767" attributes="0"/>
+                  <Component id="pnlButtons" max="32767" attributes="0"/>
+                  <Component id="pnlPersonalData" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <Component id="pnlAntecedents" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Component id="pnlAntecedents" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="pnlAntecedents" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="pnlPersonalData" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlPersonalData" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="pnlOtherData" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="pnlReferences" max="32767" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="pnlButtons" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="pnlAntecedents" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -91,7 +81,7 @@
                   <Color PropertyName="color" blue="99" green="99" red="99" type="rgb"/>
                 </LineBorder>
               </Border>
-              <Font PropertyName="font" name="Tahoma" size="13" style="0"/>
+              <Font PropertyName="font" name="Tahoma" size="20" style="0"/>
               <Color PropertyName="color" blue="66" green="33" red="0" type="rgb"/>
             </TitledBorder>
           </Border>
@@ -115,24 +105,24 @@
                               <Component id="lblsPhone" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="lblsLastNames" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lblsLastNames" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtfPhone" alignment="1" max="32767" attributes="2"/>
+                      <Component id="txtfNames" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtfLastNames" alignment="1" max="32767" attributes="0"/>
+                      <Component id="txtfPhone" alignment="0" max="32767" attributes="2"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="cmbDniType" min="-2" pref="77" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblsDni" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtfDni" pref="123" max="32767" attributes="0"/>
+                          <Component id="txtfDni" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="txtfAddress" max="32767" attributes="0"/>
-                      <Component id="txtfCity" max="32767" attributes="0"/>
-                      <Component id="txtfNames" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtfLastNames" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtfCity" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtfAddress" alignment="1" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="ftxtfBirthday" min="-2" pref="106" max="-2" attributes="0"/>
+                          <Component id="ftxtfBirthday" min="-2" pref="153" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -181,7 +171,7 @@
                       <Component id="lblsBirthday" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="pnlMedicalCoverage" min="-2" max="-2" attributes="0"/>
+                  <Component id="pnlMedicalCoverage" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -190,7 +180,7 @@
         <Component class="javax.swing.JLabel" name="lblsNames">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="(*) Nombres:"/>
           </Properties>
@@ -198,7 +188,7 @@
         <Component class="javax.swing.JLabel" name="lblsLastNames">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="(*) Apellidos:"/>
           </Properties>
@@ -206,7 +196,7 @@
         <Component class="javax.swing.JLabel" name="lblsPhone">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Tel&#xe9;fono:"/>
           </Properties>
@@ -214,7 +204,7 @@
         <Component class="javax.swing.JLabel" name="lblsBirthday">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nacimiento:"/>
           </Properties>
@@ -222,7 +212,7 @@
         <Component class="javax.swing.JTextField" name="txtfNames">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[0, 2, 0, 0]"/>
@@ -238,7 +228,7 @@
         <Component class="javax.swing.JTextField" name="txtfLastNames">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[0, 2, 0, 0]"/>
@@ -254,7 +244,7 @@
         <Component class="javax.swing.JTextField" name="txtfPhone">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[0, 2, 0, 0]"/>
@@ -270,7 +260,7 @@
         <Component class="javax.swing.JLabel" name="lblsDniType">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="(*) Tipo Doc:"/>
           </Properties>
@@ -281,7 +271,7 @@
               <Format format="##/##/####" subtype="-1" type="5"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[0, 2, 0, 0]"/>
@@ -293,7 +283,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder title="Obra Social">
-                  <Font PropertyName="font" name="Tahoma" size="13" style="0"/>
+                  <Font PropertyName="font" name="Tahoma" size="20" style="0"/>
                   <Color PropertyName="color" blue="66" green="33" red="0" type="rgb"/>
                 </TitledBorder>
               </Border>
@@ -310,26 +300,27 @@
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="lblsMedicalCoverageNumber" min="-2" pref="89" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtfMedicalCoverageNumber" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
                                       <Component id="cmbMedicalCoverage" max="32767" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="btnNewMedicalCoverage" min="-2" pref="83" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="lblsMedicalCoverageNumber" max="32767" attributes="0"/>
+                                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="btnCancelMedicalCoverage" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="btnSaveMedicalCoverage" min="-2" pref="135" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="txtfMedicalCoverageNumber" alignment="1" min="-2" pref="398" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtfNewMedicalCoverage" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnCancelMedicalCoverage" min="-2" pref="91" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnSaveMedicalCoverage" min="-2" pref="91" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -365,7 +356,7 @@
             <Component class="javax.swing.JComboBox" name="cmbMedicalCoverage">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Tahoma" size="20" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
@@ -382,7 +373,7 @@
             <Component class="javax.swing.JButton" name="btnNewMedicalCoverage">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="0"/>
+                  <Font name="Tahoma" size="20" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nueva"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -403,7 +394,7 @@
             <Component class="javax.swing.JLabel" name="lblsMedicalCoverageNumber">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="0"/>
+                  <Font name="Tahoma" size="20" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nro. Afiliado:"/>
               </Properties>
@@ -411,7 +402,7 @@
             <Component class="javax.swing.JTextField" name="txtfMedicalCoverageNumber">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Tahoma" size="20" style="1"/>
                 </Property>
                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
@@ -431,7 +422,7 @@
             <Component class="javax.swing.JButton" name="btnSaveMedicalCoverage">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="0"/>
+                  <Font name="Tahoma" size="20" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Guardar"/>
                 <Property name="enabled" type="boolean" value="false"/>
@@ -446,7 +437,7 @@
             <Component class="javax.swing.JTextField" name="txtfNewMedicalCoverage">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Tahoma" size="20" style="1"/>
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
@@ -460,7 +451,7 @@
             <Component class="javax.swing.JButton" name="btnCancelMedicalCoverage">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="0"/>
+                  <Font name="Tahoma" size="20" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
                 <Property name="enabled" type="boolean" value="false"/>
@@ -477,7 +468,7 @@
         <Component class="javax.swing.JLabel" name="lblsAddress">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Domicilio:"/>
           </Properties>
@@ -485,7 +476,7 @@
         <Component class="javax.swing.JTextField" name="txtfAddress">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[0, 2, 0, 0]"/>
@@ -498,7 +489,7 @@
         <Component class="javax.swing.JLabel" name="lblsCity">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Localidad:"/>
           </Properties>
@@ -506,7 +497,7 @@
         <Component class="javax.swing.JTextField" name="txtfCity">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[0, 2, 0, 0]"/>
@@ -519,7 +510,7 @@
         <Component class="javax.swing.JLabel" name="lblsDni">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="(*) Nro. Doc.:"/>
           </Properties>
@@ -527,7 +518,7 @@
         <Component class="javax.swing.JTextField" name="txtfDni">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[0, 2, 0, 0]"/>
@@ -540,7 +531,7 @@
         <Component class="javax.swing.JComboBox" name="cmbDniType">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -560,22 +551,23 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="btnBack" min="-2" pref="123" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                  <Component id="btnModify" min="-2" pref="155" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btnModify" min="-2" pref="123" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnSave" min="-2" pref="123" max="-2" attributes="0"/>
+                  <Component id="btnSave" min="-2" pref="136" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="20" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnSave" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                       <Component id="btnModify" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                       <Component id="btnBack" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -584,7 +576,7 @@
         <Component class="javax.swing.JButton" name="btnModify">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="13" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="33" red="0" type="rgb"/>
@@ -610,42 +602,10 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModifyActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnSave">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="13" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="33" red="0" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/save_enabled.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Guardar"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                <EtchetBorder bevelType="0"/>
-              </Border>
-            </Property>
-            <Property name="contentAreaFilled" type="boolean" value="false"/>
-            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
-            </Property>
-            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="btnBack"/>
-            </Property>
-            <Property name="opaque" type="boolean" value="true"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSaveMouseExited"/>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSaveMouseEntered"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="btnBack">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="13" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="33" red="0" type="rgb"/>
@@ -675,6 +635,38 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JButton" name="btnSave">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="20" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="33" red="0" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/save_enabled.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Guardar"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                <EtchetBorder bevelType="0"/>
+              </Border>
+            </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Default Cursor"/>
+            </Property>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="btnBack"/>
+            </Property>
+            <Property name="opaque" type="boolean" value="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSaveMouseExited"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSaveMouseEntered"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="pnlReferences">
@@ -682,7 +674,7 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Referencias">
-              <Font PropertyName="font" name="Dialog" size="13" style="0"/>
+              <Font PropertyName="font" name="Dialog" size="20" style="0"/>
               <Color PropertyName="color" blue="66" green="33" red="0" type="rgb"/>
             </TitledBorder>
           </Border>
@@ -697,8 +689,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblsMandatoryFieldsReference" min="-2" pref="176" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="lblsMandatoryFieldsReference" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="324" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -715,7 +707,7 @@
         <Component class="javax.swing.JLabel" name="lblsMandatoryFieldsReference">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="(*) = Campo Obligatorio"/>
           </Properties>
@@ -727,7 +719,7 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Antecedentes">
-              <Font PropertyName="font" name="Tahoma" size="14" style="0"/>
+              <Font PropertyName="font" name="Tahoma" size="20" style="0"/>
               <Color PropertyName="color" blue="66" green="33" red="0" type="rgb"/>
             </TitledBorder>
           </Border>
@@ -757,7 +749,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="pnlPersonal" max="32767" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="pnlSurgical" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="pnlToxics" max="32767" attributes="0"/>
@@ -765,7 +757,6 @@
                   <Component id="pnlPharmacological" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="pnlFamily" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -781,7 +772,7 @@
                       <Color PropertyName="color" blue="99" green="99" red="99" type="rgb"/>
                     </LineBorder>
                   </Border>
-                  <Font PropertyName="font" name="Tahoma" size="13" style="0"/>
+                  <Font PropertyName="font" name="Tahoma" size="20" style="0"/>
                   <Color PropertyName="color" blue="66" green="33" red="0" type="rgb"/>
                 </TitledBorder>
               </Border>
@@ -791,7 +782,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="scrollPanePersonal" alignment="0" pref="484" max="32767" attributes="0"/>
+                  <Component id="scrollPanePersonal" alignment="0" pref="579" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -812,7 +803,7 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="16" style="1"/>
+                      <Font name="Tahoma" size="20" style="1"/>
                     </Property>
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
@@ -843,7 +834,7 @@
                       <Color PropertyName="color" blue="99" green="99" red="99" type="rgb"/>
                     </LineBorder>
                   </Border>
-                  <Font PropertyName="font" name="Tahoma" size="13" style="0"/>
+                  <Font PropertyName="font" name="Tahoma" size="20" style="0"/>
                   <Color PropertyName="color" blue="66" green="33" red="0" type="rgb"/>
                 </TitledBorder>
               </Border>
@@ -874,7 +865,7 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="16" style="1"/>
+                      <Font name="Tahoma" size="20" style="1"/>
                     </Property>
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
@@ -905,7 +896,7 @@
                       <Color PropertyName="color" blue="99" green="99" red="99" type="rgb"/>
                     </LineBorder>
                   </Border>
-                  <Font PropertyName="font" name="Tahoma" size="13" style="0"/>
+                  <Font PropertyName="font" name="Tahoma" size="20" style="0"/>
                   <Color PropertyName="color" blue="66" green="33" red="0" type="rgb"/>
                 </TitledBorder>
               </Border>
@@ -936,7 +927,7 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="16" style="1"/>
+                      <Font name="Tahoma" size="20" style="1"/>
                     </Property>
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
@@ -967,7 +958,7 @@
                       <Color PropertyName="color" blue="99" green="99" red="99" type="rgb"/>
                     </LineBorder>
                   </Border>
-                  <Font PropertyName="font" name="Tahoma" size="13" style="0"/>
+                  <Font PropertyName="font" name="Tahoma" size="20" style="0"/>
                   <Color PropertyName="color" blue="66" green="33" red="0" type="rgb"/>
                 </TitledBorder>
               </Border>
@@ -998,7 +989,7 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="16" style="1"/>
+                      <Font name="Tahoma" size="20" style="1"/>
                     </Property>
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
@@ -1029,7 +1020,7 @@
                       <Color PropertyName="color" blue="99" green="99" red="99" type="rgb"/>
                     </LineBorder>
                   </Border>
-                  <Font PropertyName="font" name="Tahoma" size="13" style="0"/>
+                  <Font PropertyName="font" name="Tahoma" size="20" style="0"/>
                   <Color PropertyName="color" blue="66" green="33" red="0" type="rgb"/>
                 </TitledBorder>
               </Border>
@@ -1060,7 +1051,7 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="16" style="1"/>
+                      <Font name="Tahoma" size="20" style="1"/>
                     </Property>
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
@@ -1088,7 +1079,7 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Otros Datos">
-              <Font PropertyName="font" name="Dialog" size="13" style="0"/>
+              <Font PropertyName="font" name="Dialog" size="20" style="0"/>
               <Color PropertyName="color" blue="66" green="33" red="0" type="rgb"/>
             </TitledBorder>
           </Border>
@@ -1102,7 +1093,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblsFirstVisitDate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="ftxtfFirstVisitDate" min="-2" pref="106" max="-2" attributes="0"/>
+                  <Component id="ftxtfFirstVisitDate" min="-2" pref="140" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -1120,7 +1111,7 @@
         <Component class="javax.swing.JLabel" name="lblsFirstVisitDate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Fecha de Primera Consulta:"/>
           </Properties>
@@ -1131,7 +1122,7 @@
               <Format format="##/##/####" subtype="-1" type="5"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="20" style="1"/>
             </Property>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[0, 2, 0, 0]"/>
