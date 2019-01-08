@@ -6,6 +6,8 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import static utils.GeneralUtils.setButtonFontForPointerEvent;
 import javax.swing.JRootPane;
+import javax.swing.JTextArea;
+import javax.swing.text.DefaultCaret;
 import utils.StyleManager;
 
 /**
@@ -118,6 +120,7 @@ public class PreviousCHJDialog extends javax.swing.JDialog {
         txtaPreviousClinicalHistory.setLineWrap(true);
         txtaPreviousClinicalHistory.setRows(5);
         txtaPreviousClinicalHistory.setWrapStyleWord(true);
+        txtaPreviousClinicalHistory.setAutoscrolls(false);
         txtaPreviousClinicalHistory.setMargin(new java.awt.Insets(0, 2, 0, 0));
         jScrollPane3.setViewportView(txtaPreviousClinicalHistory);
 
@@ -190,8 +193,10 @@ public class PreviousCHJDialog extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void setupInitialUi(String previousClinicalHistory) {
+        DefaultCaret caret = (DefaultCaret)txtaPreviousClinicalHistory.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
         txtaPreviousClinicalHistory.setText(previousClinicalHistory);
         setLocationRelativeTo(getParent());
-        StyleManager.paint(this);
+        StyleManager.paint(this);       
     }
 }

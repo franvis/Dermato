@@ -13,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.DefaultCaret;
 
 /**
  * Class that handle styles along the application
@@ -290,6 +291,8 @@ public class StyleManager {
                 componente.setBackground(getTertiaryColor(color));
                 ((JTextArea) componente).setDisabledTextColor(getTextColor(color));
                 ((JTextArea) componente).setSelectionColor(getSecondaryColor(color));
+                DefaultCaret caret = (DefaultCaret)((JTextArea) componente).getCaret();
+                caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
             } else if (componente instanceof JTextField) {
                 componente.setBackground(getTertiaryColor(color));
                 ((JTextField) componente).setDisabledTextColor(getTextColor(color));
